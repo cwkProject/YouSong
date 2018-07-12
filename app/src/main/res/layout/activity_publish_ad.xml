@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <include layout="@layout/toolbar"/>
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingEnd="@dimen/activity_horizontal_margin"
+            android:paddingStart="@dimen/activity_horizontal_margin">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/ad_cover_height">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/prompt_click_upload_cover"
+                    android:textSize="@dimen/text_size_large"/>
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="@dimen/layout_default_spacing">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/prompt_click_upload_content"
+                    android:textSize="@dimen/text_size_large"/>
+            </FrameLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="@dimen/layout_default_spacing"
+                android:layout_marginTop="@dimen/layout_default_spacing"
+                android:background="@android:color/darker_gray"/>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/hint_question"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/layout_default_spacing"
+                android:text="@string/name_set_answer"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+
+            <android.support.v7.widget.GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:columnCount="2"
+                app:useDefaultMargins="true">
+
+                <TextView
+                    android:text="@string/label_a"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+
+                <EditText app:layout_gravity="fill_horizontal"/>
+
+                <TextView
+                    android:text="@string/label_b"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+
+                <EditText app:layout_gravity="fill_horizontal"/>
+
+                <TextView
+                    android:text="@string/label_c"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+
+                <EditText app:layout_gravity="fill_horizontal"/>
+
+                <TextView
+                    android:text="@string/label_d"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+
+                <EditText app:layout_gravity="fill_horizontal"/>
+
+            </android.support.v7.widget.GridLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/layout_default_spacing"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_correct_answer"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/layout_default_spacing"
+                    android:orientation="horizontal">
+
+                    <android.support.v7.widget.AppCompatRadioButton
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/name_a"/>
+
+                    <android.support.v7.widget.AppCompatRadioButton
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/name_b"/>
+
+                    <android.support.v7.widget.AppCompatRadioButton
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/name_c"/>
+
+                    <android.support.v7.widget.AppCompatRadioButton
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/name_d"/>
+
+                </RadioGroup>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/layout_default_spacing"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_retry_times"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/layout_default_spacing"
+                    android:orientation="horizontal">
+
+                    <android.support.v7.widget.AppCompatRadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/name_not_retry"/>
+
+                    <android.support.v7.widget.AppCompatRadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/name_once"/>
+
+                    <android.support.v7.widget.AppCompatRadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/name_twice"/>
+
+                </RadioGroup>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="@dimen/layout_default_spacing"
+                android:layout_marginTop="@dimen/layout_default_spacing"
+                android:background="@android:color/darker_gray"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/name_publish_form"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+
+            <android.support.v7.widget.AppCompatRadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/layout_default_spacing"
+                android:text="@string/name_promotion_publish"/>
+
+            <android.support.v7.widget.AppCompatRadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/name_directional_publish"/>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <include layout="@layout/fragment_directional_parameter"/>
+
+            </FrameLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="@dimen/layout_default_spacing"
+                android:layout_marginTop="@dimen/layout_default_spacing"
+                android:background="@android:color/darker_gray"/>
+
+            <android.support.v7.widget.GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                app:columnCount="2"
+                app:useDefaultMargins="true">
+
+                <TextView
+                    android:text="@string/name_user_unit_price"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+
+                <EditText app:layout_columnWeight="1"/>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/name_user_count"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+
+                <EditText app:layout_columnWeight="1"/>
+
+                <TextView
+                    android:text="@string/name_total_amount"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+
+                <TextView app:layout_columnWeight="1"/>
+
+                <TextView
+                    android:text="@string/name_account_balance"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+
+                <TextView app:layout_columnWeight="1"/>
+
+            </android.support.v7.widget.GridLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="@dimen/layout_default_spacing"
+                android:layout_marginTop="@dimen/layout_default_spacing"
+                android:background="@android:color/darker_gray"/>
+
+            <android.support.v7.widget.AppCompatRadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/name_need_invoice"/>
+
+            <android.support.v7.widget.AppCompatRadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/layout_default_spacing"
+                android:text="@string/name_not_need_invoice"/>
+
+            <android.support.v7.widget.AppCompatButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/name_recharge"
+                android:textColor="@android:color/white"
+                app:backgroundTint="@color/red_500"/>
+
+            <android.support.v7.widget.AppCompatButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/name_submit_review"
+                android:textColor="@android:color/white"
+                app:backgroundTint="@color/red_500"/>
+
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+</LinearLayout>

@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+                                            xmlns:app="http://schemas.android.com/apk/res-auto"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="72dp"
+                android:layout_height="72dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="?actionBarSize"
+                android:src="@drawable/ic_wechat_oval"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:layout_marginTop="@dimen/layout_default_spacing"
+                android:text="@string/name_wechat_login"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+        </LinearLayout>
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:background="@android:color/white"
+            android:stretchColumns="1">
+
+            <TableRow style="@style/MeRowStyle">
+
+                <ImageView
+                    android:layout_marginBottom="@dimen/layout_default_spacing"
+                    android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                    android:layout_marginTop="@dimen/layout_default_spacing"
+                    app:srcCompat="@drawable/ic_currency_cny_black_36dp"/>
+
+                <TextView
+                    style="@style/MeTextStyle"
+                    android:text="@string/label_income"/>
+
+            </TableRow>
+
+            <TableRow>
+
+                <View
+                    android:layout_height="1dp"
+                    android:layout_column="1"
+                    android:background="@color/grey_100"/>
+            </TableRow>
+
+            <TableRow style="@style/MeRowStyle">
+
+                <ImageView
+                    android:layout_marginBottom="@dimen/layout_default_spacing"
+                    android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                    android:layout_marginTop="@dimen/layout_default_spacing"
+                    app:srcCompat="@drawable/ic_currency_cny_black_36dp"/>
+
+                <TextView
+                    style="@style/MeTextStyle"
+                    android:text="@string/label_over"/>
+            </TableRow>
+
+            <TableRow>
+
+                <View
+                    android:layout_height="1dp"
+                    android:layout_column="1"
+                    android:background="@color/grey_100"/>
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/withdraw"
+                style="@style/MeRowStyle">
+
+                <ImageView
+                    android:layout_marginBottom="@dimen/layout_default_spacing"
+                    android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                    android:layout_marginTop="@dimen/layout_default_spacing"
+                    app:srcCompat="@drawable/ic_currency_cny_black_36dp"/>
+
+                <TextView
+                    style="@style/MeTextStyle"
+                    android:drawableEnd="@drawable/ic_chevron_right_grey_400_24dp"
+                    android:text="@string/name_withdraw"/>
+
+            </TableRow>
+
+            <TableRow>
+
+                <View
+                    android:layout_height="1dp"
+                    android:layout_column="1"
+                    android:background="@color/grey_100"/>
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/publish_ad"
+                style="@style/MeRowStyle">
+
+                <ImageView
+                    android:layout_marginBottom="@dimen/layout_default_spacing"
+                    android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                    android:layout_marginTop="@dimen/layout_default_spacing"
+                    app:srcCompat="@drawable/ic_currency_cny_black_36dp"/>
+
+                <TextView
+                    style="@style/MeTextStyle"
+                    android:drawableEnd="@drawable/ic_chevron_right_grey_400_24dp"
+                    android:text="@string/name_publish_ad"/>
+            </TableRow>
+
+            <TableRow>
+
+                <View
+                    android:layout_height="1dp"
+                    android:layout_column="1"
+                    android:background="@color/grey_100"/>
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/authenticate"
+                style="@style/MeRowStyle">
+
+                <ImageView
+                    android:layout_marginBottom="@dimen/layout_default_spacing"
+                    android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                    android:layout_marginTop="@dimen/layout_default_spacing"
+                    app:srcCompat="@drawable/ic_currency_cny_black_36dp"/>
+
+                <TextView
+                    style="@style/MeTextStyle"
+                    android:drawableEnd="@drawable/ic_chevron_right_grey_400_24dp"
+                    android:text="@string/name_authenticate"/>
+            </TableRow>
+
+            <TableRow>
+
+                <View
+                    android:layout_height="1dp"
+                    android:layout_column="1"
+                    android:background="@color/grey_100"/>
+            </TableRow>
+
+            <TableRow style="@style/MeRowStyle">
+
+                <ImageView
+                    android:layout_marginBottom="@dimen/layout_default_spacing"
+                    android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                    android:layout_marginTop="@dimen/layout_default_spacing"
+                    app:srcCompat="@drawable/ic_currency_cny_black_36dp"/>
+
+                <TextView
+                    style="@style/MeTextStyle"
+                    android:drawableEnd="@drawable/ic_chevron_right_grey_400_24dp"
+                    android:text="@string/name_help"/>
+            </TableRow>
+        </TableLayout>
+
+    </LinearLayout>
+
+</android.support.v4.widget.NestedScrollView>
