@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 失败信息 -->
+<resources>
+
+    <string name="failed_open_wx">启动微信失败</string>
+
+    <string name="failed_login_required">登录失败，请检查网络并重试</string>
+
+</resources>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 标题 -->
+<resources>
+
+    <string name="title_ad">发现</string>
+    <string name="title_friend">好友</string>
+    <string name="title_me">我</string>
+
+    <string name="title_detail">详情</string>
+    <string name="title_share_friend">分享好友</string>
+    <string name="title_my_ad">我的广告</string>
+    <string name="title_published">已发布</string>
+    <string name="title_unpublished">未发布</string>
+    <string name="title_personal_authentication">个人认证</string>
+    <string name="title_enterprise_certification">企业认证</string>
+
+</resources>

@@ -2,6 +2,8 @@
 <manifest package="com.yousong.yousong"
           xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+
     <application
         android:name=".common.MyApplication"
         android:allowBackup="true"
@@ -29,6 +31,9 @@
         <activity android:name=".activity.EnterpriseCertificationActivity"/>
         <activity android:name=".activity.PublishAdActivity"/>
         <activity android:name=".activity.RechargeActivity"/>
+        <activity
+            android:name=".wxapi.WXEntryActivity"
+            android:exported="true"/>
     </application>
 
 </manifest>

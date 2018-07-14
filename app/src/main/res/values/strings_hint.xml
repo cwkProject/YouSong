@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 示意 -->
+<resources>
+
+    <string name="hint_withdraw_amount">提现金额</string>
+    <string name="hint_recharge_amount">充值金额</string>
+    <string name="hint_real_name">真实姓名</string>
+    <string name="hint_id_number">身份证号</string>
+    <string name="hint_corporation_name">法人姓名</string>
+    <string name="hint_corporation_id_number">法人身份证号</string>
+
+    <string name="hint_question">设置提问内容，限制120字</string>
+
+</resources>

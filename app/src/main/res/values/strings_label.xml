@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 标签 -->
+<resources>
+
+    <string name="label_income">收益:</string>
+    <string name="label_over">余额:</string>
+    <string name="label_total_amount">总金额:</string>
+    <string name="label_a">A:</string>
+    <string name="label_b">B:</string>
+    <string name="label_c">C:</string>
+    <string name="label_d">D:</string>
+    <string name="label_correct_answer">正确答案:</string>
+    <string name="label_retry_times">错误重答次数:</string>
+
+</resources>

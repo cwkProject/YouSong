@@ -8,4 +8,14 @@ package com.yousong.yousong.value;
  * @since 1.0
  */
 public interface ValueKey {
+
+    /**
+     * 微信appId
+     */
+    String WX_APP_ID="";
+
+    /**
+     * 微信应用密钥
+     */
+    String WX_APP_SECRET = "";
 }
