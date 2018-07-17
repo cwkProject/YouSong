@@ -12,5 +12,5 @@ public interface ValueTag {
     /**
      * 错误信息
      */
-    String ERROR_MESSAGE_TAG = "error_message_tag";
+    String TAG_ERROR_MESSAGE = "error_message_tag";
 }

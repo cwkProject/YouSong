@@ -15,24 +15,9 @@ object LoginStatus {
     var login = false
 
     /**
-     * 用户标识
-     */
-    var accountId: String = ""
-
-    /**
-     * 用户会话id
-     */
-    var sessionId: String = ""
-
-    /**
      * 用户昵称
      */
     var nickname: String? = null
-
-    /**
-     * 用户性别，1男性，2女性
-     */
-    var sex = 1
 
     /**
      * 手机号
@@ -45,14 +30,9 @@ object LoginStatus {
     var unionId: String? = null
 
     /**
-     * 邮箱
-     */
-    var email: String? = null
-
-    /**
      * 用户头像地址
      */
-    var userHeadImageUrl: String? = null
+    var avatar: String? = null
 
     /**
      * 是否是匿名用户
@@ -72,12 +52,9 @@ object LoginStatus {
     private fun onCreate() {
         // 初始化用户参数
         login = false
-        accountId = ""
-        sessionId = ""
         mobile = null
         nickname = null
-        userHeadImageUrl = null
-        sex = 1
+        avatar = null
         anonymous = false
     }
 }

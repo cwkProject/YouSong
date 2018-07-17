@@ -12,7 +12,7 @@ public interface ValueKey {
     /**
      * 微信appId
      */
-    String WX_APP_ID="";
+    String WX_APP_ID = "";
 
     /**
      * 微信应用密钥

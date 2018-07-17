@@ -14,7 +14,7 @@ import org.json.JSONObject
  * @version 1.0 2017/3/2
  * @since 1.0 2017/3/2
  */
-class GetWXUserInfoWork : IntegratedWorkModel<String, WxResponse, IntegratedJsonDataModel<String, WxResponse>>() {
+class WXUserInfoWork : IntegratedWorkModel<String, WxResponse, IntegratedJsonDataModel<String, WxResponse>>() {
     override fun onCreateDataModel(): IntegratedJsonDataModel<String, WxResponse> {
         return object : IntegratedJsonDataModel<String, WxResponse>(TAG) {
             override fun onFillRequestParameters(dataMap: MutableMap<String, String?>, vararg parameters: String) {
@@ -36,5 +36,5 @@ class GetWXUserInfoWork : IntegratedWorkModel<String, WxResponse, IntegratedJson
         }
     }
 
-    override fun onTaskUri(): String = ValueUrl.WX_USER_INFO_URL
+    override fun onTaskUri(): String = ValueUrl.URL_WX_USER_INFO
 }

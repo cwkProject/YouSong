@@ -30,11 +30,6 @@ class MyApplication : Application() {
      */
     private val count = AtomicInteger(1)
 
-    /**
-     * 是否主动释放了内存
-     */
-    private var isTrim = false
-
     override fun onCreate() {
         super.onCreate()
 
@@ -160,7 +155,7 @@ class MyApplication : Application() {
      * 自动登陆
      */
     private fun onAutoLogin() {
-        if (!AppConfig.anonymous && AppConfig.accountId != null) {
+        if (!AppConfig.anonymous && AppConfig.userId != null) {
 
         } else {
             onFinish()
@@ -172,7 +167,7 @@ class MyApplication : Application() {
      */
     private fun onFinish() {
         if (count.decrementAndGet() == 0) {
-            sendLocalBroadcast(ValueAction.LOAD_DATA_FINISH)
+            sendLocalBroadcast(ValueAction.ACTION_LOAD_DATA_FINISH)
         }
     }
 }

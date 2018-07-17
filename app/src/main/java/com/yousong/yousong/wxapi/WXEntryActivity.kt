@@ -92,7 +92,7 @@ class WXEntryActivity : BaseActivity(), IWXAPIEventHandler {
             if (baseResp.state != null && baseResp.state == AppConfig.wxLoginState && baseResp.code != null) {
                 // 简单校验通过
                 // 发起密钥交换
-                GetWXAccessTokenWork().start(baseResp.code) {
+                WXAccessTokenWork().start(baseResp.code) {
                     if (it.isSuccess) {
                         loadUserInfo(it.result)
                     } else {
@@ -113,13 +113,13 @@ class WXEntryActivity : BaseActivity(), IWXAPIEventHandler {
      * @param wxResponse 结果数据
      */
     private fun loadUserInfo(wxResponse: WxResponse?) {
-        GetWXUserInfoWork().start(wxResponse?.access_token, wxResponse?.openid) { (state, result) ->
+        WXUserInfoWork().start(wxResponse?.access_token, wxResponse?.openid) { (state, result) ->
 
             if (state && result != null) {
                 WxLoginWork().start(result.unionid, result.nickname, result.headimgurl) {
                     if (it.isSuccess) {
                         LoadUserData.loadBegin(this) {
-                            sendBroadcast(Intent(ValueAction.WX_LOGIN_SUCCESS))
+                            sendBroadcast(Intent(ValueAction.ACTION_WX_LOGIN_SUCCESS))
                             finish()
                         }
                     } else {
@@ -139,7 +139,7 @@ class WXEntryActivity : BaseActivity(), IWXAPIEventHandler {
      */
     private fun loginFailed(message: String? = null) {
         val error = message ?: getString(R.string.failed_login_required)
-        sendBroadcast(Intent(ValueAction.WX_LOGIN_FAILED).putExtra(ValueTag.ERROR_MESSAGE_TAG, error))
+        sendBroadcast(Intent(ValueAction.ACTION_WX_LOGIN_FAILED).putExtra(ValueTag.TAG_ERROR_MESSAGE, error))
 
         finish()
     }

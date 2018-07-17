@@ -16,7 +16,7 @@ import org.json.JSONObject
  * @version 1.0 2017/3/1
  * @since 1.0 2017/3/1
  */
-class GetWXAccessTokenWork : IntegratedWorkModel<String, WxResponse, IntegratedJsonDataModel<String, WxResponse>>() {
+class WXAccessTokenWork : IntegratedWorkModel<String, WxResponse, IntegratedJsonDataModel<String, WxResponse>>() {
 
     override fun onCreateDataModel(): IntegratedJsonDataModel<String, WxResponse> {
         return object : IntegratedJsonDataModel<String, WxResponse>(TAG) {
@@ -51,5 +51,5 @@ class GetWXAccessTokenWork : IntegratedWorkModel<String, WxResponse, IntegratedJ
         AppConfig.save()
     }
 
-    override fun onTaskUri(): String = ValueUrl.WX_ACCESS_TOKEN_URL
+    override fun onTaskUri(): String = ValueUrl.URL_WX_ACCESS_TOKEN
 }
