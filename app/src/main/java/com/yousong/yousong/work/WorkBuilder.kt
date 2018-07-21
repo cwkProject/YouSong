@@ -1,9 +1,9 @@
 package com.yousong.yousong.work
 
 import org.cwk.android.library.data.IDataModel
-import org.cwk.android.library.data.IntegratedDataModel
 import org.cwk.android.library.data.SimpleDataModel
-import org.cwk.android.library.work.DefaultWorkModel
+import org.cwk.android.library.data.WorkDataModel
+import org.cwk.android.library.work.StandardWorkModel
 
 /**
  * 任务装配器
@@ -23,7 +23,8 @@ import org.cwk.android.library.work.DefaultWorkModel
  *
  * @return 任务实例
  */
-inline fun <C, R, D : IDataModel<*, *>, T : DefaultWorkModel<C, R, D>> T.start(vararg parameters: C?, isUiThread: Boolean = true, retry: Int = 0, crossinline finish: (D) -> Unit): T = apply {
+inline fun <C, D : WorkDataModel<*, *, *, C, *>, T : StandardWorkModel<C, D>> T.start(vararg parameters: C?,
+                                                                                      isUiThread: Boolean = true, retry: Int = 0, crossinline finish: (D) -> Unit): T = apply {
     setOnWorkFinishListener(isUiThread) { finish(it) }.setRetryTimes(retry).beginExecute(*parameters)
 }
 
@@ -35,7 +36,7 @@ inline fun <C, R, D : IDataModel<*, *>, T : DefaultWorkModel<C, R, D>> T.start(v
  *
  * @return 任务实例
  */
-inline fun <C, R, D : IDataModel<*, *>, T : DefaultWorkModel<C, R, D>> T.initStart(vararg parameters: C?, crossinline init: WorkBuilder<C, R, D, T>.() -> Unit): T = apply {
+inline fun <C, D : WorkDataModel<*, *, *, C, *>, T : StandardWorkModel<C, D>> T.initStart(vararg parameters: C?, crossinline init: WorkBuilder<C, D, T>.() -> Unit): T = apply {
     WorkBuilder(this).apply { init() }
     beginExecute(*parameters)
 }
@@ -49,7 +50,7 @@ inline fun <C, R, D : IDataModel<*, *>, T : DefaultWorkModel<C, R, D>> T.initSta
  *
  * @return 任务实例
  */
-inline fun <C, R, D : IDataModel<*, *>, T : DefaultWorkModel<C, R, D>> T.syncStart(vararg parameters: C?, retry: Int = 0, crossinline finish: (D) -> Unit): T = apply {
+inline fun <C, D : WorkDataModel<*, *, *, C, *>, T : StandardWorkModel<C, D>> T.syncStart(vararg parameters: C?, retry: Int = 0, crossinline finish: (D) -> Unit): T = apply {
     setRetryTimes(retry).execute(*parameters)?.let(finish)
 }
 
@@ -61,7 +62,7 @@ inline fun <C, R, D : IDataModel<*, *>, T : DefaultWorkModel<C, R, D>> T.syncSta
  *
  * @return 任务实例
  */
-inline fun <C, R, D : IDataModel<*, *>, T : DefaultWorkModel<C, R, D>> T.syncInitStart(vararg parameters: C?, crossinline init: WorkBuilder<C, R, D, T>.() -> Unit): D? = let {
+inline fun <C, D : WorkDataModel<*, *, *, C, *>, T : StandardWorkModel<C, D>> T.syncInitStart(vararg parameters: C?, crossinline init: WorkBuilder<C, D, T>.() -> Unit): D? = let {
     WorkBuilder(this).apply { init() }
     execute(*parameters)
 }
@@ -69,7 +70,7 @@ inline fun <C, R, D : IDataModel<*, *>, T : DefaultWorkModel<C, R, D>> T.syncIni
 /**
  * 回调函数构建器
  */
-class WorkBuilder<C, R, D : IDataModel<*, *>, out T : DefaultWorkModel<C, R, D>>(val work: T) {
+class WorkBuilder<C, D : WorkDataModel<*, *, *, C, *>, out T : StandardWorkModel<C, D>>(val work: T) {
 
     /**
      * 设置重试次数
@@ -111,18 +112,14 @@ class WorkBuilder<C, R, D : IDataModel<*, *>, out T : DefaultWorkModel<C, R, D>>
     }
 }
 
+// [IDataModel]解构扩展
+operator fun IDataModel<*, *>.component1(): Boolean = isSuccess
+
+operator fun <Result> IDataModel<*, Result>.component2(): Result? = result
+
+operator fun IDataModel<*, *>.component3(): String? = message
+
+operator fun IDataModel<*, *>.component4(): Int = code
+
 // [SimpleDataModel]解构扩展
-operator fun <Result> SimpleDataModel<*, Result>.component1(): Boolean = isSuccess
-
-operator fun <Result> SimpleDataModel<*, Result>.component2(): Result? = result
-
-operator fun <Result> SimpleDataModel<*, Result>.component3(): Int = code
-
-operator fun <Result> SimpleDataModel<*, Result>.component4(): String? = message
-
-// [IntegratedDataModel]解构扩展
-operator fun <Result> IntegratedDataModel<*, Result, *, *, *>.component1(): Boolean = isSuccess
-
-operator fun <Result> IntegratedDataModel<*, Result, *, *, *>.component2(): Result? = result
-
-operator fun <Result> IntegratedDataModel<*, Result, *, *, *>.component3(): String? = message
+operator fun SimpleDataModel<*, *>.component5(): Int = errorCode

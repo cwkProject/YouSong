@@ -2,9 +2,9 @@ package com.yousong.yousong.fragment
 
 import android.os.Bundle
 import android.support.annotation.CallSuper
-import android.support.v7.widget.RecyclerView
 import com.yousong.yousong.R
 import com.yousong.yousong.adapter.AdAdapter
+import kotlinx.android.synthetic.main.fragment_ad_list.*
 
 /**
  * 广告列表界面基类
@@ -24,28 +24,53 @@ abstract class BaseAdListFragment : BaseFragment() {
 
     @CallSuper
     override fun onInitView(savedInstanceState: Bundle?) {
+        initRefreshLayout()
         initList()
-        onInitListAction()
     }
 
     @CallSuper
     override fun onInitData(savedInstanceState: Bundle?) {
-        loadAds()
+        loadAds(true)
+    }
+
+    /**
+     * 初始化刷新器
+     */
+    private fun initRefreshLayout() {
+
+        val typedArray = context!!.theme.obtainStyledAttributes(intArrayOf(R.attr.colorPrimary))
+
+        refreshLayout.setColorSchemeResources(typedArray.getResourceId(0, 0))
+
+        typedArray.recycle()
+
+        refreshLayout.setOnRefreshListener {
+            loadAds(false)
+        }
     }
 
     /**
      * 初始化列表
      */
     private fun initList() {
-        val recyclerView = rootView as RecyclerView
-
         recyclerView.adapter = adapter
+
+        onInitListAction()
     }
 
     /**
-     * 加载广告列表数据
+     * 停止刷新控件
      */
-    protected abstract fun loadAds()
+    protected fun stopRefresh() {
+        refreshLayout?.isRefreshing = false
+    }
+
+    /**
+     * 加载广告列表数据，页面首次加载和下拉刷新时会调用
+     *
+     * @param first 是否首次加载
+     */
+    protected abstract fun loadAds(first: Boolean)
 
     /**
      * 初始化列表操作事件

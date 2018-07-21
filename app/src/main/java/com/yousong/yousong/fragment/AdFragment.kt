@@ -1,9 +1,11 @@
 package com.yousong.yousong.fragment
 
+import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.util.Log
 import com.yousong.yousong.R
 import com.yousong.yousong.activity.AdDetailActivity
+import com.yousong.yousong.architecture.viewmodel.AdsViewModel
 import com.yousong.yousong.common.plusAssign
 import com.yousong.yousong.model.BannerAds
 import org.jetbrains.anko.support.v4.startActivity
@@ -17,7 +19,22 @@ import org.jetbrains.anko.support.v4.startActivity
  */
 class AdFragment : BaseAdListFragment() {
 
+    /**
+     * 广告数据模型
+     */
+    private val adsViewModel by lazy {
+        ViewModelProviders.of(activity!!).get(AdsViewModel::class.java)
+    }
+
     override fun onInitData(savedInstanceState: Bundle?) {
+        adsViewModel.adListData
+                .observe({ lifecycle }) {
+                    it?.let {
+                        adapter.adsList += it
+                    }
+                    stopRefresh()
+                }
+
         super.onInitData(savedInstanceState)
         loadTopAds()
     }
@@ -42,8 +59,8 @@ class AdFragment : BaseAdListFragment() {
     /**
      * 加载普通广告
      */
-    override fun loadAds() {
-        adapter.adsList += (1..100).toList()
+    override fun loadAds(first: Boolean) {
+        adsViewModel.loadAds(!first)
     }
 
     override fun onResume() {

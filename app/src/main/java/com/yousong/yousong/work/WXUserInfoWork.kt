@@ -3,8 +3,8 @@ package com.yousong.yousong.work
 import com.yousong.yousong.common.jsonToObject
 import com.yousong.yousong.model.WxResponse
 import com.yousong.yousong.value.ValueUrl
-import org.cwk.android.library.data.IntegratedJsonDataModel
-import org.cwk.android.library.work.IntegratedWorkModel
+import org.cwk.android.library.data.JsonDataModel
+import org.cwk.android.library.work.StandardWorkModel
 import org.json.JSONObject
 
 /**
@@ -14,23 +14,20 @@ import org.json.JSONObject
  * @version 1.0 2017/3/2
  * @since 1.0 2017/3/2
  */
-class WXUserInfoWork : IntegratedWorkModel<String, WxResponse, IntegratedJsonDataModel<String, WxResponse>>() {
-    override fun onCreateDataModel(): IntegratedJsonDataModel<String, WxResponse> {
-        return object : IntegratedJsonDataModel<String, WxResponse>(TAG) {
+class WXUserInfoWork : StandardWorkModel<String, JsonDataModel<String, WxResponse>>() {
+    override fun onCreateDataModel(): JsonDataModel<String, WxResponse> {
+        return object : JsonDataModel<String, WxResponse>(TAG) {
             override fun onFillRequestParameters(dataMap: MutableMap<String, String?>, vararg parameters: String) {
                 dataMap["access_token"] = parameters[0]
                 dataMap["openid"] = parameters[1]
             }
 
-            @Throws(Exception::class)
-            override fun onSuccessResult(handleResult: JSONObject): WxResponse? =
+            override fun onRequestSuccess(handleResult: JSONObject?): WxResponse? =
                     handleResult.toString().jsonToObject()
 
-            @Throws(Exception::class)
             override fun onRequestResult(handleResult: JSONObject): Boolean =
                     !handleResult.has("errcode")
 
-            @Throws(Exception::class)
             override fun onRequestMessage(result: Boolean, handleResult: JSONObject): String? =
                     if (result) null else handleResult.optString("errmsg")
         }

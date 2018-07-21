@@ -1,44 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:layout_marginBottom="4dp"
-              android:layout_marginTop="4dp"
-              android:orientation="vertical"
-              android:paddingEnd="@dimen/activity_horizontal_margin"
-              android:paddingStart="@dimen/activity_horizontal_margin">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/ad_cover_height"
-        android:scaleType="fitXY"
-        android:src="@color/light_blue_300"/>
+    <data>
 
-    <ProgressBar
-        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        <variable
+            name="data"
+            type="com.yousong.yousong.model.Ad"/>
+
+    </data>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:max="100"
-        android:progress="60"/>
+        android:layout_marginBottom="4dp"
+        android:layout_marginTop="4dp"
+        android:orientation="vertical"
+        android:paddingEnd="@dimen/activity_horizontal_margin"
+        android:paddingStart="@dimen/activity_horizontal_margin">
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/ad_cover_height"
+            android:scaleType="fitXY"
+            app:defaultSrc="@{@color/light_blue_300}"
+            app:imageUrl="@{data.cover}"/>
 
-        <TextView
-            android:layout_width="wrap_content"
+        <ProgressBar
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:text="总金额：1000"
-            android:textSize="@dimen/text_size_small"/>
+            android:max="@{data.totalAsset}"
+            android:progress="@{data.totalAsset - data.balance}"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:text="余额：400"
-            android:textSize="@dimen/text_size_small"/>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    </FrameLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:text="@{@string/label_total_amount + data.totalAsset / 100}"
+                android:textSize="@dimen/text_size_small"/>
 
-</LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:text="@{@string/label_over + data.balance / 100}"
+                android:textSize="@dimen/text_size_small"/>
+
+        </FrameLayout>
+
+    </LinearLayout>
+
+</layout>

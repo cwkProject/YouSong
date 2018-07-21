@@ -13,7 +13,6 @@ import com.tencent.mm.opensdk.openapi.WXAPIFactory
 import com.yousong.yousong.R
 import com.yousong.yousong.activity.BaseActivity
 import com.yousong.yousong.global.AppConfig
-import com.yousong.yousong.global.LoadUserData
 import com.yousong.yousong.model.WxResponse
 import com.yousong.yousong.value.ValueAction
 import com.yousong.yousong.value.ValueKey
@@ -92,7 +91,7 @@ class WXEntryActivity : BaseActivity(), IWXAPIEventHandler {
             if (baseResp.state != null && baseResp.state == AppConfig.wxLoginState && baseResp.code != null) {
                 // 简单校验通过
                 // 发起密钥交换
-                WXAccessTokenWork().start(baseResp.code) {
+                WXAccessTokenWork().start(baseResp.code!!) {
                     if (it.isSuccess) {
                         loadUserInfo(it.result)
                     } else {
@@ -116,14 +115,12 @@ class WXEntryActivity : BaseActivity(), IWXAPIEventHandler {
         WXUserInfoWork().start(wxResponse?.access_token, wxResponse?.openid) { (state, result) ->
 
             if (state && result != null) {
-                WxLoginWork().start(result.unionid, result.nickname, result.headimgurl) {
+                UserWechatLoginWork().start(result.unionid, result.openid, result.nickname, result.headimgurl) {
                     if (it.isSuccess) {
-                        LoadUserData.loadBegin(this) {
-                            sendBroadcast(Intent(ValueAction.ACTION_WX_LOGIN_SUCCESS))
-                            finish()
-                        }
+                        sendBroadcast(Intent(ValueAction.ACTION_WX_LOGIN_SUCCESS))
+                        finish()
                     } else {
-                        loginFailed(ErrorCodeTable[it.code])
+                        loginFailed()
                     }
                 }
             } else {

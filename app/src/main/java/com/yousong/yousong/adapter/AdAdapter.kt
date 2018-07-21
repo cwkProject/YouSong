@@ -8,6 +8,8 @@ import android.widget.ImageView
 import cn.bingoogolapple.bgabanner.BGABanner
 import cn.bingoogolapple.bgabanner.BGALocalImageSize
 import com.yousong.yousong.R
+import com.yousong.yousong.databinding.ItemAdBinding
+import com.yousong.yousong.model.Ad
 import com.yousong.yousong.model.BannerAds
 import org.cwk.android.library.architecture.recycler.MultipleRecyclerViewAdapter
 import org.cwk.android.library.architecture.recycler.RecyclerViewHolderManager
@@ -69,11 +71,13 @@ class AdAdapter : MultipleRecyclerViewAdapter() {
     /**
      * 广告列表
      */
-    val adsList = object : RecyclerViewHolderManager<Int, AdViewHolder>(this) {
+    val adsList = object : RecyclerViewHolderManager<Ad, AdViewHolder>(this) {
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AdViewHolder =
                 AdViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_ad, parent, false))
 
         override fun onBindViewHolder(holder: AdViewHolder, position: Int, viewType: Int) {
+            holder.binding.data = dataList[position]
+            holder.binding.executePendingBindings()
         }
     }
 
@@ -100,5 +104,9 @@ class AdAdapter : MultipleRecyclerViewAdapter() {
 
     class AdViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
+        /**
+         * 绑定器
+         */
+        val binding = ItemAdBinding.bind(itemView)
     }
 }

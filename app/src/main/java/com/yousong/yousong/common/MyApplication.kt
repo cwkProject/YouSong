@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatDelegate
 import com.yousong.yousong.global.AppConfig
 import com.yousong.yousong.value.ValueAction
 import org.cwk.android.library.global.Global
+import org.cwk.android.library.network.util.GlobalOkHttpClient
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.atomic.AtomicInteger
 
@@ -18,6 +19,7 @@ import java.util.concurrent.atomic.AtomicInteger
  * @since 1.0
  */
 class MyApplication : Application() {
+
     private val TAG = this.javaClass.simpleName
 
     /**
@@ -42,11 +44,8 @@ class MyApplication : Application() {
     private fun init() {
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
 
-        // 配置全局上下文
-        Global.init(this)
-
-        // 初始化系统参数
-        //ApplicationAttribute.create().desKey(ValueKey.DES_KEY)
+        // 初始化全局对象
+        onInitGlobal()
 
         onRegisterApi()
 
@@ -68,6 +67,31 @@ class MyApplication : Application() {
                     .firstOrNull { it.pid == pid }
                     ?.processName
         }
+
+    /**
+     * 初始化全局对象
+     */
+    private fun onInitGlobal() {
+        // 配置全局上下文
+        Global.init(this)
+
+        // 初始化系统参数
+        //ApplicationAttribute.create().desKey(ValueKey.DES_KEY)
+
+        val okHttpClient = GlobalOkHttpClient.getOkHttpClient()
+                .newBuilder()
+                .authenticator { _, response ->
+                    AppConfig.token?.let {
+                        response.request()
+                                .newBuilder()
+                                .addHeader("Authorization", it)
+                                .build()
+                    }
+                }
+                .build()
+
+        GlobalOkHttpClient.setOkHttpClient(okHttpClient)
+    }
 
     /**
      * 注册第三方api
@@ -155,11 +179,7 @@ class MyApplication : Application() {
      * 自动登陆
      */
     private fun onAutoLogin() {
-        if (!AppConfig.anonymous && AppConfig.userId != null) {
-
-        } else {
-            onFinish()
-        }
+        onFinish()
     }
 
     /**

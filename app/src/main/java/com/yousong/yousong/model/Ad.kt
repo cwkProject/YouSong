@@ -6,13 +6,16 @@ package com.yousong.yousong.model
  * @author 超悟空
  * @version 1.0 2018/7/1
  * @since 1.0
+ *
+ * @property adsId 广告id
+ * @property cover 封面
+ * @property poster 大图海报
+ * @property totalAsset 总金额
+ * @property balance 余额
  */
 data class Ad(
-        val id: Long,
-        val type: Int,
+        val adsId: String,
         val cover: String,
         val poster: String,
-        val question: String,
-        val options: List<String>,
-        val answer: Int,
-        val state: Int)
+        val totalAsset: Int,
+        val balance: Int)
