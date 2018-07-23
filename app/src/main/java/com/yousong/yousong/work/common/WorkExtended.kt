@@ -113,13 +113,13 @@ class WorkBuilder<C, D : WorkDataModel<*, *, *, C, *>, out T : StandardWorkModel
 }
 
 // [IDataModel]解构扩展
-operator fun IDataModel<*, *>.component1(): Boolean = isSuccess
+inline operator fun <reified T : IDataModel<*, *>> T.component1(): Boolean = isSuccess
 
-operator fun <Result> IDataModel<*, Result>.component2(): Result? = result
+inline operator fun <RESULT, reified T : IDataModel<*, RESULT>> T.component2(): RESULT? = result
 
-operator fun IDataModel<*, *>.component3(): String? = message
+inline operator fun <reified T : IDataModel<*, *>> T.component3(): String? = message
 
-operator fun IDataModel<*, *>.component4(): Int = code
+inline operator fun <reified T : IDataModel<*, *>> T.component4(): Int = code
 
 // [SimpleDataModel]解构扩展
-operator fun SimpleDataModel<*, *>.component5(): Int = errorCode
+inline operator fun <reified T : SimpleDataModel<*, *>> T.component5(): Int = errorCode

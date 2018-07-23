@@ -17,6 +17,8 @@ import com.yousong.yousong.model.WxResponse
 import com.yousong.yousong.value.ValueAction
 import com.yousong.yousong.value.ValueKey
 import com.yousong.yousong.value.ValueTag
+import com.yousong.yousong.work.common.component1
+import com.yousong.yousong.work.common.component2
 import com.yousong.yousong.work.common.start
 import com.yousong.yousong.work.third.WXAccessTokenWork
 import com.yousong.yousong.work.third.WXUserInfoWork
@@ -116,7 +118,6 @@ class WXEntryActivity : BaseActivity(), IWXAPIEventHandler {
      */
     private fun loadUserInfo(wxResponse: WxResponse?) {
         WXUserInfoWork().start(wxResponse?.access_token, wxResponse?.openid) { (state, result) ->
-
             if (state && result != null) {
                 UserWechatLoginWork().start(result.unionid, result.openid, result.nickname, result.headimgurl) {
                     if (it.isSuccess) {

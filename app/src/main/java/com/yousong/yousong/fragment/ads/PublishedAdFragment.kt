@@ -25,6 +25,7 @@ class PublishedAdFragment : BaseAdListFragment(){
         adsViewModel.adListData
                 .observe({ lifecycle }) {
                     it?.let {
+                        adapter.adsList.clear()
                         adapter.adsList += it
                     }
                     stopRefresh()
