@@ -9,7 +9,7 @@
 
     <fragment
         android:id="@+id/share_friend_fragment"
-        android:name="com.yousong.yousong.fragment.ShareFriendFragment"
+        android:name="com.yousong.yousong.fragment.ads.ShareFriendFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:layout="@layout/fragment_ad_list"/>

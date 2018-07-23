@@ -14,7 +14,7 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name=".activity.SplashActivity"
+            android:name=".activity.common.SplashActivity"
             android:theme="@style/AppTheme.SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -24,23 +24,23 @@
         </activity>
 
         <activity
-            android:name=".activity.MainActivity"
+            android:name=".activity.common.MainActivity"
             android:launchMode="singleTask">
         </activity>
-        <activity android:name=".activity.AdDetailActivity"/>
-        <activity android:name=".activity.ShareFriendActivity"/>
+        <activity android:name=".activity.ads.AdDetailActivity"/>
+        <activity android:name=".activity.ads.ShareFriendActivity"/>
         <activity
-            android:name=".activity.WithdrawActivity"
+            android:name=".activity.user.WithdrawActivity"
             android:windowSoftInputMode="stateAlwaysVisible"/>
-        <activity android:name=".activity.MyAdActivity"/>
-        <activity android:name=".activity.PersonalAuthenticationActivity"/>
-        <activity android:name=".activity.EnterpriseCertificationActivity"/>
-        <activity android:name=".activity.PublishAdActivity"/>
-        <activity android:name=".activity.RechargeActivity"/>
+        <activity android:name=".activity.ads.MyAdActivity"/>
+        <activity android:name=".activity.user.PersonalAuthenticationActivity"/>
+        <activity android:name=".activity.user.EnterpriseCertificationActivity"/>
+        <activity android:name=".activity.ads.PublishAdActivity"/>
+        <activity android:name=".activity.user.RechargeActivity"/>
         <activity
             android:name=".wxapi.WXEntryActivity"
             android:exported="true"/>
-        <activity android:name=".activity.LoginActivity"/>
+        <activity android:name=".activity.user.LoginActivity"/>
     </application>
 
 </manifest>

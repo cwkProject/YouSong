@@ -11,13 +11,16 @@ import com.tencent.mm.opensdk.openapi.IWXAPI
 import com.tencent.mm.opensdk.openapi.IWXAPIEventHandler
 import com.tencent.mm.opensdk.openapi.WXAPIFactory
 import com.yousong.yousong.R
-import com.yousong.yousong.activity.BaseActivity
+import com.yousong.yousong.activity.common.BaseActivity
 import com.yousong.yousong.global.AppConfig
 import com.yousong.yousong.model.WxResponse
 import com.yousong.yousong.value.ValueAction
 import com.yousong.yousong.value.ValueKey
 import com.yousong.yousong.value.ValueTag
-import com.yousong.yousong.work.*
+import com.yousong.yousong.work.common.start
+import com.yousong.yousong.work.third.WXAccessTokenWork
+import com.yousong.yousong.work.third.WXUserInfoWork
+import com.yousong.yousong.work.user.UserWechatLoginWork
 import kotlinx.android.synthetic.main.activity_wx_entry.*
 import org.cwk.android.library.util.ToolbarInitialize.initToolbar
 

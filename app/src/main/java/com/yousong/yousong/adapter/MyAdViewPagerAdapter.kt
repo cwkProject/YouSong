@@ -4,8 +4,8 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
 import com.yousong.yousong.R
-import com.yousong.yousong.fragment.PublishedAdFragment
-import com.yousong.yousong.fragment.UnpublishedAdFragment
+import com.yousong.yousong.fragment.ads.PublishedAdFragment
+import com.yousong.yousong.fragment.ads.UnpublishedAdFragment
 import org.cwk.android.library.global.Global
 
 /**

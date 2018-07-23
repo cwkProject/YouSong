@@ -6,8 +6,8 @@ import android.content.Context
 import android.support.v7.app.AppCompatDelegate
 import com.yousong.yousong.common.sendLocalBroadcast
 import com.yousong.yousong.value.ValueAction
-import com.yousong.yousong.work.UserCreateTokenWork
-import com.yousong.yousong.work.start
+import com.yousong.yousong.work.user.UserCreateTokenWork
+import com.yousong.yousong.work.common.start
 import org.cwk.android.library.global.Global
 import org.cwk.android.library.network.util.GlobalOkHttpClient
 import java.util.concurrent.ConcurrentHashMap

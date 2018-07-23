@@ -3,8 +3,8 @@ package com.yousong.yousong.architecture.viewmodel
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import com.yousong.yousong.model.Ad
-import com.yousong.yousong.work.AdsPullListWork
-import com.yousong.yousong.work.start
+import com.yousong.yousong.work.ads.AdsPullListWork
+import com.yousong.yousong.work.common.start
 
 /**
  * 主界面广告数据模型
