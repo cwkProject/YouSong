@@ -9,6 +9,10 @@
         <item name="android:colorBackground">@color/grey_100</item>
     </style>
 
+    <style name="AppTheme.SplashTheme">
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
     <style name="MeTextStyle">
         <item name="android:paddingEnd">@dimen/activity_horizontal_margin</item>
         <item name="android:textAppearance">@style/TextAppearance.AppCompat.Medium</item>

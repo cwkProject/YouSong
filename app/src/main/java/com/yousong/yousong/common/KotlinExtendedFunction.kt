@@ -3,6 +3,7 @@ package com.yousong.yousong.common
 import android.app.Application
 import android.content.Intent
 import android.content.IntentFilter
+import com.yousong.yousong.global.MyApplication
 import org.cwk.android.library.architecture.broadcast.BroadcastUtil
 import org.cwk.android.library.architecture.recycler.RecyclerViewAdapterFunction
 import org.cwk.android.library.architecture.recycler.RecyclerViewHolderManager
