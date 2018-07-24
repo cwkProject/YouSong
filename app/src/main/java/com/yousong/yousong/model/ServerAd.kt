@@ -13,7 +13,7 @@ package com.yousong.yousong.model
  * @property totalAsset 总金额
  * @property balance 余额
  */
-data class Ad(
+data class ServerAd(
         val adsId: String,
         val cover: String,
         val poster: String,

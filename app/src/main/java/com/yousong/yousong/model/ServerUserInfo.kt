@@ -17,7 +17,7 @@ import com.yousong.yousong.global.LoginStatus
  * @property headPic 用户头像
  * @property mobileNum 用户手机号
  */
-data class UserInfo(
+data class ServerUserInfo(
         val token: String,
         val unionId: String,
         val openId: String,
@@ -30,10 +30,10 @@ data class UserInfo(
      */
     fun loginSuccess() {
         LoginStatus.apply {
-            nickname = this@UserInfo.nickName
-            avatar = this@UserInfo.headPic
-            mobile = this@UserInfo.mobileNum
-            unionId = this@UserInfo.unionId
+            nickname = this@ServerUserInfo.nickName
+            avatar = this@ServerUserInfo.headPic
+            mobile = this@ServerUserInfo.mobileNum
+            unionId = this@ServerUserInfo.unionId
             anonymous = false
             login = true
         }

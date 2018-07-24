@@ -2,7 +2,7 @@ package com.yousong.yousong.work.user
 
 import com.yousong.yousong.common.jsonToObject
 import com.yousong.yousong.common.sendLocalBroadcast
-import com.yousong.yousong.model.UserInfo
+import com.yousong.yousong.model.ServerUserInfo
 import com.yousong.yousong.value.ValueAction
 import com.yousong.yousong.value.ValueUrl
 import com.yousong.yousong.work.common.BaseSimpleWorkModel
@@ -19,7 +19,7 @@ import org.json.JSONObject
 class UserWechatLoginWork : BaseSimpleWorkModel<String, Unit>() {
 
     override fun onSuccessExtract(jsonResult: JSONObject) =
-            jsonResult.getString(RESULT).jsonToObject<UserInfo>().loginSuccess()
+            jsonResult.getString(RESULT).jsonToObject<ServerUserInfo>().loginSuccess()
 
     @Post
     override fun onTaskUri() = ValueUrl.URL_USER_WECHAT_LOGIN
