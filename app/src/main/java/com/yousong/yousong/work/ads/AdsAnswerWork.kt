@@ -18,7 +18,7 @@ class AdsAnswerWork : BaseSimpleWorkModel<Any, Int>() {
         dataMap["adsAnswerOptionId"] = params[1].toString()
     }
 
-    override fun onSuccessExtract(jsonResult: JSONObject): Int = jsonResult.getInt(RESULT)
+    override fun onSuccessExtract(jsonResult: JSONObject) = jsonResult.getInt(RESULT)
 
     @Post
     override fun onTaskUri() = ValueUrl.URL_ADS_ANSWER

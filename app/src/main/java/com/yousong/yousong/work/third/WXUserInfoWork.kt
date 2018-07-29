@@ -33,5 +33,5 @@ class WXUserInfoWork : StandardWorkModel<String, JsonDataModel<String, WxRespons
         }
     }
 
-    override fun onTaskUri(): String = ValueUrl.URL_WX_USER_INFO
+    override fun onTaskUri() = ValueUrl.URL_WX_USER_INFO
 }

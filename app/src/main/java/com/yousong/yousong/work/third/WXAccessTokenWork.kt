@@ -48,5 +48,5 @@ class WXAccessTokenWork : StandardWorkModel<String, JsonDataModel<String, WxResp
         AppConfig.save()
     }
 
-    override fun onTaskUri(): String = ValueUrl.URL_WX_ACCESS_TOKEN
+    override fun onTaskUri() = ValueUrl.URL_WX_ACCESS_TOKEN
 }

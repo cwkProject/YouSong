@@ -5,16 +5,17 @@ import com.yousong.yousong.work.common.BaseSimpleWorkModel
 import org.json.JSONObject
 
 /**
- * 用户邀请的好友数量
+ * 获取用户总收益
  *
  * @author 超悟空
- * @version 1.0 2018/7/17
+ * @version 1.0 2018/7/29
  * @since 1.0
  */
-class UserRefereeCountWork : BaseSimpleWorkModel<Unit, Int>() {
+class UserGetTotalIncomeWork : BaseSimpleWorkModel<Unit, Long>() {
     override fun onFillParams(dataMap: MutableMap<String, String?>, vararg params: Unit?) = Unit
 
-    override fun onSuccessExtract(jsonResult: JSONObject) = jsonResult.getInt(RESULT)
+    override fun onSuccessExtract(jsonResult: JSONObject): Long =
+            jsonResult.getLong(RESULT)
 
-    override fun onTaskUri() = ValueUrl.URL_USER_REFEREE_COUNT
+    override fun onTaskUri() = ValueUrl.URL_USER_GET_TOTAL_INCOME
 }

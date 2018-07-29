@@ -71,6 +71,11 @@ public interface ValueUrl {
     String URL_USER_LOCATION = URL_BASE_USER + "location";
 
     /**
+     * 获取总收益
+     */
+    String URL_USER_GET_TOTAL_INCOME = URL_BASE_USER + "getMyBudget";
+
+    /**
      * 创建微信支付订单
      */
     String URL_USER_WECHAT_PAY = URL_BASE_USER + "pay";

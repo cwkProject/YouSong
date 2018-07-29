@@ -9,32 +9,48 @@ import com.yousong.yousong.value.ValueConst
  * @version 1.0 2018/7/24
  * @since 1.0
  *
- * @property outTradeNo 充值订单号
- * @property cover 封面url
- * @property img 海报url
+ * @property ads 广告基本信息
+ * @property questionAnswer 问题
+ * @property adsDirectional 定向条件
+ */
+data class ServerAdDetail(
+        val ads: ServerAd,
+        val questionAnswer: ServerQuestion,
+        val adsDirectional: ServerDirectional? = null)
+
+/**
+ * 广告数据
+ *
+ * @author 超悟空
+ * @version 1.0 2018/7/1
+ * @since 1.0
+ *
+ * @property name 广告名称
+ * @property cityCode 城市码，代理商区分
+ * @property cover 封面
+ * @property img 大图海报
  * @property adsType 广告类型，1推广型，2定向型
  * @property userCount 目标广告人数
  * @property perYellowBoyUser 每位用户所得金额
  * @property needInvoice 是否需要发票
- * @property questionAnswer 问题
- * @property adsDirectional 定向条件
- * @property cityCode 城市码，代理商区分
+ * @property totalAsset 总金额
+ * @property balance 余额
  * @property adsId 广告id
- * @property name 广告名称
+ * @property city 城市名称
  */
-data class ServerAdDetail(
-        val outTradeNo: String,
+data class ServerAd(
+        val name: String,
+        val cityCode: String,
         val cover: String,
         val img: String,
         val adsType: Int,
         val userCount: Int,
         val perYellowBoyUser: Int,
         val needInvoice: Int,
-        val questionAnswer: ServerQuestion,
-        val adsDirectional: ServerDirectional? = null,
-        val cityCode: String? = null,
         val adsId: String = "",
-        val name: String? = null)
+        val totalAsset: Long = 0L,
+        val balance: Long = 0L,
+        val city: String? = null)
 
 /**
  * 定向筛选条件

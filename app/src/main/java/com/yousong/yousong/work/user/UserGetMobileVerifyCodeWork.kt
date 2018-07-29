@@ -11,13 +11,13 @@ import org.json.JSONObject
  * @version 1.0 2018/7/17
  * @since 1.0
  */
-class UserGetMobileVerifyCodeWork : BaseSimpleWorkModel<String, String>() {
+class UserGetMobileVerifyCodeWork : BaseSimpleWorkModel<String, Unit>() {
 
     override fun onFillParams(dataMap: MutableMap<String, String?>, vararg params: String?) {
         dataMap["mobileNum"] = params[0]
     }
 
-    override fun onSuccessExtract(jsonResult: JSONObject): String = jsonResult.getString(RESULT)
+    override fun onSuccessExtract(jsonResult: JSONObject) = Unit
 
     override fun onTaskUri() = ValueUrl.URL_USER_GET_MOBILE_VERIFY_CODE
 }

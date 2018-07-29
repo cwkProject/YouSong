@@ -4,7 +4,6 @@ import android.databinding.BaseObservable
 import android.databinding.Bindable
 import android.databinding.ObservableArrayList
 import com.yousong.yousong.BR
-import com.yousong.yousong.model.ServerAnswer
 
 /**
  * 选项
@@ -36,7 +35,7 @@ class Question : BaseObservable() {
         }
 
     /**
-     * 答案选项
+     * 答案
      */
-    val answers: MutableList<ServerAnswer> = ObservableArrayList()
+    val answers: MutableList<Answer> = ObservableArrayList()
 }

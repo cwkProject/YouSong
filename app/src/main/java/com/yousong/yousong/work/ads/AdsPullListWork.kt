@@ -15,8 +15,7 @@ import org.json.JSONObject
  */
 class AdsPullListWork : BaseSimpleWorkModel<Unit, List<ServerAd>>() {
 
-    override fun onFillParams(dataMap: MutableMap<String, String?>, vararg params: Unit?) {
-    }
+    override fun onFillParams(dataMap: MutableMap<String, String?>, vararg params: Unit?) = Unit
 
     override fun onSuccessExtract(jsonResult: JSONObject): List<ServerAd> =
             jsonResult.getString(RESULT).jsonToCollection()

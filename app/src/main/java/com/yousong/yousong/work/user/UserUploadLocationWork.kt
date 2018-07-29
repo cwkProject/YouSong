@@ -14,14 +14,12 @@ import org.json.JSONObject
  */
 class UserUploadLocationWork : BaseSimpleWorkModel<String, Unit>() {
     override fun onFillParams(dataMap: MutableMap<String, String?>, vararg params: String?) {
-        dataMap["province"] = params[0]
-        dataMap["city"] = params[1]
-        dataMap["latitude"] = params[2]
-        dataMap["longitude"] = params[3]
+        dataMap["city"] = params[0]
+        dataMap["latitude"] = params[1]
+        dataMap["longitude"] = params[2]
     }
 
-    override fun onSuccessExtract(jsonResult: JSONObject) {
-    }
+    override fun onSuccessExtract(jsonResult: JSONObject) = Unit
 
     @Post
     override fun onTaskUri() = ValueUrl.URL_USER_LOCATION

@@ -17,8 +17,7 @@ class AdsPublishWork : BaseSimpleWorkModel<String, Unit>() {
         dataMap["adsId"] = params[0]
     }
 
-    override fun onSuccessExtract(jsonResult: JSONObject) {
-    }
+    override fun onSuccessExtract(jsonResult: JSONObject) = Unit
 
     @Post
     override fun onTaskUri() = ValueUrl.URL_ADS_PUBLISH

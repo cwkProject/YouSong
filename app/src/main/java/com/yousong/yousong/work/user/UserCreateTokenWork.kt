@@ -13,8 +13,7 @@ import org.json.JSONObject
  * @since 1.0
  */
 class UserCreateTokenWork : BaseSimpleWorkModel<String, Unit>() {
-    override fun onFillParams(dataMap: MutableMap<String, String?>, vararg params: String?) {
-    }
+    override fun onFillParams(dataMap: MutableMap<String, String?>, vararg params: String?) = Unit
 
     override fun onSuccessExtract(jsonResult: JSONObject) {
         AppConfig.token = jsonResult.getString(RESULT)
