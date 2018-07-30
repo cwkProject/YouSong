@@ -1,7 +1,7 @@
 package com.yousong.yousong.work.ads
 
 import com.yousong.yousong.common.jsonToCollection
-import com.yousong.yousong.model.ServerAd
+import com.yousong.yousong.convert.ServerAd
 import com.yousong.yousong.value.ValueUrl
 import com.yousong.yousong.work.common.BaseSimpleWorkModel
 import org.json.JSONObject

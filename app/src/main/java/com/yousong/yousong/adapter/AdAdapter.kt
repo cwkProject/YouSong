@@ -9,7 +9,7 @@ import cn.bingoogolapple.bgabanner.BGABanner
 import cn.bingoogolapple.bgabanner.BGALocalImageSize
 import com.yousong.yousong.R
 import com.yousong.yousong.databinding.ItemAdBinding
-import com.yousong.yousong.model.ServerAd
+import com.yousong.yousong.convert.ServerAd
 import com.yousong.yousong.model.BannerAds
 import org.cwk.android.library.architecture.recycler.MultipleRecyclerViewAdapter
 import org.cwk.android.library.architecture.recycler.RecyclerViewHolderManager
