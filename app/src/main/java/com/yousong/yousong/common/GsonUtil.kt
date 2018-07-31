@@ -18,11 +18,11 @@ object GsonUtil {
      * gson
      */
     val gson = GsonBuilder()
-            .registerTypeAdapter(Answer::class.java, AnswerTypeAdapter())
-            .registerTypeAdapter(Question::class.java, QuestionTypeAdapter())
-            .registerTypeAdapter(Directional::class.java, DirectionalTypeAdapter())
-            .registerTypeAdapter(Ad::class.java, AdTypeAdapter())
-            .registerTypeAdapter(AdDetail::class.java, AdDetailTypeAdapter())
+            .registerTypeAdapter(Answer::class.java, AnswerTypeAdapter().nullSafe())
+            .registerTypeAdapter(Question::class.java, QuestionTypeAdapter().nullSafe())
+            .registerTypeAdapter(Directional::class.java, DirectionalTypeAdapter().nullSafe())
+            .registerTypeAdapter(Ad::class.java, AdTypeAdapter().nullSafe())
+            .registerTypeAdapter(AdDetail::class.java, AdDetailTypeAdapter().nullSafe())
             .create()
 }
 
