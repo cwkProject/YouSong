@@ -2,7 +2,7 @@ package com.yousong.yousong.architecture.viewmodel
 
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
-import com.yousong.yousong.convert.ServerAd
+import com.yousong.yousong.architecture.databinding.Ad
 import com.yousong.yousong.work.ads.AdsPullListWork
 import com.yousong.yousong.work.common.start
 
@@ -18,7 +18,7 @@ class AdsViewModel : ViewModel() {
     /**
      * 首页广告列表
      */
-    val adListData = MutableLiveData<List<ServerAd>>()
+    val adListData = MutableLiveData<List<Ad>>()
 
     /**
      * 加载广告

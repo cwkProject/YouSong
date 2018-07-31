@@ -1,9 +1,11 @@
 package com.yousong.yousong.common
 
 import android.databinding.BindingAdapter
+import android.databinding.BindingConversion
 import android.graphics.drawable.Drawable
 import android.widget.ImageView
 import com.yousong.yousong.third.GlideApp
+import java.math.BigDecimal
 
 /**
  * 自定义属性的DataBinding适配器
@@ -26,4 +28,8 @@ object MyDataBindingAdapter {
     fun loadImageFromUrl(view: ImageView, defaultSrc: Drawable, url: String?) {
         GlideApp.with(view).load(url).placeholder(defaultSrc).error(defaultSrc).into(view)
     }
+
+    @BindingConversion
+    @JvmStatic
+    fun convertBigDecimal(number: BigDecimal): Int = number.toInt()
 }

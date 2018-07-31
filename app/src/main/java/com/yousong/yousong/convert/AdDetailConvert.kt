@@ -91,11 +91,11 @@ class AdTypeAdapter : TypeAdapter<Ad>() {
             name("img").value(value.poster)
             name("adsType").value(if (value.type) 1 else 2)
             name("userCount").value(value.targetCount)
-            name("perYellowBoyUser").value(value.userUnitPrice.multiply(BigDecimal(100)))
+            name("perYellowBoyUser").value(value.userUnitPrice * BigDecimal(100))
             name("needInvoice").value(if (value.needInvoice) ValueConst.SERVER_TRUE else ValueConst.SERVER_FALSE)
             name("adsId").value(value.id)
-            name("totalAsset").value(value.totalAmount.multiply(BigDecimal(100)))
-            name("balance").value(value.balance.multiply(BigDecimal(100)))
+            name("totalAsset").value(value.totalAmount * BigDecimal(100))
+            name("balance").value(value.balance * BigDecimal(100))
             name("city").value(value.city)
             endObject()
         }
@@ -114,11 +114,11 @@ class AdTypeAdapter : TypeAdapter<Ad>() {
                     "img" -> ad.poster = nextString()
                     "adsType" -> ad.type = nextInt() == 1
                     "userCount" -> ad.targetCount = nextInt()
-                    "perYellowBoyUser" -> ad.userUnitPrice = BigDecimal(nextInt()).div(BigDecimal(100))
+                    "perYellowBoyUser" -> ad.userUnitPrice = BigDecimal(nextInt()) / BigDecimal(100)
                     "needInvoice" -> ad.needInvoice = nextInt() == ValueConst.SERVER_TRUE
                     "adsId" -> ad.id = nextString()
-                    "totalAsset" -> ad.totalAmount = BigDecimal(nextInt()).div(BigDecimal(100))
-                    "balance" -> ad.balance = BigDecimal(nextInt()).div(BigDecimal(100))
+                    "totalAsset" -> ad.totalAmount = BigDecimal(nextInt()) / BigDecimal(100)
+                    "balance" -> ad.balance = BigDecimal(nextInt()) / BigDecimal(100)
                     "city" -> ad.city = nextString()
                 }
             }
