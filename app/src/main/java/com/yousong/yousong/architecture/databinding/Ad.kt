@@ -12,9 +12,9 @@ import java.math.BigDecimal
  * @version 1.0 2018/7/29
  * @since 1.0
  *
- * @property adsId 广告id
+ * @property id 广告id
  */
-class Ad(val adsId: String = "") : BaseObservable() {
+class Ad(var id: String = "") : BaseObservable() {
 
     /**
      * 广告名称
@@ -60,30 +60,30 @@ class Ad(val adsId: String = "") : BaseObservable() {
      * 广告类型，true推广型，false定向型
      */
     @Bindable
-    var adsType = false
+    var type = false
         set(value) {
             field = value
-            notifyPropertyChanged(BR.adsType)
+            notifyPropertyChanged(BR.type)
         }
 
     /**
      * 目标广告人数
      */
     @Bindable
-    var userCount = 1000
+    var targetCount = 1000
         set(value) {
             field = value
-            notifyPropertyChanged(BR.userCount)
+            notifyPropertyChanged(BR.targetCount)
         }
 
     /**
      * 每位用户所得金额，单位元
      */
     @Bindable
-    var perYellowBoyUser = 1f
+    var userUnitPrice = BigDecimal("0")
         set(value) {
             field = value
-            notifyPropertyChanged(BR.perYellowBoyUser)
+            notifyPropertyChanged(BR.userUnitPrice)
         }
 
     /**
@@ -107,17 +107,17 @@ class Ad(val adsId: String = "") : BaseObservable() {
         }
 
     /**
-     * 总金额
+     * 总金额，单位元
      */
     @Bindable
-    var totalAsset = BigDecimal("0.00")
+    var totalAmount = BigDecimal("0.00")
         set(value) {
             field = value
-            notifyPropertyChanged(BR.totalAsset)
+            notifyPropertyChanged(BR.totalAmount)
         }
 
     /**
-     * 余额
+     * 余额，单位元
      */
     @Bindable
     var balance = BigDecimal("0.00")

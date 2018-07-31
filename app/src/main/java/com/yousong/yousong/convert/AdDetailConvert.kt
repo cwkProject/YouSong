@@ -5,7 +5,6 @@ import com.google.gson.stream.JsonReader
 import com.google.gson.stream.JsonWriter
 import com.yousong.yousong.architecture.databinding.*
 import com.yousong.yousong.common.GsonUtil
-import com.yousong.yousong.model.ServerLocalConvert
 import com.yousong.yousong.value.ValueConst
 import java.math.BigDecimal
 
@@ -15,21 +14,62 @@ import java.math.BigDecimal
  * @author 超悟空
  * @version 1.0 2018/7/24
  * @since 1.0
- *
- * @property ads 广告基本信息
- * @property questionAnswer 问题
- * @property adsDirectional 定向条件
  */
-data class ServerAdDetail(
-        val ads: ServerAd,
-        val questionAnswer: ServerQuestion,
-        val adsDirectional: ServerDirectional? = null) : ServerLocalConvert<ServerAdDetail, AdDetail> {
-    override fun toLocal(): AdDetail {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+class AdDetailTypeAdapter : TypeAdapter<AdDetail>() {
+
+    /**
+     * 广告类解析器
+     */
+    val adTypeAdapter by lazy {
+        GsonUtil.gson.getAdapter(Ad::class.java)
     }
 
-    override fun AdDetail.toServer(): ServerAdDetail {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    /**
+     * 选项类解析器
+     */
+    val questionTypeAdapter by lazy {
+        GsonUtil.gson.getAdapter(Question::class.java)
+    }
+
+    /**
+     * 定向类解析器
+     */
+    val directionalTypeAdapter by lazy {
+        GsonUtil.gson.getAdapter(Directional::class.java)
+    }
+
+    override fun write(out: JsonWriter, value: AdDetail) {
+        out.apply {
+            beginObject()
+            name("ads")
+            adTypeAdapter.write(out, value.ad)
+            name("questionAnswer")
+            questionTypeAdapter.write(out, value.question)
+            name("adsDirectional")
+            directionalTypeAdapter.write(out, value.directional)
+            endObject()
+        }
+    }
+
+    override fun read(`in`: JsonReader): AdDetail {
+
+        var ad: Ad? = null
+        var question: Question? = null
+        var directional: Directional? = null
+
+        `in`.apply {
+            beginObject()
+            while (hasNext()) {
+                when (nextName()) {
+                    "ads" -> ad = adTypeAdapter.read(this)
+                    "questionAnswer" -> question = questionTypeAdapter.read(this)
+                    "adsDirectional" -> directional = directionalTypeAdapter.read(this)
+                }
+            }
+            endObject()
+        }
+
+        return AdDetail(ad ?: Ad(), question ?: Question(), directional ?: Directional())
     }
 }
 
@@ -39,40 +79,53 @@ data class ServerAdDetail(
  * @author 超悟空
  * @version 1.0 2018/7/1
  * @since 1.0
- *
- * @property name 广告名称
- * @property cityCode 城市码，代理商区分
- * @property cover 封面
- * @property img 大图海报
- * @property adsType 广告类型，1推广型，2定向型
- * @property userCount 目标广告人数
- * @property perYellowBoyUser 每位用户所得金额
- * @property needInvoice 是否需要发票
- * @property totalAsset 总金额
- * @property balance 余额
- * @property adsId 广告id
- * @property city 城市名称
  */
-data class ServerAd(
-        val name: String,
-        val cityCode: String,
-        val cover: String,
-        val img: String,
-        val adsType: Int,
-        val userCount: Int,
-        val perYellowBoyUser: Int,
-        val needInvoice: Int,
-        val adsId: String = "",
-        val totalAsset: Long = 0L,
-        val balance: Long = 0L,
-        val city: String? = null) : ServerLocalConvert<ServerAd, Ad> {
+class AdTypeAdapter : TypeAdapter<Ad>() {
 
-    override fun toLocal(): Ad {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun write(out: JsonWriter, value: Ad) {
+        out.apply {
+            beginObject()
+            name("name").value(value.name)
+            name("cityCode").value(value.cityCode)
+            name("cover").value(value.cover)
+            name("img").value(value.poster)
+            name("adsType").value(if (value.type) 1 else 2)
+            name("userCount").value(value.targetCount)
+            name("perYellowBoyUser").value(value.userUnitPrice.multiply(BigDecimal(100)))
+            name("needInvoice").value(if (value.needInvoice) ValueConst.SERVER_TRUE else ValueConst.SERVER_FALSE)
+            name("adsId").value(value.id)
+            name("totalAsset").value(value.totalAmount.multiply(BigDecimal(100)))
+            name("balance").value(value.balance.multiply(BigDecimal(100)))
+            name("city").value(value.city)
+            endObject()
+        }
     }
 
-    override fun Ad.toServer(): ServerAd {
-        TODO("not implemented")
+    override fun read(`in`: JsonReader): Ad {
+        val ad = Ad()
+        `in`.apply {
+            beginObject()
+
+            while (hasNext()) {
+                when (nextName()) {
+                    "name" -> ad.name = nextString()
+                    "cityCode" -> ad.cityCode = nextString()
+                    "cover" -> ad.cover = nextString()
+                    "img" -> ad.poster = nextString()
+                    "adsType" -> ad.type = nextInt() == 1
+                    "userCount" -> ad.targetCount = nextInt()
+                    "perYellowBoyUser" -> ad.userUnitPrice = BigDecimal(nextInt()).div(BigDecimal(100))
+                    "needInvoice" -> ad.needInvoice = nextInt() == ValueConst.SERVER_TRUE
+                    "adsId" -> ad.id = nextString()
+                    "totalAsset" -> ad.totalAmount = BigDecimal(nextInt()).div(BigDecimal(100))
+                    "balance" -> ad.balance = BigDecimal(nextInt()).div(BigDecimal(100))
+                    "city" -> ad.city = nextString()
+                }
+            }
+            endObject()
+        }
+
+        return ad
     }
 }
 
@@ -82,23 +135,8 @@ data class ServerAd(
  * @author 超悟空
  * @version 1.0 2018/7/24
  * @since 1.0
- *
- * @property sex 性别，1男，2女，3不限
- * @property minAge 最小年龄
- * @property minAge 最大年龄
- * @property latitude 纬度
- * @property longitude 经度
- * @property cityIds 城市代码
- * @property range 周边范围单位米
  */
-class DirectionalTypeAdapter(
-        val sex: Int = 3,
-        val minAge: Int? = null,
-        val maxAge: Int? = null,
-        val latitude: Int? = null,
-        val longitude: Int? = null,
-        val cityIds: List<Int>? = null,
-        val range: Int? = null) : TypeAdapter<Directional>() {
+class DirectionalTypeAdapter : TypeAdapter<Directional>() {
     override fun write(out: JsonWriter, value: Directional) {
         out.apply {
             beginObject()
@@ -215,7 +253,7 @@ class AnswerTypeAdapter : TypeAdapter<Answer>() {
             beginObject()
             name("order").value(value.order)
             name("content").value(value.content)
-            name("isAnswer").value(value.isAnswer)
+            name("isAnswer").value(if (value.isAnswer) ValueConst.SERVER_TRUE else ValueConst.SERVER_FALSE)
             endObject()
         }
     }

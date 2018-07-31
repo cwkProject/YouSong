@@ -3,6 +3,8 @@ package com.yousong.yousong.common
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
+import com.yousong.yousong.architecture.databinding.*
+import com.yousong.yousong.convert.*
 
 /**
  * Gson集合和扩展
@@ -15,7 +17,13 @@ object GsonUtil {
     /**
      * gson
      */
-    val gson = GsonBuilder().create()
+    val gson = GsonBuilder()
+            .registerTypeAdapter(Answer::class.java, AnswerTypeAdapter())
+            .registerTypeAdapter(Question::class.java, QuestionTypeAdapter())
+            .registerTypeAdapter(Directional::class.java, DirectionalTypeAdapter())
+            .registerTypeAdapter(Ad::class.java, AdTypeAdapter())
+            .registerTypeAdapter(AdDetail::class.java, AdDetailTypeAdapter())
+            .create()
 }
 
 /**
