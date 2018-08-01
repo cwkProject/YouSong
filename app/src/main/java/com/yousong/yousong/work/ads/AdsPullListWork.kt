@@ -1,6 +1,6 @@
 package com.yousong.yousong.work.ads
 
-import com.yousong.yousong.architecture.databinding.Ad
+import com.yousong.yousong.model.local.Ad
 import com.yousong.yousong.common.jsonToCollection
 import com.yousong.yousong.value.ValueUrl
 import com.yousong.yousong.work.common.BaseSimpleWorkModel

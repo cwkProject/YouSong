@@ -2,7 +2,7 @@ package com.yousong.yousong.work.third
 
 import com.yousong.yousong.common.jsonToObject
 import com.yousong.yousong.global.AppConfig
-import com.yousong.yousong.model.WxResponse
+import com.yousong.yousong.model.server.WxResponse
 import com.yousong.yousong.value.ValueKey
 import com.yousong.yousong.value.ValueUrl
 import org.cwk.android.library.data.JsonDataModel

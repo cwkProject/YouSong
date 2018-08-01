@@ -3,8 +3,8 @@ package com.yousong.yousong.common
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
-import com.yousong.yousong.architecture.databinding.*
-import com.yousong.yousong.convert.*
+import com.yousong.yousong.model.convert.*
+import com.yousong.yousong.model.local.*
 
 /**
  * Gson集合和扩展

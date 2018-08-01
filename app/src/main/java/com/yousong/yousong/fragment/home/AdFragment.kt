@@ -8,7 +8,7 @@ import com.yousong.yousong.activity.ads.AdDetailActivity
 import com.yousong.yousong.architecture.viewmodel.AdsViewModel
 import com.yousong.yousong.common.plusAssign
 import com.yousong.yousong.fragment.ads.BaseAdListFragment
-import com.yousong.yousong.model.BannerAds
+import com.yousong.yousong.model.server.BannerAds
 import org.jetbrains.anko.support.v4.startActivity
 
 /**

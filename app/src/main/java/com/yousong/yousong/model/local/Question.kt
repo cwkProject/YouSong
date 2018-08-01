@@ -1,4 +1,4 @@
-package com.yousong.yousong.architecture.databinding
+package com.yousong.yousong.model.local
 
 import android.databinding.BaseObservable
 import android.databinding.Bindable

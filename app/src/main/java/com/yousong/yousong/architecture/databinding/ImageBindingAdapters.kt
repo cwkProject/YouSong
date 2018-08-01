@@ -1,20 +1,18 @@
-package com.yousong.yousong.common
+package com.yousong.yousong.architecture.databinding
 
 import android.databinding.BindingAdapter
-import android.databinding.BindingConversion
 import android.graphics.drawable.Drawable
 import android.widget.ImageView
 import com.yousong.yousong.third.GlideApp
-import java.math.BigDecimal
 
 /**
- * 自定义属性的DataBinding适配器
+ * 图片相关的DataBinding适配器
  *
  * @author 超悟空
  * @version 1.0 2017/2/24
  * @since 1.0 2017/2/24
  */
-object MyDataBindingAdapter {
+object ImageBindingAdapters {
 
     /**
      * 填充网络图片
@@ -28,8 +26,4 @@ object MyDataBindingAdapter {
     fun loadImageFromUrl(view: ImageView, defaultSrc: Drawable, url: String?) {
         GlideApp.with(view).load(url).placeholder(defaultSrc).error(defaultSrc).into(view)
     }
-
-    @BindingConversion
-    @JvmStatic
-    fun convertBigDecimal(number: BigDecimal): Int = number.toInt()
 }

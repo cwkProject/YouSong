@@ -1,4 +1,4 @@
-package com.yousong.yousong.model
+package com.yousong.yousong.model.server
 
 /**
  * 轮播广告数据

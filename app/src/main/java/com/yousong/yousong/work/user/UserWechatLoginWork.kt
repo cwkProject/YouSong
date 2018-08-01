@@ -2,7 +2,7 @@ package com.yousong.yousong.work.user
 
 import com.yousong.yousong.common.jsonToObject
 import com.yousong.yousong.common.sendLocalBroadcast
-import com.yousong.yousong.model.ServerUserInfo
+import com.yousong.yousong.model.server.ServerUserInfo
 import com.yousong.yousong.value.ValueAction
 import com.yousong.yousong.value.ValueUrl
 import com.yousong.yousong.work.common.BaseSimpleWorkModel

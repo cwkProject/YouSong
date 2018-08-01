@@ -2,7 +2,7 @@ package com.yousong.yousong.architecture.viewmodel
 
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
-import com.yousong.yousong.architecture.databinding.Ad
+import com.yousong.yousong.model.local.Ad
 import com.yousong.yousong.work.ads.AdsPullListWork
 import com.yousong.yousong.work.common.start
 

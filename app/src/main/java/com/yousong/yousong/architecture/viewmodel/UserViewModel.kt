@@ -2,7 +2,7 @@ package com.yousong.yousong.architecture.viewmodel
 
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
-import com.yousong.yousong.architecture.databinding.UserAssets
+import com.yousong.yousong.model.local.UserAssets
 
 /**
  * 用户相关数据的数据模型

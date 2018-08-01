@@ -1,4 +1,4 @@
-package com.yousong.yousong.architecture.databinding
+package com.yousong.yousong.model.local
 
 /**
  * 广告详情

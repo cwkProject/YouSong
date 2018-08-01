@@ -1,10 +1,10 @@
-package com.yousong.yousong.convert
+package com.yousong.yousong.model.convert
 
 import com.google.gson.TypeAdapter
 import com.google.gson.stream.JsonReader
 import com.google.gson.stream.JsonWriter
-import com.yousong.yousong.architecture.databinding.*
 import com.yousong.yousong.common.GsonUtil
+import com.yousong.yousong.model.local.*
 import com.yousong.yousong.value.ValueConst
 import java.math.BigDecimal
 
@@ -20,21 +20,21 @@ class AdDetailTypeAdapter : TypeAdapter<AdDetail>() {
     /**
      * 广告类解析器
      */
-    val adTypeAdapter by lazy {
+    private val adTypeAdapter by lazy {
         GsonUtil.gson.getAdapter(Ad::class.java)
     }
 
     /**
      * 选项类解析器
      */
-    val questionTypeAdapter by lazy {
+    private val questionTypeAdapter by lazy {
         GsonUtil.gson.getAdapter(Question::class.java)
     }
 
     /**
      * 定向类解析器
      */
-    val directionalTypeAdapter by lazy {
+    private val directionalTypeAdapter by lazy {
         GsonUtil.gson.getAdapter(Directional::class.java)
     }
 
@@ -69,7 +69,10 @@ class AdDetailTypeAdapter : TypeAdapter<AdDetail>() {
             endObject()
         }
 
-        return AdDetail(ad ?: Ad(), question ?: Question(), directional ?: Directional())
+        return AdDetail(ad
+                ?: Ad(), question
+                ?: Question(), directional
+                ?: Directional())
     }
 }
 
@@ -196,7 +199,7 @@ class QuestionTypeAdapter : TypeAdapter<Question>() {
     /**
      * 答案类解析器
      */
-    val answerTypeAdapter by lazy {
+    private val answerTypeAdapter by lazy {
         GsonUtil.gson.getAdapter(Answer::class.java)
     }
 

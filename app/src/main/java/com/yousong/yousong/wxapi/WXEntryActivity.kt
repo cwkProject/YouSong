@@ -13,7 +13,7 @@ import com.tencent.mm.opensdk.openapi.WXAPIFactory
 import com.yousong.yousong.R
 import com.yousong.yousong.activity.common.BaseActivity
 import com.yousong.yousong.global.AppConfig
-import com.yousong.yousong.model.WxResponse
+import com.yousong.yousong.model.server.WxResponse
 import com.yousong.yousong.value.ValueAction
 import com.yousong.yousong.value.ValueKey
 import com.yousong.yousong.value.ValueTag

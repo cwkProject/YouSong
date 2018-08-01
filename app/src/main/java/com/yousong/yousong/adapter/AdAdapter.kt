@@ -8,9 +8,9 @@ import android.widget.ImageView
 import cn.bingoogolapple.bgabanner.BGABanner
 import cn.bingoogolapple.bgabanner.BGALocalImageSize
 import com.yousong.yousong.R
-import com.yousong.yousong.architecture.databinding.Ad
+import com.yousong.yousong.model.local.Ad
 import com.yousong.yousong.databinding.ItemAdBinding
-import com.yousong.yousong.model.BannerAds
+import com.yousong.yousong.model.server.BannerAds
 import org.cwk.android.library.architecture.recycler.MultipleRecyclerViewAdapter
 import org.cwk.android.library.architecture.recycler.RecyclerViewHolderManager
 

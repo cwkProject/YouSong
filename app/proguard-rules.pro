@@ -23,7 +23,7 @@
 -keepattributes Signature
 
 # 接口数据模型
--keep class com.yousong.yousong.model.** {*;}
+-keep class com.yousong.yousong.model.server.** {*;}
 
 # gson
 -dontwarn com.google.**

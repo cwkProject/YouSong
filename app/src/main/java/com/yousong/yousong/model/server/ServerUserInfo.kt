@@ -1,4 +1,4 @@
-package com.yousong.yousong.model
+package com.yousong.yousong.model.server
 
 import com.yousong.yousong.global.AppConfig
 import com.yousong.yousong.global.LoginStatus

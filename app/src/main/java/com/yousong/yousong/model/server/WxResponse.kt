@@ -1,4 +1,4 @@
-package com.yousong.yousong.model
+package com.yousong.yousong.model.server
 
 /**
  * 微信响应数据
