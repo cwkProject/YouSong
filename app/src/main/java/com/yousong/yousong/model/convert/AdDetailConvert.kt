@@ -200,17 +200,17 @@ class QuestionTypeAdapter : TypeAdapter<Question>() {
      * 答案类解析器
      */
     private val answerTypeAdapter by lazy {
-        GsonUtil.gson.getAdapter(Answer::class.java)
+        GsonUtil.gson.getAdapter(Option::class.java)
     }
 
     override fun write(out: JsonWriter, value: Question) {
         out.apply {
             beginObject()
             name("content").value(value.content)
-            name("reAnswerCount").value(value.reAnswerCount)
+            name("reAnswerCount").value(value.retries)
             name("answers")
             beginArray()
-            value.answers.forEach {
+            value.option.forEach {
                 answerTypeAdapter.write(this, it)
             }
             endArray()
@@ -226,11 +226,11 @@ class QuestionTypeAdapter : TypeAdapter<Question>() {
             while (hasNext()) {
                 when (nextName()) {
                     "content" -> question.content = nextString()
-                    "reAnswerCount" -> question.reAnswerCount = nextInt()
+                    "reAnswerCount" -> question.retries = nextInt()
                     "answers" -> {
                         beginArray()
                         while (hasNext()) {
-                            question.answers.add(answerTypeAdapter.read(this))
+                            question.option.add(answerTypeAdapter.read(this))
                         }
                         endArray()
                     }
@@ -250,26 +250,26 @@ class QuestionTypeAdapter : TypeAdapter<Question>() {
  * @version 1.0 2018/7/24
  * @since 1.0
  */
-class AnswerTypeAdapter : TypeAdapter<Answer>() {
-    override fun write(out: JsonWriter, value: Answer) {
+class AnswerTypeAdapter : TypeAdapter<Option>() {
+    override fun write(out: JsonWriter, value: Option) {
         out.apply {
             beginObject()
             name("order").value(value.order)
             name("content").value(value.content)
-            name("isAnswer").value(if (value.isAnswer) ValueConst.SERVER_TRUE else ValueConst.SERVER_FALSE)
+            name("isAnswer").value(if (value.answer) ValueConst.SERVER_TRUE else ValueConst.SERVER_FALSE)
             endObject()
         }
     }
 
-    override fun read(`in`: JsonReader): Answer {
-        val answer = Answer()
+    override fun read(`in`: JsonReader): Option {
+        val answer = Option()
         `in`.apply {
             beginObject()
             while (hasNext()) {
                 when (nextName()) {
                     "order" -> answer.order = nextInt()
                     "content" -> answer.content = nextString()
-                    "isAnswer" -> answer.isAnswer = nextInt() == ValueConst.SERVER_TRUE
+                    "isAnswer" -> answer.answer = nextInt() == ValueConst.SERVER_TRUE
                 }
             }
 

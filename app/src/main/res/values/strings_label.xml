@@ -10,6 +10,6 @@
     <string name="label_c">C:</string>
     <string name="label_d">D:</string>
     <string name="label_correct_answer">正确答案:</string>
-    <string name="label_retry_times">错误重答次数:</string>
+    <string name="label_retry_times">重答次数:</string>
 
 </resources>

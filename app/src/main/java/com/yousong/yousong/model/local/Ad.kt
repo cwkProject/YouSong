@@ -80,7 +80,7 @@ class Ad(var id: String = "") : BaseObservable() {
      * 每位用户所得金额，单位元
      */
     @Bindable
-    var userUnitPrice = BigDecimal("0")
+    var userUnitPrice = BigDecimal("1")
         set(value) {
             field = value
             notifyPropertyChanged(BR.userUnitPrice)

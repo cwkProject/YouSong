@@ -18,7 +18,7 @@ object GsonUtil {
      * gson
      */
     val gson = GsonBuilder()
-            .registerTypeAdapter(Answer::class.java, AnswerTypeAdapter().nullSafe())
+            .registerTypeAdapter(Option::class.java, AnswerTypeAdapter().nullSafe())
             .registerTypeAdapter(Question::class.java, QuestionTypeAdapter().nullSafe())
             .registerTypeAdapter(Directional::class.java, DirectionalTypeAdapter().nullSafe())
             .registerTypeAdapter(Ad::class.java, AdTypeAdapter().nullSafe())

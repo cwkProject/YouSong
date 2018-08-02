@@ -3,16 +3,15 @@ package com.yousong.yousong.model.local
 import android.databinding.BaseObservable
 import android.databinding.Bindable
 import com.yousong.yousong.BR
-import com.yousong.yousong.value.ValueConst
 
 /**
- * 答案
+ * 问题选项
  *
  * @author 超悟空
  * @version 1.0 2018/7/24
  * @since 1.0
  */
-class Answer : BaseObservable() {
+class Option : BaseObservable() {
 
     /**
      * 选项序号
@@ -38,9 +37,9 @@ class Answer : BaseObservable() {
      * 是否正确答案
      */
     @Bindable
-    var isAnswer: Boolean = false
+    var answer: Boolean = false
         set(value) {
             field = value
-            notifyPropertyChanged(BR.isAnswer)
+            notifyPropertyChanged(BR.answer)
         }
 }

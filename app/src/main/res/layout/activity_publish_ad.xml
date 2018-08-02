@@ -1,307 +1,400 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <include layout="@layout/toolbar"/>
+    <data>
 
-    <android.support.v4.widget.NestedScrollView
+        <variable
+            name="data"
+            type="com.yousong.yousong.model.local.AdDetail"/>
+
+        <variable
+            name="holder"
+            type="com.yousong.yousong.operator.OnPublishAdOperator"/>
+
+        <import type="com.yousong.yousong.architecture.databinding.BindingTypeConverts"/>
+
+    </data>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <LinearLayout
+        <include layout="@layout/toolbar"/>
+
+        <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingEnd="@dimen/activity_horizontal_margin"
-            android:paddingStart="@dimen/activity_horizontal_margin">
-
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/ad_cover_height">
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="@string/prompt_click_upload_cover"
-                    android:textSize="@dimen/text_size_large"/>
-            </FrameLayout>
-
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_marginTop="@dimen/layout_default_spacing">
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="@string/prompt_click_upload_content"
-                    android:textSize="@dimen/text_size_large"/>
-            </FrameLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginBottom="@dimen/layout_default_spacing"
-                android:layout_marginTop="@dimen/layout_default_spacing"
-                android:background="@android:color/darker_gray"/>
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/hint_question"/>
-
-            </android.support.design.widget.TextInputLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/layout_default_spacing"
-                android:text="@string/name_set_answer"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
-
-            <android.support.v7.widget.GridLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:columnCount="2"
-                app:useDefaultMargins="true">
-
-                <TextView
-                    android:text="@string/label_a"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
-
-                <EditText app:layout_gravity="fill_horizontal"/>
-
-                <TextView
-                    android:text="@string/label_b"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
-
-                <EditText app:layout_gravity="fill_horizontal"/>
-
-                <TextView
-                    android:text="@string/label_c"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
-
-                <EditText app:layout_gravity="fill_horizontal"/>
-
-                <TextView
-                    android:text="@string/label_d"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
-
-                <EditText app:layout_gravity="fill_horizontal"/>
-
-            </android.support.v7.widget.GridLayout>
+            android:layout_height="match_parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/layout_default_spacing"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:orientation="vertical"
+                android:paddingEnd="@dimen/activity_horizontal_margin"
+                android:paddingStart="@dimen/activity_horizontal_margin">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/ad_cover_height"
+                    android:background="?selectableItemBackground"
+                    android:onClick="@{holder::onCoverClick}">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:defaultSrc="@{@color/grey_100}"
+                        app:imageUrl="@{data.ad.cover}"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="@string/prompt_click_upload_cover"
+                        android:textSize="@dimen/text_size_large"/>
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_marginTop="@dimen/layout_default_spacing"
+                    android:background="?selectableItemBackground"
+                    android:onClick="@{holder::onPosterClick}">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:defaultSrc="@{@color/grey_100}"
+                        app:imageUrl="@{data.ad.poster}"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="@string/prompt_click_upload_content"
+                        android:textSize="@dimen/text_size_large"/>
+                </FrameLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginBottom="@dimen/layout_default_spacing"
+                    android:layout_marginTop="@dimen/layout_default_spacing"
+                    android:background="@android:color/darker_gray"/>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/hint_question"
+                        android:maxLength="120"
+                        android:text="@={data.question.content}"/>
+
+                </android.support.design.widget.TextInputLayout>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/label_correct_answer"
+                    android:layout_marginTop="@dimen/layout_default_spacing"
+                    android:text="@string/name_set_answer"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
 
-                <RadioGroup
+                <android.support.v7.widget.GridLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/layout_default_spacing"
+                    app:columnCount="2"
+                    app:useDefaultMargins="true">
+
+                    <TextView
+                        android:text="@string/label_a"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+
+                    <EditText
+                        android:text="@={data.question.option[0].content}"
+                        app:layout_gravity="fill_horizontal"/>
+
+                    <TextView
+                        android:text="@string/label_b"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+
+                    <EditText
+                        android:text="@={data.question.option[1].content}"
+                        app:layout_gravity="fill_horizontal"/>
+
+                    <TextView
+                        android:text="@string/label_c"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        app:goneUnless="@{data.question.option.size() > 2}"/>
+
+                    <EditText
+                        android:text="@={data.question.option[2].content}"
+                        app:goneUnless="@{data.question.option.size() > 2}"
+                        app:layout_gravity="fill_horizontal"/>
+
+                    <TextView
+                        android:text="@string/label_d"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        app:goneUnless="@{data.question.option.size() > 3}"/>
+
+                    <EditText
+                        android:text="@={data.question.option[3].content}"
+                        app:goneUnless="@{data.question.option.size() > 3}"
+                        app:layout_gravity="fill_horizontal"/>
+
+                </android.support.v7.widget.GridLayout>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/layout_default_spacing">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:drawablePadding="@dimen/layout_default_spacing"
+                        android:drawableStart="@drawable/ic_add_green_a400_24dp"
+                        android:gravity="center_vertical"
+                        android:onClick="@{holder::onAddOptionClick}"
+                        android:text="@string/name_add_option"
+                        app:goneUnless="@{data.question.option.size() &lt; 4}"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:drawablePadding="@dimen/layout_default_spacing"
+                        android:drawableStart="@drawable/ic_remove_red_a400_24dp"
+                        android:gravity="center_vertical"
+                        android:onClick="@{holder::onRemoveOptionClick}"
+                        android:text="@string/name_remove_option"
+                        app:goneUnless="@{data.question.option.size() > 2}"/>
+
+                </FrameLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/layout_default_spacing"
+                    android:gravity="center_vertical"
                     android:orientation="horizontal">
 
-                    <android.support.v7.widget.AppCompatRadioButton
-                        android:layout_width="0dp"
+                    <TextView
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/name_a"/>
+                        android:text="@string/label_correct_answer"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
 
-                    <android.support.v7.widget.AppCompatRadioButton
-                        android:layout_width="0dp"
+                    <RadioGroup
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/name_b"/>
+                        android:layout_marginStart="@dimen/layout_default_spacing"
+                        android:orientation="horizontal">
 
-                    <android.support.v7.widget.AppCompatRadioButton
-                        android:layout_width="0dp"
+                        <android.support.v7.widget.AppCompatRadioButton
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:checked="@={data.question.option[0].answer}"
+                            android:text="@string/name_a"/>
+
+                        <android.support.v7.widget.AppCompatRadioButton
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:checked="@={data.question.option[1].answer}"
+                            android:text="@string/name_b"/>
+
+                        <android.support.v7.widget.AppCompatRadioButton
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:checked="@={data.question.option[2].answer}"
+                            android:text="@string/name_c"
+                            app:invisibleUnless="@{data.question.option.size() > 2}"/>
+
+                        <android.support.v7.widget.AppCompatRadioButton
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:checked="@={data.question.option[3].answer}"
+                            android:text="@string/name_d"
+                            app:invisibleUnless="@{data.question.option.size() > 3}"/>
+
+                    </RadioGroup>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/layout_default_spacing"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/name_c"/>
+                        android:text="@string/label_retry_times"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
 
-                    <android.support.v7.widget.AppCompatRadioButton
-                        android:layout_width="0dp"
+                    <RadioGroup
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/name_d"/>
+                        android:layout_marginStart="@dimen/layout_default_spacing"
+                        android:orientation="horizontal">
 
-                </RadioGroup>
+                        <android.support.v7.widget.AppCompatRadioButton
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:checked="@={data.question.retrySelector[0].checked}"
+                            android:text="@string/name_not_retry"/>
+
+                        <android.support.v7.widget.AppCompatRadioButton
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:checked="@={data.question.retrySelector[1].checked}"
+                            android:text="@string/name_once"/>
+
+                        <android.support.v7.widget.AppCompatRadioButton
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:checked="@={data.question.retrySelector[2].checked}"
+                            android:text="@string/name_twice"/>
+
+                    </RadioGroup>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginBottom="@dimen/layout_default_spacing"
+                    android:layout_marginTop="@dimen/layout_default_spacing"
+                    android:background="@android:color/darker_gray"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/name_publish_form"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+
+                <android.support.v7.widget.AppCompatRadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/layout_default_spacing"
+                    android:checked="@={data.ad.type}"
+                    android:text="@string/name_promotion_publish"/>
+
+                <android.support.v7.widget.AppCompatRadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="@={!data.ad.type}"
+                    android:text="@string/name_directional_publish"/>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <include layout="@layout/fragment_directional_parameter"/>
+
+                </FrameLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginBottom="@dimen/layout_default_spacing"
+                    android:layout_marginTop="@dimen/layout_default_spacing"
+                    android:background="@android:color/darker_gray"/>
+
+                <android.support.v7.widget.GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    app:columnCount="3"
+                    app:useDefaultMargins="true">
+
+                    <TextView
+                        android:text="@string/name_user_unit_price"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+
+                    <EditText
+                        android:gravity="end"
+                        android:imeOptions="actionDone"
+                        android:inputType="numberDecimal"
+                        android:maxLength="6"
+                        android:maxLines="1"
+                        android:text="@={BindingTypeConverts.moneyToString(data.ad.userUnitPrice)}"
+                        app:layout_columnWeight="1"/>
+
+                    <TextView android:text="@string/name_yuan"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/name_user_count"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+
+                    <EditText
+                        android:gravity="end"
+                        android:imeOptions="actionDone"
+                        android:inputType="number"
+                        android:maxLines="1"
+                        android:text="@={BindingTypeConverts.intToString(data.ad.targetCount)}"
+                        app:layout_columnWeight="1"/>
+
+                    <TextView android:text="@string/name_person"/>
+
+                    <TextView
+                        android:text="@string/name_total_amount"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+
+                    <TextView
+                        android:gravity="end"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        app:layout_columnWeight="1"/>
+
+                    <TextView android:text="@string/name_yuan"/>
+
+                </android.support.v7.widget.GridLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginBottom="@dimen/layout_default_spacing"
+                    android:layout_marginTop="@dimen/layout_default_spacing"
+                    android:background="@android:color/darker_gray"/>
+
+                <android.support.v7.widget.AppCompatRadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="@={!data.ad.needInvoice}"
+                    android:text="@string/name_need_invoice"/>
+
+                <android.support.v7.widget.AppCompatRadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/layout_default_spacing"
+                    android:checked="@={!data.ad.needInvoice}"
+                    android:text="@string/name_not_need_invoice"/>
+
+                <android.support.v7.widget.AppCompatButton
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/name_submit_review"
+                    android:textColor="@android:color/white"
+                    app:backgroundTint="@color/red_500"/>
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/layout_default_spacing"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
+        </android.support.v4.widget.NestedScrollView>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/label_retry_times"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+    </LinearLayout>
 
-                <RadioGroup
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/layout_default_spacing"
-                    android:orientation="horizontal">
-
-                    <android.support.v7.widget.AppCompatRadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/name_not_retry"/>
-
-                    <android.support.v7.widget.AppCompatRadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/name_once"/>
-
-                    <android.support.v7.widget.AppCompatRadioButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/name_twice"/>
-
-                </RadioGroup>
-
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginBottom="@dimen/layout_default_spacing"
-                android:layout_marginTop="@dimen/layout_default_spacing"
-                android:background="@android:color/darker_gray"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/name_publish_form"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
-
-            <android.support.v7.widget.AppCompatRadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/layout_default_spacing"
-                android:text="@string/name_promotion_publish"/>
-
-            <android.support.v7.widget.AppCompatRadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/name_directional_publish"/>
-
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <include layout="@layout/fragment_directional_parameter"/>
-
-            </FrameLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginBottom="@dimen/layout_default_spacing"
-                android:layout_marginTop="@dimen/layout_default_spacing"
-                android:background="@android:color/darker_gray"/>
-
-            <android.support.v7.widget.GridLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                app:columnCount="2"
-                app:useDefaultMargins="true">
-
-                <TextView
-                    android:text="@string/name_user_unit_price"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
-
-                <EditText app:layout_columnWeight="1"/>
-
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/name_user_count"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
-
-                <EditText app:layout_columnWeight="1"/>
-
-                <TextView
-                    android:text="@string/name_total_amount"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
-
-                <TextView app:layout_columnWeight="1"/>
-
-                <TextView
-                    android:text="@string/name_account_balance"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
-
-                <TextView app:layout_columnWeight="1"/>
-
-            </android.support.v7.widget.GridLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginBottom="@dimen/layout_default_spacing"
-                android:layout_marginTop="@dimen/layout_default_spacing"
-                android:background="@android:color/darker_gray"/>
-
-            <android.support.v7.widget.AppCompatRadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/name_need_invoice"/>
-
-            <android.support.v7.widget.AppCompatRadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/layout_default_spacing"
-                android:text="@string/name_not_need_invoice"/>
-
-            <android.support.v7.widget.AppCompatButton
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/name_recharge"
-                android:textColor="@android:color/white"
-                app:backgroundTint="@color/red_500"/>
-
-            <android.support.v7.widget.AppCompatButton
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/name_submit_review"
-                android:textColor="@android:color/white"
-                app:backgroundTint="@color/red_500"/>
-
-        </LinearLayout>
-
-    </android.support.v4.widget.NestedScrollView>
-
-</LinearLayout>
+</layout>

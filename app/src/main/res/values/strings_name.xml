@@ -30,8 +30,11 @@
     <string name="name_to">至</string>
     <string name="name_target_city">目标城市</string>
 
-    <string name="name_user_unit_price">单用户金额</string>
-    <string name="name_user_count">用户总数</string>
+    <string name="name_yuan">元</string>
+    <string name="name_person">人</string>
+
+    <string name="name_user_unit_price">每用户所得额</string>
+    <string name="name_user_count">目标用户人数</string>
     <string name="name_total_amount">总金额</string>
     <string name="name_account_balance">账户余额</string>
 
@@ -42,8 +45,11 @@
     <string name="name_b">B</string>
     <string name="name_c">C</string>
     <string name="name_d">D</string>
-    <string name="name_not_retry">不可重答</string>
+    <string name="name_not_retry">无</string>
     <string name="name_once">一次</string>
     <string name="name_twice">两次</string>
+
+    <string name="name_add_option">添加选项</string>
+    <string name="name_remove_option">移除选项</string>
 
 </resources>

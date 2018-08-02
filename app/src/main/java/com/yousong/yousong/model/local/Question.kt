@@ -6,7 +6,7 @@ import android.databinding.ObservableArrayList
 import com.yousong.yousong.BR
 
 /**
- * 选项
+ * 问题
  *
  * @author 超悟空
  * @version 1.0 2018/7/24
@@ -27,15 +27,39 @@ class Question : BaseObservable() {
     /**
      * 重答次数
      */
-    @Bindable
-    var reAnswerCount: Int = 0
-        set(value) {
-            field = value
-            notifyPropertyChanged(BR.reAnswerCount)
-        }
+    var retries: Int = 0
 
     /**
-     * 答案
+     * 重试次数选择器，用于databinding绑定
      */
-    val answers: MutableList<Answer> = ObservableArrayList()
+    val retrySelector: List<RetrySelector> =
+            listOf(RetrySelector(0),
+                    RetrySelector(1),
+                    RetrySelector(2))
+
+    /**
+     * 选项
+     */
+    val option: MutableList<Option> = ObservableArrayList()
+
+    /**
+     * 重试次数选择器
+     *
+     * @property times 绑定的重试次数
+     */
+    inner class RetrySelector(val times: Int) : BaseObservable() {
+
+        /**
+         * 该次数是否被选中
+         */
+        var checked: Boolean
+            @Bindable get() = times == retries
+            set(value) {
+                if (value) {
+                    retries = times
+                }
+
+                notifyPropertyChanged(BR.checked)
+            }
+    }
 }

@@ -32,6 +32,7 @@
 # databinding
 -dontwarn android.databinding.**
 -keep class android.databinding.** { *; }
+-keep class om.yousong.yousong.architecture.databinding.BindingTypeConverts {*;}
 
 # 微信
 -keep class com.tencent.mm.opensdk.** { *; }
