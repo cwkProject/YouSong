@@ -1,5 +1,6 @@
 package com.yousong.yousong.operator
 
+import android.text.Editable
 import android.view.View
 
 /**
@@ -30,4 +31,9 @@ interface OnPublishAdOperator {
      * 移除选项
      */
     fun onRemoveOptionClick(view: View)
+
+    /**
+     * 每位用户所得金额输入变更
+     */
+    fun onMoneyChanged(edt: Editable)
 }

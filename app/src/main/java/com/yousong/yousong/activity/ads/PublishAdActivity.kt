@@ -1,8 +1,16 @@
 package com.yousong.yousong.activity.ads
 
+import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
+import android.text.Editable
+import android.view.View
 import com.yousong.yousong.R
 import com.yousong.yousong.activity.common.BaseActivity
+import com.yousong.yousong.architecture.viewmodel.PublishAdViewModel
+import com.yousong.yousong.databinding.ActivityPublishAdBinding
+import com.yousong.yousong.operator.OnPublishAdOperator
+
+
 
 /**
  * 发布广告的页面
@@ -11,10 +19,51 @@ import com.yousong.yousong.activity.common.BaseActivity
  * @version 1.0 2018/7/1
  * @since 1.0
  */
-class PublishAdActivity : BaseActivity() {
+class PublishAdActivity : BaseActivity(), OnPublishAdOperator {
+
+    /**
+     * 绑定器
+     */
+    private val binding by lazy {
+        ActivityPublishAdBinding.bind(rootView)
+    }
+
+    /**
+     * 数据模型
+     */
+    private val viewModel by lazy {
+        ViewModelProviders.of(this).get(PublishAdViewModel::class.java)
+    }
 
     override val rootViewId = R.layout.activity_publish_ad
 
     override fun onInitView(savedInstanceState: Bundle?) {
+        binding.data = viewModel.adDetail
+        binding.holder = this
+    }
+
+    override fun onCoverClick(view: View) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun onPosterClick(view: View) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun onAddOptionClick(view: View) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun onRemoveOptionClick(view: View) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun onMoneyChanged(edt: Editable) {
+        val temp = edt.toString()
+        val posDot = temp.indexOf(".")
+        if (posDot <= 0) return
+        if (temp.length - posDot - 1 > 2) {
+            edt.delete(posDot + 3, posDot + 4)
+        }
     }
 }

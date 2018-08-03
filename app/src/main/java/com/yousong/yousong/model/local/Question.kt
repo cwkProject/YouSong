@@ -28,6 +28,12 @@ class Question : BaseObservable() {
      * 重答次数
      */
     var retries: Int = 0
+        set(value) {
+            field = value
+            retrySelector.forEach {
+                it.notifyChange()
+            }
+        }
 
     /**
      * 重试次数选择器，用于databinding绑定
@@ -58,8 +64,6 @@ class Question : BaseObservable() {
                 if (value) {
                     retries = times
                 }
-
-                notifyPropertyChanged(BR.checked)
             }
     }
 }

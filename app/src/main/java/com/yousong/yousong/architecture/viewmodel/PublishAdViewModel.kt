@@ -1,6 +1,7 @@
 package com.yousong.yousong.architecture.viewmodel
 
 import android.arch.lifecycle.ViewModel
+import com.yousong.yousong.model.local.AdDetail
 
 /**
  * 发布广告数据模型
@@ -11,5 +12,8 @@ import android.arch.lifecycle.ViewModel
  */
 class PublishAdViewModel : ViewModel() {
 
-
+    /**
+     * 广告详情
+     */
+    val adDetail = AdDetail()
 }

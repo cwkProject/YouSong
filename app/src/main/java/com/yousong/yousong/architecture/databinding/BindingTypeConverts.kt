@@ -1,8 +1,8 @@
 package com.yousong.yousong.architecture.databinding
 
-import android.databinding.InverseMethod
-import java.math.BigDecimal
-import java.math.RoundingMode
+import android.databinding.*
+import android.view.View
+import android.widget.EditText
 
 /**
  * 双向数据绑定类型转换器
@@ -18,24 +18,45 @@ object BindingTypeConverts {
      */
     @InverseMethod("stringToInt")
     @JvmStatic
-    fun intToString(value: Int): String = value.toString()
+    fun intToString(value: Int?): String? = value?.toString()
 
     /**
      * String to Int
      */
     @JvmStatic
-    fun stringToInt(value: String): Int = if (value.isEmpty()) 0 else value.toInt()
+    fun stringToInt(value: String): Int? = if (value.isEmpty()) 0 else value.toInt()
 
     /**
-     * 金额转换到字符串
+     * Double to String
      */
-    @InverseMethod("moneyToBigDecimal")
+    @BindingConversion
     @JvmStatic
-    fun moneyToString(value: BigDecimal): String = value.toString()
+    fun doubleToString(value: Double): String = value.toString()
 
     /**
-     * 金额字符串转换到BigDecimal
+     * 焦点丢失通知的变更的绑定方法
      */
+    @BindingAdapter("focusOfSets")
     @JvmStatic
-    fun moneyToBigDecimal(value: String): BigDecimal = if (value.isEmpty()) BigDecimal("0") else BigDecimal(value).setScale(2, RoundingMode.DOWN)
+    fun setFocusChangeOfSets(view: EditText, value: String?) = view.setText(value)
+
+    /**
+     * 设置焦点改变监听器
+     */
+    @BindingAdapter(value = ["focusOfSetsAttrChanged"])
+    @JvmStatic
+    fun setFocusChangeListener(view: EditText, listener: InverseBindingListener?) {
+        view.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
+            if (!hasFocus) {
+                listener?.onChange()
+            }
+        }
+    }
+
+    /**
+     * 焦点丢失通知的变更的逆绑定方法
+     */
+    @InverseBindingAdapter(attribute = "focusOfSets")
+    @JvmStatic
+    fun getFocusChangeOfSets(editText: EditText): String = editText.text.toString()
 }

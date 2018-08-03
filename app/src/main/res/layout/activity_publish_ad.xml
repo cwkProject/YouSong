@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -195,6 +196,7 @@
                         android:orientation="horizontal">
 
                         <android.support.v7.widget.AppCompatRadioButton
+                            android:id="@+id/a_option"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -202,6 +204,7 @@
                             android:text="@string/name_a"/>
 
                         <android.support.v7.widget.AppCompatRadioButton
+                            android:id="@+id/b_option"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -209,6 +212,7 @@
                             android:text="@string/name_b"/>
 
                         <android.support.v7.widget.AppCompatRadioButton
+                            android:id="@+id/c_option"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -217,6 +221,7 @@
                             app:invisibleUnless="@{data.question.option.size() > 2}"/>
 
                         <android.support.v7.widget.AppCompatRadioButton
+                            android:id="@+id/d_option"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -238,37 +243,30 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/layout_default_spacing"
                         android:text="@string/label_retry_times"
                         android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
 
-                    <RadioGroup
-                        android:layout_width="match_parent"
+                    <android.support.v7.widget.AppCompatRadioButton
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/layout_default_spacing"
-                        android:orientation="horizontal">
+                        android:layout_weight="1"
+                        android:checked="@={data.question.retrySelector[0].checked}"
+                        android:text="@string/name_not_retry"/>
 
-                        <android.support.v7.widget.AppCompatRadioButton
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:checked="@={data.question.retrySelector[0].checked}"
-                            android:text="@string/name_not_retry"/>
+                    <android.support.v7.widget.AppCompatRadioButton
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:checked="@={data.question.retrySelector[1].checked}"
+                        android:text="@string/name_once"/>
 
-                        <android.support.v7.widget.AppCompatRadioButton
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:checked="@={data.question.retrySelector[1].checked}"
-                            android:text="@string/name_once"/>
-
-                        <android.support.v7.widget.AppCompatRadioButton
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:checked="@={data.question.retrySelector[2].checked}"
-                            android:text="@string/name_twice"/>
-
-                    </RadioGroup>
+                    <android.support.v7.widget.AppCompatRadioButton
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:checked="@={data.question.retrySelector[2].checked}"
+                        android:text="@string/name_twice"/>
 
                 </LinearLayout>
 
@@ -298,13 +296,11 @@
                     android:checked="@={!data.ad.type}"
                     android:text="@string/name_directional_publish"/>
 
-                <FrameLayout
+                <fragment
+                    android:name="com.yousong.yousong.fragment.ads.DirectionalParameterFragment"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <include layout="@layout/fragment_directional_parameter"/>
-
-                </FrameLayout>
+                    android:layout_height="wrap_content"
+                    tools:layout="@layout/fragment_directional_parameter"/>
 
                 <View
                     android:layout_width="match_parent"
@@ -325,12 +321,12 @@
                         android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
 
                     <EditText
+                        android:afterTextChanged="@{holder::onMoneyChanged}"
                         android:gravity="end"
                         android:imeOptions="actionDone"
                         android:inputType="numberDecimal"
                         android:maxLength="6"
                         android:maxLines="1"
-                        android:text="@={BindingTypeConverts.moneyToString(data.ad.userUnitPrice)}"
                         app:layout_columnWeight="1"/>
 
                     <TextView android:text="@string/name_yuan"/>
@@ -357,6 +353,7 @@
 
                     <TextView
                         android:gravity="end"
+                        android:text="@{data.ad.userUnitPrice.doubleValue() * data.ad.targetCount}"
                         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                         app:layout_columnWeight="1"/>
 

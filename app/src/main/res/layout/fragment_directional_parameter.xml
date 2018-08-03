@@ -1,124 +1,155 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:orientation="vertical">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginBottom="@dimen/layout_default_spacing"
-        android:layout_marginTop="@dimen/layout_default_spacing"
-        android:background="@android:color/darker_gray"/>
+    <data>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/name_user_filter"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+        <variable
+            name="data"
+            type="com.yousong.yousong.model.local.AdDetail"/>
+
+        <variable
+            name="holder"
+            type="com.yousong.yousong.operator.OnDirectionOperator"/>
+
+        <import type="com.yousong.yousong.architecture.databinding.BindingTypeConverts"/>
+
+    </data>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/layout_default_spacing"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:orientation="vertical"
+        app:goneUnless="@{!data.ad.type}">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="@dimen/layout_default_spacing"
+            android:layout_marginTop="@dimen/layout_default_spacing"
+            android:background="@android:color/darker_gray"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/name_sex"
+            android:text="@string/name_user_filter"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
 
-        <RadioGroup
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/layout_default_spacing"
+            android:layout_marginTop="@dimen/layout_default_spacing"
+            android:gravity="center_vertical"
             android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/name_sex"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
 
             <android.support.v7.widget.AppCompatRadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/layout_default_spacing"
+                android:checked="@={data.directional.sexSelector[2].checked}"
                 android:text="@string/name_not_limited"/>
 
             <android.support.v7.widget.AppCompatRadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:checked="@={data.directional.sexSelector[0].checked}"
                 android:text="@string/name_male"/>
 
             <android.support.v7.widget.AppCompatRadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:checked="@={data.directional.sexSelector[1].checked}"
                 android:text="@string/name_female"/>
 
-        </RadioGroup>
+        </LinearLayout>
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/layout_default_spacing"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/name_age"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
-
-        <android.support.v7.widget.AppCompatCheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/layout_default_spacing"
-            android:text="@string/name_not_limited"/>
-
-        <Spinner
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/layout_default_spacing"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/layout_default_spacing"
-            android:layout_marginStart="@dimen/layout_default_spacing"
-            android:text="@string/name_to"/>
-
-        <Spinner
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <include layout="@layout/layout_city_selector"/>
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/layout_default_spacing"
-            android:text="@string/name_filter_result"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
-        <TextView
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/name_age"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+
+            <android.support.v7.widget.AppCompatCheckBox
+                android:id="@+id/age_check"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/layout_default_spacing"
+                android:checked="true"
+                android:onCheckedChanged="@{holder::onAgeNotLimitedChecked}"
+                android:text="@string/name_not_limited"/>
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:ems="3"
+                android:inputType="number"
+                android:maxLength="3"
+                app:enabled="@{!ageCheck.isChecked()}"
+                app:focusOfSets="@={BindingTypeConverts.intToString(data.directional.minAge)}"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/layout_default_spacing"
+                android:layout_marginStart="@dimen/layout_default_spacing"
+                android:text="@string/name_to"/>
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="3"
+                android:inputType="number"
+                android:maxLength="3"
+                app:enabled="@{!ageCheck.isChecked()}"
+                app:focusOfSets="@={BindingTypeConverts.intToString(data.directional.maxAge)}"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <include layout="@layout/layout_city_selector"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/layout_default_spacing"/>
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/layout_default_spacing"
+                android:text="@string/name_filter_result"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/layout_default_spacing"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 
-</LinearLayout>
+</layout>

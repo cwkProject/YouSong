@@ -18,12 +18,21 @@ class Directional : BaseObservable() {
     /**
      * 性别，1男，2女，3不限
      */
-    @Bindable
     var sex: Int = 3
         set(value) {
             field = value
-            notifyPropertyChanged(BR.sex)
+            sexSelector.forEach {
+                it.notifyChange()
+            }
         }
+
+    /**
+     * 性别选择器，用于databinding绑定
+     */
+    val sexSelector: List<SexSelector> =
+            listOf(SexSelector(1),
+                    SexSelector(2),
+                    SexSelector(3))
 
     /**
      * 最小年龄
@@ -33,6 +42,12 @@ class Directional : BaseObservable() {
         set(value) {
             field = value
             notifyPropertyChanged(BR.minAge)
+
+            maxAge?.let {
+                if (value != null && value > it) {
+                    maxAge = value
+                }
+            }
         }
 
     /**
@@ -43,6 +58,12 @@ class Directional : BaseObservable() {
         set(value) {
             field = value
             notifyPropertyChanged(BR.minAge)
+
+            minAge?.let {
+                if (value != null && value < it) {
+                    minAge = value
+                }
+            }
         }
 
     /**
@@ -69,4 +90,23 @@ class Directional : BaseObservable() {
             field = value
             notifyPropertyChanged(BR.range)
         }
+
+    /**
+     * 性别选择器
+     *
+     * @property sexId 绑定的性别编号
+     */
+    inner class SexSelector(val sexId: Int) : BaseObservable() {
+
+        /**
+         * 该性别是否被选中
+         */
+        var checked: Boolean
+            @Bindable get() = sexId == sex
+            set(value) {
+                if (value) {
+                    sex = sexId
+                }
+            }
+    }
 }
