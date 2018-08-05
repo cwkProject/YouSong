@@ -57,7 +57,7 @@ class Directional : BaseObservable() {
     var maxAge: Int? = null
         set(value) {
             field = value
-            notifyPropertyChanged(BR.minAge)
+            notifyPropertyChanged(BR.maxAge)
 
             minAge?.let {
                 if (value != null && value < it) {

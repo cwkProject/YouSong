@@ -2,6 +2,7 @@ package com.yousong.yousong.architecture.viewmodel
 
 import android.arch.lifecycle.ViewModel
 import com.yousong.yousong.model.local.AdDetail
+import com.yousong.yousong.model.local.Option
 
 /**
  * 发布广告数据模型
@@ -15,5 +16,8 @@ class PublishAdViewModel : ViewModel() {
     /**
      * 广告详情
      */
-    val adDetail = AdDetail()
+    val adDetail = AdDetail().apply {
+        question.option.add(Option(1))
+        question.option.add(Option(2))
+    }
 }

@@ -8,8 +8,8 @@ import com.yousong.yousong.R
 import com.yousong.yousong.activity.common.BaseActivity
 import com.yousong.yousong.architecture.viewmodel.PublishAdViewModel
 import com.yousong.yousong.databinding.ActivityPublishAdBinding
+import com.yousong.yousong.model.local.Option
 import com.yousong.yousong.operator.OnPublishAdOperator
-
 
 
 /**
@@ -43,19 +43,25 @@ class PublishAdActivity : BaseActivity(), OnPublishAdOperator {
     }
 
     override fun onCoverClick(view: View) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun onPosterClick(view: View) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun onAddOptionClick(view: View) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val options = viewModel.adDetail.question.option
+        if (options.size < 4) {
+            options.add(Option(options.size + 1))
+            binding.invalidateAll()
+        }
     }
 
     override fun onRemoveOptionClick(view: View) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val options = viewModel.adDetail.question.option
+        if (options.size > 2) {
+            options.removeAt(options.size - 1)
+            binding.invalidateAll()
+        }
     }
 
     override fun onMoneyChanged(edt: Editable) {

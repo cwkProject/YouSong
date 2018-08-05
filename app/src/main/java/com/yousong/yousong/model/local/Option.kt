@@ -10,14 +10,16 @@ import com.yousong.yousong.BR
  * @author 超悟空
  * @version 1.0 2018/7/24
  * @since 1.0
+ *
+ * @param order 选项序号
  */
-class Option : BaseObservable() {
+class Option(order: Int = 0) : BaseObservable() {
 
     /**
      * 选项序号
      */
     @Bindable
-    var order: Int = 0
+    var order: Int = order
         set(value) {
             field = value
             notifyPropertyChanged(BR.order)

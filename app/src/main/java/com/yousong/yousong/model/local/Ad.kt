@@ -2,6 +2,7 @@ package com.yousong.yousong.model.local
 
 import android.databinding.BaseObservable
 import android.databinding.Bindable
+import android.util.Log
 import com.yousong.yousong.BR
 import java.math.BigDecimal
 
@@ -60,7 +61,7 @@ class Ad(var id: String = "") : BaseObservable() {
      * 广告类型，true推广型，false定向型
      */
     @Bindable
-    var type = false
+    var type = true
         set(value) {
             field = value
             notifyPropertyChanged(BR.type)
@@ -83,6 +84,7 @@ class Ad(var id: String = "") : BaseObservable() {
     var userUnitPrice = BigDecimal("1")
         set(value) {
             field = value
+            Log.v("Ad", "userUnitPrice:$userUnitPrice")
             notifyPropertyChanged(BR.userUnitPrice)
         }
 

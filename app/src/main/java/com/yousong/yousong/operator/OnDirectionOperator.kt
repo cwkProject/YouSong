@@ -1,5 +1,7 @@
 package com.yousong.yousong.operator
 
+import android.view.View
+import android.widget.AdapterView
 import android.widget.CompoundButton
 
 /**
@@ -15,4 +17,14 @@ interface OnDirectionOperator {
      * 年龄不限选择状态变更
      */
     fun onAgeNotLimitedChecked(buttonView: CompoundButton, isChecked: Boolean)
+
+    /**
+     * 最小年龄选择事件
+     */
+    fun onMinAgeItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long)
+
+    /**
+     * 最大年龄选择事件
+     */
+    fun onMaxAgeItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long)
 }

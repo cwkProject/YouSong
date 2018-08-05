@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.support.annotation.LayoutRes
 import android.support.v7.app.AppCompatActivity
 import android.view.View
+import android.view.ViewGroup
 import android.view.ViewTreeObserver
 
 /**
@@ -26,7 +27,7 @@ abstract class BaseActivity : AppCompatActivity() {
      * 根布局
      */
     protected val rootView: View by lazy {
-        findViewById<View>(android.R.id.content)
+        findViewById<ViewGroup>(android.R.id.content).getChildAt(0)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

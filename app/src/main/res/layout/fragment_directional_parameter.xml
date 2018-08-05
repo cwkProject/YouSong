@@ -9,6 +9,10 @@
             type="com.yousong.yousong.model.local.AdDetail"/>
 
         <variable
+            name="ages"
+            type="com.yousong.yousong.architecture.viewmodel.AgesRangeViewModel"/>
+
+        <variable
             name="holder"
             type="com.yousong.yousong.operator.OnDirectionOperator"/>
 
@@ -93,15 +97,13 @@
                 android:onCheckedChanged="@{holder::onAgeNotLimitedChecked}"
                 android:text="@string/name_not_limited"/>
 
-            <EditText
+            <Spinner
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/activity_horizontal_margin"
-                android:ems="3"
-                android:inputType="number"
-                android:maxLength="3"
-                app:enabled="@{!ageCheck.isChecked()}"
-                app:focusOfSets="@={BindingTypeConverts.intToString(data.directional.minAge)}"/>
+                android:entries="@{ages.minAges}"
+                android:onItemSelected="@{holder::onMinAgeItemSelected}"
+                app:enabled="@{!ageCheck.isChecked()}"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -110,14 +112,20 @@
                 android:layout_marginStart="@dimen/layout_default_spacing"
                 android:text="@string/name_to"/>
 
-            <EditText
+            <Spinner
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:ems="3"
-                android:inputType="number"
-                android:maxLength="3"
-                app:enabled="@{!ageCheck.isChecked()}"
-                app:focusOfSets="@={BindingTypeConverts.intToString(data.directional.maxAge)}"/>
+                android:entries="@{ages.maxAges}"
+                android:onItemSelected="@{holder::onMaxAgeItemSelected}"
+                android:selection="@={ages.maxSelection}"
+                app:enabled="@{!ageCheck.isChecked()}"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/layout_default_spacing"
+                android:text="@string/name_year_old"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
 
         </LinearLayout>
 

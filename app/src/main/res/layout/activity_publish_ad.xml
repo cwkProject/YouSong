@@ -44,8 +44,7 @@
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        app:defaultSrc="@{@color/grey_100}"
-                        app:imageUrl="@{data.ad.cover}"/>
+                        android:src="@color/grey_100"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -65,8 +64,7 @@
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        app:defaultSrc="@{@color/grey_100}"
-                        app:imageUrl="@{data.ad.poster}"/>
+                        android:src="@color/grey_100"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -297,6 +295,7 @@
                     android:text="@string/name_directional_publish"/>
 
                 <fragment
+                    android:id="@+id/directional_parameter_fragment"
                     android:name="com.yousong.yousong.fragment.ads.DirectionalParameterFragment"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -371,7 +370,7 @@
                 <android.support.v7.widget.AppCompatRadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:checked="@={!data.ad.needInvoice}"
+                    android:checked="@={data.ad.needInvoice}"
                     android:text="@string/name_need_invoice"/>
 
                 <android.support.v7.widget.AppCompatRadioButton
