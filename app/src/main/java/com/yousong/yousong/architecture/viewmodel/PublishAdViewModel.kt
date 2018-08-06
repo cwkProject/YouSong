@@ -17,7 +17,7 @@ class PublishAdViewModel : ViewModel() {
      * 广告详情
      */
     val adDetail = AdDetail().apply {
-        question.option.add(Option(1))
+        question.option.add(Option(1).apply { answer = true })
         question.option.add(Option(2))
     }
 }

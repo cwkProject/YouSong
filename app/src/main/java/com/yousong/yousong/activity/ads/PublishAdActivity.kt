@@ -60,7 +60,9 @@ class PublishAdActivity : BaseActivity(), OnPublishAdOperator {
     override fun onRemoveOptionClick(view: View) {
         val options = viewModel.adDetail.question.option
         if (options.size > 2) {
-            options.removeAt(options.size - 1)
+            options.removeAt(options.size - 1).takeIf { it.answer }?.let {
+                options[0].answer = true
+            }
             binding.invalidateAll()
         }
     }
