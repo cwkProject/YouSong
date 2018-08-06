@@ -36,4 +36,9 @@ interface OnPublishAdOperator {
      * 每位用户所得金额输入变更
      */
     fun onMoneyChanged(edt: Editable)
+
+    /**
+     * 目标人数变化
+     */
+    fun onTargetCountChanged(edt: Editable)
 }

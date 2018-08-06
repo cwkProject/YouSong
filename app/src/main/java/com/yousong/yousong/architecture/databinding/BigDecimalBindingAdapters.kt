@@ -17,5 +17,19 @@ object BigDecimalBindingAdapters {
      */
     @BindingConversion
     @JvmStatic
-    fun convertBigDecimal(number: BigDecimal): Int = number.toInt()
+    fun convertBigDecimalToInt(number: BigDecimal): Int = number.toInt()
+
+    /**
+     * BigDecimal to String
+     */
+    @BindingConversion
+    @JvmStatic
+    fun convertBigDecimalToString(number: BigDecimal): String = number.toString()
+
+    /**
+     * 乘以Int类型并转为String
+     */
+    @JvmStatic
+    fun bigDecimalMultiplyIntToString(multiplicand: BigDecimal, multiplier: Int): String =
+            multiplicand.multiply(BigDecimal(multiplier)).stripTrailingZeros().toPlainString()
 }

@@ -10,6 +10,7 @@ import com.yousong.yousong.architecture.viewmodel.PublishAdViewModel
 import com.yousong.yousong.databinding.ActivityPublishAdBinding
 import com.yousong.yousong.model.local.Option
 import com.yousong.yousong.operator.OnPublishAdOperator
+import java.math.BigDecimal
 
 
 /**
@@ -65,11 +66,22 @@ class PublishAdActivity : BaseActivity(), OnPublishAdOperator {
     }
 
     override fun onMoneyChanged(edt: Editable) {
-        val temp = edt.toString()
-        val posDot = temp.indexOf(".")
-        if (posDot <= 0) return
-        if (temp.length - posDot - 1 > 2) {
-            edt.delete(posDot + 3, posDot + 4)
+        val posDot = edt.indexOf('.')
+
+        when {
+            edt.isEmpty() || posDot == 0 || edt.startsWith('0') -> edt.replace(0, edt.length, "1")
+            posDot == edt.length - 1 -> return
+            posDot > 0 && edt.length - posDot - 1 > 2 -> edt.delete(posDot + 3, edt.length)
         }
+
+        viewModel.adDetail.ad.userUnitPrice = BigDecimal(edt.toString())
+    }
+
+    override fun onTargetCountChanged(edt: Editable) {
+        if (edt.isEmpty() || edt.startsWith('0')) {
+            edt.replace(0, edt.length, "1")
+        }
+
+        viewModel.adDetail.ad.targetCount = edt.toString().toInt()
     }
 }

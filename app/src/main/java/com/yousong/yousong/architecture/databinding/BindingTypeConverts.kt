@@ -23,7 +23,7 @@ object BindingTypeConverts {
      * String to Int
      */
     @JvmStatic
-    fun stringToInt(value: String): Int? = if (value.isEmpty()) 0 else value.toInt()
+    fun stringToInt(value: String): Int? = if (value.isEmpty()) null else value.toInt()
 
     /**
      * Double to String
