@@ -4,6 +4,7 @@ import android.databinding.BindingAdapter
 import android.graphics.drawable.Drawable
 import android.widget.ImageView
 import com.yousong.yousong.third.GlideApp
+import java.io.File
 
 /**
  * 图片相关的DataBinding适配器
@@ -25,5 +26,19 @@ object ImageBindingAdapters {
     @JvmStatic
     fun loadImageFromUrl(view: ImageView, defaultSrc: Drawable, url: String?) {
         GlideApp.with(view).load(url).placeholder(defaultSrc).error(defaultSrc).into(view)
+    }
+
+    /**
+     * 填充本地图片
+     *
+     * @param view  图片控件
+     * @param path 本地图片路径
+     */
+    @BindingAdapter("imageFile")
+    @JvmStatic
+    fun loadImageFromFile(view: ImageView, path: String?) {
+        if (path != null) {
+            GlideApp.with(view).load(File(path)).into(view)
+        }
     }
 }

@@ -18,4 +18,6 @@
 
     <string name="prompt_sending_request">正在发送请求</string>
 
+    <string name="prompt_gallery_storage">读取相册需要您授予文件存储使用权限</string>
+
 </resources>

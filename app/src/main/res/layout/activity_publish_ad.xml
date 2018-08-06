@@ -10,6 +10,10 @@
             type="com.yousong.yousong.model.local.AdDetail"/>
 
         <variable
+            name="viewModel"
+            type="com.yousong.yousong.architecture.viewmodel.PublishAdViewModel"/>
+
+        <variable
             name="holder"
             type="com.yousong.yousong.operator.OnPublishAdOperator"/>
 
@@ -39,14 +43,16 @@
 
                 <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/ad_cover_height"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
                     android:background="?selectableItemBackground"
                     android:onClick="@{holder::onCoverClick}">
 
                     <ImageView
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:src="@color/grey_100"/>
+                        android:layout_height="@dimen/ad_cover_height"
+                        android:background="@color/grey_300"
+                        app:imageFile="@{viewModel.coverPath}"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -58,15 +64,17 @@
 
                 <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/layout_default_spacing"
                     android:background="?selectableItemBackground"
                     android:onClick="@{holder::onPosterClick}">
 
                     <ImageView
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:src="@color/grey_100"/>
+                        android:layout_height="wrap_content"
+                        android:background="@color/grey_300"
+                        android:minHeight="200dp"
+                        app:imageFile="@{viewModel.posterPath}"/>
 
                     <TextView
                         android:layout_width="wrap_content"
