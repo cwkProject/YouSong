@@ -4,6 +4,10 @@ import android.databinding.Bindable
 import com.yousong.yousong.BR
 import com.yousong.yousong.model.local.AdDetail
 import com.yousong.yousong.model.local.Option
+import com.yousong.yousong.value.ValueConst
+import com.yousong.yousong.work.common.FileUploadWork
+import com.yousong.yousong.work.common.start
+import java.io.File
 
 /**
  * 发布广告数据模型
@@ -43,6 +47,26 @@ class PublishAdViewModel : ObservableViewModel() {
         }
 
     /**
+     * 缩略图上传进度
+     */
+    @Bindable
+    var coverProgress = ValueConst.PROGRESS_IDLE
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.coverProgress)
+        }
+
+    /**
+     * 海报上传进度
+     */
+    @Bindable
+    var posterProgress = ValueConst.PROGRESS_IDLE
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.posterProgress)
+        }
+
+    /**
      * 存放缩略图临时图片路径
      */
     var coverTempPath: String? = null
@@ -52,6 +76,17 @@ class PublishAdViewModel : ObservableViewModel() {
      */
     fun coverSelected() {
         coverPath = coverTempPath
+
+        FileUploadWork()
+                .setOnNetworkProgressListener { current, total, _ -> coverProgress = (current / total * 100).toInt() }
+                .start(File(coverPath)) {
+                    if (it.isSuccess) {
+                        adDetail.ad.cover = it.result
+                        coverProgress = ValueConst.PROGRESS_SUCCESS
+                    } else {
+                        coverProgress = ValueConst.PROGRESS_FAILED
+                    }
+                }
     }
 
     /**
@@ -61,5 +96,15 @@ class PublishAdViewModel : ObservableViewModel() {
      */
     fun posterSelected(path: String) {
         posterPath = path
+        FileUploadWork()
+                .setOnNetworkProgressListener { current, total, _ -> posterProgress = (current / total * 100).toInt() }
+                .start(File(path)) {
+                    if (it.isSuccess) {
+                        adDetail.ad.poster = it.result
+                        posterProgress = ValueConst.PROGRESS_SUCCESS
+                    } else {
+                        posterProgress = ValueConst.PROGRESS_FAILED
+                    }
+                }
     }
 }

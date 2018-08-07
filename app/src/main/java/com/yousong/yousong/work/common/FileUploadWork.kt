@@ -14,7 +14,7 @@ import java.io.File
  */
 class FileUploadWork : SimpleUploadWorkModel<File, String>() {
 
-    override fun onSuccessExtract(jsonResult: JSONObject) = jsonResult.getString(RESULT)
+    override fun onSuccessExtract(jsonResult: JSONObject): String = jsonResult.getString(RESULT)
 
     override fun onTaskUri(vararg parameters: File?) = ValueUrl.URL_FILE_UPLOAD
 

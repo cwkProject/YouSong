@@ -129,6 +129,7 @@ class PublishAdActivity : BaseActivity(), OnPublishAdOperator {
         if (CheckAndroidMPermission.checkPermission(this, Manifest.permission
                         .WRITE_EXTERNAL_STORAGE, getString(R.string.prompt_gallery_storage), requestCode)) {
             val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+            intent.type = "image/*"
             if (requestCode == COVER_SELECT_REQUEST_CODE) {
                 setCropIntent(intent)
             }
@@ -161,6 +162,9 @@ class PublishAdActivity : BaseActivity(), OnPublishAdOperator {
         intent.putExtra("scale", true)
         intent.putExtra("scaleUpIfNeeded", true)
         intent.putExtra("return-data", false)
+        intent.putExtra("noFaceDetection", true)
+        intent.putExtra("aspectX", 4)
+        intent.putExtra("aspectY", 3)
         intent.putExtra("outputX", COVER_WIDTH)
         intent.putExtra("outputY", COVER_HEIGHT)
         intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(File(createImagePath())))

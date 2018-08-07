@@ -6,4 +6,6 @@
 
     <string name="failed_login_required">登录失败，请检查网络并重试</string>
 
+    <string name="failed_upload">上传失败，请重试</string>
+
 </resources>

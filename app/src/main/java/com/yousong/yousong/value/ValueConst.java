@@ -18,4 +18,19 @@ public interface ValueConst {
      * 服务器false
      */
     int SERVER_FALSE = 0;
+
+    /**
+     * 传输进度未开始数值
+     */
+    int PROGRESS_IDLE = -1;
+
+    /**
+     * 传输失败数值
+     */
+    int PROGRESS_FAILED = -2;
+
+    /**
+     * 传输成功数值
+     */
+    int PROGRESS_SUCCESS = 101;
 }

@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- 成功信息 -->
 <resources>
+    <string name="success_upload">已上传</string>
+
 </resources>

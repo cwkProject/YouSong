@@ -51,15 +51,18 @@
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/ad_cover_height"
-                        android:background="@color/grey_300"
                         app:imageFile="@{viewModel.coverPath}"/>
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:alpha="0.4"
+                        android:background="@color/grey_400"
+                        android:gravity="center"
                         android:text="@string/prompt_click_upload_cover"
-                        android:textSize="@dimen/text_size_large"/>
+                        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                        android:textColor="@android:color/black"
+                        app:uploadProgressText="@{viewModel.coverProgress}"/>
                 </FrameLayout>
 
                 <FrameLayout
@@ -72,16 +75,19 @@
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@color/grey_300"
                         android:minHeight="200dp"
                         app:imageFile="@{viewModel.posterPath}"/>
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:alpha="0.4"
+                        android:background="@color/grey_400"
+                        android:gravity="center"
                         android:text="@string/prompt_click_upload_content"
-                        android:textSize="@dimen/text_size_large"/>
+                        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                        android:textColor="@android:color/black"
+                        app:uploadProgressText="@{viewModel.posterProgress}"/>
                 </FrameLayout>
 
                 <View
