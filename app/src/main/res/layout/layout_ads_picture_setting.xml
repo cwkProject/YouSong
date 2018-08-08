@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.yousong.yousong.architecture.viewmodel.PublishAdViewModel"/>
+
+        <variable
+            name="holder"
+            type="com.yousong.yousong.operator.OnPublishAdOperator"/>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:background="?selectableItemBackground"
+            android:onClick="@{holder::onCoverClick}">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/ad_cover_height"
+                app:imageFile="@{viewModel.coverPath}"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:alpha="0.4"
+                android:background="@color/grey_400"
+                android:gravity="center"
+                android:text="@string/prompt_click_upload_cover"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                android:textColor="@android:color/black"
+                app:uploadProgressText="@{viewModel.coverProgress}"/>
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/layout_default_spacing"
+            android:background="?selectableItemBackground"
+            android:onClick="@{holder::onPosterClick}">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="200dp"
+                app:imageFile="@{viewModel.posterPath}"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:alpha="0.4"
+                android:background="@color/grey_400"
+                android:gravity="center"
+                android:text="@string/prompt_click_upload_content"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                android:textColor="@android:color/black"
+                app:uploadProgressText="@{viewModel.posterProgress}"/>
+        </FrameLayout>
+
+    </LinearLayout>
+
+</layout>

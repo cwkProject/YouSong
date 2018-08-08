@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="data"
+            type="com.yousong.yousong.model.local.AdDetail"/>
+
+        <variable
+            name="holder"
+            type="com.yousong.yousong.operator.OnPublishAdOperator"/>
+
+        <import type="com.yousong.yousong.architecture.databinding.BindingTypeConverts"/>
+
+        <import type="com.yousong.yousong.architecture.databinding.BigDecimalBindingAdapters"/>
+
+    </data>
+
+    <android.support.v7.widget.GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        app:columnCount="3"
+        app:useDefaultMargins="true">
+
+        <TextView
+            android:text="@string/name_user_unit_price"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+
+        <EditText
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
+            android:afterTextChanged="@{holder::onMoneyChanged}"
+            android:imeOptions="actionDone"
+            android:inputType="numberDecimal"
+            android:maxLength="6"
+            android:maxLines="1"
+            android:text="@{data.ad.userUnitPrice}"
+            app:layout_columnWeight="1"/>
+
+        <TextView android:text="@string/name_yuan"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/name_user_count"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+
+        <EditText
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
+            android:afterTextChanged="@{holder::onTargetCountChanged}"
+            android:imeOptions="actionDone"
+            android:inputType="number"
+            android:maxLength="9"
+            android:maxLines="1"
+            android:text="@{BindingTypeConverts.intToString(data.ad.targetCount)}"
+            app:layout_columnWeight="1"/>
+
+        <TextView android:text="@string/name_person"/>
+
+        <TextView
+            android:text="@string/name_total_amount"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+
+        <TextView
+            android:gravity="end"
+            android:text="@{BigDecimalBindingAdapters.bigDecimalMultiplyIntToString(data.ad.userUnitPrice , data.ad.targetCount)}"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            app:layout_columnWeight="1"/>
+
+        <TextView android:text="@string/name_yuan"/>
+
+    </android.support.v7.widget.GridLayout>
+
+</layout>

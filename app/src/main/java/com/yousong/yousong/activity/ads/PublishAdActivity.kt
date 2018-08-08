@@ -19,6 +19,7 @@ import com.yousong.yousong.model.local.Option
 import com.yousong.yousong.operator.OnPublishAdOperator
 import com.yousong.yousong.util.CheckAndroidMPermission
 import com.yousong.yousong.util.FileUtil
+import org.cwk.android.library.util.ToolbarInitialize.initToolbar
 import java.io.File
 import java.math.BigDecimal
 
@@ -69,6 +70,8 @@ class PublishAdActivity : BaseActivity(), OnPublishAdOperator {
     override val rootViewId = R.layout.activity_publish_ad
 
     override fun onInitView(savedInstanceState: Bundle?) {
+        initToolbar(this, R.string.title_publish_ad)
+
         binding.data = viewModel.adDetail
         binding.viewModel = viewModel
         binding.holder = this
