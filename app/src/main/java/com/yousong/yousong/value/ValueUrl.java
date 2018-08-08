@@ -9,7 +9,7 @@ package com.yousong.yousong.value;
  */
 public interface ValueUrl {
 
-    // 以下为第三方接口地址
+    // 以下为第三方接口地址======================================================
 
     /**
      * 微信access_token交换
@@ -21,12 +21,12 @@ public interface ValueUrl {
      */
     String URL_WX_USER_INFO = "https://api.weixin.qq.com/sns/userinfo";
 
-    // 以下为应用接口地址
+    // 以下为应用接口地址======================================================
 
     /**
      * 根地址
      */
-    String URL_BASE = "";
+    String URL_BASE = "https://ads.iyousong.cn/";
 
     /**
      * 用户路由
@@ -43,7 +43,7 @@ public interface ValueUrl {
      */
     String URL_BASE_ADS = URL_BASE + "ads/";
 
-    // 一些为用户相关接口地址
+    // 一些为用户相关接口地址======================================================
 
     /**
      * 创建token
@@ -80,7 +80,7 @@ public interface ValueUrl {
      */
     String URL_USER_WECHAT_PAY = URL_BASE_USER + "pay";
 
-    // 以下为文件相关接口
+    // 以下为文件相关接口======================================================
 
     /**
      * 上传文件

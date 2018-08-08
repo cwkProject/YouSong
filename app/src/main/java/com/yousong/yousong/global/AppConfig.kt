@@ -23,9 +23,20 @@ object AppConfig : PersistenceConfigModel(Global.getApplication(), ApplicationSt
     var token: String? = null
 
     /**
-     * 是否匿名用户
+     * 用户昵称
      */
-    var anonymous = false
+    var nickname: String? = null
+
+    /**
+     * 手机号
+     */
+    @Encrypt
+    var mobile: String? = null
+
+    /**
+     * 用户头像地址
+     */
+    var avatar: String? = null
 
     /**
      * 微信登录状态保存

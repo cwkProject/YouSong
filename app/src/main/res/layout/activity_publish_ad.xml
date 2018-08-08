@@ -11,7 +11,7 @@
 
         <variable
             name="viewModel"
-            type="com.yousong.yousong.architecture.viewmodel.PublishAdViewModel"/>
+            type="com.yousong.yousong.architecture.viewmodel.CreateAdViewModel"/>
 
         <variable
             name="holder"
@@ -36,6 +36,19 @@
                 android:orientation="vertical"
                 android:paddingEnd="@dimen/activity_horizontal_margin"
                 android:paddingStart="@dimen/activity_horizontal_margin">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/activity_vertical_margin">
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/hint_ads_name"
+                        android:text="@={data.ad.name}"/>
+
+                </android.support.design.widget.TextInputLayout>
 
                 <include
                     layout="@layout/layout_ads_picture_setting"
@@ -102,6 +115,7 @@
                 <android.support.v7.widget.AppCompatButton
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:onClick="@{holder::onSubmit}"
                     android:text="@string/name_submit_review"
                     android:textColor="@android:color/white"
                     app:backgroundTint="@color/red_500"/>

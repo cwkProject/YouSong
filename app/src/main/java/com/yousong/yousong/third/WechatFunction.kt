@@ -32,7 +32,7 @@ object WechatFunction {
     /**
      * 微信接口
      */
-    private val api = WXAPIFactory.createWXAPI(Global.getApplication(), ValueKey.WX_APP_ID)
+    private val api = WXAPIFactory.createWXAPI(Global.getApplication(), ValueKey.WX_APP_ID, true)
 
     /**
      * logo

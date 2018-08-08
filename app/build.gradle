@@ -26,6 +26,20 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt') , 'proguard-rules.pro'
         }
     }
+    signingConfigs {
+        debug {
+            storeFile file("./yousong.jks")
+            storePassword "39251474"
+            keyAlias "友颂"
+            keyPassword "39251474"
+        }
+        release {
+            storeFile file("./yousong.jks")
+            storePassword "39251474"
+            keyAlias "友颂"
+            keyPassword "39251474"
+        }
+    }
     dataBinding {
         enabled = true
     }

@@ -13,7 +13,7 @@ import android.text.Editable
 import android.view.View
 import com.yousong.yousong.R
 import com.yousong.yousong.activity.common.BaseActivity
-import com.yousong.yousong.architecture.viewmodel.PublishAdViewModel
+import com.yousong.yousong.architecture.viewmodel.CreateAdViewModel
 import com.yousong.yousong.databinding.ActivityPublishAdBinding
 import com.yousong.yousong.model.local.Option
 import com.yousong.yousong.operator.OnPublishAdOperator
@@ -64,7 +64,7 @@ class PublishAdActivity : BaseActivity(), OnPublishAdOperator {
      * 数据模型
      */
     private val viewModel by lazy {
-        ViewModelProviders.of(this).get(PublishAdViewModel::class.java)
+        ViewModelProviders.of(this).get(CreateAdViewModel::class.java)
     }
 
     override val rootViewId = R.layout.activity_publish_ad
@@ -123,6 +123,9 @@ class PublishAdActivity : BaseActivity(), OnPublishAdOperator {
         }
 
         viewModel.adDetail.ad.targetCount = edt.toString().toInt()
+    }
+
+    override fun onSubmit(view: View) {
     }
 
     /**

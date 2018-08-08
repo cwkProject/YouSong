@@ -5,6 +5,7 @@ import com.yousong.yousong.BR
 import com.yousong.yousong.model.local.AdDetail
 import com.yousong.yousong.model.local.Option
 import com.yousong.yousong.value.ValueConst
+import com.yousong.yousong.work.ads.AdsCreateWork
 import com.yousong.yousong.work.common.FileUploadWork
 import com.yousong.yousong.work.common.start
 import java.io.File
@@ -16,7 +17,7 @@ import java.io.File
  * @version 1.0 2018/8/1
  * @since 1.0
  */
-class PublishAdViewModel : ObservableViewModel() {
+class CreateAdViewModel : ObservableViewModel() {
 
     /**
      * 广告详情
@@ -70,6 +71,15 @@ class PublishAdViewModel : ObservableViewModel() {
      * 存放缩略图临时图片路径
      */
     var coverTempPath: String? = null
+
+    /**
+     * 提交审核
+     */
+    fun submit() {
+        AdsCreateWork().start(adDetail) {
+
+        }
+    }
 
     /**
      * 封面图片选择完成

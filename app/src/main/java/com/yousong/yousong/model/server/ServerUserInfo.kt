@@ -29,16 +29,15 @@ data class ServerUserInfo(
      * 登录成功设置全局属性
      */
     fun loginSuccess() {
-        LoginStatus.apply {
+        AppConfig.apply {
             nickname = this@ServerUserInfo.nickName
             avatar = this@ServerUserInfo.headPic
             mobile = this@ServerUserInfo.mobileNum
-            unionId = this@ServerUserInfo.unionId
-            anonymous = false
-            login = true
+            wxUnionId = this@ServerUserInfo.unionId
+            token = this@ServerUserInfo.token
+            AppConfig.save()
         }
 
-        AppConfig.token = token
-        AppConfig.save()
+        LoginStatus.login
     }
 }

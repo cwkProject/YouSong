@@ -7,7 +7,7 @@ import android.widget.AdapterView
 import android.widget.CompoundButton
 import com.yousong.yousong.R
 import com.yousong.yousong.architecture.viewmodel.AgesRangeViewModel
-import com.yousong.yousong.architecture.viewmodel.PublishAdViewModel
+import com.yousong.yousong.architecture.viewmodel.CreateAdViewModel
 import com.yousong.yousong.databinding.FragmentDirectionalParameterBinding
 import com.yousong.yousong.fragment.common.BaseFragment
 import com.yousong.yousong.operator.OnDirectionOperator
@@ -32,7 +32,7 @@ class DirectionalParameterFragment : BaseFragment(), OnDirectionOperator {
      * 数据模型
      */
     private val viewModel by lazy {
-        ViewModelProviders.of(activity!!).get(PublishAdViewModel::class.java)
+        ViewModelProviders.of(activity!!).get(CreateAdViewModel::class.java)
     }
 
     /**

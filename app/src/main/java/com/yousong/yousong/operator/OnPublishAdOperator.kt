@@ -41,4 +41,9 @@ interface OnPublishAdOperator {
      * 目标人数变化
      */
     fun onTargetCountChanged(edt: Editable)
+
+    /**
+     * 点击审核
+     */
+    fun onSubmit(view: View)
 }

@@ -9,6 +9,8 @@
     <string name="hint_corporation_name">法人姓名</string>
     <string name="hint_corporation_id_number">法人身份证号</string>
 
+    <string name="hint_ads_name">广告名称</string>
+
     <string name="hint_question">设置提问内容，限制120字</string>
 
 </resources>
