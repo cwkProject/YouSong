@@ -130,20 +130,22 @@ class CreateAdsActivity : BaseActivity(), OnCreateAdsOperator {
 
     override fun onSubmit(view: View) {
         viewModel.submit(this) { b ->
-            if (b) {
-                alert(R.string.success_create_ads) {
-                    okButton {
-                        finish()
-                    }
+            if (!isFinishing && !isDestroyed) {
+                if (b) {
+                    alert(R.string.success_create_ads) {
+                        okButton {
+                            finish()
+                        }
 
-                    onCancelled {
-                        finish()
-                    }
+                        onCancelled {
+                            finish()
+                        }
 
-                    show()
+                        show()
+                    }
+                } else {
+                    longSnackbar(view, R.string.failed_create_ads)
                 }
-            } else {
-                longSnackbar(view, R.string.failed_create_ads)
             }
         }
     }

@@ -30,6 +30,8 @@ class AdsViewModel : ViewModel() {
             AdsPullListWork().start {
                 if (it.isSuccess) {
                     adsListData.value = it.result
+                } else {
+                    adsListData.value = adsListData.value
                 }
             }
         }

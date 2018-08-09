@@ -3,6 +3,7 @@ package com.yousong.yousong.architecture.databinding
 import android.databinding.BindingAdapter
 import android.graphics.drawable.Drawable
 import android.widget.ImageView
+import com.yousong.yousong.R
 import com.yousong.yousong.third.GlideApp
 import java.io.File
 
@@ -26,6 +27,20 @@ object ImageBindingAdapters {
     @JvmStatic
     fun loadImageFromUrl(view: ImageView, defaultSrc: Drawable, url: String?) {
         GlideApp.with(view).load(url).placeholder(defaultSrc).error(defaultSrc).into(view)
+    }
+
+    /**
+     * 填充网络图片
+     *
+     * @param view  图片控件
+     * @param url   图片地址
+     */
+    @BindingAdapter("avatar")
+    @JvmStatic
+    fun loadAvatar(view: ImageView, url: String?) {
+        GlideApp.with(view).load(url).circleCrop()
+                .placeholder(R.drawable.ic_account_circle_grey_600_72dp)
+                .error(R.drawable.ic_account_circle_grey_600_72dp).into(view)
     }
 
     /**

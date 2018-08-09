@@ -31,8 +31,7 @@
                     android:layout_height="72dp"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="@dimen/layout_toolbar_top_margin"
-                    app:defaultSrc="@{@drawable/ic_account_circle_grey_600_72dp}"
-                    app:imageUrl="@{AppConfig.INSTANCE.avatar}"/>
+                    app:avatar="@{AppConfig.INSTANCE.avatar}"/>
 
                 <TextView
                     android:layout_width="wrap_content"
