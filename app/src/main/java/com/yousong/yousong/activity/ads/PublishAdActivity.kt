@@ -135,7 +135,6 @@ class PublishAdActivity : BaseActivity(), OnPublishAdOperator {
         if (CheckAndroidMPermission.checkPermission(this, Manifest.permission
                         .WRITE_EXTERNAL_STORAGE, getString(R.string.prompt_gallery_storage), requestCode)) {
             val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-            intent.type = "image/*"
             if (requestCode == COVER_SELECT_REQUEST_CODE) {
                 setCropIntent(intent)
             }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- 格式化字符串 -->
 <resources>
-    <string name="format_uploading">正在上传 %1$d%</string>
+    <string name="format_uploading">正在上传 %1$d%%</string>
 
 </resources>
