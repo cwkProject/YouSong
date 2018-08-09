@@ -20,7 +20,7 @@ class MainActivity : BaseActivity() {
     override val rootViewId = R.layout.activity_main
 
     override fun onInitView(savedInstanceState: Bundle?) {
-        initToolbar(this, R.string.title_ad, true, false)
+        initToolbar(this, R.string.title_ads, true, false)
         initNavigation()
     }
 
@@ -34,7 +34,7 @@ class MainActivity : BaseActivity() {
             addOnPageChangeListener(object : ViewPager.SimpleOnPageChangeListener() {
                 override fun onPageSelected(position: Int) {
                     navigation.selectedItemId = when (position) {
-                        0 -> R.id.navigation_ad
+                        0 -> R.id.navigation_ads
                         1 -> R.id.navigation_friend
                         2 -> R.id.navigation_me
                         else -> return
@@ -45,7 +45,7 @@ class MainActivity : BaseActivity() {
 
         navigation.setOnNavigationItemSelectedListener {
             viewPager.currentItem = when (it.itemId) {
-                R.id.navigation_ad -> 0
+                R.id.navigation_ads -> 0
                 R.id.navigation_friend -> 1
                 R.id.navigation_me -> 2
                 else -> return@setOnNavigationItemSelectedListener true

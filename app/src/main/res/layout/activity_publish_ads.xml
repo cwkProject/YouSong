@@ -7,15 +7,15 @@
 
         <variable
             name="data"
-            type="com.yousong.yousong.model.local.AdDetail"/>
+            type="com.yousong.yousong.model.local.AdsDetail"/>
 
         <variable
             name="viewModel"
-            type="com.yousong.yousong.architecture.viewmodel.CreateAdViewModel"/>
+            type="com.yousong.yousong.architecture.viewmodel.CreateAdsViewModel"/>
 
         <variable
             name="holder"
-            type="com.yousong.yousong.operator.OnPublishAdOperator"/>
+            type="com.yousong.yousong.operator.OnCreateAdsOperator"/>
 
     </data>
 
@@ -46,7 +46,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/hint_ads_name"
-                        android:text="@={data.ad.name}"/>
+                        android:text="@={data.ads.name}"/>
 
                 </android.support.design.widget.TextInputLayout>
 
@@ -74,13 +74,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/layout_default_spacing"
-                    android:checked="@={data.ad.type}"
+                    android:checked="@={data.ads.type}"
                     android:text="@string/name_promotion_publish"/>
 
                 <android.support.v7.widget.AppCompatRadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:checked="@={!data.ad.type}"
+                    android:checked="@={!data.ads.type}"
                     android:text="@string/name_directional_publish"/>
 
                 <fragment
@@ -102,14 +102,14 @@
                 <android.support.v7.widget.AppCompatRadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:checked="@={data.ad.needInvoice}"
+                    android:checked="@={data.ads.needInvoice}"
                     android:text="@string/name_need_invoice"/>
 
                 <android.support.v7.widget.AppCompatRadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/layout_default_spacing"
-                    android:checked="@={!data.ad.needInvoice}"
+                    android:checked="@={!data.ads.needInvoice}"
                     android:text="@string/name_not_need_invoice"/>
 
                 <android.support.v7.widget.AppCompatButton

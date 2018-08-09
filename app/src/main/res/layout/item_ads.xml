@@ -6,7 +6,7 @@
 
         <variable
             name="data"
-            type="com.yousong.yousong.model.local.Ad"/>
+            type="com.yousong.yousong.model.local.Ads"/>
 
     </data>
 
@@ -21,7 +21,7 @@
 
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="@dimen/ad_cover_height"
+            android:layout_height="@dimen/ads_cover_height"
             android:scaleType="fitXY"
             app:defaultSrc="@{@color/light_blue_300}"
             app:imageUrl="@{data.cover}"/>

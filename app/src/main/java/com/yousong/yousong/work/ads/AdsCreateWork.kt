@@ -1,7 +1,7 @@
 package com.yousong.yousong.work.ads
 
 import com.yousong.yousong.common.toJson
-import com.yousong.yousong.model.local.AdDetail
+import com.yousong.yousong.model.local.AdsDetail
 import com.yousong.yousong.value.ValueUrl
 import com.yousong.yousong.work.common.BaseSimpleWorkModel
 import org.cwk.android.library.annotation.Post
@@ -14,8 +14,8 @@ import org.json.JSONObject
  * @version 1.0 2018/8/8
  * @since 1.0
  */
-class AdsCreateWork : BaseSimpleWorkModel<AdDetail, String>() {
-    override fun onFillParams(dataMap: MutableMap<String, String?>, vararg params: AdDetail?) {
+class AdsCreateWork : BaseSimpleWorkModel<AdsDetail, String>() {
+    override fun onFillParams(dataMap: MutableMap<String, String?>, vararg params: AdsDetail?) {
         dataMap["adsDetail"] = params[0].toJson()
     }
 

@@ -3,9 +3,9 @@ package com.yousong.yousong.fragment.ads
 import android.os.Bundle
 import android.support.annotation.CallSuper
 import com.yousong.yousong.R
-import com.yousong.yousong.adapter.AdAdapter
+import com.yousong.yousong.adapter.AdsAdapter
 import com.yousong.yousong.fragment.common.BaseFragment
-import kotlinx.android.synthetic.main.fragment_ad_list.*
+import kotlinx.android.synthetic.main.fragment_ads_list.*
 
 /**
  * 广告列表界面基类
@@ -14,14 +14,14 @@ import kotlinx.android.synthetic.main.fragment_ad_list.*
  * @version 1.0 2018/7/1
  * @since 1.0
  */
-abstract class BaseAdListFragment : BaseFragment() {
+abstract class BaseAdsListFragment : BaseFragment() {
 
     /**
      * 列表适配器
      */
-    protected val adapter = AdAdapter()
+    protected val adapter = AdsAdapter()
 
-    override val rootViewId = R.layout.fragment_ad_list
+    override val rootViewId = R.layout.fragment_ads_list
 
     @CallSuper
     override fun onInitView(savedInstanceState: Bundle?) {

@@ -6,7 +6,7 @@
 
         <variable
             name="data"
-            type="com.yousong.yousong.model.local.AdDetail"/>
+            type="com.yousong.yousong.model.local.AdsDetail"/>
 
         <variable
             name="ages"
@@ -24,7 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:goneUnless="@{!data.ad.type}">
+        app:goneUnless="@{!data.ads.type}">
 
         <View
             android:layout_width="match_parent"

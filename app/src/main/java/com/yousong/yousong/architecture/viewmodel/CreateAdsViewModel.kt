@@ -2,7 +2,7 @@ package com.yousong.yousong.architecture.viewmodel
 
 import android.databinding.Bindable
 import com.yousong.yousong.BR
-import com.yousong.yousong.model.local.AdDetail
+import com.yousong.yousong.model.local.AdsDetail
 import com.yousong.yousong.model.local.Option
 import com.yousong.yousong.value.ValueConst
 import com.yousong.yousong.work.ads.AdsCreateWork
@@ -17,12 +17,12 @@ import java.io.File
  * @version 1.0 2018/8/1
  * @since 1.0
  */
-class CreateAdViewModel : ObservableViewModel() {
+class CreateAdsViewModel : ObservableViewModel() {
 
     /**
      * 广告详情
      */
-    val adDetail = AdDetail().apply {
+    val adsDetail = AdsDetail().apply {
         question.option.add(Option(1).apply { answer = true })
         question.option.add(Option(2))
     }
@@ -76,7 +76,7 @@ class CreateAdViewModel : ObservableViewModel() {
      * 提交审核
      */
     fun submit() {
-        AdsCreateWork().start(adDetail) {
+        AdsCreateWork().start(adsDetail) {
 
         }
     }
@@ -91,7 +91,7 @@ class CreateAdViewModel : ObservableViewModel() {
                 .setOnNetworkProgressListener { current, total, _ -> coverProgress = (current / total * 100).toInt() }
                 .start(File(coverPath)) {
                     if (it.isSuccess) {
-                        adDetail.ad.cover = it.result
+                        adsDetail.ads.cover = it.result
                         coverProgress = ValueConst.PROGRESS_SUCCESS
                     } else {
                         coverProgress = ValueConst.PROGRESS_FAILED
@@ -110,7 +110,7 @@ class CreateAdViewModel : ObservableViewModel() {
                 .setOnNetworkProgressListener { current, total, _ -> posterProgress = (current / total * 100).toInt() }
                 .start(File(path)) {
                     if (it.isSuccess) {
-                        adDetail.ad.poster = it.result
+                        adsDetail.ads.poster = it.result
                         posterProgress = ValueConst.PROGRESS_SUCCESS
                     } else {
                         posterProgress = ValueConst.PROGRESS_FAILED

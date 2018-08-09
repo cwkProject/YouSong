@@ -5,7 +5,7 @@
 
         <variable
             name="data"
-            type="com.yousong.yousong.model.local.AdDetail"/>
+            type="com.yousong.yousong.model.local.AdsDetail"/>
 
         <variable
             name="holder"

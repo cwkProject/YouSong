@@ -6,13 +6,13 @@ import com.yousong.yousong.architecture.viewmodel.AdsViewModel
 import com.yousong.yousong.common.plusAssign
 
 /**
- * 已发布的广告页面
+ * 未发布的广告页面
  *
  * @author 超悟空
  * @version 1.0 2018/7/1
  * @since 1.0
  */
-class PublishedAdFragment : BaseAdListFragment(){
+class UnpublishedAdsFragment : BaseAdsListFragment(){
 
     /**
      * 广告数据模型
@@ -22,7 +22,7 @@ class PublishedAdFragment : BaseAdListFragment(){
     }
 
     override fun onInitData(savedInstanceState: Bundle?) {
-        adsViewModel.adListData
+        adsViewModel.adsListData
                 .observe({ lifecycle }) {
                     it?.let {
                         adapter.adsList.clear()

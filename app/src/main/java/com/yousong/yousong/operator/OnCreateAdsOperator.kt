@@ -10,7 +10,7 @@ import android.view.View
  * @version 1.0 2018/8/1
  * @since 1.0
  */
-interface OnPublishAdOperator {
+interface OnCreateAdsOperator {
 
     /**
      * 缩略图点击事件

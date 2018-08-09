@@ -4,10 +4,10 @@ import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.util.Log
 import com.yousong.yousong.R
-import com.yousong.yousong.activity.ads.AdDetailActivity
+import com.yousong.yousong.activity.ads.AdsDetailActivity
 import com.yousong.yousong.architecture.viewmodel.AdsViewModel
 import com.yousong.yousong.common.plusAssign
-import com.yousong.yousong.fragment.ads.BaseAdListFragment
+import com.yousong.yousong.fragment.ads.BaseAdsListFragment
 import com.yousong.yousong.model.server.BannerAds
 import org.jetbrains.anko.support.v4.startActivity
 
@@ -18,7 +18,7 @@ import org.jetbrains.anko.support.v4.startActivity
  * @version 1.0 2018/6/27
  * @since 1.0
  */
-class AdFragment : BaseAdListFragment() {
+class AdsFragment : BaseAdsListFragment() {
 
     /**
      * 广告数据模型
@@ -28,7 +28,7 @@ class AdFragment : BaseAdListFragment() {
     }
 
     override fun onInitData(savedInstanceState: Bundle?) {
-        adsViewModel.adListData
+        adsViewModel.adsListData
                 .observe({ lifecycle }) {
                     it?.let {
                         adapter.adsList.clear()
@@ -47,7 +47,7 @@ class AdFragment : BaseAdListFragment() {
         }
 
         adapter.adsList.setOnItemClickListener { holder, dataSource, position ->
-            startActivity<AdDetailActivity>()
+            startActivity<AdsDetailActivity>()
         }
     }
 

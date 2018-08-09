@@ -6,11 +6,11 @@
 
         <variable
             name="viewModel"
-            type="com.yousong.yousong.architecture.viewmodel.CreateAdViewModel"/>
+            type="com.yousong.yousong.architecture.viewmodel.CreateAdsViewModel"/>
 
         <variable
             name="holder"
-            type="com.yousong.yousong.operator.OnPublishAdOperator"/>
+            type="com.yousong.yousong.operator.OnCreateAdsOperator"/>
 
     </data>
 
@@ -28,7 +28,7 @@
 
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/ad_cover_height"
+                android:layout_height="@dimen/ads_cover_height"
                 app:imageFile="@{viewModel.coverPath}"/>
 
             <TextView

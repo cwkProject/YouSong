@@ -8,8 +8,8 @@ import android.widget.ImageView
 import cn.bingoogolapple.bgabanner.BGABanner
 import cn.bingoogolapple.bgabanner.BGALocalImageSize
 import com.yousong.yousong.R
-import com.yousong.yousong.model.local.Ad
-import com.yousong.yousong.databinding.ItemAdBinding
+import com.yousong.yousong.databinding.ItemAdsBinding
+import com.yousong.yousong.model.local.Ads
 import com.yousong.yousong.model.server.BannerAds
 import org.cwk.android.library.architecture.recycler.MultipleRecyclerViewAdapter
 import org.cwk.android.library.architecture.recycler.RecyclerViewHolderManager
@@ -22,7 +22,7 @@ import org.cwk.android.library.architecture.recycler.RecyclerViewHolderManager
  * @version 1.0 2018/6/28
  * @since 1.0
  */
-class AdAdapter : MultipleRecyclerViewAdapter() {
+class AdsAdapter : MultipleRecyclerViewAdapter() {
 
     /**
      * 点击事件，ads为数据源，position为点中的广告索引
@@ -71,9 +71,9 @@ class AdAdapter : MultipleRecyclerViewAdapter() {
     /**
      * 广告列表
      */
-    val adsList = object : RecyclerViewHolderManager<Ad, AdViewHolder>(this) {
+    val adsList = object : RecyclerViewHolderManager<Ads, AdViewHolder>(this) {
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AdViewHolder =
-                AdViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_ad, parent, false))
+                AdViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_ads, parent, false))
 
         override fun onBindViewHolder(holder: AdViewHolder, position: Int, viewType: Int) {
             holder.binding.data = dataList[position]
@@ -107,6 +107,6 @@ class AdAdapter : MultipleRecyclerViewAdapter() {
         /**
          * 绑定器
          */
-        val binding = ItemAdBinding.bind(itemView)
+        val binding = ItemAdsBinding.bind(itemView)
     }
 }

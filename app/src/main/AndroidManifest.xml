@@ -37,15 +37,15 @@
             android:name=".activity.common.MainActivity"
             android:launchMode="singleTask">
         </activity>
-        <activity android:name=".activity.ads.AdDetailActivity"/>
+        <activity android:name=".activity.ads.AdsDetailActivity"/>
         <activity android:name=".activity.ads.ShareFriendActivity"/>
         <activity
             android:name=".activity.user.WithdrawActivity"
             android:windowSoftInputMode="stateAlwaysVisible"/>
-        <activity android:name=".activity.ads.MyAdActivity"/>
+        <activity android:name=".activity.ads.MyAdsActivity"/>
         <activity android:name=".activity.user.PersonalAuthenticationActivity"/>
         <activity android:name=".activity.user.EnterpriseCertificationActivity"/>
-        <activity android:name=".activity.ads.PublishAdActivity"/>
+        <activity android:name=".activity.ads.CreateAdsActivity"/>
         <activity android:name=".activity.user.RechargeActivity"/>
         <activity
             android:name=".wxapi.WXEntryActivity"

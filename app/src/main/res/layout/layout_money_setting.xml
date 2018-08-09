@@ -6,11 +6,11 @@
 
         <variable
             name="data"
-            type="com.yousong.yousong.model.local.AdDetail"/>
+            type="com.yousong.yousong.model.local.AdsDetail"/>
 
         <variable
             name="holder"
-            type="com.yousong.yousong.operator.OnPublishAdOperator"/>
+            type="com.yousong.yousong.operator.OnCreateAdsOperator"/>
 
         <import type="com.yousong.yousong.architecture.databinding.BindingTypeConverts"/>
 
@@ -36,7 +36,7 @@
             android:inputType="numberDecimal"
             android:maxLength="6"
             android:maxLines="1"
-            android:text="@{data.ad.userUnitPrice}"
+            android:text="@{data.ads.userUnitPrice}"
             app:layout_columnWeight="1"/>
 
         <TextView android:text="@string/name_yuan"/>
@@ -54,7 +54,7 @@
             android:inputType="number"
             android:maxLength="9"
             android:maxLines="1"
-            android:text="@{BindingTypeConverts.intToString(data.ad.targetCount)}"
+            android:text="@{BindingTypeConverts.intToString(data.ads.targetCount)}"
             app:layout_columnWeight="1"/>
 
         <TextView android:text="@string/name_person"/>
@@ -65,7 +65,7 @@
 
         <TextView
             android:gravity="end"
-            android:text="@{BigDecimalBindingAdapters.bigDecimalMultiplyIntToString(data.ad.userUnitPrice , data.ad.targetCount)}"
+            android:text="@{BigDecimalBindingAdapters.bigDecimalMultiplyIntToString(data.ads.userUnitPrice , data.ads.targetCount)}"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             app:layout_columnWeight="1"/>
 

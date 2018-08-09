@@ -7,7 +7,7 @@ import android.widget.AdapterView
 import android.widget.CompoundButton
 import com.yousong.yousong.R
 import com.yousong.yousong.architecture.viewmodel.AgesRangeViewModel
-import com.yousong.yousong.architecture.viewmodel.CreateAdViewModel
+import com.yousong.yousong.architecture.viewmodel.CreateAdsViewModel
 import com.yousong.yousong.databinding.FragmentDirectionalParameterBinding
 import com.yousong.yousong.fragment.common.BaseFragment
 import com.yousong.yousong.operator.OnDirectionOperator
@@ -32,7 +32,7 @@ class DirectionalParameterFragment : BaseFragment(), OnDirectionOperator {
      * 数据模型
      */
     private val viewModel by lazy {
-        ViewModelProviders.of(activity!!).get(CreateAdViewModel::class.java)
+        ViewModelProviders.of(activity!!).get(CreateAdsViewModel::class.java)
     }
 
     /**
@@ -45,15 +45,15 @@ class DirectionalParameterFragment : BaseFragment(), OnDirectionOperator {
     override val rootViewId = R.layout.fragment_directional_parameter
 
     override fun onInitView(savedInstanceState: Bundle?) {
-        binding.data = viewModel.adDetail
+        binding.data = viewModel.adsDetail
         binding.ages = agesViewModel
         binding.holder = this
     }
 
     override fun onAgeNotLimitedChecked(buttonView: CompoundButton, isChecked: Boolean) {
         if (isChecked) {
-            viewModel.adDetail.directional.minAge = null
-            viewModel.adDetail.directional.maxAge = null
+            viewModel.adsDetail.directional.minAge = null
+            viewModel.adsDetail.directional.maxAge = null
             agesViewModel.maxSelection = -1
             agesViewModel.minAges = emptyList()
             agesViewModel.maxAges = emptyList()
@@ -66,21 +66,21 @@ class DirectionalParameterFragment : BaseFragment(), OnDirectionOperator {
     }
 
     override fun onMinAgeItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
-        viewModel.adDetail.directional.minAge = agesViewModel.minAges[position]
+        viewModel.adsDetail.directional.minAge = agesViewModel.minAges[position]
 
-        viewModel.adDetail.directional.minAge?.let { min ->
+        viewModel.adsDetail.directional.minAge?.let { min ->
             agesViewModel.maxAges = (min..99).toList()
 
-            agesViewModel.maxAges.indexOf(viewModel.adDetail.directional.maxAge).let {
+            agesViewModel.maxAges.indexOf(viewModel.adsDetail.directional.maxAge).let {
                 agesViewModel.maxSelection = it
             }
         }
     }
 
     override fun onMaxAgeItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
-        viewModel.adDetail.directional.maxAge = agesViewModel.maxAges[position]
+        viewModel.adsDetail.directional.maxAge = agesViewModel.maxAges[position]
 
-        viewModel.adDetail.directional.maxAge?.let { max ->
+        viewModel.adsDetail.directional.maxAge?.let { max ->
             agesViewModel.minAges = (0..max).toList()
         }
     }

@@ -12,7 +12,7 @@ import com.yousong.yousong.common.plusAssign
  * @version 1.0 2018/7/1
  * @since 1.0
  */
-class ShareFriendFragment : BaseAdListFragment(){
+class ShareFriendFragment : BaseAdsListFragment(){
 
     /**
      * 广告数据模型
@@ -22,7 +22,7 @@ class ShareFriendFragment : BaseAdListFragment(){
     }
 
     override fun onInitData(savedInstanceState: Bundle?) {
-        adsViewModel.adListData
+        adsViewModel.adsListData
                 .observe({ lifecycle }) {
                     it?.let {
                         adapter.adsList.clear()

@@ -13,10 +13,10 @@ import android.text.Editable
 import android.view.View
 import com.yousong.yousong.R
 import com.yousong.yousong.activity.common.BaseActivity
-import com.yousong.yousong.architecture.viewmodel.CreateAdViewModel
-import com.yousong.yousong.databinding.ActivityPublishAdBinding
+import com.yousong.yousong.architecture.viewmodel.CreateAdsViewModel
+import com.yousong.yousong.databinding.ActivityPublishAdsBinding
 import com.yousong.yousong.model.local.Option
-import com.yousong.yousong.operator.OnPublishAdOperator
+import com.yousong.yousong.operator.OnCreateAdsOperator
 import com.yousong.yousong.util.CheckAndroidMPermission
 import com.yousong.yousong.util.FileUtil
 import org.cwk.android.library.util.ToolbarInitialize.initToolbar
@@ -25,13 +25,13 @@ import java.math.BigDecimal
 
 
 /**
- * 发布广告的页面
+ * 创建广告的页面
  *
  * @author 超悟空
  * @version 1.0 2018/7/1
  * @since 1.0
  */
-class PublishAdActivity : BaseActivity(), OnPublishAdOperator {
+class CreateAdsActivity : BaseActivity(), OnCreateAdsOperator {
 
     /**
      * 封面宽度
@@ -57,22 +57,22 @@ class PublishAdActivity : BaseActivity(), OnPublishAdOperator {
      * 绑定器
      */
     private val binding by lazy {
-        ActivityPublishAdBinding.bind(rootView)
+        ActivityPublishAdsBinding.bind(rootView)
     }
 
     /**
      * 数据模型
      */
     private val viewModel by lazy {
-        ViewModelProviders.of(this).get(CreateAdViewModel::class.java)
+        ViewModelProviders.of(this).get(CreateAdsViewModel::class.java)
     }
 
-    override val rootViewId = R.layout.activity_publish_ad
+    override val rootViewId = R.layout.activity_publish_ads
 
     override fun onInitView(savedInstanceState: Bundle?) {
-        initToolbar(this, R.string.title_publish_ad)
+        initToolbar(this, R.string.title_publish_ads)
 
-        binding.data = viewModel.adDetail
+        binding.data = viewModel.adsDetail
         binding.viewModel = viewModel
         binding.holder = this
     }
@@ -86,7 +86,7 @@ class PublishAdActivity : BaseActivity(), OnPublishAdOperator {
     }
 
     override fun onAddOptionClick(view: View) {
-        val options = viewModel.adDetail.question.option
+        val options = viewModel.adsDetail.question.option
         if (options.size < 4) {
             options.add(Option(options.size + 1))
             binding.invalidateAll()
@@ -94,7 +94,7 @@ class PublishAdActivity : BaseActivity(), OnPublishAdOperator {
     }
 
     override fun onRemoveOptionClick(view: View) {
-        val options = viewModel.adDetail.question.option
+        val options = viewModel.adsDetail.question.option
         if (options.size > 2) {
             options.removeAt(options.size - 1).takeIf { it.answer }?.let {
                 options[0].answer = true
@@ -113,7 +113,7 @@ class PublishAdActivity : BaseActivity(), OnPublishAdOperator {
             posDot > 0 && edt.length - posDot - 1 > 2 -> edt.delete(posDot + 3, edt.length)
         }
 
-        viewModel.adDetail.ad.userUnitPrice = BigDecimal(edt.toString())
+        viewModel.adsDetail.ads.userUnitPrice = BigDecimal(edt.toString())
     }
 
     override fun onTargetCountChanged(edt: Editable) {
@@ -122,7 +122,7 @@ class PublishAdActivity : BaseActivity(), OnPublishAdOperator {
             edt.replace(0, edt.length, "1")
         }
 
-        viewModel.adDetail.ad.targetCount = edt.toString().toInt()
+        viewModel.adsDetail.ads.targetCount = edt.toString().toInt()
     }
 
     override fun onSubmit(view: View) {

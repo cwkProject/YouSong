@@ -6,11 +6,11 @@
 
         <variable
             name="data"
-            type="com.yousong.yousong.model.local.AdDetail"/>
+            type="com.yousong.yousong.model.local.AdsDetail"/>
 
         <variable
             name="holder"
-            type="com.yousong.yousong.operator.OnPublishAdOperator"/>
+            type="com.yousong.yousong.operator.OnCreateAdsOperator"/>
 
     </data>
 

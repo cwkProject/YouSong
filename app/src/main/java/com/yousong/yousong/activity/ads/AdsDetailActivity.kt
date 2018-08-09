@@ -3,7 +3,7 @@ package com.yousong.yousong.activity.ads
 import android.os.Bundle
 import com.yousong.yousong.R
 import com.yousong.yousong.activity.common.BaseActivity
-import kotlinx.android.synthetic.main.activity_ad_detail.*
+import kotlinx.android.synthetic.main.activity_ads_detail.*
 import org.cwk.android.library.util.ToolbarInitialize.initToolbar
 
 /**
@@ -13,9 +13,9 @@ import org.cwk.android.library.util.ToolbarInitialize.initToolbar
  * @version 1.0 2018/7/1
  * @since 1.0
  */
-class AdDetailActivity : BaseActivity() {
+class AdsDetailActivity : BaseActivity() {
 
-    override val rootViewId = R.layout.activity_ad_detail
+    override val rootViewId = R.layout.activity_ads_detail
 
     override fun onInitView(savedInstanceState: Bundle?) {
         initToolbar(this, R.string.title_detail)

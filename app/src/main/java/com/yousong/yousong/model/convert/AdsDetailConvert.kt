@@ -15,13 +15,13 @@ import java.math.BigDecimal
  * @version 1.0 2018/7/24
  * @since 1.0
  */
-class AdDetailTypeAdapter : TypeAdapter<AdDetail>() {
+class AdsDetailTypeAdapter : TypeAdapter<AdsDetail>() {
 
     /**
      * 广告类解析器
      */
-    private val adTypeAdapter by lazy {
-        GsonUtil.gson.getAdapter(Ad::class.java)
+    private val adsTypeAdapter by lazy {
+        GsonUtil.gson.getAdapter(Ads::class.java)
     }
 
     /**
@@ -38,11 +38,11 @@ class AdDetailTypeAdapter : TypeAdapter<AdDetail>() {
         GsonUtil.gson.getAdapter(Directional::class.java)
     }
 
-    override fun write(out: JsonWriter, value: AdDetail) {
+    override fun write(out: JsonWriter, value: AdsDetail) {
         out.apply {
             beginObject()
             name("ads")
-            adTypeAdapter.write(out, value.ad)
+            adsTypeAdapter.write(out, value.ads)
             name("questionAnswer")
             questionTypeAdapter.write(out, value.question)
             name("adsDirectional")
@@ -51,9 +51,9 @@ class AdDetailTypeAdapter : TypeAdapter<AdDetail>() {
         }
     }
 
-    override fun read(`in`: JsonReader): AdDetail {
+    override fun read(`in`: JsonReader): AdsDetail {
 
-        var ad: Ad? = null
+        var ads: Ads? = null
         var question: Question? = null
         var directional: Directional? = null
 
@@ -61,7 +61,7 @@ class AdDetailTypeAdapter : TypeAdapter<AdDetail>() {
             beginObject()
             while (hasNext()) {
                 when (nextName()) {
-                    "ads" -> ad = adTypeAdapter.read(this)
+                    "ads" -> ads = adsTypeAdapter.read(this)
                     "questionAnswer" -> question = questionTypeAdapter.read(this)
                     "adsDirectional" -> directional = directionalTypeAdapter.read(this)
                 }
@@ -69,8 +69,8 @@ class AdDetailTypeAdapter : TypeAdapter<AdDetail>() {
             endObject()
         }
 
-        return AdDetail(ad
-                ?: Ad(), question
+        return AdsDetail(ads
+                ?: Ads(), question
                 ?: Question(), directional
                 ?: Directional())
     }
@@ -83,9 +83,9 @@ class AdDetailTypeAdapter : TypeAdapter<AdDetail>() {
  * @version 1.0 2018/7/1
  * @since 1.0
  */
-class AdTypeAdapter : TypeAdapter<Ad>() {
+class AdsTypeAdapter : TypeAdapter<Ads>() {
 
-    override fun write(out: JsonWriter, value: Ad) {
+    override fun write(out: JsonWriter, value: Ads) {
         out.apply {
             beginObject()
             name("name").value(value.name)
@@ -104,31 +104,31 @@ class AdTypeAdapter : TypeAdapter<Ad>() {
         }
     }
 
-    override fun read(`in`: JsonReader): Ad {
-        val ad = Ad()
+    override fun read(`in`: JsonReader): Ads {
+        val ads = Ads()
         `in`.apply {
             beginObject()
 
             while (hasNext()) {
                 when (nextName()) {
-                    "name" -> ad.name = nextString()
-                    "cityCode" -> ad.cityCode = nextString()
-                    "cover" -> ad.cover = nextString()
-                    "img" -> ad.poster = nextString()
-                    "adsType" -> ad.type = nextInt() == 1
-                    "userCount" -> ad.targetCount = nextInt()
-                    "perYellowBoyUser" -> ad.userUnitPrice = BigDecimal(nextInt()) / BigDecimal(100)
-                    "needInvoice" -> ad.needInvoice = nextInt() == ValueConst.SERVER_TRUE
-                    "adsId" -> ad.id = nextString()
-                    "totalAsset" -> ad.totalAmount = BigDecimal(nextInt()) / BigDecimal(100)
-                    "balance" -> ad.balance = BigDecimal(nextInt()) / BigDecimal(100)
-                    "city" -> ad.city = nextString()
+                    "name" -> ads.name = nextString()
+                    "cityCode" -> ads.cityCode = nextString()
+                    "cover" -> ads.cover = nextString()
+                    "img" -> ads.poster = nextString()
+                    "adsType" -> ads.type = nextInt() == 1
+                    "userCount" -> ads.targetCount = nextInt()
+                    "perYellowBoyUser" -> ads.userUnitPrice = BigDecimal(nextInt()) / BigDecimal(100)
+                    "needInvoice" -> ads.needInvoice = nextInt() == ValueConst.SERVER_TRUE
+                    "adsId" -> ads.id = nextString()
+                    "totalAsset" -> ads.totalAmount = BigDecimal(nextInt()) / BigDecimal(100)
+                    "balance" -> ads.balance = BigDecimal(nextInt()) / BigDecimal(100)
+                    "city" -> ads.city = nextString()
                 }
             }
             endObject()
         }
 
-        return ad
+        return ads
     }
 }
 
@@ -250,7 +250,7 @@ class QuestionTypeAdapter : TypeAdapter<Question>() {
  * @version 1.0 2018/7/24
  * @since 1.0
  */
-class AnswerTypeAdapter : TypeAdapter<Option>() {
+class OptionTypeAdapter : TypeAdapter<Option>() {
     override fun write(out: JsonWriter, value: Option) {
         out.apply {
             beginObject()

@@ -15,7 +15,7 @@ import java.math.BigDecimal
  *
  * @property id 广告id
  */
-class Ad(var id: String = "") : BaseObservable() {
+class Ads(var id: String = "") : BaseObservable() {
 
     /**
      * 广告名称
@@ -84,7 +84,7 @@ class Ad(var id: String = "") : BaseObservable() {
     var userUnitPrice = BigDecimal("1")
         set(value) {
             field = value
-            Log.v("Ad", "userUnitPrice:$userUnitPrice")
+            Log.v("Ads", "userUnitPrice:$userUnitPrice")
             notifyPropertyChanged(BR.userUnitPrice)
         }
 

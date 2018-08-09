@@ -2,7 +2,7 @@ package com.yousong.yousong.architecture.viewmodel
 
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
-import com.yousong.yousong.model.local.Ad
+import com.yousong.yousong.model.local.Ads
 import com.yousong.yousong.work.ads.AdsPullListWork
 import com.yousong.yousong.work.common.start
 
@@ -18,7 +18,7 @@ class AdsViewModel : ViewModel() {
     /**
      * 首页广告列表
      */
-    val adListData = MutableLiveData<List<Ad>>()
+    val adsListData = MutableLiveData<List<Ads>>()
 
     /**
      * 加载广告
@@ -26,10 +26,10 @@ class AdsViewModel : ViewModel() {
      * @param refresh 是否执行数据刷新，true时表示无论当前有无数据都会请求新数据，false时如果没有数据才会请求
      */
     fun loadAds(refresh: Boolean = false) {
-        if (refresh || adListData.value == null) {
+        if (refresh || adsListData.value == null) {
             AdsPullListWork().start {
                 if (it.isSuccess) {
-                    adListData.value = it.result
+                    adsListData.value = it.result
                 }
             }
         }

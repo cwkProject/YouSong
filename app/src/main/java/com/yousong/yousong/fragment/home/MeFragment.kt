@@ -2,7 +2,7 @@ package com.yousong.yousong.fragment.home
 
 import android.os.Bundle
 import com.yousong.yousong.R
-import com.yousong.yousong.activity.ads.MyAdActivity
+import com.yousong.yousong.activity.ads.MyAdsActivity
 import com.yousong.yousong.activity.user.EnterpriseCertificationActivity
 import com.yousong.yousong.activity.user.WithdrawActivity
 import com.yousong.yousong.fragment.common.BaseFragment
@@ -41,7 +41,7 @@ class MeFragment : BaseFragment() {
         }
 
         publish_ad.setOnClickListener {
-            startActivity<MyAdActivity>()
+            startActivity<MyAdsActivity>()
         }
 
         authenticate.setOnClickListener {

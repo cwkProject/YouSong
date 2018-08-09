@@ -4,8 +4,8 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
 import com.yousong.yousong.R
-import com.yousong.yousong.fragment.ads.PublishedAdFragment
-import com.yousong.yousong.fragment.ads.UnpublishedAdFragment
+import com.yousong.yousong.fragment.ads.PublishedAdsFragment
+import com.yousong.yousong.fragment.ads.UnpublishedAdsFragment
 import org.cwk.android.library.global.Global
 
 /**
@@ -15,11 +15,11 @@ import org.cwk.android.library.global.Global
  * @version 1.0 2018/7/1
  * @since 1.0
  */
-class MyAdViewPagerAdapter(fm: FragmentManager?) : FragmentPagerAdapter(fm) {
+class MyAdsViewPagerAdapter(fm: FragmentManager?) : FragmentPagerAdapter(fm) {
     override fun getItem(position: Int): Fragment? =
             when (position) {
-                0 -> PublishedAdFragment()
-                1 -> UnpublishedAdFragment()
+                0 -> PublishedAdsFragment()
+                1 -> UnpublishedAdsFragment()
                 else -> null
             }
 

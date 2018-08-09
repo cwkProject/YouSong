@@ -132,7 +132,7 @@
                     <TextView
                         style="@style/MeTextStyle"
                         android:drawableEnd="@drawable/ic_chevron_right_grey_400_24dp"
-                        android:text="@string/name_publish_ad"/>
+                        android:text="@string/name_publish_ads"/>
                 </TableRow>
 
                 <TableRow>

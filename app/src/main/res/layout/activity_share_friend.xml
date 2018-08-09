@@ -12,6 +12,6 @@
         android:name="com.yousong.yousong.fragment.ads.ShareFriendFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout="@layout/fragment_ad_list"/>
+        tools:layout="@layout/fragment_ads_list"/>
 
 </LinearLayout>
