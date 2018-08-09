@@ -68,6 +68,7 @@ class LoginActivity : BaseActivity() {
                     finish()
                 }
                 ValueAction.ACTION_WX_LOGIN_FAILED -> {
+                    wx_textView.setText(R.string.name_wechat_login)
                     intent.getStringExtra(ValueTag.TAG_ERROR_MESSAGE)?.let {
                         toast(it)
                     }
