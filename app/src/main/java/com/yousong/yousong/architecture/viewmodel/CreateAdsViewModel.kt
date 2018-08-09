@@ -1,13 +1,16 @@
 package com.yousong.yousong.architecture.viewmodel
 
+import android.content.Context
 import android.databinding.Bindable
 import com.yousong.yousong.BR
+import com.yousong.yousong.R
 import com.yousong.yousong.model.local.AdsDetail
 import com.yousong.yousong.model.local.Option
 import com.yousong.yousong.value.ValueConst
 import com.yousong.yousong.work.ads.AdsCreateWork
 import com.yousong.yousong.work.common.FileUploadWork
 import com.yousong.yousong.work.common.start
+import org.jetbrains.anko.toast
 import java.io.File
 
 /**
@@ -74,10 +77,55 @@ class CreateAdsViewModel : ObservableViewModel() {
 
     /**
      * 提交审核
+     *
+     * @param context 用于弹出提示
+     * @param call 请求执行回调，仅在参数校验通过后才会被执行
      */
-    fun submit() {
-        AdsCreateWork().start(adsDetail) {
+    fun submit(context: Context, call: (Boolean) -> Unit) {
+        if (!checkAds(context)) {
+            return
+        }
 
+        AdsCreateWork().start(adsDetail) {
+            call(it.isSuccess)
+        }
+    }
+
+    /**
+     * 提交前校验广告参数
+     *
+     * @param context 用于弹出提示
+     *
+     * @return true表示通过
+     */
+    private fun checkAds(context: Context): Boolean {
+        var resId: Int? = null
+
+        adsDetail.ads.apply {
+            resId = when {
+                name.isBlank() -> R.string.hint_name_not_null
+                cover.isBlank() -> R.string.hint_cover_not_null
+                poster.isBlank() -> R.string.hint_poster_not_null
+                cityCode.isBlank() -> R.string.hint_not_location
+                else -> null
+            }
+        }
+
+        if (resId == null) {
+            adsDetail.question.apply {
+                resId = when {
+                    content.isBlank() -> R.string.hint_question_not_null
+                    option.any { it.content.isBlank() } -> R.string.hint_option_not_null
+                    else -> null
+                }
+            }
+        }
+
+        return if (resId != null) {
+            context.toast(resId!!)
+            false
+        } else {
+            true
         }
     }
 

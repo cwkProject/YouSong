@@ -2,5 +2,6 @@
 <!-- 成功信息 -->
 <resources>
     <string name="success_upload">已上传</string>
+    <string name="success_create_ads">广告创建成功并提交审核，请等待审核通过后发布</string>
 
 </resources>

@@ -77,9 +77,14 @@ class Directional : BaseObservable() {
     var longitude = BigDecimal("0.000000")
 
     /**
-     * 城市代码
+     * 目的地类型，true表示周边范围，false表示城市
      */
-    val cityIds: MutableList<Int> = ObservableArrayList()
+    @Bindable
+    var destinationType = true
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.destinationType)
+        }
 
     /**
      * 周边范围单位米
@@ -90,6 +95,11 @@ class Directional : BaseObservable() {
             field = value
             notifyPropertyChanged(BR.range)
         }
+
+    /**
+     * 城市代码
+     */
+    val cityIds: MutableList<Int> = ObservableArrayList()
 
     /**
      * 性别选择器

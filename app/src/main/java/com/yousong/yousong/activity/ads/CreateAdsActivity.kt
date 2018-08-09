@@ -20,6 +20,9 @@ import com.yousong.yousong.operator.OnCreateAdsOperator
 import com.yousong.yousong.util.CheckAndroidMPermission
 import com.yousong.yousong.util.FileUtil
 import org.cwk.android.library.util.ToolbarInitialize.initToolbar
+import org.jetbrains.anko.alert
+import org.jetbrains.anko.design.longSnackbar
+import org.jetbrains.anko.okButton
 import java.io.File
 import java.math.BigDecimal
 
@@ -126,6 +129,23 @@ class CreateAdsActivity : BaseActivity(), OnCreateAdsOperator {
     }
 
     override fun onSubmit(view: View) {
+        viewModel.submit(this) { b ->
+            if (b) {
+                alert(R.string.success_create_ads) {
+                    okButton {
+                        finish()
+                    }
+
+                    onCancelled {
+                        finish()
+                    }
+
+                    show()
+                }
+            } else {
+                longSnackbar(view, R.string.failed_create_ads)
+            }
+        }
     }
 
     /**

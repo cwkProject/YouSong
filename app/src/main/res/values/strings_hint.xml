@@ -13,4 +13,13 @@
 
     <string name="hint_question">设置提问内容，限制120字</string>
 
+    <string name="hint_not_location">无法获取位置</string>
+
+    <string name="hint_name_not_null">名称不能为空</string>
+    <string name="hint_cover_not_null">必须添加封面</string>
+    <string name="hint_poster_not_null">必须添加正文</string>
+    <string name="hint_question_not_null">问题不能为空</string>
+    <string name="hint_option_not_null">选项不能有空</string>
+
+
 </resources>
