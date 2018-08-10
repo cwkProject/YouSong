@@ -61,6 +61,11 @@ public interface ValueUrl {
     String URL_USER_GET_MOBILE_VERIFY_CODE = URL_BASE_USER + "getMobileVerifyCode";
 
     /**
+     * 绑定手机号
+     */
+    String URL_USER_BIND_MOBILE = URL_BASE_USER + "bindMobileNum";
+
+    /**
      * 获取好友数量
      */
     String URL_USER_REFEREE_COUNT = URL_BASE_USER + "refereeCount";
@@ -74,6 +79,21 @@ public interface ValueUrl {
      * 获取总收益
      */
     String URL_USER_GET_TOTAL_INCOME = URL_BASE_USER + "getMyBudget";
+
+    /**
+     * 获取用户余额
+     */
+    String URL_USER_GET_ASSET_BALANCE = URL_BASE_USER + "getAssetBalance";
+
+    /**
+     * 个人认证
+     */
+    String URL_USER_PERSONAL_AUTH = URL_BASE_USER + "personalAuth";
+
+    /**
+     * 企业认证
+     */
+    String URL_USER_COMPANY_AUTH = URL_BASE_USER + "companyAuth";
 
     /**
      * 创建微信支付订单
