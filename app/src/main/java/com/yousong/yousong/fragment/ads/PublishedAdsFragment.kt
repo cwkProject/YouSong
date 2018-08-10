@@ -1,8 +1,9 @@
 package com.yousong.yousong.fragment.ads
 
+import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
-import com.yousong.yousong.architecture.viewmodel.AdsViewModel
+import com.yousong.yousong.architecture.viewmodel.MyAdsViewModel
 import com.yousong.yousong.common.plusAssign
 
 /**
@@ -12,24 +13,24 @@ import com.yousong.yousong.common.plusAssign
  * @version 1.0 2018/7/1
  * @since 1.0
  */
-class PublishedAdsFragment : BaseAdsListFragment(){
+class PublishedAdsFragment : BaseAdsListFragment() {
 
     /**
      * 广告数据模型
      */
     private val adsViewModel by lazy {
-        ViewModelProviders.of(activity!!).get(AdsViewModel::class.java)
+        ViewModelProviders.of(activity!!).get(MyAdsViewModel::class.java)
     }
 
     override fun onInitData(savedInstanceState: Bundle?) {
-        adsViewModel.adsListData
-                .observe({ lifecycle }) {
+        adsViewModel.publishedAds
+                .observe(this, Observer {
                     it?.let {
                         adapter.adsList.clear()
                         adapter.adsList += it
                     }
                     stopRefresh()
-                }
+                })
         super.onInitData(savedInstanceState)
     }
 
@@ -38,6 +39,6 @@ class PublishedAdsFragment : BaseAdsListFragment(){
     }
 
     override fun loadAds(first: Boolean) {
-        adsViewModel.loadAds(!first)
+        adsViewModel.loadAds(first)
     }
 }

@@ -57,7 +57,7 @@ class AdsFragment : BaseAdsListFragment() {
      * 加载普通广告
      */
     override fun loadAds(first: Boolean) {
-        adsViewModel.loadAds(!first)
+        adsViewModel.loadAds(first)
     }
 
     override fun onResume() {

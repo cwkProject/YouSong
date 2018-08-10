@@ -19,7 +19,7 @@ abstract class BaseAdsListFragment : BaseFragment() {
     /**
      * 列表适配器
      */
-    protected val adapter = AdsAdapter()
+    open protected val adapter = AdsAdapter()
 
     override val rootViewId = R.layout.fragment_ads_list
 

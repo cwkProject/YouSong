@@ -24,29 +24,38 @@ class AdsViewModel : ViewModel() {
     val adsListData = MutableLiveData<Pair<BannerAds?, List<Ads>?>>()
 
     /**
+     * 是否首次加载
+     */
+    private var isFirst = true
+
+    /**
      * 加载广告
      *
-     * @param refresh 是否执行数据刷新，true时表示无论当前有无数据都会请求新数据，false时如果没有数据才会请求
+     * @param first 是否首次刷新
      */
-    fun loadAds(refresh: Boolean = false) {
-        if (refresh || adsListData.value == null) {
-            Observables.zip(AdsGetBannerWork().observable(), AdsPullListWork().observable())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe { (banner, ads) ->
-                        val bannerData = if (banner.isSuccess) {
-                            banner.result
-                        } else {
-                            adsListData.value?.first
-                        }
-
-                        val adsData = if (ads.isSuccess) {
-                            ads.result
-                        } else {
-                            adsListData.value?.second
-                        }
-
-                        adsListData.value = Pair(bannerData, adsData)
-                    }
+    fun loadAds(first: Boolean = false) {
+        if (first && !isFirst) {
+            return
         }
+
+        isFirst = false
+
+        Observables.zip(AdsGetBannerWork().observable(), AdsPullListWork().observable())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe { (banner, ads) ->
+                    val bannerData = if (banner.isSuccess) {
+                        banner.result
+                    } else {
+                        adsListData.value?.first
+                    }
+
+                    val adsData = if (ads.isSuccess) {
+                        ads.result
+                    } else {
+                        adsListData.value?.second
+                    }
+
+                    adsListData.value = Pair(bannerData, adsData)
+                }
     }
 }
