@@ -1,14 +1,13 @@
 package com.yousong.yousong.fragment.home
 
+import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.util.Log
-import com.yousong.yousong.R
 import com.yousong.yousong.activity.ads.AdsDetailActivity
 import com.yousong.yousong.architecture.viewmodel.AdsViewModel
 import com.yousong.yousong.common.plusAssign
 import com.yousong.yousong.fragment.ads.BaseAdsListFragment
-import com.yousong.yousong.model.server.BannerAds
 import org.jetbrains.anko.support.v4.startActivity
 
 /**
@@ -29,16 +28,19 @@ class AdsFragment : BaseAdsListFragment() {
 
     override fun onInitData(savedInstanceState: Bundle?) {
         adsViewModel.adsListData
-                .observe({ lifecycle }) {
+                .observe(this, Observer {
                     it?.let {
+                        adapter.beginTransaction()
+                        adapter.topList.clear()
                         adapter.adsList.clear()
-                        adapter.adsList += it
+                        adapter.topList += it.first
+                        adapter.adsList += it.second
+                        adapter.commit()
                     }
                     stopRefresh()
-                }
+                })
 
         super.onInitData(savedInstanceState)
-        loadTopAds()
     }
 
     override fun onInitListAction() {
@@ -49,13 +51,6 @@ class AdsFragment : BaseAdsListFragment() {
         adapter.adsList.setOnItemClickListener { holder, dataSource, position ->
             startActivity<AdsDetailActivity>()
         }
-    }
-
-    /**
-     * 加载顶部轮播广告数据
-     */
-    private fun loadTopAds() {
-        adapter.topList += BannerAds(listOf(R.mipmap.ad01, R.mipmap.ad02, R.mipmap.ad03))
     }
 
     /**

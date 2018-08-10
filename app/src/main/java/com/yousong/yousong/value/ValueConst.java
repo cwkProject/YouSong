@@ -10,6 +10,11 @@ package com.yousong.yousong.value;
 public interface ValueConst {
 
     /**
+     * 设备类型
+     */
+    String DEVICE_TYPE = "android";
+
+    /**
      * 服务器true
      */
     int SERVER_TRUE = 1;
@@ -33,4 +38,24 @@ public interface ValueConst {
      * 传输成功数值
      */
     int PROGRESS_SUCCESS = 101;
+
+    /**
+     * 未提交
+     */
+    int UNSUBMIT = 0;
+
+    /**
+     * 审核中
+     */
+    int UNDER_REVIEW = 1;
+
+    /**
+     * 已拒绝
+     */
+    int REFUSE = 2;
+
+    /**
+     * 已通过
+     */
+    int PASS = 3;
 }

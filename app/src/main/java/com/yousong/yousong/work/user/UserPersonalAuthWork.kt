@@ -20,8 +20,7 @@ class UserPersonalAuthWork : BaseSimpleWorkModel<String, Unit>() {
         dataMap["verifyCode"] = params[3]
     }
 
-    override fun onSuccessExtract(jsonResult: JSONObject) {
-    }
+    override fun onSuccessExtract(jsonResult: JSONObject) = Unit
 
     @Post
     override fun onTaskUri() = ValueUrl.URL_USER_PERSONAL_AUTH

@@ -6,11 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import cn.bingoogolapple.bgabanner.BGABanner
-import cn.bingoogolapple.bgabanner.BGALocalImageSize
 import com.yousong.yousong.R
+import com.yousong.yousong.common.asOther
 import com.yousong.yousong.databinding.ItemAdsBinding
 import com.yousong.yousong.model.local.Ads
 import com.yousong.yousong.model.server.BannerAds
+import com.yousong.yousong.model.server.BannerAdsItem
+import com.yousong.yousong.third.GlideApp
 import org.cwk.android.library.architecture.recycler.MultipleRecyclerViewAdapter
 import org.cwk.android.library.architecture.recycler.RecyclerViewHolderManager
 
@@ -25,9 +27,9 @@ import org.cwk.android.library.architecture.recycler.RecyclerViewHolderManager
 class AdsAdapter : MultipleRecyclerViewAdapter() {
 
     /**
-     * 点击事件，ads为数据源，position为点中的广告索引
+     * 点击事件，ads为广告项数据，position为点中的广告索引
      */
-    var bannerClickListener: (ads: BannerAds, position: Int) -> Unit = { _, _ -> }
+    var bannerClickListener: (ads: BannerAdsItem, position: Int) -> Unit = { _, _ -> }
 
     /**
      * 当前自动播放状态
@@ -52,19 +54,14 @@ class AdsAdapter : MultipleRecyclerViewAdapter() {
                 BannerViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_banner_ads, parent, false))
 
         override fun onBindViewHolder(holder: BannerViewHolder, position: Int, viewType: Int) {
-            val localImageSize = BGALocalImageSize(720, 1280, 320f, 640f)
-            holder.banner.setData(localImageSize, ImageView.ScaleType.FIT_XY, *(dataList[position].ads.toIntArray()))
-            holder.banner.setDelegate { _, _, _, p ->
-                bannerClickListener(dataList[position], p)
+
+            holder.banner.setData(dataList[position].items, null)
+
+            holder.banner.setDelegate { _, _, m, p ->
+                bannerClickListener(m as BannerAdsItem, p)
             }
 
-            playControl = {
-                if (it) {
-                    holder.banner.startAutoPlay()
-                } else {
-                    holder.banner.stopAutoPlay()
-                }
-            }
+            playControl = holder.playControl
         }
     }
 
@@ -87,7 +84,7 @@ class AdsAdapter : MultipleRecyclerViewAdapter() {
     }
 
     override fun onViewRecycled(holder: RecyclerView.ViewHolder) {
-        if (holder is BannerViewHolder) {
+        if (holder is BannerViewHolder && playControl == holder.playControl) {
             playControl = {}
         }
     }
@@ -100,6 +97,27 @@ class AdsAdapter : MultipleRecyclerViewAdapter() {
          * 轮播控件
          */
         val banner = itemView as BGABanner
+
+        /**
+         * 播放开关监听器
+         */
+        var playControl: (onOff: Boolean) -> Unit = {
+            if (it) {
+                banner.startAutoPlay()
+            } else {
+                banner.stopAutoPlay()
+            }
+        }
+
+        init {
+            banner.setAdapter { _, imageView, model, _ ->
+                GlideApp.with(imageView.context)
+                        .load(model.asOther<BannerAdsItem>()?.imgUrl)
+                        .centerCrop()
+                        .dontAnimate()
+                        .into(itemView as ImageView)
+            }
+        }
     }
 
     class AdViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

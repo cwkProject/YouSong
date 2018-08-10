@@ -22,8 +22,7 @@ class UserCompanyAuthWork : BaseSimpleWorkModel<String, Unit>() {
         dataMap["businessLicenceImgUrl"] = params[4]
     }
 
-    override fun onSuccessExtract(jsonResult: JSONObject) {
-    }
+    override fun onSuccessExtract(jsonResult: JSONObject) = Unit
 
     @Post
     override fun onTaskUri() = ValueUrl.URL_USER_COMPANY_AUTH

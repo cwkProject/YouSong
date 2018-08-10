@@ -18,8 +18,7 @@ class UserBindMobileWork : BaseSimpleWorkModel<String, Unit>() {
         dataMap["verifyCode"] = params[1]
     }
 
-    override fun onSuccessExtract(jsonResult: JSONObject) {
-    }
+    override fun onSuccessExtract(jsonResult: JSONObject) = Unit
 
     @Post
     override fun onTaskUri() = ValueUrl.URL_USER_BIND_MOBILE

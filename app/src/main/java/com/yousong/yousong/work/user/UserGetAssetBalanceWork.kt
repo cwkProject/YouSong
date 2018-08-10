@@ -12,8 +12,7 @@ import org.json.JSONObject
  * @since 1.0 2018/8/10
  **/
 class UserGetAssetBalanceWork : BaseSimpleWorkModel<Unit, Long>() {
-    override fun onFillParams(dataMap: MutableMap<String, String?>, vararg params: Unit?) {
-    }
+    override fun onFillParams(dataMap: MutableMap<String, String?>, vararg params: Unit?) = Unit
 
     override fun onSuccessExtract(jsonResult: JSONObject) = jsonResult.getLong(RESULT)
 

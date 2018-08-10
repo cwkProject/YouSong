@@ -95,11 +95,6 @@ public interface ValueUrl {
      */
     String URL_USER_COMPANY_AUTH = URL_BASE_USER + "companyAuth";
 
-    /**
-     * 创建微信支付订单
-     */
-    String URL_USER_WECHAT_PAY = URL_BASE_USER + "pay";
-
     // 以下为文件相关接口======================================================
 
     /**
@@ -136,4 +131,24 @@ public interface ValueUrl {
      * 获取首页广告列表
      */
     String URL_ADS_GET_ADS_LIST = URL_BASE_ADS + "getHomeList";
+
+    /**
+     * 获取广告池总金额
+     */
+    String URL_ADS_GET_POOL_TOTAL_AMOUNT = URL_BASE_ADS + "getAdsPoolYellowBoy";
+
+    /**
+     * 获取消费用户列表
+     */
+    String URL_ADS_GET_CONSUMER_LIST = URL_BASE_ADS + "getConsumerUserList";
+
+    /**
+     * 获取我发布过的广告列表
+     */
+    String URL_ADS_GET_MY_ADS_LIST = URL_BASE_ADS + "getMyAdsList";
+
+    /**
+     * 获取首页轮播图
+     */
+    String URL_ADS_GET_BANNER = URL_BASE_ADS + "getCarouselList";
 }

@@ -279,3 +279,53 @@ class OptionTypeAdapter : TypeAdapter<Option>() {
         return answer
     }
 }
+
+/**
+ * 我发布的广告转换器
+ *
+ * @author 超悟空
+ * @version 1.0 2018/8/10
+ * @since 1.0
+ */
+class MyAdsTypeAdapter : TypeAdapter<MyAds>() {
+
+    /**
+     * 广告类解析器
+     */
+    private val adsTypeAdapter by lazy {
+        GsonUtil.gson.getAdapter(Ads::class.java)
+    }
+
+    override fun write(out: JsonWriter, value: MyAds) {
+        out.apply {
+            beginObject()
+            name("ads")
+            adsTypeAdapter.write(out, value.ads)
+            name("reviewState").value(value.reviewState)
+            name("rechargeYellowBoy").value(value.rechargeAmount * BigDecimal(100))
+            endObject()
+        }
+    }
+
+    override fun read(`in`: JsonReader): MyAds {
+        var ads: Ads? = null
+        var reviewState = 0
+        var rechargeAmount: BigDecimal? = null
+
+        `in`.apply {
+            beginObject()
+            while (hasNext()) {
+                when (nextName()) {
+                    "ads" -> ads = adsTypeAdapter.read(this)
+                    "reviewState" -> reviewState = nextInt()
+                    "rechargeAmount" -> rechargeAmount = BigDecimal(nextInt()) / BigDecimal(100)
+                }
+            }
+            endObject()
+        }
+
+        return MyAds(ads ?: Ads(), rechargeAmount ?: BigDecimal(0)).apply {
+            this.reviewState = reviewState
+        }
+    }
+}

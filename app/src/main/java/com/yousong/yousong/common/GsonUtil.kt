@@ -23,6 +23,7 @@ object GsonUtil {
             .registerTypeAdapter(Directional::class.java, DirectionalTypeAdapter().nullSafe())
             .registerTypeAdapter(Ads::class.java, AdsTypeAdapter().nullSafe())
             .registerTypeAdapter(AdsDetail::class.java, AdsDetailTypeAdapter().nullSafe())
+            .registerTypeAdapter(MyAds::class.java, MyAdsTypeAdapter().nullSafe())
             .create()
 }
 
