@@ -29,11 +29,6 @@ abstract class BaseAdsListFragment : BaseFragment() {
         initList()
     }
 
-    @CallSuper
-    override fun onInitData(savedInstanceState: Bundle?) {
-        loadAds(true)
-    }
-
     /**
      * 初始化刷新器
      */
@@ -46,7 +41,7 @@ abstract class BaseAdsListFragment : BaseFragment() {
         typedArray.recycle()
 
         refreshLayout.setOnRefreshListener {
-            loadAds(false)
+            loadAds()
         }
     }
 
@@ -68,10 +63,8 @@ abstract class BaseAdsListFragment : BaseFragment() {
 
     /**
      * 加载广告列表数据，页面首次加载和下拉刷新时会调用
-     *
-     * @param first 是否首次加载
      */
-    protected abstract fun loadAds(first: Boolean)
+    protected abstract fun loadAds()
 
     /**
      * 初始化列表操作事件

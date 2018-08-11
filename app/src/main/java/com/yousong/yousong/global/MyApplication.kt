@@ -5,11 +5,13 @@ import android.app.Application
 import android.content.Context
 import android.support.v7.app.AppCompatDelegate
 import com.yousong.yousong.common.sendLocalBroadcast
+import com.yousong.yousong.third.WechatFunction
 import com.yousong.yousong.value.ValueAction
-import com.yousong.yousong.work.user.UserCreateTokenWork
+import com.yousong.yousong.value.ValueKey
 import com.yousong.yousong.work.common.start
+import com.yousong.yousong.work.user.UserCreateTokenWork
+import org.cwk.android.library.global.ApplicationAttribute
 import org.cwk.android.library.global.Global
-import org.cwk.android.library.network.util.GlobalOkHttpClient
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.atomic.AtomicInteger
 
@@ -78,21 +80,7 @@ class MyApplication : Application() {
         Global.init(this)
 
         // 初始化系统参数
-        //ApplicationAttribute.create().desKey(ValueKey.DES_KEY)
-
-        val okHttpClient = GlobalOkHttpClient.getOkHttpClient()
-                .newBuilder()
-                .authenticator { _, response ->
-                    AppConfig.token?.let {
-                        response.request()
-                                .newBuilder()
-                                .addHeader("Authorization", it)
-                                .build()
-                    }
-                }
-                .build()
-
-        GlobalOkHttpClient.setOkHttpClient(okHttpClient)
+        ApplicationAttribute.create().desKey(ValueKey.DES_KEY)
     }
 
     /**
@@ -100,10 +88,7 @@ class MyApplication : Application() {
      */
     private fun onRegisterApi() {
         // 微信开放平台注册
-        // val api = WXAPIFactory.createWXAPI(this, ValueKey.WX_APP_ID, true)
-
-        // 将该app注册到微信
-        // api.registerApp(ValueKey.WX_APP_ID)
+        WechatFunction.register()
 
         // bugly
         //   Beta.tipsDialogLayoutId = R.layout.layout_tips_dialog
@@ -182,9 +167,7 @@ class MyApplication : Application() {
      */
     private fun onAutoLogin() {
         if (AppConfig.token != null) {
-            UserCreateTokenWork().start {
-                onFinish()
-            }
+            UserCreateTokenWork().start { onFinish() }
         } else {
             onFinish()
         }

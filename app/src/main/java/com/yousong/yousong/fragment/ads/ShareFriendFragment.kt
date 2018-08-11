@@ -14,14 +14,13 @@ class ShareFriendFragment : BaseAdsListFragment(){
 
     override fun onInitData(savedInstanceState: Bundle?) {
 
-        super.onInitData(savedInstanceState)
     }
 
     override fun onInitListAction() {
 
     }
 
-    override fun loadAds(first: Boolean) {
+    override fun loadAds() {
 
     }
 }

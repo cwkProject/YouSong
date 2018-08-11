@@ -14,7 +14,7 @@ import android.view.View
 import com.yousong.yousong.R
 import com.yousong.yousong.activity.common.BaseActivity
 import com.yousong.yousong.architecture.viewmodel.CreateAdsViewModel
-import com.yousong.yousong.databinding.ActivityPublishAdsBinding
+import com.yousong.yousong.databinding.ActivityCreateAdsBinding
 import com.yousong.yousong.model.local.Option
 import com.yousong.yousong.operator.OnCreateAdsOperator
 import com.yousong.yousong.util.CheckAndroidMPermission
@@ -44,7 +44,7 @@ class CreateAdsActivity : BaseActivity(), OnCreateAdsOperator {
     /**
      * 封面高度
      */
-    private val COVER_HEIGHT = 480
+    private val COVER_HEIGHT = 400
 
     /**
      * 选择封面图
@@ -60,7 +60,7 @@ class CreateAdsActivity : BaseActivity(), OnCreateAdsOperator {
      * 绑定器
      */
     private val binding by lazy {
-        ActivityPublishAdsBinding.bind(rootView)
+        ActivityCreateAdsBinding.bind(rootView)
     }
 
     /**
@@ -70,7 +70,7 @@ class CreateAdsActivity : BaseActivity(), OnCreateAdsOperator {
         ViewModelProviders.of(this).get(CreateAdsViewModel::class.java)
     }
 
-    override val rootViewId = R.layout.activity_publish_ads
+    override val rootViewId = R.layout.activity_create_ads
 
     override fun onInitView(savedInstanceState: Bundle?) {
         initToolbar(this, R.string.title_publish_ads)
@@ -171,10 +171,9 @@ class CreateAdsActivity : BaseActivity(), OnCreateAdsOperator {
      * @return 生成的路径
      */
     private fun createImagePath(): String {
-        val dir = externalCacheDir ?: cacheDir
-        val path = dir.path + File.separator + System.currentTimeMillis() + ".jpg"
-        viewModel.coverTempPath = path
-        return path
+        return FileUtil.newTempJpegPath().apply {
+            viewModel.coverTempPath = this
+        }
     }
 
     /**
@@ -190,8 +189,8 @@ class CreateAdsActivity : BaseActivity(), OnCreateAdsOperator {
         intent.putExtra("scaleUpIfNeeded", true)
         intent.putExtra("return-data", false)
         intent.putExtra("noFaceDetection", true)
-        intent.putExtra("aspectX", 4)
-        intent.putExtra("aspectY", 3)
+        intent.putExtra("aspectX", 16)
+        intent.putExtra("aspectY", 10)
         intent.putExtra("outputX", COVER_WIDTH)
         intent.putExtra("outputY", COVER_HEIGHT)
         intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(File(createImagePath())))

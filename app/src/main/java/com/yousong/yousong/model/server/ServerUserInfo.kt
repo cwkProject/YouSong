@@ -38,6 +38,6 @@ data class ServerUserInfo(
             AppConfig.save()
         }
 
-        LoginStatus.login
+        LoginStatus.login = true
     }
 }

@@ -1,6 +1,8 @@
 package com.yousong.yousong.work.common
 
+import com.yousong.yousong.global.AppConfig
 import com.yousong.yousong.value.ValueUrl
+import org.cwk.android.library.network.factory.CommunicationBuilder
 import org.cwk.android.library.work.SimpleUploadWorkModel
 import org.json.JSONObject
 import java.io.File
@@ -20,5 +22,12 @@ class FileUploadWork : SimpleUploadWorkModel<File, String>() {
 
     override fun onFill(dataMap: MutableMap<String, Any?>, vararg parameters: File?) {
         dataMap["file"] = parameters[0]
+    }
+
+    override fun onCreateCommunication(builder: CommunicationBuilder) {
+        super.onCreateCommunication(builder)
+        AppConfig.token?.let {
+            builder.addHeader("Authorization", "bearer $it")
+        }
     }
 }

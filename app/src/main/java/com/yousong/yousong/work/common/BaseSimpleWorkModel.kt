@@ -1,5 +1,7 @@
 package com.yousong.yousong.work.common
 
+import com.yousong.yousong.global.AppConfig
+import org.cwk.android.library.network.factory.CommunicationBuilder
 import org.cwk.android.library.work.SimpleWorkModel
 
 /**
@@ -22,4 +24,11 @@ abstract class BaseSimpleWorkModel<Parameters, Result> : SimpleWorkModel<Paramet
      * @param params 任务传入的参数
      */
     protected abstract fun onFillParams(dataMap: MutableMap<String, String?>, vararg params: Parameters?)
+
+    override fun onCreateCommunication(builder: CommunicationBuilder) {
+        super.onCreateCommunication(builder)
+        AppConfig.token?.let {
+            builder.addHeader("Authorization", "bearer $it")
+        }
+    }
 }

@@ -28,7 +28,10 @@
 
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/ads_cover_height"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:minHeight="@dimen/ads_cover_height"
+                android:scaleType="fitXY"
                 app:imageFile="@{viewModel.coverPath}"/>
 
             <TextView
@@ -53,7 +56,9 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="200dp"
+                android:adjustViewBounds="true"
+                android:minHeight="@dimen/ads_cover_height"
+                android:scaleType="fitXY"
                 app:imageFile="@{viewModel.posterPath}"/>
 
             <TextView

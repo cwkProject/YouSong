@@ -5,7 +5,7 @@ import android.arch.lifecycle.ViewModel
 import com.yousong.yousong.model.local.Ads
 import com.yousong.yousong.model.local.MyAds
 import com.yousong.yousong.value.ValueConst
-import com.yousong.yousong.work.ads.AdsGetMyAdsListWork
+import com.yousong.yousong.work.ads.AdsPullMyAdsListWork
 import com.yousong.yousong.work.common.start
 
 /**
@@ -27,24 +27,15 @@ class MyAdsViewModel : ViewModel() {
      */
     val unpublishedAds = MutableLiveData<List<MyAds>>()
 
-    /**
-     * 是否首次加载
-     */
-    private var isFirst = true
+    init {
+        loadAds()
+    }
 
     /**
      * 加载广告
-     *
-     * @param first 是否首次刷新
      */
-    fun loadAds(first: Boolean = false) {
-        if (first && !isFirst) {
-            return
-        }
-
-        isFirst = false
-
-        AdsGetMyAdsListWork().start {
+    fun loadAds() {
+        AdsPullMyAdsListWork().start {
             val result = if (it.isSuccess) {
                 it.result.partition { it.reviewState == ValueConst.PASS }
             } else {

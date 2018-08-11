@@ -39,8 +39,6 @@ class AdsFragment : BaseAdsListFragment() {
                     }
                     stopRefresh()
                 })
-
-        super.onInitData(savedInstanceState)
     }
 
     override fun onInitListAction() {
@@ -56,8 +54,8 @@ class AdsFragment : BaseAdsListFragment() {
     /**
      * 加载普通广告
      */
-    override fun loadAds(first: Boolean) {
-        adsViewModel.loadAds(first)
+    override fun loadAds() {
+        adsViewModel.loadAds()
     }
 
     override fun onResume() {

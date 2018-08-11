@@ -31,14 +31,13 @@ class PublishedAdsFragment : BaseAdsListFragment() {
                     }
                     stopRefresh()
                 })
-        super.onInitData(savedInstanceState)
     }
 
     override fun onInitListAction() {
 
     }
 
-    override fun loadAds(first: Boolean) {
-        adsViewModel.loadAds(first)
+    override fun loadAds() {
+        adsViewModel.loadAds()
     }
 }

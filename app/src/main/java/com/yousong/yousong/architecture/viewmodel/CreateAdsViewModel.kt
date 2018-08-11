@@ -2,16 +2,21 @@ package com.yousong.yousong.architecture.viewmodel
 
 import android.content.Context
 import android.databinding.Bindable
+import android.graphics.Bitmap
 import com.yousong.yousong.BR
 import com.yousong.yousong.R
 import com.yousong.yousong.model.local.AdsDetail
 import com.yousong.yousong.model.local.Option
+import com.yousong.yousong.third.GlideApp
+import com.yousong.yousong.util.FileUtil
 import com.yousong.yousong.value.ValueConst
 import com.yousong.yousong.work.ads.AdsCreateWork
 import com.yousong.yousong.work.common.FileUploadWork
 import com.yousong.yousong.work.common.start
+import org.cwk.android.library.global.Global
 import org.jetbrains.anko.toast
 import java.io.File
+import kotlin.concurrent.thread
 
 /**
  * 发布广告数据模型
@@ -21,6 +26,11 @@ import java.io.File
  * @since 1.0
  */
 class CreateAdsViewModel : ObservableViewModel() {
+
+    /**
+     * 正文宽度
+     */
+    private val POSTER_WIDTH = 640
 
     /**
      * 广告详情
@@ -154,15 +164,42 @@ class CreateAdsViewModel : ObservableViewModel() {
      */
     fun posterSelected(path: String) {
         posterPath = path
-        FileUploadWork()
-                .setOnNetworkProgressListener { current, total, _ -> posterProgress = (current / total * 100).toInt() }
-                .start(File(path)) {
-                    if (it.isSuccess) {
-                        adsDetail.ads.poster = it.result
-                        posterProgress = ValueConst.PROGRESS_SUCCESS
-                    } else {
-                        posterProgress = ValueConst.PROGRESS_FAILED
+
+        thread {
+            posterProgress = 0
+
+            try {
+                val bitmap = GlideApp.with(Global.getApplication())
+                        .asBitmap()
+                        .load(File(path))
+                        .skipMemoryCache(true)
+                        .submit(POSTER_WIDTH, POSTER_WIDTH)
+                        .get()
+
+                if (bitmap != null) {
+
+                    val file = File(FileUtil.newTempJpegPath())
+
+                    file.outputStream().use {
+                        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, it)
                     }
+
+                    posterPath = file.path
+                    FileUploadWork()
+                            .setOnNetworkProgressListener { current, total, _ -> posterProgress = (current / total * 100).toInt() }
+                            .start(file) {
+                                if (it.isSuccess) {
+                                    adsDetail.ads.poster = it.result
+                                    posterProgress = ValueConst.PROGRESS_SUCCESS
+                                } else {
+                                    posterProgress = ValueConst.PROGRESS_FAILED
+                                }
+                            }
                 }
+
+            } catch (e: Exception) {
+                posterProgress = ValueConst.PROGRESS_FAILED
+            }
+        }
     }
 }

@@ -10,6 +10,11 @@ package com.yousong.yousong.value;
 public interface ValueKey {
 
     /**
+     * 配置文件加密key
+     */
+    String DES_KEY = "tdmdxMKusMs=";
+
+    /**
      * 微信appId
      */
     String WX_APP_ID = "wx3ada4bdaeac96326";

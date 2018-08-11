@@ -21,9 +21,10 @@
 
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="@dimen/ads_cover_height"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
             android:scaleType="fitXY"
-            app:defaultSrc="@{@color/light_blue_300}"
+            app:defaultSrc="@{@drawable/placeholder_cover}"
             app:imageUrl="@{data.cover}"/>
 
         <ProgressBar

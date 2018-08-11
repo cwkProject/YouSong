@@ -23,23 +23,14 @@ class AdsViewModel : ViewModel() {
      */
     val adsListData = MutableLiveData<Pair<BannerAds?, List<Ads>?>>()
 
-    /**
-     * 是否首次加载
-     */
-    private var isFirst = true
+    init {
+        loadAds()
+    }
 
     /**
      * 加载广告
-     *
-     * @param first 是否首次刷新
      */
-    fun loadAds(first: Boolean = false) {
-        if (first && !isFirst) {
-            return
-        }
-
-        isFirst = false
-
+    fun loadAds() {
         Observables.zip(AdsGetBannerWork().observable(), AdsPullListWork().observable())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe { (banner, ads) ->

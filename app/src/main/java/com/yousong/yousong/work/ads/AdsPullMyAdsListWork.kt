@@ -13,11 +13,13 @@ import org.json.JSONObject
  * @version 1.0 2018/8/10
  * @since 1.0
  */
-class AdsGetMyAdsListWork : BaseSimpleWorkModel<Unit, List<MyAds>>() {
+class AdsPullMyAdsListWork : BaseSimpleWorkModel<Unit, List<MyAds>>() {
     override fun onFillParams(dataMap: MutableMap<String, String?>, vararg params: Unit?) = Unit
 
     override fun onSuccessExtract(jsonResult: JSONObject): List<MyAds> =
             jsonResult.getString(RESULT).jsonToCollection()
+
+    override fun onSuccessDefault(): List<MyAds> = emptyList()
 
     override fun onTaskUri() = ValueUrl.URL_ADS_GET_MY_ADS_LIST
 }

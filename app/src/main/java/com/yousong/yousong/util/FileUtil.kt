@@ -8,6 +8,8 @@ import android.os.Build
 import android.os.Environment
 import android.provider.DocumentsContract
 import android.provider.MediaStore
+import org.cwk.android.library.global.Global
+import java.io.File
 
 /**
  * 解析FileProvider的工具
@@ -143,5 +145,13 @@ object FileUtil {
         // MediaStore (and general)
 
         return null
+    }
+
+    /**
+     * 生成一个jpeg文件类型的临时路径
+     */
+    fun newTempJpegPath(): String {
+        val dir = Global.getApplication().externalCacheDir ?: Global.getApplication().cacheDir
+        return dir.path + File.separator + System.currentTimeMillis() + ".jpg"
     }
 }

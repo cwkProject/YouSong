@@ -46,6 +46,13 @@ object WechatFunction {
     }
 
     /**
+     * 注册到微信
+     */
+    fun register(){
+        api.registerApp(ValueKey.WX_APP_ID)
+    }
+
+    /**
      * 微信分享
      *
      * @param init 初始化设置

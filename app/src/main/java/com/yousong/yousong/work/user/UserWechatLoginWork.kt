@@ -1,9 +1,7 @@
 package com.yousong.yousong.work.user
 
 import com.yousong.yousong.common.jsonToObject
-import com.yousong.yousong.common.sendLocalBroadcast
 import com.yousong.yousong.model.server.ServerUserInfo
-import com.yousong.yousong.value.ValueAction
 import com.yousong.yousong.value.ValueUrl
 import com.yousong.yousong.work.common.BaseSimpleWorkModel
 import org.cwk.android.library.annotation.Post
@@ -29,9 +27,5 @@ class UserWechatLoginWork : BaseSimpleWorkModel<String, Unit>() {
         dataMap["openId"] = params[1]
         dataMap["nickName"] = params[2]
         dataMap["headPic"] = params[3]
-    }
-
-    override fun onFinish() {
-        sendLocalBroadcast(ValueAction.ACTION_LOGIN_STATE_CHANGE)
     }
 }
