@@ -3,4 +3,7 @@
 <resources>
     <string name="format_uploading">正在上传 %1$d%%</string>
 
+    <string name="format_friend_count">分享好友 [ %1$d ] 人</string>
+    <string name="format_total_incoming">累计收益 [ %1$s ] 元</string>
+
 </resources>

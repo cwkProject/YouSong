@@ -1,8 +1,10 @@
-package com.yousong.yousong.model.local
+package com.yousong.yousong.global
 
 import android.databinding.BaseObservable
 import android.databinding.Bindable
 import com.yousong.yousong.BR
+import com.yousong.yousong.work.common.start
+import com.yousong.yousong.work.user.UserGetAssetBalanceWork
 import java.math.BigDecimal
 
 /**
@@ -12,17 +14,7 @@ import java.math.BigDecimal
  * @version 1.0 2018/7/14
  * @since 1.0
  */
-class UserAssets : BaseObservable() {
-
-    /**
-     * 总收益
-     */
-    @Bindable
-    var totalIncome = BigDecimal("0.00")
-        set(value) {
-            field = value
-            notifyPropertyChanged(BR.totalIncome)
-        }
+object UserAssets : BaseObservable() {
 
     /**
      * 余额
@@ -35,12 +27,13 @@ class UserAssets : BaseObservable() {
         }
 
     /**
-     * 邀请的人数
+     * 刷新余额
      */
-    @Bindable
-    var inviteCount = 0
-        set(value) {
-            field = value
-            notifyPropertyChanged(BR.inviteCount)
+    fun refreshBalance() {
+        UserGetAssetBalanceWork().start {
+            if (it.isSuccess) {
+                balance = it.result
+            }
         }
+    }
 }
