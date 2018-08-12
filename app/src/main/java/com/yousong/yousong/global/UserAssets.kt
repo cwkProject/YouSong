@@ -36,4 +36,11 @@ object UserAssets : BaseObservable() {
             }
         }
     }
+
+    /**
+     * 重置数据
+     */
+    fun reset() {
+        balance = BigDecimal("0.00")
+    }
 }

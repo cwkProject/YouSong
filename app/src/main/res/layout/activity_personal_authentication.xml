@@ -1,50 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <include layout="@layout/toolbar"/>
+    <data>
 
-    <android.support.design.widget.TextInputLayout
+        <variable
+            name="data"
+            type="com.yousong.yousong.architecture.viewmodel.PersonalAuthViewModel"/>
+
+        <import type="com.yousong.yousong.value.ValueConst"/>
+
+    </data>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/activity_horizontal_margin"
-        android:layout_marginStart="@dimen/activity_horizontal_margin"
-        android:layout_marginTop="@dimen/activity_vertical_margin">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <EditText
+        <include layout="@layout/toolbar"/>
+
+        <include
+            layout="@layout/layout_auth_verify"
+            app:data="@{data}"/>
+
+        <include
+            layout="@layout/layout_mobile_verify"
+            app:data="@{data}"/>
+
+        <android.support.v7.widget.AppCompatButton
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/hint_real_name"/>
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:enabled="@{data.submitable}"
+            android:onClick="@{data::onSubmit}"
+            android:text="@string/name_submit_review"
+            android:textColor="@android:color/white"
+            app:backgroundTint="@color/primary_button_selector"
+            app:goneUnless="@{data.state != ValueConst.PASS}"/>
 
-    </android.support.design.widget.TextInputLayout>
+    </LinearLayout>
 
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/activity_horizontal_margin"
-        android:layout_marginStart="@dimen/activity_horizontal_margin"
-        android:layout_marginTop="@dimen/layout_default_spacing">
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:digits="0123456789Xx"
-            android:maxLength="18"
-            android:hint="@string/hint_id_number"/>
-
-    </android.support.design.widget.TextInputLayout>
-
-    <android.support.v7.widget.AppCompatButton
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/activity_horizontal_margin"
-        android:layout_marginStart="@dimen/activity_horizontal_margin"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:text="@string/name_submit_review"
-        android:textColor="@android:color/white"
-        app:backgroundTint="?colorPrimary"/>
-
-</LinearLayout>
+</layout>

@@ -95,6 +95,11 @@ public interface ValueUrl {
      */
     String URL_USER_COMPANY_AUTH = URL_BASE_USER + "companyAuth";
 
+    /**
+     * 获取认证详情
+     */
+    String URL_USER_GET_AUTH_DETAIL = URL_BASE_USER + "getAuthDetail";
+
     // 以下为文件相关接口======================================================
 
     /**

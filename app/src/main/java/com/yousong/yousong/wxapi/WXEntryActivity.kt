@@ -13,6 +13,7 @@ import com.tencent.mm.opensdk.openapi.WXAPIFactory
 import com.yousong.yousong.R
 import com.yousong.yousong.activity.common.BaseActivity
 import com.yousong.yousong.global.AppConfig
+import com.yousong.yousong.global.LoginStatus
 import com.yousong.yousong.model.server.WxResponse
 import com.yousong.yousong.value.ValueAction
 import com.yousong.yousong.value.ValueKey
@@ -121,8 +122,10 @@ class WXEntryActivity : BaseActivity(), IWXAPIEventHandler {
             if (state && result != null) {
                 UserWechatLoginWork().start(result.unionid, result.openid, result.nickname, result.headimgurl) {
                     if (it.isSuccess) {
-                        sendBroadcast(Intent(ValueAction.ACTION_WX_LOGIN_SUCCESS))
-                        finish()
+                        LoginStatus.loadUserData {
+                            sendBroadcast(Intent(ValueAction.ACTION_WX_LOGIN_SUCCESS))
+                            finish()
+                        }
                     } else {
                         loginFailed()
                     }

@@ -1,5 +1,9 @@
 package com.yousong.yousong.global
 
+import com.yousong.yousong.model.server.Auth
+import com.yousong.yousong.work.common.start
+import com.yousong.yousong.work.user.UserGetAuthDetailWork
+
 /**
  * 登录状态数据类
  *
@@ -15,17 +19,39 @@ object LoginStatus {
     var login = false
 
     /**
-     * 重置数据
+     * 个人认证信息
      */
-    fun reset() {
-        onCreate()
+    var personalAuth: Auth? = null
+
+    /**
+     * 企业认证信息
+     */
+    var companyAuth: Auth? = null
+
+    /**
+     * 登录成功后加载用户数据，重复调用会刷新用户数据
+     *
+     * @param call 加载完成后回调
+     */
+    fun loadUserData(call: (() -> Unit)? = null) {
+        if (login) {
+            UserGetAuthDetailWork().start {
+                call?.invoke()
+            }
+        } else {
+            call?.invoke()
+        }
     }
 
     /**
-     * 初始化参数
+     * 重置数据
      */
-    private fun onCreate() {
+    fun reset() {
         // 初始化用户参数
         login = false
+        personalAuth = null
+        companyAuth = null
+
+        UserAssets.reset()
     }
 }

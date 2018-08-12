@@ -14,6 +14,7 @@ import com.yousong.yousong.work.ads.AdsCreateWork
 import com.yousong.yousong.work.common.FileUploadWork
 import com.yousong.yousong.work.common.start
 import org.cwk.android.library.global.Global
+import org.jetbrains.anko.progressDialog
 import org.jetbrains.anko.toast
 import java.io.File
 import kotlin.concurrent.thread
@@ -96,7 +97,12 @@ class CreateAdsViewModel : ObservableViewModel() {
             return
         }
 
+        val dialog = context.progressDialog(R.string.prompt_submitting) {
+            setCancelable(false)
+        }
+
         AdsCreateWork().start(adsDetail) {
+            dialog.cancel()
             call(it.isSuccess)
         }
     }

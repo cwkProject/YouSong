@@ -30,7 +30,7 @@ object ImageBindingAdapters {
     }
 
     /**
-     * 填充网络图片
+     * 填充头像
      *
      * @param view  图片控件
      * @param url   图片地址

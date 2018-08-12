@@ -13,6 +13,8 @@
     <string name="name_wechat_login">微信登陆</string>
     <string name="name_share_friend">分享好友</string>
 
+    <string name="name_send_verification_code">发送验证码</string>
+
     <string name="name_copy_of_business_license">营业执照副本</string>
     <string name="name_submit_review">提交审核</string>
     <string name="name_recharge">充值</string>

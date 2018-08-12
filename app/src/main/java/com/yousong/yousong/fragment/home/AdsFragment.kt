@@ -8,6 +8,7 @@ import com.yousong.yousong.activity.ads.AdsDetailActivity
 import com.yousong.yousong.architecture.viewmodel.AdsViewModel
 import com.yousong.yousong.common.plusAssign
 import com.yousong.yousong.fragment.ads.BaseAdsListFragment
+import com.yousong.yousong.value.ValueTag
 import org.jetbrains.anko.support.v4.startActivity
 
 /**
@@ -46,8 +47,8 @@ class AdsFragment : BaseAdsListFragment() {
             Log.v(TAG, "position:$position")
         }
 
-        adapter.adsList.setOnItemClickListener { holder, dataSource, position ->
-            startActivity<AdsDetailActivity>()
+        adapter.adsList.setOnItemClickListener { _, dataSource, _ ->
+            startActivity<AdsDetailActivity>(ValueTag.TAG_ADS_ID to dataSource.id)
         }
     }
 

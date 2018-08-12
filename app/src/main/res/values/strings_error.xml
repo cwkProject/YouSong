@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- 错误信息 -->
 <resources>
+    <string name="error_answer_again">回答错误，请重试</string>
+    <string name="error_answer">回答错误</string>
 </resources>

@@ -13,4 +13,9 @@ public interface ValueTag {
      * 错误信息
      */
     String TAG_ERROR_MESSAGE = "error_message_tag";
+
+    /**
+     * 广告id
+     */
+    String TAG_ADS_ID = "tag_ads_id";
 }

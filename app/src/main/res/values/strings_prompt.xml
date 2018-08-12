@@ -15,9 +15,13 @@
 
     <string name="prompt_processing">处理中…</string>
     <string name="prompt_loading">正在加载数据</string>
+    
+    <string name="prompt_submitting">正在提交</string>
 
     <string name="prompt_sending_request">正在发送请求</string>
 
     <string name="prompt_gallery_storage">读取相册需要您授予文件存储使用权限</string>
+
+    <string name="prompt_verify_code_send">验证码已发送</string>
 
 </resources>
