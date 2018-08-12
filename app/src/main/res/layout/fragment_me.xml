@@ -4,9 +4,17 @@
 
     <data>
 
+        <variable
+            name="userViewModel"
+            type="com.yousong.yousong.architecture.viewmodel.UserViewModel"/>
+
         <import type="com.yousong.yousong.global.LoginStatus"/>
 
+        <import type="com.yousong.yousong.global.UserAssets"/>
+
         <import type="com.yousong.yousong.global.AppConfig"/>
+
+        <import type="java.lang.String"/>
 
     </data>
 
@@ -48,7 +56,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:background="@android:color/white"
-                android:stretchColumns="1">
+                android:stretchColumns="2">
 
                 <TableRow style="@style/MeRowStyle">
 
@@ -62,6 +70,11 @@
                         style="@style/MeTextStyle"
                         android:text="@string/label_income"/>
 
+                    <TextView
+                        android:layout_marginStart="@dimen/layout_default_spacing"
+                        android:text="@{userViewModel.totalIncome.toPlainString() +` `+ @string/name_yuan}"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+
                 </TableRow>
 
                 <TableRow>
@@ -69,6 +82,7 @@
                     <View
                         android:layout_height="1dp"
                         android:layout_column="1"
+                        android:layout_span="2"
                         android:background="@color/grey_100"/>
                 </TableRow>
 
@@ -83,6 +97,11 @@
                     <TextView
                         style="@style/MeTextStyle"
                         android:text="@string/label_over"/>
+
+                    <TextView
+                        android:layout_marginStart="@dimen/layout_default_spacing"
+                        android:text="@{UserAssets.INSTANCE.balance.toPlainString() +` `+ @string/name_yuan}"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
                 </TableRow>
 
                 <TableRow>
@@ -90,6 +109,7 @@
                     <View
                         android:layout_height="1dp"
                         android:layout_column="1"
+                        android:layout_span="2"
                         android:background="@color/grey_100"/>
                 </TableRow>
 
@@ -105,6 +125,7 @@
 
                     <TextView
                         style="@style/MeTextStyle"
+                        android:layout_span="2"
                         android:drawableEnd="@drawable/ic_chevron_right_grey_400_24dp"
                         android:text="@string/name_withdraw"/>
 
@@ -115,6 +136,7 @@
                     <View
                         android:layout_height="1dp"
                         android:layout_column="1"
+                        android:layout_span="2"
                         android:background="@color/grey_100"/>
                 </TableRow>
 
@@ -130,6 +152,7 @@
 
                     <TextView
                         style="@style/MeTextStyle"
+                        android:layout_span="2"
                         android:drawableEnd="@drawable/ic_chevron_right_grey_400_24dp"
                         android:text="@string/name_publish_ads"/>
                 </TableRow>
@@ -139,6 +162,7 @@
                     <View
                         android:layout_height="1dp"
                         android:layout_column="1"
+                        android:layout_span="2"
                         android:background="@color/grey_100"/>
                 </TableRow>
 
@@ -154,6 +178,7 @@
 
                     <TextView
                         style="@style/MeTextStyle"
+                        android:layout_span="2"
                         android:drawableEnd="@drawable/ic_chevron_right_grey_400_24dp"
                         android:text="@string/name_authenticate"/>
                 </TableRow>
@@ -163,6 +188,7 @@
                     <View
                         android:layout_height="1dp"
                         android:layout_column="1"
+                        android:layout_span="2"
                         android:background="@color/grey_100"/>
                 </TableRow>
 
@@ -176,6 +202,7 @@
 
                     <TextView
                         style="@style/MeTextStyle"
+                        android:layout_span="2"
                         android:drawableEnd="@drawable/ic_chevron_right_grey_400_24dp"
                         android:text="@string/name_help"/>
                 </TableRow>

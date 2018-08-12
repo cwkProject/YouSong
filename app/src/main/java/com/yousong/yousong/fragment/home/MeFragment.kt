@@ -1,10 +1,12 @@
 package com.yousong.yousong.fragment.home
 
+import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import com.yousong.yousong.R
 import com.yousong.yousong.activity.ads.MyAdsActivity
 import com.yousong.yousong.activity.user.EnterpriseCertificationActivity
 import com.yousong.yousong.activity.user.WithdrawActivity
+import com.yousong.yousong.architecture.viewmodel.UserViewModel
 import com.yousong.yousong.databinding.FragmentMeBinding
 import com.yousong.yousong.fragment.common.BaseFragment
 import kotlinx.android.synthetic.main.fragment_me.*
@@ -23,7 +25,7 @@ class MeFragment : BaseFragment() {
 
     override fun onInitView(savedInstanceState: Bundle?) {
         initAction()
-        FragmentMeBinding.bind(rootView)
+        FragmentMeBinding.bind(rootView).userViewModel = ViewModelProviders.of(activity!!).get(UserViewModel::class.java)
     }
 
     /**
