@@ -10,8 +10,8 @@ import com.yousong.yousong.work.ads.AdsAnswerWork
 import com.yousong.yousong.work.ads.AdsGetDetailWork
 import com.yousong.yousong.work.common.start
 import org.jetbrains.anko.alert
+import org.jetbrains.anko.indeterminateProgressDialog
 import org.jetbrains.anko.okButton
-import org.jetbrains.anko.progressDialog
 import org.jetbrains.anko.toast
 
 /**
@@ -49,7 +49,7 @@ class AdsDetailViewModel : ViewModel(), OnAdsDetailOperator {
         adsDetail.value?.let { detail ->
             detail.question.option.find { it.answer }?.let {
 
-                val dialog = view.context.progressDialog(R.string.prompt_submitting) {
+                val dialog = view.context.indeterminateProgressDialog(R.string.prompt_submitting) {
                     setCancelable(false)
                 }
 

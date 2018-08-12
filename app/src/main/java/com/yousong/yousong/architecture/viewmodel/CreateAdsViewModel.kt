@@ -1,8 +1,11 @@
 package com.yousong.yousong.architecture.viewmodel
 
+import android.arch.lifecycle.MutableLiveData
 import android.content.Context
 import android.databinding.Bindable
 import android.graphics.Bitmap
+import android.text.Editable
+import android.view.View
 import com.yousong.yousong.BR
 import com.yousong.yousong.R
 import com.yousong.yousong.model.local.AdsDetail
@@ -14,9 +17,10 @@ import com.yousong.yousong.work.ads.AdsCreateWork
 import com.yousong.yousong.work.common.FileUploadWork
 import com.yousong.yousong.work.common.start
 import org.cwk.android.library.global.Global
-import org.jetbrains.anko.progressDialog
+import org.jetbrains.anko.indeterminateProgressDialog
 import org.jetbrains.anko.toast
 import java.io.File
+import java.math.BigDecimal
 import kotlin.concurrent.thread
 
 /**
@@ -32,6 +36,11 @@ class CreateAdsViewModel : ObservableViewModel() {
      * 正文宽度
      */
     private val POSTER_WIDTH = 640
+
+    /**
+     * 提交结果
+     */
+    val submitResult = MutableLiveData<Boolean>()
 
     /**
      * 广告详情
@@ -84,26 +93,23 @@ class CreateAdsViewModel : ObservableViewModel() {
     /**
      * 存放缩略图临时图片路径
      */
-    var coverTempPath: String? = null
+    private var coverTempPath: String? = null
 
     /**
      * 提交审核
-     *
-     * @param context 用于弹出提示
-     * @param call 请求执行回调，仅在参数校验通过后才会被执行
      */
-    fun submit(context: Context, call: (Boolean) -> Unit) {
-        if (!checkAds(context)) {
+    fun onSubmit(view: View) {
+        if (!checkAds(view.context)) {
             return
         }
 
-        val dialog = context.progressDialog(R.string.prompt_submitting) {
+        val dialog = view.context.indeterminateProgressDialog(R.string.prompt_submitting) {
             setCancelable(false)
         }
 
         AdsCreateWork().start(adsDetail) {
             dialog.cancel()
-            call(it.isSuccess)
+            submitResult.value = it.isSuccess
         }
     }
 
@@ -142,6 +148,17 @@ class CreateAdsViewModel : ObservableViewModel() {
             false
         } else {
             true
+        }
+    }
+
+    /**
+     * 创建临时图片路径
+     *
+     * @return 生成的路径
+     */
+    fun createImagePath(): String {
+        return FileUtil.newTempJpegPath().apply {
+            coverTempPath = this
         }
     }
 
@@ -207,5 +224,51 @@ class CreateAdsViewModel : ObservableViewModel() {
                 posterProgress = ValueConst.PROGRESS_FAILED
             }
         }
+    }
+
+    fun onAddOptionClick(view: View) {
+        adsDetail.question.option.apply {
+            if (size < 4) {
+                add(Option(size + 1))
+            }
+        }
+    }
+
+    fun onRemoveOptionClick(view: View) {
+        adsDetail.question.option.apply {
+            if (size > 2) {
+                removeAt(size - 1).takeIf { it.answer }?.let {
+                    this[0].answer = true
+                }
+            }
+        }
+    }
+
+    /**
+     * 每位用户所得金额输入变更
+     */
+    fun onMoneyChanged(edt: Editable) {
+        val posDot = edt.indexOf('.')
+
+        // 最小值1，保留两位小数
+        when {
+            edt.isEmpty() || posDot == 0 || edt.startsWith('0') -> edt.replace(0, edt.length, "1")
+            posDot == edt.length - 1 -> return
+            posDot > 0 && edt.length - posDot - 1 > 2 -> edt.delete(posDot + 3, edt.length)
+        }
+
+        adsDetail.ads.userUnitPrice = BigDecimal(edt.toString())
+    }
+
+    /**
+     * 目标人数变化
+     */
+    fun onTargetCountChanged(edt: Editable) {
+        // 最小值1
+        if (edt.isEmpty() || edt.startsWith('0')) {
+            edt.replace(0, edt.length, "1")
+        }
+
+        adsDetail.ads.targetCount = edt.toString().toInt()
     }
 }

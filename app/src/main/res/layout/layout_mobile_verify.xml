@@ -28,7 +28,7 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/hint_mobile"
                 android:inputType="number"
-                android:maxLength="13"
+                android:maxLength="11"
                 android:text="@={data.mobile}"/>
 
         </android.support.design.widget.TextInputLayout>
@@ -58,7 +58,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
-                android:enabled="@{data.mobile.length() == 13 &amp;&amp; data.resendCountdown == -1}"
+                android:enabled="@{data.mobile.length() == 11 &amp;&amp; data.resendCountdown == -1}"
                 android:onClick="@{data::onSendVerifyCode}"
                 android:text="@{data.resendCountdown == -1 ? @string/name_send_verification_code : data.resendCountdown + @string/suffix_resend_verification_code}"
                 android:textColor="@android:color/white"

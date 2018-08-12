@@ -9,8 +9,8 @@
             type="com.yousong.yousong.model.local.AdsDetail"/>
 
         <variable
-            name="holder"
-            type="com.yousong.yousong.operator.OnCreateAdsOperator"/>
+            name="viewModel"
+            type="com.yousong.yousong.architecture.viewmodel.CreateAdsViewModel"/>
 
         <import type="com.yousong.yousong.architecture.databinding.BindingTypeConverts"/>
 
@@ -31,7 +31,7 @@
 
         <EditText
             android:layout_marginStart="@dimen/activity_horizontal_margin"
-            android:afterTextChanged="@{holder::onMoneyChanged}"
+            android:afterTextChanged="@{viewModel::onMoneyChanged}"
             android:imeOptions="actionDone"
             android:inputType="numberDecimal"
             android:maxLength="6"
@@ -49,7 +49,7 @@
 
         <EditText
             android:layout_marginStart="@dimen/activity_horizontal_margin"
-            android:afterTextChanged="@{holder::onTargetCountChanged}"
+            android:afterTextChanged="@{viewModel::onTargetCountChanged}"
             android:imeOptions="actionDone"
             android:inputType="number"
             android:maxLength="9"

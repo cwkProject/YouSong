@@ -10,10 +10,7 @@ import com.yousong.yousong.global.LoginStatus
 import com.yousong.yousong.value.ValueConst
 import com.yousong.yousong.work.common.start
 import com.yousong.yousong.work.user.UserPersonalAuthWork
-import org.jetbrains.anko.alert
-import org.jetbrains.anko.okButton
-import org.jetbrains.anko.progressDialog
-import org.jetbrains.anko.toast
+import org.jetbrains.anko.indeterminateProgressDialog
 
 /**
  * 个人认证数据模型
@@ -70,7 +67,7 @@ class PersonalAuthViewModel : AuthViewModel() {
         submitable = when {
             realName.isBlank() -> false
             idCard.length < 18 -> false
-            mobile.length < 13 -> false
+            mobile.length < 11 -> false
             verifyCode.length < 6 -> false
             else -> true
         }
@@ -80,25 +77,13 @@ class PersonalAuthViewModel : AuthViewModel() {
      * 提交审核
      */
     fun onSubmit(view: View) {
-        val dialog = view.context.progressDialog(R.string.prompt_submitting) {
+        val dialog = view.context.indeterminateProgressDialog(R.string.prompt_submitting) {
             setCancelable(false)
         }
 
         UserPersonalAuthWork().start(realName, idCard, mobile, verifyCode) {
             dialog.cancel()
-            if (it.isSuccess) {
-                view.context.alert(R.string.success_submit) {
-                    okButton {
-                        submitResult.value = true
-                    }
-
-                    onCancelled {
-                        submitResult.value = true
-                    }
-                }.show()
-            } else {
-                view.context.toast(R.string.failed_submit)
-            }
+            submitResult.value = it.isSuccess
         }
     }
 }

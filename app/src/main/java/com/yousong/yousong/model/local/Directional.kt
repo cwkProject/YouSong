@@ -99,7 +99,7 @@ class Directional : BaseObservable() {
     /**
      * 城市代码
      */
-    val cityIds: MutableList<Int> = ObservableArrayList()
+    val cityIds = ObservableArrayList<Int>()
 
     /**
      * 性别选择器

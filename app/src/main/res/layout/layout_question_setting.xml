@@ -9,8 +9,8 @@
             type="com.yousong.yousong.model.local.AdsDetail"/>
 
         <variable
-            name="holder"
-            type="com.yousong.yousong.operator.OnCreateAdsOperator"/>
+            name="viewModel"
+            type="com.yousong.yousong.architecture.viewmodel.CreateAdsViewModel"/>
 
     </data>
 
@@ -95,7 +95,7 @@
                 android:drawablePadding="@dimen/layout_default_spacing"
                 android:drawableStart="@drawable/ic_add_green_a400_24dp"
                 android:gravity="center_vertical"
-                android:onClick="@{holder::onAddOptionClick}"
+                android:onClick="@{viewModel::onAddOptionClick}"
                 android:text="@string/name_add_option"
                 app:goneUnless="@{data.question.option.size() &lt; 4}"/>
 
@@ -106,7 +106,7 @@
                 android:drawablePadding="@dimen/layout_default_spacing"
                 android:drawableStart="@drawable/ic_remove_red_a400_24dp"
                 android:gravity="center_vertical"
-                android:onClick="@{holder::onRemoveOptionClick}"
+                android:onClick="@{viewModel::onRemoveOptionClick}"
                 android:text="@string/name_remove_option"
                 app:goneUnless="@{data.question.option.size() > 2}"/>
 

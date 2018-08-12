@@ -60,7 +60,7 @@
                 <include
                     layout="@layout/layout_question_setting"
                     app:data="@{data}"
-                    app:holder="@{holder}"/>
+                    app:viewModel="@{viewModel}"/>
 
                 <View style="@style/DivideStyle"/>
 
@@ -95,7 +95,7 @@
                 <include
                     layout="@layout/layout_money_setting"
                     app:data="@{data}"
-                    app:holder="@{holder}"/>
+                    app:viewModel="@{viewModel}"/>
 
                 <View style="@style/DivideStyle"/>
 
@@ -115,7 +115,7 @@
                 <android.support.v7.widget.AppCompatButton
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:onClick="@{holder::onSubmit}"
+                    android:onClick="@{viewModel::onSubmit}"
                     android:text="@string/name_submit_review"
                     android:textColor="@android:color/white"
                     app:backgroundTint="@color/red_500"/>

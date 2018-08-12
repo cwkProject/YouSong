@@ -53,7 +53,7 @@ open class AuthViewModel : MobileVerifyViewModel() {
         // 仅最后一位允许为X，且把小写转为大写
         when {
             posX in 0..16 -> edt.delete(posX, edt.length)
-            posX == 17 && edt[17] == 'x' -> edt.replace(posX, posX, "X")
+            posX == 17 && edt[17] == 'x' -> edt.replace(posX, edt.length, "X")
         }
 
         idCard = edt.toString()

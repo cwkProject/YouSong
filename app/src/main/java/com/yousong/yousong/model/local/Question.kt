@@ -46,7 +46,7 @@ class Question : BaseObservable() {
     /**
      * 选项
      */
-    val option: MutableList<Option> = ObservableArrayList()
+    val option = ObservableArrayList<Option>()
 
     /**
      * 重试次数选择器

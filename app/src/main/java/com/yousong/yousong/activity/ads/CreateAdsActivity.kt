@@ -2,6 +2,7 @@ package com.yousong.yousong.activity.ads
 
 import android.Manifest
 import android.app.Activity
+import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -9,22 +10,19 @@ import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
-import android.text.Editable
 import android.view.View
 import com.yousong.yousong.R
 import com.yousong.yousong.activity.common.BaseActivity
 import com.yousong.yousong.architecture.viewmodel.CreateAdsViewModel
 import com.yousong.yousong.databinding.ActivityCreateAdsBinding
-import com.yousong.yousong.model.local.Option
 import com.yousong.yousong.operator.OnCreateAdsOperator
 import com.yousong.yousong.util.CheckAndroidMPermission
 import com.yousong.yousong.util.FileUtil
 import org.cwk.android.library.util.ToolbarInitialize.initToolbar
 import org.jetbrains.anko.alert
-import org.jetbrains.anko.design.longSnackbar
+import org.jetbrains.anko.longToast
 import org.jetbrains.anko.okButton
 import java.io.File
-import java.math.BigDecimal
 
 
 /**
@@ -75,6 +73,12 @@ class CreateAdsActivity : BaseActivity(), OnCreateAdsOperator {
     override fun onInitView(savedInstanceState: Bundle?) {
         initToolbar(this, R.string.title_publish_ads)
 
+        viewModel.submitResult.observe(this, Observer {
+            if (it != null) {
+                onShowSubmit(it)
+            }
+        })
+
         binding.data = viewModel.adsDetail
         binding.viewModel = viewModel
         binding.holder = this
@@ -88,65 +92,26 @@ class CreateAdsActivity : BaseActivity(), OnCreateAdsOperator {
         openGallery(POSTER_SELECT_REQUEST_CODE)
     }
 
-    override fun onAddOptionClick(view: View) {
-        val options = viewModel.adsDetail.question.option
-        if (options.size < 4) {
-            options.add(Option(options.size + 1))
-            binding.invalidateAll()
-        }
-    }
-
-    override fun onRemoveOptionClick(view: View) {
-        val options = viewModel.adsDetail.question.option
-        if (options.size > 2) {
-            options.removeAt(options.size - 1).takeIf { it.answer }?.let {
-                options[0].answer = true
-            }
-            binding.invalidateAll()
-        }
-    }
-
-    override fun onMoneyChanged(edt: Editable) {
-        val posDot = edt.indexOf('.')
-
-        // 最小值1，保留两位小数
-        when {
-            edt.isEmpty() || posDot == 0 || edt.startsWith('0') -> edt.replace(0, edt.length, "1")
-            posDot == edt.length - 1 -> return
-            posDot > 0 && edt.length - posDot - 1 > 2 -> edt.delete(posDot + 3, edt.length)
-        }
-
-        viewModel.adsDetail.ads.userUnitPrice = BigDecimal(edt.toString())
-    }
-
-    override fun onTargetCountChanged(edt: Editable) {
-        // 最小值1
-        if (edt.isEmpty() || edt.startsWith('0')) {
-            edt.replace(0, edt.length, "1")
-        }
-
-        viewModel.adsDetail.ads.targetCount = edt.toString().toInt()
-    }
-
-    override fun onSubmit(view: View) {
-        viewModel.submit(this) { b ->
-            if (!isFinishing && !isDestroyed) {
-                if (b) {
-                    alert(R.string.success_create_ads) {
-                        okButton {
-                            finish()
-                        }
-
-                        onCancelled {
-                            finish()
-                        }
-
-                        show()
-                    }
-                } else {
-                    longSnackbar(view, R.string.failed_create_ads)
+    /**
+     * 显示提交结果
+     *
+     * @param result 结果
+     */
+    private fun onShowSubmit(result: Boolean) {
+        if (result) {
+            alert(R.string.success_create_ads) {
+                okButton {
+                    finish()
                 }
+
+                onCancelled {
+                    finish()
+                }
+
+                show()
             }
+        } else {
+            longToast(R.string.failed_create_ads)
         }
     }
 
@@ -162,17 +127,6 @@ class CreateAdsActivity : BaseActivity(), OnCreateAdsOperator {
             }
 
             startActivityForResult(intent, requestCode)
-        }
-    }
-
-    /**
-     * 创建临时图片路径
-     *
-     * @return 生成的路径
-     */
-    private fun createImagePath(): String {
-        return FileUtil.newTempJpegPath().apply {
-            viewModel.coverTempPath = this
         }
     }
 
@@ -193,7 +147,7 @@ class CreateAdsActivity : BaseActivity(), OnCreateAdsOperator {
         intent.putExtra("aspectY", 10)
         intent.putExtra("outputX", COVER_WIDTH)
         intent.putExtra("outputY", COVER_HEIGHT)
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(File(createImagePath())))
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(File(viewModel.createImagePath())))
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
