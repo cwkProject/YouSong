@@ -76,7 +76,7 @@ dependencies {
     implementation 'com.android.support:support-vector-drawable:27.1.1'
     implementation 'com.android.support:gridlayout-v7:27.1.1'
 
-    implementation 'org.cwk.android.library:android-basic-library:0.9.7'
+    implementation 'org.cwk.android.library:android-basic-library:0.9.8'
     implementation 'com.github.bumptech.glide:okhttp3-integration:4.7.1'
     implementation 'io.reactivex.rxjava2:rxkotlin:2.1.0'
     implementation 'com.google.code.gson:gson:2.8.5'
