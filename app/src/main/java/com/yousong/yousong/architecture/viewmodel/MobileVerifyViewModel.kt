@@ -7,11 +7,10 @@ import android.databinding.Bindable
 import android.view.View
 import android.view.animation.LinearInterpolator
 import com.yousong.yousong.BR
-import com.yousong.yousong.R
+import com.yousong.yousong.architecture.livedata.SubmitResult
 import com.yousong.yousong.architecture.livedata.SubmitResultLiveData
 import com.yousong.yousong.work.common.start
 import com.yousong.yousong.work.user.UserSendMobileVerifyCodeWork
-import org.jetbrains.anko.toast
 
 /**
  * 手机号验证数据模型
@@ -71,13 +70,13 @@ open class MobileVerifyViewModel : ObservableViewModel() {
      * 发送验证码
      */
     fun onSendVerifyCode(view: View) {
-        startAnimator()
+        view.isClickable = false
         UserSendMobileVerifyCodeWork().start(mobile) {
+            view.isClickable = true
             if (it.isSuccess) {
-                view.context.toast(R.string.prompt_verify_code_send)
-            } else {
-                view.context.toast(R.string.failed_verify_code_send)
+                startAnimator()
             }
+            submitResult.value = SubmitResult(it.isSuccess, it.message, SubmitResult.LEVEL_TOAST)
         }
     }
 

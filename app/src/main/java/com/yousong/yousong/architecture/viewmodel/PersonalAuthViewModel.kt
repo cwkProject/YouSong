@@ -6,7 +6,6 @@ import android.view.View
 import com.yousong.yousong.BR
 import com.yousong.yousong.R
 import com.yousong.yousong.architecture.livedata.SubmitResult
-import com.yousong.yousong.architecture.livedata.SubmitResultLiveData
 import com.yousong.yousong.global.LoginStatus
 import com.yousong.yousong.value.ValueConst
 import com.yousong.yousong.work.common.start
@@ -21,11 +20,6 @@ import org.jetbrains.anko.indeterminateProgressDialog
  * @since 1.0
  */
 class PersonalAuthViewModel : AuthViewModel() {
-
-    /**
-     * 提交结果
-     */
-    val submitResult = SubmitResultLiveData()
 
     /**
      * 认证状态
@@ -84,7 +78,8 @@ class PersonalAuthViewModel : AuthViewModel() {
 
         UserPersonalAuthWork().start(realName, idCard, mobile, verifyCode) {
             dialog.cancel()
-            submitResult.value = SubmitResult(it.isSuccess, it.message)
+            submitResult.value = SubmitResult(it.isSuccess, it.message, if (it.isSuccess)
+                SubmitResult.LEVEL_ALERT_FINISH else SubmitResult.LEVEL_LONG_TOAST)
         }
     }
 }

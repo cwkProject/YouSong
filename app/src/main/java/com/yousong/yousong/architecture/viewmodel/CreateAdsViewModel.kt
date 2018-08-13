@@ -1,6 +1,5 @@
 package com.yousong.yousong.architecture.viewmodel
 
-import android.arch.lifecycle.MutableLiveData
 import android.content.Context
 import android.databinding.Bindable
 import android.graphics.Bitmap
@@ -8,6 +7,8 @@ import android.text.Editable
 import android.view.View
 import com.yousong.yousong.BR
 import com.yousong.yousong.R
+import com.yousong.yousong.architecture.livedata.SubmitResult
+import com.yousong.yousong.architecture.livedata.SubmitResultLiveData
 import com.yousong.yousong.model.local.AdsDetail
 import com.yousong.yousong.model.local.Option
 import com.yousong.yousong.third.GlideApp
@@ -40,7 +41,7 @@ class CreateAdsViewModel : ObservableViewModel() {
     /**
      * 提交结果
      */
-    val submitResult = MutableLiveData<Boolean>()
+    val submitResult = SubmitResultLiveData()
 
     /**
      * 广告详情
@@ -109,7 +110,8 @@ class CreateAdsViewModel : ObservableViewModel() {
 
         AdsCreateWork().start(adsDetail) {
             dialog.cancel()
-            submitResult.value = it.isSuccess
+            submitResult.value = SubmitResult(it.isSuccess, it.message, if (it.isSuccess)
+                SubmitResult.LEVEL_ALERT_FINISH else SubmitResult.LEVEL_LONG_TOAST)
         }
     }
 
