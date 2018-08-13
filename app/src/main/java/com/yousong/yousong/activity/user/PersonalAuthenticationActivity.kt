@@ -7,10 +7,8 @@ import com.yousong.yousong.R
 import com.yousong.yousong.activity.common.BaseActivity
 import com.yousong.yousong.architecture.viewmodel.PersonalAuthViewModel
 import com.yousong.yousong.databinding.ActivityPersonalAuthenticationBinding
+import com.yousong.yousong.function.SubmitResultUtil
 import org.cwk.android.library.util.ToolbarInitialize.initToolbar
-import org.jetbrains.anko.alert
-import org.jetbrains.anko.longToast
-import org.jetbrains.anko.okButton
 
 /**
  * 个人认证页面
@@ -42,31 +40,10 @@ class PersonalAuthenticationActivity : BaseActivity() {
 
         viewModel.submitResult.observe(this, Observer {
             if (it != null) {
-                onShowSubmit(it)
+                SubmitResultUtil.show(this, it)
             }
         })
 
         binding.data = viewModel
-    }
-
-    /**
-     * 显示提交结果
-     *
-     * @param result 结果
-     */
-    private fun onShowSubmit(result: Boolean) {
-        if (result) {
-            alert(R.string.success_submit) {
-                okButton {
-                    finish()
-                }
-
-                onCancelled {
-                    finish()
-                }
-            }.show()
-        } else {
-            longToast(R.string.failed_submit)
-        }
     }
 }

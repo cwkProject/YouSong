@@ -15,13 +15,11 @@ import com.yousong.yousong.R
 import com.yousong.yousong.activity.common.BaseActivity
 import com.yousong.yousong.architecture.viewmodel.CreateAdsViewModel
 import com.yousong.yousong.databinding.ActivityCreateAdsBinding
+import com.yousong.yousong.function.SubmitResultUtil
 import com.yousong.yousong.operator.OnCreateAdsOperator
 import com.yousong.yousong.util.CheckAndroidMPermission
 import com.yousong.yousong.util.FileUtil
 import org.cwk.android.library.util.ToolbarInitialize.initToolbar
-import org.jetbrains.anko.alert
-import org.jetbrains.anko.longToast
-import org.jetbrains.anko.okButton
 import java.io.File
 
 
@@ -75,7 +73,7 @@ class CreateAdsActivity : BaseActivity(), OnCreateAdsOperator {
 
         viewModel.submitResult.observe(this, Observer {
             if (it != null) {
-                onShowSubmit(it)
+                SubmitResultUtil.show(this, it)
             }
         })
 
@@ -90,29 +88,6 @@ class CreateAdsActivity : BaseActivity(), OnCreateAdsOperator {
 
     override fun onPosterClick(view: View) {
         openGallery(POSTER_SELECT_REQUEST_CODE)
-    }
-
-    /**
-     * 显示提交结果
-     *
-     * @param result 结果
-     */
-    private fun onShowSubmit(result: Boolean) {
-        if (result) {
-            alert(R.string.success_create_ads) {
-                okButton {
-                    finish()
-                }
-
-                onCancelled {
-                    finish()
-                }
-
-                show()
-            }
-        } else {
-            longToast(R.string.failed_create_ads)
-        }
     }
 
     /**

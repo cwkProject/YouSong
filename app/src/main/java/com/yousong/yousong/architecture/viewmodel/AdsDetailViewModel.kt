@@ -4,15 +4,14 @@ import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import android.view.View
 import com.yousong.yousong.R
+import com.yousong.yousong.architecture.livedata.SubmitResult
+import com.yousong.yousong.architecture.livedata.SubmitResultLiveData
 import com.yousong.yousong.model.local.AdsDetail
 import com.yousong.yousong.operator.OnAdsDetailOperator
 import com.yousong.yousong.work.ads.AdsAnswerWork
 import com.yousong.yousong.work.ads.AdsGetDetailWork
 import com.yousong.yousong.work.common.start
-import org.jetbrains.anko.alert
 import org.jetbrains.anko.indeterminateProgressDialog
-import org.jetbrains.anko.okButton
-import org.jetbrains.anko.toast
 
 /**
  * 广告详情页面数据模型
@@ -22,6 +21,11 @@ import org.jetbrains.anko.toast
  * @since 1.0
  */
 class AdsDetailViewModel : ViewModel(), OnAdsDetailOperator {
+
+    /**
+     * 提交结果
+     */
+    val submitResult = SubmitResultLiveData()
 
     /**
      * 广告详情
@@ -55,21 +59,9 @@ class AdsDetailViewModel : ViewModel(), OnAdsDetailOperator {
 
                 AdsAnswerWork().start(detail.ads.id, it.order) {
                     dialog.cancel()
-                    if (it.isSuccess) {
-                        val resId = when (it.result) {
-                            1 -> R.string.success_answer
-                            2 -> R.string.error_answer_again
-                            3 -> R.string.error_answer
-                            else -> R.string.error_answer
-                        }
 
-                        view.context.alert(resId) {
-                            okButton {
-                            }
-                        }.show()
-                    } else {
-                        view.context.toast(R.string.failed_submit)
-                    }
+                    submitResult.value = SubmitResult(it.isSuccess, it.message, if (it.isSuccess)
+                        SubmitResult.LEVEL_ALERT_WITH_OK else SubmitResult.LEVEL_TOAST)
                 }
             }
         }
