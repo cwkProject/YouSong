@@ -11,6 +11,7 @@
 
     <style name="AppTheme.SplashTheme">
         <item name="android:windowFullscreen">true</item>
+        <item name="android:background">@mipmap/splash_background</item>
     </style>
 
     <style name="MeTextStyle">
