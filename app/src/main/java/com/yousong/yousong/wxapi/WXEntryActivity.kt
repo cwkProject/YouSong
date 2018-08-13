@@ -127,7 +127,7 @@ class WXEntryActivity : BaseActivity(), IWXAPIEventHandler {
                             finish()
                         }
                     } else {
-                        loginFailed()
+                        loginFailed(it.message)
                     }
                 }
             } else {

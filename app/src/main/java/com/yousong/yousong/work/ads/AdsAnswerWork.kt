@@ -1,8 +1,10 @@
 package com.yousong.yousong.work.ads
 
+import com.yousong.yousong.R
 import com.yousong.yousong.value.ValueUrl
 import com.yousong.yousong.work.common.BaseSimpleWorkModel
 import org.cwk.android.library.annotation.Post
+import org.cwk.android.library.global.Global
 import org.json.JSONObject
 
 /**
@@ -22,4 +24,15 @@ class AdsAnswerWork : BaseSimpleWorkModel<Any, Int>() {
 
     @Post
     override fun onTaskUri() = ValueUrl.URL_ADS_ANSWER
+
+    override fun onRequestSuccessMessage(handleResult: JSONObject): String {
+        val resId = when (mData.result) {
+            1 -> R.string.success_answer
+            2 -> R.string.error_answer_again
+            3 -> R.string.error_answer
+            else -> R.string.error_answer
+        }
+
+        return Global.getApplication().getString(resId)
+    }
 }

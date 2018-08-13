@@ -1,9 +1,11 @@
 package com.yousong.yousong.work.third
 
+import com.yousong.yousong.R
 import com.yousong.yousong.common.jsonToObject
 import com.yousong.yousong.model.server.WxResponse
 import com.yousong.yousong.value.ValueUrl
 import org.cwk.android.library.data.JsonDataModel
+import org.cwk.android.library.global.Global
 import org.cwk.android.library.work.StandardWorkModel
 import org.json.JSONObject
 
@@ -22,16 +24,28 @@ class WXUserInfoWork : StandardWorkModel<String, JsonDataModel<String, WxRespons
                 dataMap["openid"] = parameters[1]
             }
 
-            override fun onRequestSuccess(handleResult: JSONObject?): WxResponse? =
+            override fun onRequestSuccess(handleResult: JSONObject): WxResponse? =
                     handleResult.toString().jsonToObject()
 
             override fun onRequestResult(handleResult: JSONObject): Boolean =
                     !handleResult.has("errcode")
 
-            override fun onRequestMessage(result: Boolean, handleResult: JSONObject): String? =
-                    if (result) null else handleResult.optString("errmsg")
+            override fun onRequestFailedMessage(handleResult: JSONObject): String? =
+                    handleResult.optString("errmsg")
         }
     }
 
     override fun onTaskUri() = ValueUrl.URL_WX_USER_INFO
+
+    override fun onParseFailed(): String {
+        return Global.getApplication().getString(R.string.error_network_request)
+    }
+
+    override fun onNetworkRequestFailed(): String {
+        return Global.getApplication().getString(R.string.error_network_request)
+    }
+
+    override fun onNetworkError(): String {
+        return Global.getApplication().getString(R.string.error_network)
+    }
 }

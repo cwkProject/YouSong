@@ -1,6 +1,8 @@
 package com.yousong.yousong.work.common
 
+import com.yousong.yousong.R
 import com.yousong.yousong.global.AppConfig
+import org.cwk.android.library.global.Global
 import org.cwk.android.library.network.factory.CommunicationBuilder
 import org.cwk.android.library.work.SimpleWorkModel
 
@@ -29,6 +31,28 @@ abstract class BaseSimpleWorkModel<Parameters, Result> : SimpleWorkModel<Paramet
         super.onCreateCommunication(builder)
         AppConfig.token?.let {
             builder.addHeader("Authorization", "bearer $it")
+        }
+    }
+
+    override fun onParseFailed(): String? = ERROR_NETWORK_REQUEST
+
+    override fun onNetworkRequestFailed(): String? = ERROR_NETWORK_REQUEST
+
+    override fun onNetworkError(): String? = ERROR_NETWORK
+
+    companion object {
+        /**
+         * 网络请求失败信息
+         */
+        private val ERROR_NETWORK_REQUEST by lazy {
+            Global.getApplication().getString(R.string.error_network_request)
+        }
+
+        /**
+         * 网络连接失败信息
+         */
+        private val ERROR_NETWORK by lazy {
+            Global.getApplication().getString(R.string.error_network)
         }
     }
 }

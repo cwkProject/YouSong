@@ -1,7 +1,9 @@
 package com.yousong.yousong.work.user
 
+import com.yousong.yousong.R
 import com.yousong.yousong.value.ValueUrl
 import com.yousong.yousong.work.common.BaseSimpleWorkModel
+import org.cwk.android.library.global.Global
 import org.json.JSONObject
 
 /**
@@ -20,4 +22,7 @@ class UserSendMobileVerifyCodeWork : BaseSimpleWorkModel<String, Unit>() {
     override fun onSuccessExtract(jsonResult: JSONObject) = Unit
 
     override fun onTaskUri() = ValueUrl.URL_USER_GET_MOBILE_VERIFY_CODE
+
+    override fun onRequestSuccessMessage(handleResult: JSONObject): String =
+            Global.getApplication().getString(R.string.success_verify_code_send)
 }

@@ -1,8 +1,10 @@
 package com.yousong.yousong.work.user
 
+import com.yousong.yousong.R
 import com.yousong.yousong.value.ValueUrl
 import com.yousong.yousong.work.common.BaseSimpleWorkModel
 import org.cwk.android.library.annotation.Post
+import org.cwk.android.library.global.Global
 import org.json.JSONObject
 
 /**
@@ -24,4 +26,7 @@ class UserPersonalAuthWork : BaseSimpleWorkModel<String, Unit>() {
 
     @Post
     override fun onTaskUri() = ValueUrl.URL_USER_PERSONAL_AUTH
+
+    override fun onRequestSuccessMessage(handleResult: JSONObject): String =
+            Global.getApplication().getString(R.string.success_submit)
 }

@@ -1,11 +1,12 @@
 package com.yousong.yousong.architecture.viewmodel
 
-import android.arch.lifecycle.MutableLiveData
 import android.databinding.Bindable
 import android.databinding.Observable
 import android.view.View
 import com.yousong.yousong.BR
 import com.yousong.yousong.R
+import com.yousong.yousong.architecture.livedata.SubmitResult
+import com.yousong.yousong.architecture.livedata.SubmitResultLiveData
 import com.yousong.yousong.global.LoginStatus
 import com.yousong.yousong.value.ValueConst
 import com.yousong.yousong.work.common.start
@@ -24,7 +25,7 @@ class PersonalAuthViewModel : AuthViewModel() {
     /**
      * 提交结果
      */
-    val submitResult = MutableLiveData<Boolean>()
+    val submitResult = SubmitResultLiveData()
 
     /**
      * 认证状态
@@ -83,7 +84,7 @@ class PersonalAuthViewModel : AuthViewModel() {
 
         UserPersonalAuthWork().start(realName, idCard, mobile, verifyCode) {
             dialog.cancel()
-            submitResult.value = it.isSuccess
+            submitResult.value = SubmitResult(it.isSuccess, it.message)
         }
     }
 }

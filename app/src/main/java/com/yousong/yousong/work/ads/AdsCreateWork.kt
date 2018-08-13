@@ -1,10 +1,12 @@
 package com.yousong.yousong.work.ads
 
+import com.yousong.yousong.R
 import com.yousong.yousong.common.toJson
 import com.yousong.yousong.model.local.AdsDetail
 import com.yousong.yousong.value.ValueUrl
 import com.yousong.yousong.work.common.BaseSimpleWorkModel
 import org.cwk.android.library.annotation.Post
+import org.cwk.android.library.global.Global
 import org.json.JSONObject
 
 /**
@@ -23,4 +25,8 @@ class AdsCreateWork : BaseSimpleWorkModel<AdsDetail, String>() {
 
     @Post
     override fun onTaskUri() = ValueUrl.URL_ADS_CREATE
+
+    override fun onRequestSuccessMessage(handleResult: JSONObject): String {
+        return Global.getApplication().getString(R.string.success_create_ads)
+    }
 }

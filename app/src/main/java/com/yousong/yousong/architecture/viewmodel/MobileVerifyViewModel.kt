@@ -8,6 +8,7 @@ import android.view.View
 import android.view.animation.LinearInterpolator
 import com.yousong.yousong.BR
 import com.yousong.yousong.R
+import com.yousong.yousong.architecture.livedata.SubmitResultLiveData
 import com.yousong.yousong.work.common.start
 import com.yousong.yousong.work.user.UserSendMobileVerifyCodeWork
 import org.jetbrains.anko.toast
@@ -20,6 +21,11 @@ import org.jetbrains.anko.toast
  * @since 1.0
  */
 open class MobileVerifyViewModel : ObservableViewModel() {
+
+    /**
+     * 提交结果
+     */
+    val submitResult = SubmitResultLiveData()
 
     /**
      * 手机号

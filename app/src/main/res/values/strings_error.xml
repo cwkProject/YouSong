@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- 错误信息 -->
 <resources>
+
+    <string name="error_network">网络连接失败，当前网络不可用</string>
+    <string name="error_network_request">网络请求失败，服务器错误</string>
+
     <string name="error_answer_again">回答错误，请重试</string>
     <string name="error_answer">回答错误</string>
+
 </resources>

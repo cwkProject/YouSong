@@ -12,6 +12,4 @@
 
     <string name="failed_submit">提交失败，请检查网络并重试</string>
 
-    <string name="failed_verify_code_send">发送验证码失败，请检查手机号或网络状况</string>
-
 </resources>
