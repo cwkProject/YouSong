@@ -11,9 +11,9 @@ import com.yousong.yousong.activity.common.BaseActivity
  * @version 1.0 2018/7/1
  * @since 1.0
  */
-class EnterpriseCertificationActivity : BaseActivity() {
+class CompanyCertificationActivity : BaseActivity() {
 
-    override val rootViewId = R.layout.activity_enterprise_certification
+    override val rootViewId = R.layout.activity_company_certification
 
     override fun onInitView(savedInstanceState: Bundle?) {
     }

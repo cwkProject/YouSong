@@ -28,13 +28,6 @@
             app:defaultSrc="@{@drawable/placeholder_cover}"
             app:imageUrl="@{data.cover}"/>
 
-        <ProgressBar
-            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:max="@{data.totalAmount}"
-            android:progress="@{data.totalAmount.subtract(data.balance)}"/>
-
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -43,15 +36,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
-                android:text="@{@string/label_total_amount + data.totalAmount}"
-                android:textSize="@dimen/text_size_small"/>
+                android:text="@{data.name}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
-                android:text="@{@string/label_over + data.balance}"
-                android:textSize="@dimen/text_size_small"/>
+                android:text="@{@string/label_total_amount + data.totalAmount}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
 
         </FrameLayout>
 

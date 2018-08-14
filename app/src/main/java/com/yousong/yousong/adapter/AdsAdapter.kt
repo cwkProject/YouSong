@@ -88,43 +88,54 @@ class AdsAdapter : MultipleRecyclerViewAdapter() {
             playControl = {}
         }
     }
+}
+
+/**
+ * 轮播控件管理器
+ *
+ * @author 超悟空
+ * @version 1.0 2018/6/28
+ * @since 1.0
+ */
+class BannerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    /**
+     * 轮播控件
+     */
+    val banner = itemView as BGABanner
 
     /**
-     * 轮播控件管理器
+     * 播放开关监听器
      */
-    class BannerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        /**
-         * 轮播控件
-         */
-        val banner = itemView as BGABanner
-
-        /**
-         * 播放开关监听器
-         */
-        var playControl: (onOff: Boolean) -> Unit = {
-            if (it) {
-                banner.startAutoPlay()
-            } else {
-                banner.stopAutoPlay()
-            }
-        }
-
-        init {
-            banner.setAdapter { _, imageView, model, _ ->
-                GlideApp.with(imageView.context)
-                        .load(model.asOther<BannerAdsItem>()?.imgUrl)
-                        .centerCrop()
-                        .dontAnimate()
-                        .into(itemView as ImageView)
-            }
+    var playControl: (onOff: Boolean) -> Unit = {
+        if (it) {
+            banner.startAutoPlay()
+        } else {
+            banner.stopAutoPlay()
         }
     }
 
-    class AdViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
-        /**
-         * 绑定器
-         */
-        val binding = ItemAdsBinding.bind(itemView)
+    init {
+        banner.setAdapter { _, imageView, model, _ ->
+            GlideApp.with(imageView.context)
+                    .load(model.asOther<BannerAdsItem>()?.imgUrl)
+                    .centerCrop()
+                    .dontAnimate()
+                    .into(itemView as ImageView)
+        }
     }
+}
+
+/**
+ * 广告列表项管理器
+ *
+ * @author 超悟空
+ * @version 1.0 2018/6/28
+ * @since 1.0
+ */
+class AdViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
+    /**
+     * 绑定器
+     */
+    val binding = ItemAdsBinding.bind(itemView)
 }

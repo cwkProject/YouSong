@@ -2,8 +2,8 @@ package com.yousong.yousong.fragment.ads
 
 import android.os.Bundle
 import android.support.annotation.CallSuper
+import android.support.v7.widget.RecyclerView
 import com.yousong.yousong.R
-import com.yousong.yousong.adapter.AdsAdapter
 import com.yousong.yousong.fragment.common.BaseFragment
 import kotlinx.android.synthetic.main.fragment_ads_list.*
 
@@ -19,7 +19,7 @@ abstract class BaseAdsListFragment : BaseFragment() {
     /**
      * 列表适配器
      */
-    open protected val adapter = AdsAdapter()
+    abstract protected val adapter: RecyclerView.Adapter<*>
 
     override val rootViewId = R.layout.fragment_ads_list
 

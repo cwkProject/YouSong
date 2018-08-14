@@ -3,6 +3,7 @@ package com.yousong.yousong.fragment.ads
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
+import com.yousong.yousong.adapter.AdsAdapter
 import com.yousong.yousong.architecture.viewmodel.MyAdsViewModel
 import com.yousong.yousong.common.plusAssign
 
@@ -14,6 +15,8 @@ import com.yousong.yousong.common.plusAssign
  * @since 1.0
  */
 class PublishedAdsFragment : BaseAdsListFragment() {
+
+    override val adapter = AdsAdapter()
 
     /**
      * 广告数据模型

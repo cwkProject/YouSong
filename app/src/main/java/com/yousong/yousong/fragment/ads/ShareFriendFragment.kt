@@ -1,6 +1,7 @@
 package com.yousong.yousong.fragment.ads
 
 import android.os.Bundle
+import com.yousong.yousong.adapter.AdsAdapter
 
 /**
  * 分享好友页面
@@ -11,6 +12,7 @@ import android.os.Bundle
  */
 class ShareFriendFragment : BaseAdsListFragment(){
 
+    override val adapter = AdsAdapter()
 
     override fun onInitData(savedInstanceState: Bundle?) {
 

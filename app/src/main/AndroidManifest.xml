@@ -60,7 +60,7 @@
             android:windowSoftInputMode="stateAlwaysVisible"/>
         <activity android:name=".activity.ads.MyAdsActivity"/>
         <activity android:name=".activity.user.PersonalAuthenticationActivity"/>
-        <activity android:name=".activity.user.EnterpriseCertificationActivity"/>
+        <activity android:name=".activity.user.CompanyCertificationActivity"/>
         <activity android:name=".activity.ads.CreateAdsActivity"/>
         <activity android:name=".activity.user.RechargeActivity"/>
         <activity

@@ -5,6 +5,7 @@ import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.util.Log
 import com.yousong.yousong.activity.ads.AdsDetailActivity
+import com.yousong.yousong.adapter.AdsAdapter
 import com.yousong.yousong.architecture.viewmodel.AdsViewModel
 import com.yousong.yousong.common.plusAssign
 import com.yousong.yousong.fragment.ads.BaseAdsListFragment
@@ -20,6 +21,8 @@ import org.jetbrains.anko.support.v4.startActivity
  */
 class AdsFragment : BaseAdsListFragment() {
 
+    override val adapter = AdsAdapter()
+
     /**
      * 广告数据模型
      */
@@ -32,8 +35,8 @@ class AdsFragment : BaseAdsListFragment() {
                 .observe(this, Observer {
                     it?.let {
                         adapter.beginTransaction()
-                        adapter.topList.clear()
                         adapter.adsList.clear()
+                        adapter.topList.clear()
                         adapter.topList += it.first
                         adapter.adsList += it.second
                         adapter.commit()

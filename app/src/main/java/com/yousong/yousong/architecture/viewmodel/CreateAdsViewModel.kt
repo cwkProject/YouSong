@@ -130,7 +130,6 @@ class CreateAdsViewModel : ObservableViewModel() {
                 name.isBlank() -> R.string.hint_name_not_null
                 cover.isBlank() -> R.string.hint_cover_not_null
                 poster.isBlank() -> R.string.hint_poster_not_null
-              //  cityCode.isBlank() -> R.string.hint_not_location
                 else -> null
             }
         }
