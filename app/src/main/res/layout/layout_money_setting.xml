@@ -6,7 +6,7 @@
 
         <variable
             name="data"
-            type="com.yousong.yousong.model.local.AdsDetail"/>
+            type="com.yousong.yousong.model.local.Ads"/>
 
         <variable
             name="viewModel"
@@ -36,7 +36,7 @@
             android:inputType="numberDecimal"
             android:maxLength="6"
             android:maxLines="1"
-            android:text="@{data.ads.userUnitPrice}"
+            android:text="@{data.userUnitPrice}"
             app:layout_columnWeight="1"/>
 
         <TextView android:text="@string/name_yuan"/>
@@ -54,7 +54,7 @@
             android:inputType="number"
             android:maxLength="9"
             android:maxLines="1"
-            android:text="@{BindingTypeConverts.intToString(data.ads.targetCount)}"
+            android:text="@{BindingTypeConverts.intToString(data.targetCount)}"
             app:layout_columnWeight="1"/>
 
         <TextView android:text="@string/name_person"/>
@@ -65,7 +65,7 @@
 
         <TextView
             android:gravity="end"
-            android:text="@{BigDecimalBindingAdapters.bigDecimalMultiplyIntToString(data.ads.userUnitPrice , data.ads.targetCount)}"
+            android:text="@{BigDecimalBindingAdapters.bigDecimalMultiplyIntToString(data.userUnitPrice , data.targetCount)}"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             app:layout_columnWeight="1"/>
 

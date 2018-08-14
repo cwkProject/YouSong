@@ -3,7 +3,6 @@ package com.yousong.yousong.architecture.viewmodel
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import com.yousong.yousong.model.local.Ads
-import com.yousong.yousong.model.local.MyAds
 import com.yousong.yousong.value.ValueConst
 import com.yousong.yousong.work.ads.AdsPullMyAdsListWork
 import com.yousong.yousong.work.common.start
@@ -25,7 +24,7 @@ class MyAdsViewModel : ViewModel() {
     /**
      * 未发布的广告
      */
-    val unpublishedAds = MutableLiveData<List<MyAds>>()
+    val unpublishedAds = MutableLiveData<List<Ads>>()
 
     init {
         loadAds()
@@ -37,12 +36,12 @@ class MyAdsViewModel : ViewModel() {
     fun loadAds() {
         AdsPullMyAdsListWork().start {
             val result = if (it.isSuccess) {
-                it.result.partition { it.reviewState == ValueConst.PASS }
+                it.result.partition { it.publishState != ValueConst.PUBLISH_UNPUBLISH }
             } else {
                 Pair(null, null)
             }
 
-            publishedAds.value = result.first?.map { it.ads }
+            publishedAds.value = result.first
             unpublishedAds.value = result.second
         }
     }

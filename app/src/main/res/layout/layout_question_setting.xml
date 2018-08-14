@@ -6,7 +6,7 @@
 
         <variable
             name="data"
-            type="com.yousong.yousong.model.local.AdsDetail"/>
+            type="com.yousong.yousong.model.local.Question"/>
 
         <variable
             name="viewModel"
@@ -28,7 +28,7 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/hint_question"
                 android:maxLength="120"
-                android:text="@={data.question.content}"/>
+                android:text="@={data.content}"/>
 
         </android.support.design.widget.TextInputLayout>
 
@@ -50,7 +50,7 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
 
             <EditText
-                android:text="@={data.question.option[0].content}"
+                android:text="@={data.option[0].content}"
                 app:layout_gravity="fill_horizontal"/>
 
             <TextView
@@ -58,27 +58,27 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
 
             <EditText
-                android:text="@={data.question.option[1].content}"
+                android:text="@={data.option[1].content}"
                 app:layout_gravity="fill_horizontal"/>
 
             <TextView
                 android:text="@string/label_c"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                app:goneUnless="@{data.question.option.size() > 2}"/>
+                app:goneUnless="@{data.option.size() > 2}"/>
 
             <EditText
-                android:text="@={data.question.option[2].content}"
-                app:goneUnless="@{data.question.option.size() > 2}"
+                android:text="@={data.option[2].content}"
+                app:goneUnless="@{data.option.size() > 2}"
                 app:layout_gravity="fill_horizontal"/>
 
             <TextView
                 android:text="@string/label_d"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                app:goneUnless="@{data.question.option.size() > 3}"/>
+                app:goneUnless="@{data.option.size() > 3}"/>
 
             <EditText
-                android:text="@={data.question.option[3].content}"
-                app:goneUnless="@{data.question.option.size() > 3}"
+                android:text="@={data.option[3].content}"
+                app:goneUnless="@{data.option.size() > 3}"
                 app:layout_gravity="fill_horizontal"/>
 
         </android.support.v7.widget.GridLayout>
@@ -97,7 +97,7 @@
                 android:gravity="center_vertical"
                 android:onClick="@{viewModel::onAddOptionClick}"
                 android:text="@string/name_add_option"
-                app:goneUnless="@{data.question.option.size() &lt; 4}"/>
+                app:goneUnless="@{data.option.size() &lt; 4}"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -108,7 +108,7 @@
                 android:gravity="center_vertical"
                 android:onClick="@{viewModel::onRemoveOptionClick}"
                 android:text="@string/name_remove_option"
-                app:goneUnless="@{data.question.option.size() > 2}"/>
+                app:goneUnless="@{data.option.size() > 2}"/>
 
         </FrameLayout>
 
@@ -136,7 +136,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:checked="@={data.question.option[0].answer}"
+                    android:checked="@={data.option[0].answer}"
                     android:text="@string/name_a"/>
 
                 <android.support.v7.widget.AppCompatRadioButton
@@ -144,7 +144,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:checked="@={data.question.option[1].answer}"
+                    android:checked="@={data.option[1].answer}"
                     android:text="@string/name_b"/>
 
                 <android.support.v7.widget.AppCompatRadioButton
@@ -152,18 +152,18 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:checked="@={data.question.option[2].answer}"
+                    android:checked="@={data.option[2].answer}"
                     android:text="@string/name_c"
-                    app:invisibleUnless="@{data.question.option.size() > 2}"/>
+                    app:invisibleUnless="@{data.option.size() > 2}"/>
 
                 <android.support.v7.widget.AppCompatRadioButton
                     android:id="@+id/d_option"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:checked="@={data.question.option[3].answer}"
+                    android:checked="@={data.option[3].answer}"
                     android:text="@string/name_d"
-                    app:invisibleUnless="@{data.question.option.size() > 3}"/>
+                    app:invisibleUnless="@{data.option.size() > 3}"/>
 
             </RadioGroup>
 
@@ -187,21 +187,21 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:checked="@={data.question.retrySelector[0].checked}"
+                android:checked="@={data.retrySelector[0].checked}"
                 android:text="@string/name_not_retry"/>
 
             <android.support.v7.widget.AppCompatRadioButton
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:checked="@={data.question.retrySelector[1].checked}"
+                android:checked="@={data.retrySelector[1].checked}"
                 android:text="@string/name_once"/>
 
             <android.support.v7.widget.AppCompatRadioButton
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:checked="@={data.question.retrySelector[2].checked}"
+                android:checked="@={data.retrySelector[2].checked}"
                 android:text="@string/name_twice"/>
 
         </LinearLayout>

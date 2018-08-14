@@ -49,6 +49,16 @@ class Question : BaseObservable() {
     val option = ObservableArrayList<Option>()
 
     /**
+     * 当前是否可答题
+     */
+    @Bindable
+    var canAnswer = true
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.canAnswer)
+        }
+
+    /**
      * 重试次数选择器
      *
      * @property times 绑定的重试次数

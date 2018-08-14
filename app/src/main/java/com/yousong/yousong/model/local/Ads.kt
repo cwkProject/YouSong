@@ -4,6 +4,7 @@ import android.databinding.BaseObservable
 import android.databinding.Bindable
 import android.util.Log
 import com.yousong.yousong.BR
+import com.yousong.yousong.value.ValueConst
 import java.math.BigDecimal
 
 /**
@@ -45,16 +46,6 @@ class Ads(var id: String = "") : BaseObservable() {
         set(value) {
             field = value
             notifyPropertyChanged(BR.poster)
-        }
-
-    /**
-     * 城市码，代理商区分
-     */
-    @Bindable
-    var cityCode = ""
-        set(value) {
-            field = value
-            notifyPropertyChanged(BR.cityCode)
         }
 
     /**
@@ -126,5 +117,25 @@ class Ads(var id: String = "") : BaseObservable() {
         set(value) {
             field = value
             notifyPropertyChanged(BR.balance)
+        }
+
+    /**
+     * 广告发布状态
+     */
+    @Bindable
+    var publishState = ValueConst.PUBLISH_UNPUBLISH
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.publishState)
+        }
+
+    /**
+     * 广告审核状态
+     */
+    @Bindable
+    var reviewState = ValueConst.REVIEW_UNDER_REVIEW
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.reviewState)
         }
 }

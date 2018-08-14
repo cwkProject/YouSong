@@ -24,7 +24,7 @@ class PersonalAuthViewModel : AuthViewModel() {
     /**
      * 认证状态
      */
-    var state: Int = ValueConst.UNSUBMIT
+    var state: Int = ValueConst.REVIEW_UNSUBMITTED
 
     /**
      * 是否可以执行提交
@@ -41,8 +41,8 @@ class PersonalAuthViewModel : AuthViewModel() {
             realName = it.fullName
             idCard = it.idCard
             state = it.reviewState
-            editable = it.reviewState != ValueConst.PASS
-            visibility = it.reviewState != ValueConst.PASS
+            editable = it.reviewState != ValueConst.REVIEW_PASS
+            visibility = it.reviewState != ValueConst.REVIEW_PASS
         }
 
         // 属性改变监听器

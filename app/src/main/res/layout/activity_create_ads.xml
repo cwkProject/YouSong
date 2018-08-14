@@ -59,7 +59,7 @@
 
                 <include
                     layout="@layout/layout_question_setting"
-                    app:data="@{data}"
+                    app:data="@{data.question}"
                     app:viewModel="@{viewModel}"/>
 
                 <View style="@style/DivideStyle"/>
@@ -94,7 +94,7 @@
 
                 <include
                     layout="@layout/layout_money_setting"
-                    app:data="@{data}"
+                    app:data="@{data.ads}"
                     app:viewModel="@{viewModel}"/>
 
                 <View style="@style/DivideStyle"/>

@@ -42,20 +42,40 @@ public interface ValueConst {
     /**
      * 未提交
      */
-    int UNSUBMIT = 0;
+    int REVIEW_UNSUBMITTED = 0;
 
     /**
      * 审核中
      */
-    int UNDER_REVIEW = 1;
+    int REVIEW_UNDER_REVIEW = 1;
 
     /**
      * 已拒绝
      */
-    int REFUSE = 2;
+    int REVIEW_REFUSE = 2;
 
     /**
      * 已通过
      */
-    int PASS = 3;
+    int REVIEW_PASS = 3;
+
+    /**
+     * 未发布
+     */
+    int PUBLISH_UNPUBLISH = 1;
+
+    /**
+     * 已发布
+     */
+    int PUBLISH_PUBLISHED = 2;
+
+    /**
+     * 已完成
+     */
+    int PUBLISH_FINISH = 3;
+
+    /**
+     * 已取消
+     */
+    int PUBLISH_CANCEL = 4;
 }

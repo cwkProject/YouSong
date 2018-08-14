@@ -56,6 +56,7 @@ class AdsDetailTypeAdapter : TypeAdapter<AdsDetail>() {
         var ads: Ads? = null
         var question: Question? = null
         var directional: Directional? = null
+        var canAnswer = true
 
         `in`.apply {
             beginObject()
@@ -64,15 +65,15 @@ class AdsDetailTypeAdapter : TypeAdapter<AdsDetail>() {
                     "ads" -> ads = adsTypeAdapter.read(this)
                     "questionAnswer" -> question = questionTypeAdapter.read(this)
                     "adsDirectional" -> directional = directionalTypeAdapter.read(this)
+                    "canAnswer" -> canAnswer = nextInt() == ValueConst.SERVER_TRUE
                 }
             }
             endObject()
         }
 
-        return AdsDetail(ads
-                ?: Ads(), question
-                ?: Question(), directional
-                ?: Directional())
+        question = (question ?: Question()).apply { this.canAnswer = canAnswer }
+
+        return AdsDetail(ads ?: Ads(), question!!, directional ?: Directional())
     }
 }
 
@@ -89,17 +90,16 @@ class AdsTypeAdapter : TypeAdapter<Ads>() {
         out.apply {
             beginObject()
             name("name").value(value.name)
-            name("cityCode").value(value.cityCode)
             name("cover").value(value.cover)
             name("img").value(value.poster)
             name("adsType").value(if (value.type) 1 else 2)
             name("userCount").value(value.targetCount)
             name("perYellowBoyUser").value(value.userUnitPrice * BigDecimal(100))
             name("needInvoice").value(if (value.needInvoice) ValueConst.SERVER_TRUE else ValueConst.SERVER_FALSE)
-            name("adsId").value(value.id)
-            name("totalAsset").value(value.totalAmount * BigDecimal(100))
-            name("balance").value(value.balance * BigDecimal(100))
-            name("city").value(value.city)
+//            name("adsId").value(value.id)
+//            name("totalAsset").value(value.totalAmount * BigDecimal(100))
+//            name("balance").value(value.balance * BigDecimal(100))
+//            name("city").value(value.city)
             endObject()
         }
     }
@@ -112,7 +112,6 @@ class AdsTypeAdapter : TypeAdapter<Ads>() {
             while (hasNext()) {
                 when (nextName()) {
                     "name" -> ads.name = nextString()
-                    "cityCode" -> ads.cityCode = nextString()
                     "cover" -> ads.cover = nextString()
                     "img" -> ads.poster = nextString()
                     "adsType" -> ads.type = nextInt() == 1
@@ -123,6 +122,8 @@ class AdsTypeAdapter : TypeAdapter<Ads>() {
                     "totalAsset" -> ads.totalAmount = BigDecimal(nextInt()) / BigDecimal(100)
                     "balance" -> ads.balance = BigDecimal(nextInt()) / BigDecimal(100)
                     "city" -> ads.city = nextString()
+                    "publishState" -> ads.publishState = nextInt()
+                    "reviewState" -> ads.reviewState = nextInt()
                 }
             }
             endObject()
@@ -277,55 +278,5 @@ class OptionTypeAdapter : TypeAdapter<Option>() {
         }
 
         return answer
-    }
-}
-
-/**
- * 我发布的广告转换器
- *
- * @author 超悟空
- * @version 1.0 2018/8/10
- * @since 1.0
- */
-class MyAdsTypeAdapter : TypeAdapter<MyAds>() {
-
-    /**
-     * 广告类解析器
-     */
-    private val adsTypeAdapter by lazy {
-        GsonUtil.gson.getAdapter(Ads::class.java)
-    }
-
-    override fun write(out: JsonWriter, value: MyAds) {
-        out.apply {
-            beginObject()
-            name("ads")
-            adsTypeAdapter.write(out, value.ads)
-            name("reviewState").value(value.reviewState)
-            name("rechargeYellowBoy").value(value.rechargeAmount * BigDecimal(100))
-            endObject()
-        }
-    }
-
-    override fun read(`in`: JsonReader): MyAds {
-        var ads: Ads? = null
-        var reviewState = 0
-        var rechargeAmount: BigDecimal? = null
-
-        `in`.apply {
-            beginObject()
-            while (hasNext()) {
-                when (nextName()) {
-                    "ads" -> ads = adsTypeAdapter.read(this)
-                    "reviewState" -> reviewState = nextInt()
-                    "rechargeAmount" -> rechargeAmount = BigDecimal(nextInt()) / BigDecimal(100)
-                }
-            }
-            endObject()
-        }
-
-        return MyAds(ads ?: Ads(), rechargeAmount ?: BigDecimal(0)).apply {
-            this.reviewState = reviewState
-        }
     }
 }
