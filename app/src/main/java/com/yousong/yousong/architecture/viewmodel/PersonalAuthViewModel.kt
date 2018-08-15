@@ -30,10 +30,10 @@ class PersonalAuthViewModel : AuthViewModel() {
      * 是否可以执行提交
      */
     @Bindable
-    var submitable = false
+    var submittable = false
         set(value) {
             field = value
-            notifyPropertyChanged(BR.submitable)
+            notifyPropertyChanged(BR.submittable)
         }
 
     init {
@@ -48,7 +48,7 @@ class PersonalAuthViewModel : AuthViewModel() {
         // 属性改变监听器
         addOnPropertyChangedCallback(object : Observable.OnPropertyChangedCallback() {
             override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
-                if (propertyId != BR.submitable) {
+                if (propertyId != BR.submittable) {
                     checkSubmitProperty()
                 }
             }
@@ -59,7 +59,7 @@ class PersonalAuthViewModel : AuthViewModel() {
      * 检测属性是否可以提交
      */
     private fun checkSubmitProperty() {
-        submitable = when {
+        submittable = when {
             realName.isBlank() -> false
             idCard.length < 18 -> false
             mobile.length < 11 -> false

@@ -60,13 +60,13 @@
             android:windowSoftInputMode="stateAlwaysVisible"/>
         <activity android:name=".activity.ads.MyAdsActivity"/>
         <activity android:name=".activity.user.PersonalAuthenticationActivity"/>
-        <activity android:name=".activity.user.CompanyCertificationActivity"/>
         <activity android:name=".activity.ads.CreateAdsActivity"/>
         <activity android:name=".activity.user.RechargeActivity"/>
         <activity
             android:name=".wxapi.WXEntryActivity"
             android:exported="true"/>
         <activity android:name=".activity.user.LoginActivity"/>
+        <activity android:name=".activity.user.CompanyCertificationActivity" />
     </application>
 
 </manifest>

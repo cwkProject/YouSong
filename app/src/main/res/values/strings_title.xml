@@ -16,7 +16,7 @@
     <string name="title_published">已发布</string>
     <string name="title_unpublished">未发布</string>
     <string name="title_personal_authentication">个人认证</string>
-    <string name="title_enterprise_certification">企业认证</string>
+    <string name="title_company_certification">企业认证</string>
     <string name="title_publish_ads">发布广告</string>
 
 </resources>

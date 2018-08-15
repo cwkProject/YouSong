@@ -5,7 +5,11 @@
 
         <variable
             name="data"
-            type="com.yousong.yousong.architecture.viewmodel.AuthViewModel"/>
+            type="com.yousong.yousong.architecture.viewmodel.AuthViewModel" />
+
+        <variable
+            name="target"
+            type="String" />
 
     </data>
 
@@ -25,8 +29,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:enabled="@{data.editable}"
-                android:hint="@string/hint_real_name"
-                android:text="@={data.realName}"/>
+                android:hint="@{target + @string/hint_real_name}"
+                android:text="@={data.realName}" />
 
         </android.support.design.widget.TextInputLayout>
 
@@ -43,9 +47,9 @@
                 android:afterTextChanged="@{data::onIdCardChanged}"
                 android:digits="0123456789Xx"
                 android:enabled="@{data.editable}"
-                android:hint="@string/hint_id_number"
+                android:hint="@{target + @string/hint_id_number}"
                 android:maxLength="18"
-                android:text="@{data.idCard}"/>
+                android:text="@{data.idCard}" />
 
         </android.support.design.widget.TextInputLayout>
 

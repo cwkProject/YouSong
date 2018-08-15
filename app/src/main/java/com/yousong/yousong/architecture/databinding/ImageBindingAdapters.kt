@@ -56,4 +56,21 @@ object ImageBindingAdapters {
             GlideApp.with(view).load(File(path)).into(view)
         }
     }
+
+    /**
+     * 填充本地图片或网络图片，优先使用本地路径
+     *
+     * @param view  图片控件
+     * @param path 本地图片路径
+     * @param url 网络地址
+     */
+    @BindingAdapter("imageFile", "imageUrl")
+    @JvmStatic
+    fun loadImageFromFileOrUrl(view: ImageView, path: String?, url: String?) {
+        if (path != null) {
+            GlideApp.with(view).load(File(path)).into(view)
+        } else if (url != null) {
+            GlideApp.with(view).load(url).into(view)
+        }
+    }
 }
