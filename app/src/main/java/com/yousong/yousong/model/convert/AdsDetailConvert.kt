@@ -66,6 +66,7 @@ class AdsDetailTypeAdapter : TypeAdapter<AdsDetail>() {
                     "questionAnswer" -> question = questionTypeAdapter.read(this)
                     "adsDirectional" -> directional = directionalTypeAdapter.read(this)
                     "canAnswer" -> canAnswer = nextInt() == ValueConst.SERVER_TRUE
+                    else->skipValue()
                 }
             }
             endObject()
@@ -124,6 +125,7 @@ class AdsTypeAdapter : TypeAdapter<Ads>() {
                     "city" -> ads.city = nextString()
                     "publishState" -> ads.publishState = nextInt()
                     "reviewState" -> ads.reviewState = nextInt()
+                    else -> skipValue()
                 }
             }
             endObject()
@@ -179,6 +181,7 @@ class DirectionalTypeAdapter : TypeAdapter<Directional>() {
                         }
                         endArray()
                     }
+                    else->skipValue()
                 }
             }
             endObject()
@@ -235,6 +238,7 @@ class QuestionTypeAdapter : TypeAdapter<Question>() {
                         }
                         endArray()
                     }
+                    else->skipValue()
                 }
             }
             endObject()
@@ -271,6 +275,7 @@ class OptionTypeAdapter : TypeAdapter<Option>() {
                     "order" -> answer.order = nextInt()
                     "content" -> answer.content = nextString()
                     "isAnswer" -> answer.answer = nextInt() == ValueConst.SERVER_TRUE
+                    else->skipValue()
                 }
             }
 
