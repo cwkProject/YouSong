@@ -4,8 +4,6 @@
     <color name="colorPrimaryDark">@color/red_700</color>
     <color name="colorAccent">@color/red_a400</color>
 
-    <color name="grey_100_alpha">#E0F5F5F5</color>
-
     <color name="red_300">#E57373</color>
     <color name="red_500">#F44336</color>
     <color name="red_700">#D32F2F</color>

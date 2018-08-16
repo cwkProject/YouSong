@@ -86,17 +86,21 @@ class AdsAdapter : MultipleRecyclerViewAdapter() {
                 FootViewHolder(FrameLayout(parent.context))
 
         override fun onBindViewHolder(holder: FootViewHolder, position: Int, viewType: Int) {
+            val view = dataList[position]
+            view.parent?.asOther<ViewGroup>()?.removeView(view)
+            holder.container.removeAllViews()
             holder.container.addView(dataList[position])
         }
 
-        override fun onViewRecycled(holder: RecyclerView.ViewHolder) {
-            holder
+        override fun onViewRecycled(holder: FootViewHolder) {
+            holder.container.removeAllViews()
         }
     }
 
     override fun onBindManagers(managerList: MutableList<RecyclerViewHolderManager<*, out RecyclerView.ViewHolder>>) {
         managerList += topList
         managerList += adsList
+        managerList += footList
     }
 
     override fun onViewRecycled(holder: RecyclerView.ViewHolder) {
@@ -168,4 +172,8 @@ class FootViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
      * 容器布局
      */
     val container = itemView as FrameLayout
+
+    init {
+        itemView.layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+    }
 }

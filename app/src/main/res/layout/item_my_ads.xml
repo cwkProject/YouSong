@@ -6,48 +6,54 @@
 
         <variable
             name="data"
-            type="com.yousong.yousong.model.local.Ads" />
+            type="com.yousong.yousong.model.local.Ads"/>
 
     </data>
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="0.1dp"
         android:background="@android:color/white"
-        android:orientation="vertical"
-        android:paddingBottom="@dimen/layout_default_spacing"
-        android:paddingEnd="@dimen/activity_horizontal_margin"
-        android:paddingStart="@dimen/activity_horizontal_margin"
-        android:paddingTop="@dimen/layout_default_spacing">
+        android:foreground="?selectableItemBackground">
 
-        <ImageView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
-            android:scaleType="fitXY"
-            app:cover="@{data.cover}" />
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/layout_default_spacing"
+            android:paddingEnd="@dimen/activity_horizontal_margin"
+            android:paddingStart="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/layout_default_spacing">
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:layout_width="wrap_content"
+            <ImageView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="start"
-                android:text="@{data.name}"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY"
+                app:cover="@{data.cover}"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:text="@{@string/label_total_amount + data.totalAmount + ` `+ @string/name_yuan}"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-        </FrameLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:text="@{data.name}"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
 
-    </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:text="@{@string/label_total_amount + data.totalAmount + ` `+ @string/name_yuan}"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+
+            </FrameLayout>
+
+        </LinearLayout>
+
+    </FrameLayout>
 
 </layout>

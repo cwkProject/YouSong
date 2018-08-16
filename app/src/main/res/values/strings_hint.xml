@@ -24,5 +24,7 @@
     <string name="hint_option_not_null">选项不能有空</string>
 
     <string name="hint_select_answer">请选择答案</string>
+    
+    <string name="hint_in_the_end">到底了</string>
 
 </resources>

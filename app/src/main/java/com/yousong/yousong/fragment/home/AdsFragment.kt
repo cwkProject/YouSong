@@ -9,6 +9,8 @@ import com.yousong.yousong.adapter.AdsAdapter
 import com.yousong.yousong.architecture.viewmodel.AdsViewModel
 import com.yousong.yousong.common.plusAssign
 import com.yousong.yousong.fragment.ads.BaseAdsListFragment
+import com.yousong.yousong.model.local.Ads
+import com.yousong.yousong.model.server.BannerAds
 import com.yousong.yousong.value.ValueTag
 import org.jetbrains.anko.support.v4.startActivity
 
@@ -33,16 +35,25 @@ class AdsFragment : BaseAdsListFragment() {
     override fun onInitData(savedInstanceState: Bundle?) {
         adsViewModel.adsListData
                 .observe(this, Observer {
-                    it?.let {
-                        adapter.beginTransaction()
-                        adapter.adsList.clear()
-                        adapter.topList.clear()
-                        adapter.topList += it.first
-                        adapter.adsList += it.second
-                        adapter.commit()
-                    }
-                    stopRefresh()
+                    onAdsRefresh(it)
                 })
+    }
+
+    /**
+     * 广告刷新
+     *
+     * @param adsList 广告数据集合
+     */
+    private fun onAdsRefresh(adsList: Pair<BannerAds?, List<Ads>?>?) {
+        adsList?.let {
+            adapter.beginTransaction()
+            adapter.adsList.clear()
+            adapter.topList.clear()
+            adapter.topList += it.first
+            adapter.adsList += it.second
+            adapter.commit()
+        }
+        stopRefresh()
     }
 
     override fun onInitListAction() {
