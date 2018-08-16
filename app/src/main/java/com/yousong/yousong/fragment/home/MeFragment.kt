@@ -4,7 +4,7 @@ import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import com.yousong.yousong.R
 import com.yousong.yousong.activity.ads.MyAdsActivity
-import com.yousong.yousong.activity.user.PersonalAuthenticationActivity
+import com.yousong.yousong.activity.user.CompanyCertificationActivity
 import com.yousong.yousong.activity.user.WithdrawActivity
 import com.yousong.yousong.architecture.viewmodel.UserViewModel
 import com.yousong.yousong.databinding.FragmentMeBinding
@@ -41,8 +41,8 @@ class MeFragment : BaseFragment() {
         }
 
         authenticate.setOnClickListener {
-            startActivity<PersonalAuthenticationActivity>()
-            //startActivity<CompanyCertificationActivity>()
+            //startActivity<PersonalAuthenticationActivity>()
+            startActivity<CompanyCertificationActivity>()
         }
     }
 }

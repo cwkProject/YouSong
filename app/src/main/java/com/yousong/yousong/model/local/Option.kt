@@ -16,10 +16,15 @@ import com.yousong.yousong.BR
 class Option(order: Int = 0) : BaseObservable() {
 
     /**
+     * 选项id
+     */
+    var id = 1L
+
+    /**
      * 选项序号
      */
     @Bindable
-    var order: Int = order
+    var order = order
         set(value) {
             field = value
             notifyPropertyChanged(BR.order)
@@ -29,7 +34,7 @@ class Option(order: Int = 0) : BaseObservable() {
      * 选项内容
      */
     @Bindable
-    var content: String = ""
+    var content = ""
         set(value) {
             field = value
             notifyPropertyChanged(BR.content)
@@ -39,7 +44,7 @@ class Option(order: Int = 0) : BaseObservable() {
      * 是否正确答案
      */
     @Bindable
-    var answer: Boolean = false
+    var answer = false
         set(value) {
             field = value
             notifyPropertyChanged(BR.answer)

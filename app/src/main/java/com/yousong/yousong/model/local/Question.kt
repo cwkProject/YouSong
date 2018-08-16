@@ -18,7 +18,7 @@ class Question : BaseObservable() {
      * 问题内容
      */
     @Bindable
-    var content: String = ""
+    var content = ""
         set(value) {
             field = value
             notifyPropertyChanged(BR.content)
@@ -27,7 +27,7 @@ class Question : BaseObservable() {
     /**
      * 重答次数
      */
-    var retries: Int = 0
+    var retries = 0
         set(value) {
             field = value
             retrySelector.forEach {
@@ -38,10 +38,9 @@ class Question : BaseObservable() {
     /**
      * 重试次数选择器，用于databinding绑定
      */
-    val retrySelector: List<RetrySelector> =
-            listOf(RetrySelector(0),
-                    RetrySelector(1),
-                    RetrySelector(2))
+    val retrySelector = listOf(RetrySelector(0),
+            RetrySelector(1),
+            RetrySelector(2))
 
     /**
      * 选项

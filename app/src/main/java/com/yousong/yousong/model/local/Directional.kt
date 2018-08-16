@@ -18,7 +18,7 @@ class Directional : BaseObservable() {
     /**
      * 性别，1男，2女，3不限
      */
-    var sex: Int = 3
+    var sex = 3
         set(value) {
             field = value
             sexSelector.forEach {
@@ -29,10 +29,9 @@ class Directional : BaseObservable() {
     /**
      * 性别选择器，用于databinding绑定
      */
-    val sexSelector: List<SexSelector> =
-            listOf(SexSelector(1),
-                    SexSelector(2),
-                    SexSelector(3))
+    val sexSelector = listOf(SexSelector(1),
+            SexSelector(2),
+            SexSelector(3))
 
     /**
      * 最小年龄

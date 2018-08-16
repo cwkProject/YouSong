@@ -66,7 +66,7 @@ class AdsDetailTypeAdapter : TypeAdapter<AdsDetail>() {
                     "questionAnswer" -> question = questionTypeAdapter.read(this)
                     "adsDirectional" -> directional = directionalTypeAdapter.read(this)
                     "canAnswer" -> canAnswer = nextInt() == ValueConst.SERVER_TRUE
-                    else->skipValue()
+                    else -> skipValue()
                 }
             }
             endObject()
@@ -97,10 +97,10 @@ class AdsTypeAdapter : TypeAdapter<Ads>() {
             name("userCount").value(value.targetCount)
             name("perYellowBoyUser").value(value.userUnitPrice * BigDecimal(100))
             name("needInvoice").value(if (value.needInvoice) ValueConst.SERVER_TRUE else ValueConst.SERVER_FALSE)
-//            name("adsId").value(value.id)
-//            name("totalAsset").value(value.totalAmount * BigDecimal(100))
-//            name("balance").value(value.balance * BigDecimal(100))
-//            name("city").value(value.city)
+            //            name("adsId").value(value.id)
+            //            name("totalAsset").value(value.totalAmount * BigDecimal(100))
+            //            name("balance").value(value.balance * BigDecimal(100))
+            //            name("city").value(value.city)
             endObject()
         }
     }
@@ -181,7 +181,7 @@ class DirectionalTypeAdapter : TypeAdapter<Directional>() {
                         }
                         endArray()
                     }
-                    else->skipValue()
+                    else -> skipValue()
                 }
             }
             endObject()
@@ -238,7 +238,7 @@ class QuestionTypeAdapter : TypeAdapter<Question>() {
                         }
                         endArray()
                     }
-                    else->skipValue()
+                    else -> skipValue()
                 }
             }
             endObject()
@@ -275,7 +275,8 @@ class OptionTypeAdapter : TypeAdapter<Option>() {
                     "order" -> answer.order = nextInt()
                     "content" -> answer.content = nextString()
                     "isAnswer" -> answer.answer = nextInt() == ValueConst.SERVER_TRUE
-                    else->skipValue()
+                    "adsAnswerOptionId" -> answer.id = nextLong()
+                    else -> skipValue()
                 }
             }
 

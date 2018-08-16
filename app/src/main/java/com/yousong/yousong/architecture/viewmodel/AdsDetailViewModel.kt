@@ -57,7 +57,7 @@ class AdsDetailViewModel : ViewModel(), OnAdsDetailOperator {
                     setCancelable(false)
                 }
 
-                AdsAnswerWork().start(detail.ads.id, it.order) {
+                AdsAnswerWork().start(detail.ads.id, it.id) {
                     dialog.cancel()
 
                     submitResult.value = SubmitResult(it.isSuccess, it.message, if (it.isSuccess)

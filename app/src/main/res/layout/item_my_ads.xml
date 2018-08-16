@@ -16,8 +16,10 @@
         android:layout_marginBottom="0.1dp"
         android:background="@android:color/white"
         android:orientation="vertical"
+        android:paddingBottom="@dimen/layout_default_spacing"
         android:paddingEnd="@dimen/activity_horizontal_margin"
-        android:paddingStart="@dimen/activity_horizontal_margin">
+        android:paddingStart="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/layout_default_spacing">
 
         <ImageView
             android:layout_width="match_parent"
