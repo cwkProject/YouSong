@@ -53,7 +53,9 @@ abstract class BaseAdsListFragment : BaseFragment() {
     private fun initList() {
         recyclerView.adapter = adapter
 
-        recyclerView.addItemDecoration(DividerItemDecoration(context, LinearLayout.VERTICAL))
+        recyclerView.addItemDecoration(DividerItemDecoration(context, LinearLayout.VERTICAL).apply {
+            setDrawable(context!!.resources.getDrawable(R.drawable.list_divider))
+        })
 
         onInitListAction()
     }

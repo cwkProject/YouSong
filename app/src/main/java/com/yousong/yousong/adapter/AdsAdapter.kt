@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import android.widget.ImageView
 import cn.bingoogolapple.bgabanner.BGABanner
 import com.yousong.yousong.R
@@ -77,6 +78,22 @@ class AdsAdapter : MultipleRecyclerViewAdapter() {
         }
     }
 
+    /**
+     * 脚布局
+     */
+    val footList = object : RecyclerViewHolderManager<View, FootViewHolder>(this) {
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FootViewHolder =
+                FootViewHolder(FrameLayout(parent.context))
+
+        override fun onBindViewHolder(holder: FootViewHolder, position: Int, viewType: Int) {
+            holder.container.addView(dataList[position])
+        }
+
+        override fun onViewRecycled(holder: RecyclerView.ViewHolder) {
+            holder
+        }
+    }
+
     override fun onBindManagers(managerList: MutableList<RecyclerViewHolderManager<*, out RecyclerView.ViewHolder>>) {
         managerList += topList
         managerList += adsList
@@ -137,4 +154,18 @@ class AdViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
      * 绑定器
      */
     val binding = ItemAdsBinding.bind(itemView)
+}
+
+/**
+ * 脚布局管理器
+ *
+ * @author 超悟空
+ * @version 1.0 2018/6/28
+ * @since 1.0
+ */
+class FootViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    /**
+     * 容器布局
+     */
+    val container = itemView as FrameLayout
 }

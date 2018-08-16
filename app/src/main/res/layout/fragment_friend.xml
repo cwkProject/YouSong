@@ -5,9 +5,9 @@
 
         <variable
             name="data"
-            type="com.yousong.yousong.architecture.viewmodel.UserViewModel"/>
+            type="com.yousong.yousong.architecture.viewmodel.UserViewModel" />
 
-        <import type="java.lang.String"/>
+        <import type="java.lang.String" />
 
     </data>
 
@@ -39,7 +39,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
-                    android:layout_weight="1"/>
+                    android:layout_weight="1" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -47,7 +47,7 @@
                     android:layout_marginTop="@dimen/layout_default_spacing"
                     android:text="@{String.format(@string/format_friend_count,data.inviteCount)}"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                    android:textColor="@android:color/white"/>
+                    android:textColor="@android:color/white" />
 
             </LinearLayout>
         </FrameLayout>
@@ -73,7 +73,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
-                    android:layout_weight="1"/>
+                    android:layout_weight="1" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -81,7 +81,7 @@
                     android:layout_marginTop="@dimen/layout_default_spacing"
                     android:text="@{String.format(@string/format_total_incoming,data.totalIncome.toPlainString())}"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                    android:textColor="@android:color/white"/>
+                    android:textColor="@android:color/white" />
 
             </LinearLayout>
 
@@ -108,7 +108,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
-                    android:layout_weight="1"/>
+                    android:layout_weight="1" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -116,11 +116,15 @@
                     android:layout_marginTop="@dimen/layout_default_spacing"
                     android:text="@string/name_share_friend"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                    android:textColor="@android:color/white"/>
+                    android:textColor="@android:color/white" />
 
             </LinearLayout>
 
         </FrameLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize" />
 
     </LinearLayout>
 
