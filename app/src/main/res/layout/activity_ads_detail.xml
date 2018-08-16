@@ -6,11 +6,11 @@
 
         <variable
             name="data"
-            type="com.yousong.yousong.model.local.AdsDetail"/>
+            type="com.yousong.yousong.model.local.AdsDetail" />
 
         <variable
             name="holder"
-            type="com.yousong.yousong.operator.OnAdsDetailOperator"/>
+            type="com.yousong.yousong.operator.OnAdsDetailOperator" />
 
     </data>
 
@@ -19,7 +19,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <include layout="@layout/toolbar"/>
+        <include layout="@layout/toolbar" />
 
         <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
@@ -36,7 +36,39 @@
                     android:adjustViewBounds="true"
                     android:scaleType="fitXY"
                     app:defaultSrc="@{@drawable/placeholder_cover}"
-                    app:imageUrl="@{data.ads.poster}"/>
+                    app:imageUrl="@{data.ads.poster}" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                    android:layout_marginStart="@dimen/activity_horizontal_margin"
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="2dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/dotted_line"
+                        android:layerType="software" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/layout_default_spacing"
+                        android:layout_marginStart="@dimen/layout_default_spacing"
+                        android:text="@string/name_answer_make_money" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="2dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/dotted_line"
+                        android:layerType="software" />
+
+                </LinearLayout>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -45,7 +77,7 @@
                     android:layout_marginStart="@dimen/activity_horizontal_margin"
                     android:layout_marginTop="@dimen/activity_vertical_margin"
                     android:text="@{data.question.content}"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
                 <RadioGroup
                     android:layout_width="match_parent"
@@ -59,14 +91,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:checked="@={data.question.option[0].answer}"
-                        android:text="@{data.question.option[0].content}"/>
+                        android:text="@{data.question.option[0].content}" />
 
                     <android.support.v7.widget.AppCompatRadioButton
                         android:id="@+id/b_option"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:checked="@={data.question.option[1].answer}"
-                        android:text="@{data.question.option[1].content}"/>
+                        android:text="@{data.question.option[1].content}" />
 
                     <android.support.v7.widget.AppCompatRadioButton
                         android:id="@+id/c_option"
@@ -74,7 +106,7 @@
                         android:layout_height="wrap_content"
                         android:checked="@={data.question.option[2].answer}"
                         android:text="@{data.question.option[2].content}"
-                        app:goneUnless="@{data.question.option.size() > 2}"/>
+                        app:goneUnless="@{data.question.option.size() > 2}" />
 
                     <android.support.v7.widget.AppCompatRadioButton
                         android:id="@+id/d_option"
@@ -82,7 +114,7 @@
                         android:layout_height="wrap_content"
                         android:checked="@={data.question.option[3].answer}"
                         android:text="@{data.question.option[3].content}"
-                        app:goneUnless="@{data.question.option.size() > 3}"/>
+                        app:goneUnless="@{data.question.option.size() > 3}" />
 
                 </RadioGroup>
 
@@ -94,7 +126,7 @@
                     android:onClick="@{holder::onSubmit}"
                     android:text="@string/name_submit"
                     android:textColor="@android:color/white"
-                    app:backgroundTint="@color/red_500"/>
+                    app:backgroundTint="@color/red_500" />
 
                 <android.support.v7.widget.GridLayout
                     android:layout_width="match_parent"
@@ -102,7 +134,7 @@
                     android:layout_marginTop="@dimen/layout_default_spacing"
                     android:background="@color/amber_600"
                     app:columnCount="3"
-                    app:goneUnless="@{!data.ads.type}"
+                    app:goneUnless="@{data.ads.type}"
                     app:useDefaultMargins="true">
 
                     <LinearLayout
@@ -116,14 +148,13 @@
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            app:srcCompat="@drawable/ic_wechat_white_56dp"/>
+                            app:srcCompat="@drawable/ic_wechat_white_56dp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
                             android:text="@string/name_recommend_friend"
-                            android:textColor="@android:color/white"/>
+                            android:textColor="@android:color/white" />
 
                     </LinearLayout>
 
@@ -137,14 +168,13 @@
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            app:srcCompat="@drawable/ic_wechat_white_56dp"/>
+                            app:srcCompat="@drawable/ic_wechat_white_56dp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
                             android:text="@string/name_send_moments"
-                            android:textColor="@android:color/white"/>
+                            android:textColor="@android:color/white" />
 
                     </LinearLayout>
 
@@ -158,14 +188,13 @@
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            app:srcCompat="@drawable/ic_wechat_white_56dp"/>
+                            app:srcCompat="@drawable/ic_wechat_white_56dp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
                             android:text="@string/name_copy_url"
-                            android:textColor="@android:color/white"/>
+                            android:textColor="@android:color/white" />
 
                     </LinearLayout>
 

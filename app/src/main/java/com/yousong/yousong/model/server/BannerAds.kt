@@ -13,7 +13,7 @@ package com.yousong.yousong.model.server
  */
 data class BannerAds(
         val carouselId: Long,
-        val cityCode: String,
+        val cityCode: String?,
         val items: List<BannerAdsItem>)
 
 /**
@@ -24,10 +24,12 @@ data class BannerAds(
  * @since 1.0
  *
  * @property carouselItemId 广告id
+ * @property ordinal 顺序 从1开始
  * @property imgUrl 图片url
  * @property link 链接地址
  */
 data class BannerAdsItem(
         val carouselItemId: Long,
+        val ordinal: Int,
         val imgUrl: String,
         val link: String?)

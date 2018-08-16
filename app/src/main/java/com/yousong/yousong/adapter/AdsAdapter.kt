@@ -54,9 +54,8 @@ class AdsAdapter : MultipleRecyclerViewAdapter() {
                 BannerViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_banner_ads, parent, false))
 
         override fun onBindViewHolder(holder: BannerViewHolder, position: Int, viewType: Int) {
-
+            holder.banner.setAutoPlayAble(dataList[position].items.size > 1)
             holder.banner.setData(dataList[position].items, null)
-
             holder.banner.setDelegate { _, _, m, p ->
                 bannerClickListener(m as BannerAdsItem, p)
             }
@@ -120,7 +119,7 @@ class BannerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
                     .load(model.asOther<BannerAdsItem>()?.imgUrl)
                     .centerCrop()
                     .dontAnimate()
-                    .into(itemView as ImageView)
+                    .into(imageView as ImageView)
         }
     }
 }

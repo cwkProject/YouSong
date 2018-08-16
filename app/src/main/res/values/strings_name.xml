@@ -12,6 +12,8 @@
     <string name="name_help">帮助</string>
     <string name="name_wechat_login">微信登陆</string>
     <string name="name_share_friend">分享好友</string>
+    
+    <string name="name_answer_make_money">答题赚钱</string>
 
     <string name="name_send_verification_code">发送验证码</string>
 

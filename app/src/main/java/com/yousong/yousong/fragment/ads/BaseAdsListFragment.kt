@@ -2,7 +2,9 @@ package com.yousong.yousong.fragment.ads
 
 import android.os.Bundle
 import android.support.annotation.CallSuper
+import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.RecyclerView
+import android.widget.LinearLayout
 import com.yousong.yousong.R
 import com.yousong.yousong.fragment.common.BaseFragment
 import kotlinx.android.synthetic.main.fragment_ads_list.*
@@ -50,6 +52,8 @@ abstract class BaseAdsListFragment : BaseFragment() {
      */
     private fun initList() {
         recyclerView.adapter = adapter
+
+        recyclerView.addItemDecoration(DividerItemDecoration(context, LinearLayout.VERTICAL))
 
         onInitListAction()
     }

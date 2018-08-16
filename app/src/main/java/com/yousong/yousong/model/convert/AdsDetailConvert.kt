@@ -259,7 +259,7 @@ class OptionTypeAdapter : TypeAdapter<Option>() {
     override fun write(out: JsonWriter, value: Option) {
         out.apply {
             beginObject()
-            name("order").value(value.order)
+            name("ordinal").value(value.order)
             name("content").value(value.content)
             name("isAnswer").value(if (value.answer) ValueConst.SERVER_TRUE else ValueConst.SERVER_FALSE)
             endObject()
@@ -272,7 +272,7 @@ class OptionTypeAdapter : TypeAdapter<Option>() {
             beginObject()
             while (hasNext()) {
                 when (nextName()) {
-                    "order" -> answer.order = nextInt()
+                    "ordinal" -> answer.order = nextInt()
                     "content" -> answer.content = nextString()
                     "isAnswer" -> answer.answer = nextInt() == ValueConst.SERVER_TRUE
                     "adsAnswerOptionId" -> answer.id = nextLong()

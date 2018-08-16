@@ -10,51 +10,58 @@
 
     </data>
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="0.1dp"
         android:background="@android:color/white"
-        android:orientation="vertical"
-        android:paddingBottom="@dimen/layout_default_spacing"
-        android:paddingEnd="@dimen/activity_horizontal_margin"
-        android:paddingStart="@dimen/activity_horizontal_margin"
-        android:paddingTop="@dimen/layout_default_spacing">
+        android:foreground="?selectableItemBackground">
 
-        <ImageView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
-            android:scaleType="fitXY"
-            app:cover="@{data.cover}" />
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/layout_default_spacing"
+            android:paddingEnd="@dimen/activity_horizontal_margin"
+            android:paddingStart="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/layout_default_spacing">
 
-        <ProgressBar
-            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:max="@{data.totalAmount}"
-            android:progress="@{data.totalAmount.subtract(data.balance)}" />
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:layout_width="wrap_content"
+            <ImageView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="start"
-                android:text="@{@string/label_total_amount + data.totalAmount + ` `+ @string/name_yuan}"
-                android:textSize="@dimen/text_size_small" />
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY"
+                app:cover="@{data.cover}" />
 
-            <TextView
-                android:layout_width="wrap_content"
+            <ProgressBar
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:text="@{@string/label_over + data.balance + ` `+ @string/name_yuan}"
-                android:textSize="@dimen/text_size_small" />
+                android:max="@{data.totalAmount}"
+                android:progress="@{data.totalAmount.subtract(data.balance)}" />
 
-        </FrameLayout>
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-    </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:text="@{@string/label_total_amount + data.totalAmount + ` `+ @string/name_yuan}"
+                    android:textSize="@dimen/text_size_small" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:text="@{@string/label_over + data.balance + ` `+ @string/name_yuan}"
+                    android:textSize="@dimen/text_size_small" />
+
+            </FrameLayout>
+
+        </LinearLayout>
+
+    </FrameLayout>
 
 </layout>

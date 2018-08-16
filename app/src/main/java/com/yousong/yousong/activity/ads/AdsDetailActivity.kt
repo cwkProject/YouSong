@@ -37,10 +37,11 @@ class AdsDetailActivity : BaseActivity() {
     override val rootViewId = R.layout.activity_ads_detail
 
     override fun onInitView(savedInstanceState: Bundle?) {
-        initToolbar(this, R.string.title_detail)
+        initToolbar(this, R.string.empty)
 
         viewModel.adsDetail.observe(this, Observer {
             if (it != null) {
+                title = it.ads.name
                 binding.data = it
                 binding.holder = viewModel
             }
