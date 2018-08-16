@@ -15,6 +15,16 @@ public interface ValueConst {
     String DEVICE_TYPE = "android";
 
     /**
+     * 封面宽度
+     */
+    int COVER_WIDTH = 640;
+
+    /**
+     * 封面高度
+     */
+    int COVER_HEIGHT = 400;
+
+    /**
      * 服务器true
      */
     int SERVER_TRUE = 1;

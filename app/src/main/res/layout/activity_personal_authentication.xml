@@ -21,7 +21,8 @@
 
         <include
             layout="@layout/layout_auth_verify"
-            app:data="@{data}" />
+            app:data="@{data}"
+            app:target="@{``}" />
 
         <include
             layout="@layout/layout_mobile_verify"

@@ -5,6 +5,7 @@ import android.graphics.drawable.Drawable
 import android.widget.ImageView
 import com.yousong.yousong.R
 import com.yousong.yousong.third.GlideApp
+import com.yousong.yousong.value.ValueConst
 import java.io.File
 
 /**
@@ -27,6 +28,19 @@ object ImageBindingAdapters {
     @JvmStatic
     fun loadImageFromUrl(view: ImageView, defaultSrc: Drawable, url: String?) {
         GlideApp.with(view).load(url).placeholder(defaultSrc).error(defaultSrc).into(view)
+    }
+
+    /**
+     * 填充广告封面
+     *
+     * @param view  图片控件
+     * @param url   图片地址
+     */
+    @BindingAdapter("cover")
+    @JvmStatic
+    fun loadCover(view: ImageView, url: String?) {
+        GlideApp.with(view).load(url).override(ValueConst.COVER_WIDTH, ValueConst.COVER_HEIGHT)
+                .centerCrop().placeholder(R.drawable.placeholder_cover).error(R.drawable.placeholder_cover).into(view)
     }
 
     /**

@@ -23,13 +23,13 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/activity_horizontal_margin"
             android:layout_marginStart="@dimen/activity_horizontal_margin"
-            android:layout_marginTop="@dimen/activity_vertical_margin">
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:hint="@{target + @string/hint_real_name}">
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:enabled="@{data.editable}"
-                android:hint="@{target + @string/hint_real_name}"
                 android:text="@={data.realName}" />
 
         </android.support.design.widget.TextInputLayout>
@@ -39,7 +39,8 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/activity_horizontal_margin"
             android:layout_marginStart="@dimen/activity_horizontal_margin"
-            android:layout_marginTop="@dimen/layout_default_spacing">
+            android:layout_marginTop="@dimen/layout_default_spacing"
+            android:hint="@{target + @string/hint_id_number}">
 
             <EditText
                 android:layout_width="match_parent"
@@ -47,7 +48,6 @@
                 android:afterTextChanged="@{data::onIdCardChanged}"
                 android:digits="0123456789Xx"
                 android:enabled="@{data.editable}"
-                android:hint="@{target + @string/hint_id_number}"
                 android:maxLength="18"
                 android:text="@{data.idCard}" />
 

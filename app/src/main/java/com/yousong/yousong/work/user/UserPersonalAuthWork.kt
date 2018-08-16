@@ -1,6 +1,7 @@
 package com.yousong.yousong.work.user
 
 import com.yousong.yousong.R
+import com.yousong.yousong.global.LoginStatus
 import com.yousong.yousong.value.ValueUrl
 import com.yousong.yousong.work.common.BaseSimpleWorkModel
 import org.cwk.android.library.annotation.Post
@@ -29,4 +30,8 @@ class UserPersonalAuthWork : BaseSimpleWorkModel<String, Unit>() {
 
     override fun onRequestSuccessMessage(handleResult: JSONObject): String =
             Global.getApplication().getString(R.string.success_submit)
+
+    override fun onSuccess() {
+        LoginStatus.loadUserData()
+    }
 }

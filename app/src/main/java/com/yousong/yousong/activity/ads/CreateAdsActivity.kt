@@ -19,6 +19,7 @@ import com.yousong.yousong.function.SubmitResultUtil
 import com.yousong.yousong.operator.OnCreateAdsOperator
 import com.yousong.yousong.util.CheckAndroidMPermission
 import com.yousong.yousong.util.FileUtil
+import com.yousong.yousong.value.ValueConst
 import org.cwk.android.library.util.ToolbarInitialize.initToolbar
 import java.io.File
 
@@ -31,16 +32,6 @@ import java.io.File
  * @since 1.0
  */
 class CreateAdsActivity : BaseActivity(), OnCreateAdsOperator {
-
-    /**
-     * 封面宽度
-     */
-    private val COVER_WIDTH = 640
-
-    /**
-     * 封面高度
-     */
-    private val COVER_HEIGHT = 400
 
     /**
      * 选择封面图
@@ -120,8 +111,8 @@ class CreateAdsActivity : BaseActivity(), OnCreateAdsOperator {
         intent.putExtra("noFaceDetection", true)
         intent.putExtra("aspectX", 16)
         intent.putExtra("aspectY", 10)
-        intent.putExtra("outputX", COVER_WIDTH)
-        intent.putExtra("outputY", COVER_HEIGHT)
+        intent.putExtra("outputX", ValueConst.COVER_WIDTH)
+        intent.putExtra("outputY", ValueConst.COVER_HEIGHT)
         intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(File(viewModel.createImagePath())))
     }
 
