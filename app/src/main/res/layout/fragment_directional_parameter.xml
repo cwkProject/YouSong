@@ -16,8 +16,6 @@
             name="holder"
             type="com.yousong.yousong.operator.OnDirectionOperator"/>
 
-        <import type="com.yousong.yousong.architecture.databinding.BindingTypeConverts"/>
-
     </data>
 
     <LinearLayout
@@ -33,103 +31,16 @@
             android:layout_marginTop="@dimen/layout_default_spacing"
             android:background="@android:color/darker_gray"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/name_user_filter"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+        <include
+            layout="@layout/layout_directional_user"
+            app:ages="@{ages}"
+            app:data="@{data.directional}"
+            app:holder="@{holder}"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/layout_default_spacing"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/name_sex"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
-
-            <android.support.v7.widget.AppCompatRadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/layout_default_spacing"
-                android:checked="@={data.directional.sexSelector[2].checked}"
-                android:text="@string/name_not_limited"/>
-
-            <android.support.v7.widget.AppCompatRadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/activity_horizontal_margin"
-                android:checked="@={data.directional.sexSelector[0].checked}"
-                android:text="@string/name_male"/>
-
-            <android.support.v7.widget.AppCompatRadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/activity_horizontal_margin"
-                android:checked="@={data.directional.sexSelector[1].checked}"
-                android:text="@string/name_female"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/layout_default_spacing"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/name_age"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
-
-            <android.support.v7.widget.AppCompatCheckBox
-                android:id="@+id/age_check"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/layout_default_spacing"
-                android:checked="true"
-                android:onCheckedChanged="@{holder::onAgeNotLimitedChecked}"
-                android:text="@string/name_not_limited"/>
-
-            <Spinner
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/activity_horizontal_margin"
-                android:entries="@{ages.minAges}"
-                android:onItemSelected="@{holder::onMinAgeItemSelected}"
-                app:enabled="@{!ageCheck.isChecked()}"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/layout_default_spacing"
-                android:layout_marginStart="@dimen/layout_default_spacing"
-                android:text="@string/name_to"/>
-
-            <Spinner
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:entries="@{ages.maxAges}"
-                android:onItemSelected="@{holder::onMaxAgeItemSelected}"
-                android:selection="@={ages.maxSelection}"
-                app:enabled="@{!ageCheck.isChecked()}"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/layout_default_spacing"
-                android:text="@string/name_year_old"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
-
-        </LinearLayout>
-
-        <include layout="@layout/layout_city_selector"/>
+        <include
+            layout="@layout/layout_directional_region"
+            app:data="@{data.directional}"
+            app:holder="@{holder}"/>
 
         <LinearLayout
             android:layout_width="wrap_content"

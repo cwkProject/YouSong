@@ -3,8 +3,10 @@ package com.yousong.yousong.architecture.viewmodel
 import android.content.Context
 import android.databinding.Bindable
 import android.graphics.Bitmap
+import android.support.annotation.IdRes
 import android.text.Editable
 import android.view.View
+import android.widget.RadioGroup
 import com.yousong.yousong.BR
 import com.yousong.yousong.R
 import com.yousong.yousong.architecture.livedata.SubmitResult
@@ -271,5 +273,17 @@ class CreateAdsViewModel : ObservableViewModel() {
         }
 
         adsDetail.ads.targetCount = edt.toString().toInt()
+    }
+
+    /**
+     * 重试次数选中事件
+     */
+    fun onRetryCheckedChanged(group: RadioGroup, checkedId: Int) {
+        adsDetail.question.retries = when (checkedId) {
+            R.id.retry_zero -> 0
+            R.id.retry_once -> 1
+            R.id.retry_twice -> 2
+            else -> 0
+        }
     }
 }

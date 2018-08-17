@@ -3,6 +3,7 @@ package com.yousong.yousong.operator
 import android.view.View
 import android.widget.AdapterView
 import android.widget.CompoundButton
+import android.widget.RadioGroup
 
 /**
  * 定向参数的相关操作
@@ -28,4 +29,13 @@ interface OnDirectionOperator {
      */
     fun onMaxAgeItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long)
 
+    /**
+     * 性别选中事件
+     */
+    fun onSexCheckedChanged(group: RadioGroup, checkedId: Int)
+
+    /**
+     * 目标地区选中事件
+     */
+    fun onDestinationCheckedChanged(group: RadioGroup, checkedId: Int)
 }

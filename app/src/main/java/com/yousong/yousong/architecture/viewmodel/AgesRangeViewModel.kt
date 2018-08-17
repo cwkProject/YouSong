@@ -13,6 +13,16 @@ import com.yousong.yousong.BR
 class AgesRangeViewModel : ObservableViewModel() {
 
     /**
+     * 是否限制年龄
+     */
+    @Bindable
+    var limitedAges = false
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.limitedAges)
+        }
+
+    /**
      * 最小年龄可选范围
      */
     @Bindable

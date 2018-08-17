@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="data"
+            type="com.yousong.yousong.model.local.Directional"/>
+
+        <variable
+            name="holder"
+            type="com.yousong.yousong.operator.OnDirectionOperator"/>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/layout_default_spacing"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/name_target_region"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/layout_default_spacing"
+            android:onCheckedChanged="@{holder::onDestinationCheckedChanged}"
+            android:orientation="horizontal">
+
+            <android.support.v7.widget.AppCompatRadioButton
+                android:id="@+id/not_limited"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/layout_default_spacing"
+                android:layout_weight="1"
+                android:checked="@{data.destinationType == 0}"
+                android:text="@string/name_not_limited"/>
+
+            <android.support.v7.widget.AppCompatRadioButton
+                android:id="@+id/local_perimeter"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_weight="1"
+                android:checked="@{data.destinationType == 1}"
+                android:text="@string/name_local_perimeter"/>
+
+            <android.support.v7.widget.AppCompatRadioButton
+                android:id="@+id/designated_city"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_weight="1"
+                android:checked="@{data.destinationType == 2}"
+                android:text="@string/name_designated_city"/>
+
+        </RadioGroup>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+    </LinearLayout>
+
+</layout>

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="data"
+            type="com.yousong.yousong.model.local.Directional"/>
+
+        <variable
+            name="ages"
+            type="com.yousong.yousong.architecture.viewmodel.AgesRangeViewModel"/>
+
+        <variable
+            name="holder"
+            type="com.yousong.yousong.operator.OnDirectionOperator"/>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/name_target_user"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/layout_default_spacing"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/name_sex"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onCheckedChanged="@{holder::onSexCheckedChanged}"
+                android:orientation="horizontal">
+
+                <android.support.v7.widget.AppCompatRadioButton
+                    android:id="@+id/not_limited"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/layout_default_spacing"
+                    android:checked="@{data.sex == 3}"
+                    android:text="@string/name_not_limited"/>
+
+                <android.support.v7.widget.AppCompatRadioButton
+                    android:id="@+id/male"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/activity_horizontal_margin"
+                    android:checked="@{data.sex == 1}"
+                    android:text="@string/name_male"/>
+
+                <android.support.v7.widget.AppCompatRadioButton
+                    android:id="@+id/female"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/activity_horizontal_margin"
+                    android:checked="@{data.sex == 2}"
+                    android:text="@string/name_female"/>
+
+            </RadioGroup>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/layout_default_spacing"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/name_age"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+
+            <android.support.v7.widget.AppCompatCheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/layout_default_spacing"
+                android:checked="@={!ages.limitedAges}"
+                android:onCheckedChanged="@{holder::onAgeNotLimitedChecked}"
+                android:text="@string/name_not_limited"/>
+
+            <Spinner
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:enabled="@{ages.limitedAges}"
+                android:entries="@{ages.minAges}"
+                android:onItemSelected="@{holder::onMinAgeItemSelected}"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/layout_default_spacing"
+                android:layout_marginStart="@dimen/layout_default_spacing"
+                android:text="@string/name_to"/>
+
+            <Spinner
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:enabled="@{ages.limitedAges}"
+                android:entries="@{ages.maxAges}"
+                android:onItemSelected="@{holder::onMaxAgeItemSelected}"
+                android:selection="@={ages.maxSelection}"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/layout_default_spacing"
+                android:text="@string/name_year_old"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</layout>

@@ -27,7 +27,7 @@
     <string name="name_promotion_publish">推广型发布</string>
     <string name="name_directional_publish">定向型发布</string>
 
-    <string name="name_user_filter">用户筛选</string>
+    <string name="name_target_user">目标人群</string>
     <string name="name_filter_result">筛选结果</string>
     <string name="name_not_limited">不限</string>
     <string name="name_sex">性别</string>
@@ -37,7 +37,9 @@
     <string name="name_to">至</string>
     <string name="name_year_old">岁</string>
 
-    <string name="name_target_city">目标城市</string>
+    <string name="name_target_region">目标地区</string>
+    <string name="name_local_perimeter">本地周边</string>
+    <string name="name_designated_city">指定城市</string>
 
     <string name="name_yuan">元</string>
     <string name="name_person">人</string>

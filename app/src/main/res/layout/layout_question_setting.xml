@@ -183,26 +183,37 @@
                 android:text="@string/label_retry_times"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
 
-            <android.support.v7.widget.AppCompatRadioButton
-                android:layout_width="0dp"
+            <RadioGroup
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:checked="@={data.retrySelector[0].checked}"
-                android:text="@string/name_not_retry"/>
+                android:onCheckedChanged="@{viewModel::onRetryCheckedChanged}"
+                android:orientation="horizontal">
 
-            <android.support.v7.widget.AppCompatRadioButton
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:checked="@={data.retrySelector[1].checked}"
-                android:text="@string/name_once"/>
+                <android.support.v7.widget.AppCompatRadioButton
+                    android:id="@+id/retry_zero"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:checked="@{data.retries == 0}"
+                    android:text="@string/name_not_retry"/>
 
-            <android.support.v7.widget.AppCompatRadioButton
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:checked="@={data.retrySelector[2].checked}"
-                android:text="@string/name_twice"/>
+                <android.support.v7.widget.AppCompatRadioButton
+                    android:id="@+id/retry_once"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:checked="@{data.retries == 1}"
+                    android:text="@string/name_once"/>
+
+                <android.support.v7.widget.AppCompatRadioButton
+                    android:id="@+id/retry_twice"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:checked="@{data.retries == 2}"
+                    android:text="@string/name_twice"/>
+
+            </RadioGroup>
 
         </LinearLayout>
 

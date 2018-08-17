@@ -88,4 +88,19 @@ public interface ValueConst {
      * 已取消
      */
     int PUBLISH_CANCEL = 4;
+
+    /**
+     * 回答正确
+     */
+    int ANSWER_CORRECT = 1;
+
+    /**
+     * 回答错误，可重试
+     */
+    int ANSWER_RETRY = 2;
+
+    /**
+     * 回答错误
+     */
+    int ANSWER_WRONG = 3;
 }

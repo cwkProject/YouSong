@@ -1,6 +1,7 @@
 package com.yousong.yousong.work.ads
 
 import com.yousong.yousong.R
+import com.yousong.yousong.value.ValueConst
 import com.yousong.yousong.value.ValueUrl
 import com.yousong.yousong.work.common.BaseSimpleWorkModel
 import org.cwk.android.library.annotation.Post
@@ -27,9 +28,9 @@ class AdsAnswerWork : BaseSimpleWorkModel<Any, Int>() {
 
     override fun onRequestSuccessMessage(handleResult: JSONObject): String {
         val resId = when (mData.result) {
-            1 -> R.string.success_answer
-            2 -> R.string.error_answer_again
-            3 -> R.string.error_answer
+            ValueConst.ANSWER_CORRECT -> R.string.success_answer
+            ValueConst.ANSWER_RETRY -> R.string.error_answer_again
+            ValueConst.ANSWER_WRONG -> R.string.error_answer
             else -> R.string.error_answer
         }
 

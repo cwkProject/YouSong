@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
 import android.widget.CompoundButton
+import android.widget.RadioGroup
 import com.yousong.yousong.R
 import com.yousong.yousong.architecture.viewmodel.AgesRangeViewModel
 import com.yousong.yousong.architecture.viewmodel.CreateAdsViewModel
@@ -62,7 +63,6 @@ class DirectionalParameterFragment : BaseFragment(), OnDirectionOperator {
             agesViewModel.maxAges = (0..99).toList()
             agesViewModel.maxSelection = 65
         }
-        binding.invalidateAll()
     }
 
     override fun onMinAgeItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
@@ -82,6 +82,24 @@ class DirectionalParameterFragment : BaseFragment(), OnDirectionOperator {
 
         viewModel.adsDetail.directional.maxAge?.let { max ->
             agesViewModel.minAges = (0..max).toList()
+        }
+    }
+
+    override fun onSexCheckedChanged(group: RadioGroup, checkedId: Int) {
+        viewModel.adsDetail.directional.sex = when (checkedId) {
+            R.id.not_limited -> 3
+            R.id.male -> 1
+            R.id.female -> 2
+            else -> 3
+        }
+    }
+
+    override fun onDestinationCheckedChanged(group: RadioGroup, checkedId: Int) {
+        viewModel.adsDetail.directional.destinationType = when (checkedId) {
+            R.id.not_limited -> 0
+            R.id.local_perimeter -> 1
+            R.id.designated_city -> 2
+            else -> 0
         }
     }
 }

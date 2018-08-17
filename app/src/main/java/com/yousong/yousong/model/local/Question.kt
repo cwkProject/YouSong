@@ -28,19 +28,6 @@ class Question : BaseObservable() {
      * 重答次数
      */
     var retries = 0
-        set(value) {
-            field = value
-            retrySelector.forEach {
-                it.notifyChange()
-            }
-        }
-
-    /**
-     * 重试次数选择器，用于databinding绑定
-     */
-    val retrySelector = listOf(RetrySelector(0),
-            RetrySelector(1),
-            RetrySelector(2))
 
     /**
      * 选项
@@ -66,23 +53,4 @@ class Question : BaseObservable() {
             field = value
             notifyPropertyChanged(BR.answered)
         }
-
-    /**
-     * 重试次数选择器
-     *
-     * @property times 绑定的重试次数
-     */
-    inner class RetrySelector(val times: Int) : BaseObservable() {
-
-        /**
-         * 该次数是否被选中
-         */
-        var checked: Boolean
-            @Bindable get() = times == retries
-            set(value) {
-                if (value) {
-                    retries = times
-                }
-            }
-    }
 }

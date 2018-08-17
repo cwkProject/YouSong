@@ -18,19 +18,6 @@ class Directional : BaseObservable() {
      * 性别，1男，2女，3不限
      */
     var sex = 3
-        set(value) {
-            field = value
-            sexSelector.forEach {
-                it.notifyChange()
-            }
-        }
-
-    /**
-     * 性别选择器，用于databinding绑定
-     */
-    val sexSelector = listOf(SexSelector(1),
-            SexSelector(2),
-            SexSelector(3))
 
     /**
      * 最小年龄
@@ -75,14 +62,9 @@ class Directional : BaseObservable() {
     var longitude = 0.0
 
     /**
-     * 目的地类型，true表示周边范围，false表示城市
+     * 目标地区筛选类型
      */
-    @Bindable
-    var destinationType = true
-        set(value) {
-            field = value
-            notifyPropertyChanged(BR.destinationType)
-        }
+    var destinationType = 0
 
     /**
      * 周边范围单位米
@@ -98,23 +80,4 @@ class Directional : BaseObservable() {
      * 城市代码
      */
     val cityIds = ObservableArrayList<Int>()
-
-    /**
-     * 性别选择器
-     *
-     * @property sexId 绑定的性别编号
-     */
-    inner class SexSelector(val sexId: Int) : BaseObservable() {
-
-        /**
-         * 该性别是否被选中
-         */
-        var checked: Boolean
-            @Bindable get() = sexId == sex
-            set(value) {
-                if (value) {
-                    sex = sexId
-                }
-            }
-    }
 }

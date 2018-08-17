@@ -8,6 +8,7 @@ import com.yousong.yousong.architecture.livedata.SubmitResult
 import com.yousong.yousong.architecture.livedata.SubmitResultLiveData
 import com.yousong.yousong.model.local.AdsDetail
 import com.yousong.yousong.operator.OnAdsDetailOperator
+import com.yousong.yousong.value.ValueConst
 import com.yousong.yousong.work.ads.AdsAnswerWork
 import com.yousong.yousong.work.ads.AdsGetDetailWork
 import com.yousong.yousong.work.common.start
@@ -41,8 +42,10 @@ class AdsDetailViewModel : ViewModel(), OnAdsDetailOperator {
         AdsGetDetailWork().start(id) {
             if (it.isSuccess) {
                 adsDetail.value = it.result?.apply {
-                    question.option.forEach {
-                        it.answer = false
+                    if (question.canAnswer) {
+                        question.option.forEach {
+                            it.answer = false
+                        }
                     }
                 }
             }
@@ -59,6 +62,14 @@ class AdsDetailViewModel : ViewModel(), OnAdsDetailOperator {
 
                 AdsAnswerWork().start(detail.ads.id, it.id) {
                     dialog.cancel()
+
+                    if (it.isSuccess) {
+                        // 变更答题状态
+                        detail.question.answered = true
+                        if (it.result != ValueConst.ANSWER_RETRY) {
+                            detail.question.canAnswer = false
+                        }
+                    }
 
                     submitResult.value = SubmitResult(it.isSuccess, it.message, if (it.isSuccess)
                         SubmitResult.LEVEL_ALERT_WITH_OK else SubmitResult.LEVEL_TOAST)
