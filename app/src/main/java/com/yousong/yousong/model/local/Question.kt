@@ -58,6 +58,16 @@ class Question : BaseObservable() {
         }
 
     /**
+     * 是否已回答过问题
+     */
+    @Bindable
+    var answered = false
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.answered)
+        }
+
+    /**
      * 重试次数选择器
      *
      * @property times 绑定的重试次数

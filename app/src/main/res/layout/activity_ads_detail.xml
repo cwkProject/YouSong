@@ -91,6 +91,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:checked="@={data.question.option[0].answer}"
+                        android:enabled="@{data.question.canAnswer}"
                         android:text="@{data.question.option[0].content}" />
 
                     <android.support.v7.widget.AppCompatRadioButton
@@ -98,6 +99,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:checked="@={data.question.option[1].answer}"
+                        android:enabled="@{data.question.canAnswer}"
                         android:text="@{data.question.option[1].content}" />
 
                     <android.support.v7.widget.AppCompatRadioButton
@@ -105,6 +107,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:checked="@={data.question.option[2].answer}"
+                        android:enabled="@{data.question.canAnswer}"
                         android:text="@{data.question.option[2].content}"
                         app:goneUnless="@{data.question.option.size() > 2}" />
 
@@ -113,6 +116,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:checked="@={data.question.option[3].answer}"
+                        android:enabled="@{data.question.canAnswer}"
                         android:text="@{data.question.option[3].content}"
                         app:goneUnless="@{data.question.option.size() > 3}" />
 
@@ -123,10 +127,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/activity_horizontal_margin"
                     android:layout_marginStart="@dimen/activity_horizontal_margin"
+                    android:enabled="@{data.question.canAnswer}"
                     android:onClick="@{holder::onSubmit}"
-                    android:text="@string/name_submit"
+                    android:text="@{data.question.canAnswer ? @string/name_submit : data.question.answered ? @string/name_answered : @string/name_over}"
                     android:textColor="@android:color/white"
-                    app:backgroundTint="@color/red_500" />
+                    app:backgroundTint="@color/primary_button_selector" />
 
                 <android.support.v7.widget.GridLayout
                     android:layout_width="match_parent"

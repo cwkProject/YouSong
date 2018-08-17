@@ -57,6 +57,7 @@ class AdsDetailTypeAdapter : TypeAdapter<AdsDetail>() {
         var question: Question? = null
         var directional: Directional? = null
         var canAnswer = true
+        var answered = false
 
         `in`.apply {
             beginObject()
@@ -66,13 +67,17 @@ class AdsDetailTypeAdapter : TypeAdapter<AdsDetail>() {
                     "questionAnswer" -> question = questionTypeAdapter.read(this)
                     "adsDirectional" -> directional = directionalTypeAdapter.read(this)
                     "canAnswer" -> canAnswer = nextInt() == ValueConst.SERVER_TRUE
+                    "answeredFrequency" -> answered = nextInt() > 0
                     else -> skipValue()
                 }
             }
             endObject()
         }
 
-        question = (question ?: Question()).apply { this.canAnswer = canAnswer }
+        question = (question ?: Question()).apply {
+            this.canAnswer = canAnswer
+            this.answered = answered
+        }
 
         return AdsDetail(ads ?: Ads(), question!!, directional ?: Directional())
     }
