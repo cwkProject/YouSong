@@ -4,7 +4,6 @@ import android.databinding.BaseObservable
 import android.databinding.Bindable
 import android.databinding.ObservableArrayList
 import com.yousong.yousong.BR
-import java.math.BigDecimal
 
 /**
  * 定向信息
@@ -68,12 +67,12 @@ class Directional : BaseObservable() {
     /**
      * 纬度
      */
-    var latitude = BigDecimal("0.000000")
+    var latitude = 0.0
 
     /**
      * 经度
      */
-    var longitude = BigDecimal("0.000000")
+    var longitude = 0.0
 
     /**
      * 目的地类型，true表示周边范围，false表示城市

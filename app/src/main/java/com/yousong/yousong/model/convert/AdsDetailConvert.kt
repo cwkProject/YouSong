@@ -176,8 +176,8 @@ class DirectionalTypeAdapter : TypeAdapter<Directional>() {
                     "sex" -> directional.sex = nextInt()
                     "minAge" -> directional.minAge = nextInt()
                     "maxAge" -> directional.maxAge = nextInt()
-                    "latitude" -> directional.latitude = BigDecimal(nextString()).setScale(6, BigDecimal.ROUND_DOWN)
-                    "longitude" -> directional.longitude = BigDecimal(nextString()).setScale(6, BigDecimal.ROUND_DOWN)
+                    "latitude" -> directional.latitude = nextDouble()
+                    "longitude" -> directional.longitude = nextDouble()
                     "range" -> directional.range = nextInt()
                     "cityIds" -> {
                         beginArray()

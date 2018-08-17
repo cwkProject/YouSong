@@ -5,6 +5,8 @@ import android.support.v4.view.ViewPager
 import android.widget.TextView
 import com.yousong.yousong.R
 import com.yousong.yousong.adapter.MainViewPagerAdapter
+import com.yousong.yousong.architecture.lifecycle.LocationUpdateLifeCycle
+import com.yousong.yousong.third.BDLocationClient
 import kotlinx.android.synthetic.main.activity_main.*
 import org.cwk.android.library.util.ToolbarInitialize.initToolbar
 
@@ -22,6 +24,7 @@ class MainActivity : BaseActivity() {
     override fun onInitView(savedInstanceState: Bundle?) {
         initToolbar(this, R.string.title_ads, true, false)
         initNavigation()
+        LocationUpdateLifeCycle(this)
     }
 
     /**
@@ -55,5 +58,10 @@ class MainActivity : BaseActivity() {
 
             true
         }
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        BDLocationClient.onRequestPermissionsResult(requestCode, permissions, grantResults)
     }
 }
