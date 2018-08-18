@@ -5,16 +5,12 @@
     <data>
 
         <variable
-            name="data"
+            name="adsDetail"
             type="com.yousong.yousong.model.local.AdsDetail"/>
 
         <variable
-            name="ages"
-            type="com.yousong.yousong.architecture.viewmodel.AgesRangeViewModel"/>
-
-        <variable
-            name="holder"
-            type="com.yousong.yousong.operator.OnDirectionOperator"/>
+            name="viewModel"
+            type="com.yousong.yousong.architecture.viewmodel.DirectionalViewModel"/>
 
     </data>
 
@@ -22,7 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:goneUnless="@{!data.ads.type}">
+        app:goneUnless="@{!adsDetail.ads.type}">
 
         <View
             android:layout_width="match_parent"
@@ -33,14 +29,11 @@
 
         <include
             layout="@layout/layout_directional_user"
-            app:ages="@{ages}"
-            app:data="@{data.directional}"
-            app:holder="@{holder}"/>
+            app:viewModel="@{viewModel}"/>
 
         <include
             layout="@layout/layout_directional_region"
-            app:data="@{data.directional}"
-            app:holder="@{holder}"/>
+            app:viewModel="@{viewModel}"/>
 
         <LinearLayout
             android:layout_width="wrap_content"

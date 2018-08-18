@@ -3,7 +3,6 @@ package com.yousong.yousong.architecture.viewmodel
 import android.content.Context
 import android.databinding.Bindable
 import android.graphics.Bitmap
-import android.support.annotation.IdRes
 import android.text.Editable
 import android.view.View
 import android.widget.RadioGroup
@@ -229,6 +228,9 @@ class CreateAdsViewModel : ObservableViewModel() {
         }
     }
 
+    /**
+     * 添加问题选项点击事件
+     */
     fun onAddOptionClick(view: View) {
         adsDetail.question.option.apply {
             if (size < 4) {
@@ -237,6 +239,9 @@ class CreateAdsViewModel : ObservableViewModel() {
         }
     }
 
+    /**
+     * 移除问题选项点击事件
+     */
     fun onRemoveOptionClick(view: View) {
         adsDetail.question.option.apply {
             if (size > 2) {

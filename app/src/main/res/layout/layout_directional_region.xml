@@ -4,12 +4,8 @@
     <data>
 
         <variable
-            name="data"
-            type="com.yousong.yousong.model.local.Directional"/>
-
-        <variable
-            name="holder"
-            type="com.yousong.yousong.operator.OnDirectionOperator"/>
+            name="viewModel"
+            type="com.yousong.yousong.architecture.viewmodel.DirectionalViewModel"/>
 
     </data>
 
@@ -29,7 +25,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/layout_default_spacing"
-            android:onCheckedChanged="@{holder::onDestinationCheckedChanged}"
+            android:onCheckedChanged="@{viewModel::onDestinationCheckedChanged}"
             android:orientation="horizontal">
 
             <android.support.v7.widget.AppCompatRadioButton
@@ -38,7 +34,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/layout_default_spacing"
                 android:layout_weight="1"
-                android:checked="@{data.destinationType == 0}"
+                android:checked="@{viewModel.directional.destinationType == 0}"
                 android:text="@string/name_not_limited"/>
 
             <android.support.v7.widget.AppCompatRadioButton
@@ -47,7 +43,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/activity_horizontal_margin"
                 android:layout_weight="1"
-                android:checked="@{data.destinationType == 1}"
+                android:checked="@{viewModel.directional.destinationType == 1}"
                 android:text="@string/name_local_perimeter"/>
 
             <android.support.v7.widget.AppCompatRadioButton
@@ -56,7 +52,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/activity_horizontal_margin"
                 android:layout_weight="1"
-                android:checked="@{data.destinationType == 2}"
+                android:checked="@{viewModel.directional.destinationType == 2}"
                 android:text="@string/name_designated_city"/>
 
         </RadioGroup>
