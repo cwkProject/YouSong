@@ -1,8 +1,8 @@
 package com.yousong.yousong.architecture.databinding
 
 import android.databinding.BindingAdapter
-import android.graphics.drawable.Drawable
 import android.widget.ImageView
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.yousong.yousong.R
 import com.yousong.yousong.third.GlideApp
 import com.yousong.yousong.value.ValueConst
@@ -18,16 +18,20 @@ import java.io.File
 object ImageBindingAdapters {
 
     /**
-     * 填充网络图片
+     * 填充广告海报
      *
      * @param view  图片控件
-     * @param defaultSrc 默认占位和失败图片
      * @param url   图片地址
      */
-    @BindingAdapter("defaultSrc", "imageUrl")
+    @BindingAdapter("poster")
     @JvmStatic
-    fun loadImageFromUrl(view: ImageView, defaultSrc: Drawable, url: String?) {
-        GlideApp.with(view).load(url).placeholder(defaultSrc).error(defaultSrc).into(view)
+    fun loadPoster(view: ImageView, url: String?) {
+        GlideApp.with(view)
+                .load(url)
+                .transition(DrawableTransitionOptions.withCrossFade())
+                .placeholder(R.drawable.placeholder_poster)
+                .error(R.drawable.placeholder_poster)
+                .into(view)
     }
 
     /**
@@ -39,8 +43,13 @@ object ImageBindingAdapters {
     @BindingAdapter("cover")
     @JvmStatic
     fun loadCover(view: ImageView, url: String?) {
-        GlideApp.with(view).load(url).override(ValueConst.COVER_WIDTH, ValueConst.COVER_HEIGHT)
-                .centerCrop().placeholder(R.drawable.placeholder_cover).error(R.drawable.placeholder_cover).into(view)
+        GlideApp.with(view)
+                .load(url)
+                .override(ValueConst.COVER_WIDTH, ValueConst.COVER_HEIGHT)
+                .centerCrop()
+                .placeholder(R.drawable.placeholder_cover)
+                .error(R.drawable.placeholder_cover)
+                .into(view)
     }
 
     /**
@@ -52,9 +61,12 @@ object ImageBindingAdapters {
     @BindingAdapter("avatar")
     @JvmStatic
     fun loadAvatar(view: ImageView, url: String?) {
-        GlideApp.with(view).load(url).circleCrop()
+        GlideApp.with(view)
+                .load(url)
+                .circleCrop()
                 .placeholder(R.drawable.ic_account_circle_grey_600_72dp)
-                .error(R.drawable.ic_account_circle_grey_600_72dp).into(view)
+                .error(R.drawable.ic_account_circle_grey_600_72dp)
+                .into(view)
     }
 
     /**
