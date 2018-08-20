@@ -38,12 +38,12 @@ class PersonalAuthenticationActivity : BaseActivity() {
     override fun onInitView(savedInstanceState: Bundle?) {
         initToolbar(this, R.string.title_personal_authentication)
 
+        binding.data = viewModel
+
         viewModel.submitResult.observe(this, Observer {
             if (it != null) {
                 SubmitResultUtil.show(this, it)
             }
         })
-
-        binding.data = viewModel
     }
 }

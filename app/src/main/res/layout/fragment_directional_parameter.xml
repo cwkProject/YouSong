@@ -12,6 +12,10 @@
             name="viewModel"
             type="com.yousong.yousong.architecture.viewmodel.DirectionalViewModel"/>
 
+        <variable
+            name="holder"
+            type="com.yousong.yousong.operator.OnDirectionalOperator"/>
+
     </data>
 
     <LinearLayout
@@ -33,6 +37,7 @@
 
         <include
             layout="@layout/layout_directional_region"
+            app:holder="@{holder}"
             app:viewModel="@{viewModel}"/>
 
         <LinearLayout

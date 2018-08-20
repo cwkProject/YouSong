@@ -1,6 +1,7 @@
 package com.yousong.yousong.architecture.viewmodel
 
 import android.databinding.Bindable
+import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.CompoundButton
@@ -64,6 +65,16 @@ class DirectionalViewModel : ObservableViewModel() {
         }
 
     /**
+     * 当前位置描述
+     */
+    @Bindable
+    var currentLocation: String? = null
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.currentLocation)
+        }
+
+    /**
      * 年龄不限选择状态变更
      */
     fun onAgeNotLimitedChecked(group: CompoundButton, isChecked: Boolean) {
@@ -112,6 +123,7 @@ class DirectionalViewModel : ObservableViewModel() {
      * 性别选中事件
      */
     fun onSexCheckedChanged(group: RadioGroup, checkedId: Int) {
+        Log.v("Directional", "onSexCheckedChanged:$checkedId")
         directional?.sex = when (checkedId) {
             R.id.not_limited -> 3
             R.id.male -> 1
@@ -124,7 +136,7 @@ class DirectionalViewModel : ObservableViewModel() {
      * 目标地区选中事件
      */
     fun onDestinationCheckedChanged(group: RadioGroup, checkedId: Int) {
-        directional?.destinationType = when (checkedId) {
+        directional?.locationType = when (checkedId) {
             R.id.not_limited -> 0
             R.id.local_perimeter -> 1
             R.id.designated_city -> 2

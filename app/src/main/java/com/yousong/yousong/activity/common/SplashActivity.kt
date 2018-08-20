@@ -5,7 +5,6 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.os.Bundle
 import com.yousong.yousong.R
-import com.yousong.yousong.activity.user.LoginActivity
 import com.yousong.yousong.common.plusAssign
 import com.yousong.yousong.global.AppConfig
 import com.yousong.yousong.global.LoginStatus
@@ -26,10 +25,11 @@ class SplashActivity : BaseActivity() {
     override val rootViewId = R.layout.activity_splash
 
     override fun onInitView(savedInstanceState: Bundle?) {
-
         // 注册广播接收者
         LoadingReceiver().register(this, lifecycle)
+    }
 
+    override fun onInitData(savedInstanceState: Bundle?) {
         if ((application as MyApplication).isFinish) {
             if (!LoginStatus.login && AppConfig.token != null) {
                 (application as MyApplication).initData()
@@ -46,8 +46,8 @@ class SplashActivity : BaseActivity() {
         if (LoginStatus.login) {
             startActivity<MainActivity>()
         } else {
-            startActivity<LoginActivity>()
-           // startActivity<MainActivity>()
+           // startActivity<LoginActivity>()
+            startActivity<MainActivity>()
         }
 
         finish()

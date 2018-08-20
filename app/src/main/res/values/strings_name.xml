@@ -38,11 +38,14 @@
     <string name="name_year_old">岁</string>
 
     <string name="name_target_region">目标地区</string>
-    <string name="name_local_perimeter">本地周边</string>
+    <string name="name_local_perimeter">本地范围</string>
     <string name="name_designated_city">指定城市</string>
+
+    <string name="name_nearby">附近</string>
 
     <string name="name_yuan">元</string>
     <string name="name_person">人</string>
+    <string name="name_kilometer">公里</string>
 
     <string name="name_user_unit_price">每用户所得额</string>
     <string name="name_user_count">目标用户人数</string>
@@ -62,6 +65,7 @@
 
     <string name="name_add_option">添加选项</string>
     <string name="name_remove_option">移除选项</string>
+    <string name="name_add_target_city">添加目标城市</string>
 
     <string name="name_corporation">法人</string>
 

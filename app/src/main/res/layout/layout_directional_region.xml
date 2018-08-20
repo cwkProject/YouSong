@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
         <variable
             name="viewModel"
             type="com.yousong.yousong.architecture.viewmodel.DirectionalViewModel"/>
+
+        <variable
+            name="holder"
+            type="com.yousong.yousong.operator.OnDirectionalOperator"/>
 
     </data>
 
@@ -30,32 +35,119 @@
 
             <android.support.v7.widget.AppCompatRadioButton
                 android:id="@+id/not_limited"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/layout_default_spacing"
-                android:layout_weight="1"
-                android:checked="@{viewModel.directional.destinationType == 0}"
+                android:checked="@{viewModel.directional.locationType == 0}"
                 android:text="@string/name_not_limited"/>
 
             <android.support.v7.widget.AppCompatRadioButton
                 android:id="@+id/local_perimeter"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/activity_horizontal_margin"
-                android:layout_weight="1"
-                android:checked="@{viewModel.directional.destinationType == 1}"
+                android:checked="@{viewModel.directional.locationType == 1}"
                 android:text="@string/name_local_perimeter"/>
 
             <android.support.v7.widget.AppCompatRadioButton
                 android:id="@+id/designated_city"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/activity_horizontal_margin"
-                android:layout_weight="1"
-                android:checked="@{viewModel.directional.destinationType == 2}"
+                android:checked="@{viewModel.directional.locationType == 2}"
                 android:text="@string/name_designated_city"/>
 
         </RadioGroup>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/layout_default_spacing"
+                android:orientation="vertical"
+                app:goneUnless="@{viewModel.directional.locationType == 1}">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/label_current_location"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/layout_default_spacing"
+                        android:background="?selectableItemBackground"
+                        android:drawablePadding="@dimen/layout_default_spacing"
+                        android:drawableStart="@drawable/ic_pin_drop_red_500_24dp"
+                        android:onClick="@{holder::onRelocationClick}"
+                        android:text="@{viewModel.currentLocation ?? @string/failed_location}"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                        android:textColor="?android:textColorPrimary"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/name_nearby"/>
+
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/layout_default_spacing"
+                        android:layout_marginStart="@dimen/layout_default_spacing"
+                        android:ems="5"
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:maxLength="3"
+                        android:text="@{viewModel.directional.range.toString()}"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/name_kilometer"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:goneUnless="@{viewModel.directional.locationType == 2}">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/address_recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layoutManager="android.support.v7.widget.LinearLayoutManager"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/layout_default_spacing"
+                    android:background="?selectableItemBackground"
+                    android:drawablePadding="@dimen/layout_default_spacing"
+                    android:drawableStart="@drawable/ic_add_green_a400_24dp"
+                    android:gravity="center_vertical"
+                    android:onClick="@{holder::onAddAddressClick}"
+                    android:text="@string/name_add_target_city"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+
+            </LinearLayout>
+        </FrameLayout>
 
         <TextView
             android:layout_width="wrap_content"

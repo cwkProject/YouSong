@@ -12,4 +12,7 @@
     <string name="label_correct_answer">正确答案:</string>
     <string name="label_retry_times">重答次数:</string>
 
+    <string name="label_current_location">当前位置:</string>
+    <string name="label_target_city">目标城市:</string>
+
 </resources>

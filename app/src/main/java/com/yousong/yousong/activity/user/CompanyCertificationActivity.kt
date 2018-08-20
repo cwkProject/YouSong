@@ -52,14 +52,14 @@ class CompanyCertificationActivity : BaseActivity(), OnCompanyCertificationOpera
     override fun onInitView(savedInstanceState: Bundle?) {
         initToolbar(this, R.string.title_company_certification)
 
+        binding.data = viewModel
+        binding.holder = this
+
         viewModel.submitResult.observe(this, Observer {
             if (it != null) {
                 SubmitResultUtil.show(this, it)
             }
         })
-
-        binding.data = viewModel
-        binding.holder = this
     }
 
     override fun onBusinessLicenseClick(view: View) {

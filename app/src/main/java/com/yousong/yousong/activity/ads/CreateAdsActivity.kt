@@ -62,15 +62,15 @@ class CreateAdsActivity : BaseActivity(), OnCreateAdsOperator {
     override fun onInitView(savedInstanceState: Bundle?) {
         initToolbar(this, R.string.title_publish_ads)
 
+        binding.data = viewModel.adsDetail
+        binding.viewModel = viewModel
+        binding.holder = this
+
         viewModel.submitResult.observe(this, Observer {
             if (it != null) {
                 SubmitResultUtil.show(this, it)
             }
         })
-
-        binding.data = viewModel.adsDetail
-        binding.viewModel = viewModel
-        binding.holder = this
     }
 
     override fun onCoverClick(view: View) {

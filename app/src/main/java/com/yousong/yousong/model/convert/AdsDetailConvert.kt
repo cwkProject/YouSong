@@ -158,8 +158,8 @@ class DirectionalTypeAdapter : TypeAdapter<Directional>() {
             name("longitude").value(value.longitude)
             name("cityIds")
             beginArray()
-            value.cityIds.forEach {
-                value(it)
+            value.addresses.forEach {
+                value(it.addressCode)
             }
             endArray()
             name("range").value(value.range)
@@ -182,7 +182,7 @@ class DirectionalTypeAdapter : TypeAdapter<Directional>() {
                     "cityIds" -> {
                         beginArray()
                         while (hasNext()) {
-                            directional.cityIds.add(nextInt())
+                            directional.addresses.add(Address(nextInt()))
                         }
                         endArray()
                     }

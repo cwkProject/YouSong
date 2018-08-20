@@ -17,7 +17,12 @@ class Directional : BaseObservable() {
     /**
      * 性别，1男，2女，3不限
      */
+    @Bindable
     var sex = 3
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.sex)
+        }
 
     /**
      * 最小年龄
@@ -54,17 +59,32 @@ class Directional : BaseObservable() {
     /**
      * 纬度
      */
+    @Bindable
     var latitude = 0.0
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.latitude)
+        }
 
     /**
      * 经度
      */
+    @Bindable
     var longitude = 0.0
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.longitude)
+        }
 
     /**
      * 目标地区筛选类型
      */
-    var destinationType = 0
+    @Bindable
+    var locationType = 0
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.locationType)
+        }
 
     /**
      * 周边范围单位米
@@ -77,7 +97,7 @@ class Directional : BaseObservable() {
         }
 
     /**
-     * 城市代码
+     * 地址集合
      */
-    val cityIds = ObservableArrayList<Int>()
+    val addresses = ObservableArrayList<Address>()
 }

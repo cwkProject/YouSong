@@ -35,9 +35,8 @@ class FriendFragment : BaseFragment() {
     override val rootViewId = R.layout.fragment_friend
 
     override fun onInitView(savedInstanceState: Bundle?) {
-        binding.data = userViewModel
-
         initAction()
+        binding.data = userViewModel
     }
 
     /**
