@@ -64,13 +64,12 @@ class CompanyAuthViewModel : AuthViewModel() {
         }
 
     init {
-        LoginStatus.companyAuth?.let {
-            realName = it.fullName
-            idCard = it.idCard
-            businessLicenceImgUrl = it.businessLicenceImgUrl
-            state = it.reviewState
-            editable = it.reviewState != ValueConst.REVIEW_PASS
-            visibility = it.reviewState != ValueConst.REVIEW_PASS
+        if (LoginStatus.authOk) {
+            onInitAuth()
+        } else {
+            LoginStatus.loadUserData {
+                onInitAuth()
+            }
         }
 
         // 属性改变监听器
@@ -81,6 +80,20 @@ class CompanyAuthViewModel : AuthViewModel() {
                 }
             }
         })
+    }
+
+    /**
+     * 初始化认证信息
+     */
+    private fun onInitAuth() {
+        LoginStatus.companyAuth?.let {
+            realName = it.fullName
+            idCard = it.idCard
+            businessLicenceImgUrl = it.businessLicenceImgUrl
+            state = it.reviewState
+            editable = it.reviewState != ValueConst.REVIEW_PASS
+            visibility = it.reviewState != ValueConst.REVIEW_PASS
+        }
     }
 
     /**

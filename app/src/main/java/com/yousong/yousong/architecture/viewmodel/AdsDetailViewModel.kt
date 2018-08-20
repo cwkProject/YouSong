@@ -66,9 +66,7 @@ class AdsDetailViewModel : ViewModel(), OnAdsDetailOperator {
                     if (it.isSuccess) {
                         // 变更答题状态
                         detail.question.answered = true
-                        if (it.result != ValueConst.ANSWER_RETRY) {
-                            detail.question.canAnswer = false
-                        }
+                        detail.question.canAnswer = it.result.canAnswer == ValueConst.SERVER_TRUE
                     }
 
                     submitResult.value = SubmitResult(it.isSuccess, it.message, if (it.isSuccess)

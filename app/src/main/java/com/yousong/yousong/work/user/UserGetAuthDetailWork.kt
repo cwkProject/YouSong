@@ -28,5 +28,13 @@ class UserGetAuthDetailWork : BaseSimpleWorkModel<Unit, Unit>() {
         }
     }
 
+    override fun onSuccess() {
+        LoginStatus.authOk = true
+    }
+
+    override fun onFailed() {
+        LoginStatus.authOk = false
+    }
+
     override fun onTaskUri() = ValueUrl.URL_USER_GET_AUTH_DETAIL
 }

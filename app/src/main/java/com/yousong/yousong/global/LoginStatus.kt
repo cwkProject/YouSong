@@ -29,6 +29,11 @@ object LoginStatus {
     var companyAuth: Auth? = null
 
     /**
+     * 是否成功加载了认证信息
+     */
+    var authOk = false
+
+    /**
      * 登录成功后加载用户数据，重复调用会刷新用户数据
      *
      * @param call 加载完成后回调
