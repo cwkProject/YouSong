@@ -15,4 +15,5 @@
     <string name="label_current_location">当前位置:</string>
     <string name="label_target_city">目标城市:</string>
 
+    <string name="label_cash_withdrawal_balance">可提现金额:</string>
 </resources>

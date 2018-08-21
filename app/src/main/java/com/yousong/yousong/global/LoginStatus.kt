@@ -1,5 +1,8 @@
 package com.yousong.yousong.global
 
+import android.databinding.BaseObservable
+import android.databinding.Bindable
+import com.yousong.yousong.BR
 import com.yousong.yousong.model.server.Auth
 import com.yousong.yousong.work.common.start
 import com.yousong.yousong.work.user.UserGetAuthDetailWork
@@ -11,7 +14,7 @@ import com.yousong.yousong.work.user.UserGetAuthDetailWork
  * @version 1.0 2017/2/15
  * @since 1.0
  */
-object LoginStatus {
+object LoginStatus : BaseObservable() {
 
     /**
      * 标记是否已登录
@@ -21,12 +24,22 @@ object LoginStatus {
     /**
      * 个人认证信息
      */
+    @Bindable
     var personalAuth: Auth? = null
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.personalAuth)
+        }
 
     /**
      * 企业认证信息
      */
+    @Bindable
     var companyAuth: Auth? = null
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.companyAuth)
+        }
 
     /**
      * 是否成功加载了认证信息

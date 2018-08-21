@@ -5,11 +5,11 @@
 
         <variable
             name="data"
-            type="com.yousong.yousong.architecture.viewmodel.AuthViewModel" />
+            type="com.yousong.yousong.architecture.viewmodel.AuthViewModel"/>
 
         <variable
             name="target"
-            type="String" />
+            type="String"/>
 
     </data>
 
@@ -21,24 +21,20 @@
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/activity_horizontal_margin"
-            android:layout_marginStart="@dimen/activity_horizontal_margin"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_marginTop="@dimen/layout_default_spacing"
             android:hint="@{target + @string/hint_real_name}">
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:enabled="@{data.editable}"
-                android:text="@={data.realName}" />
+                android:text="@={data.realName}"/>
 
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/activity_horizontal_margin"
-            android:layout_marginStart="@dimen/activity_horizontal_margin"
             android:layout_marginTop="@dimen/layout_default_spacing"
             android:hint="@{target + @string/hint_id_number}">
 
@@ -49,7 +45,7 @@
                 android:digits="0123456789Xx"
                 android:enabled="@{data.editable}"
                 android:maxLength="18"
-                android:text="@{data.idCard}" />
+                android:text="@{data.idCard}"/>
 
         </android.support.design.widget.TextInputLayout>
 

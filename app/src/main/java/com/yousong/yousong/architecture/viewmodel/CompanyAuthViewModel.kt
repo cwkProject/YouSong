@@ -91,8 +91,8 @@ class CompanyAuthViewModel : AuthViewModel() {
             idCard = it.idCard
             businessLicenceImgUrl = it.businessLicenceImgUrl
             state = it.reviewState
-            editable = it.reviewState != ValueConst.REVIEW_PASS
-            visibility = it.reviewState != ValueConst.REVIEW_PASS
+            editable = !it.valid
+            visibility = !it.valid
         }
     }
 

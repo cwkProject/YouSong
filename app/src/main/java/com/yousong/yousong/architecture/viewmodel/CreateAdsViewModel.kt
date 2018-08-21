@@ -149,7 +149,7 @@ class CreateAdsViewModel : ObservableViewModel() {
         }
 
         // 定向数据校验
-        if (!adsDetail.ads.type) {
+        if (resId == null && !adsDetail.ads.type) {
             when (adsDetail.directional.locationType) {
                 ValueConst.LOCATION_TYPE_LOCAL_REGION -> {
                     adsDetail.directional.apply {

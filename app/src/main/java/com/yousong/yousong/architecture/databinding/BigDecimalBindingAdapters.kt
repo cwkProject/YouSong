@@ -24,7 +24,7 @@ object BigDecimalBindingAdapters {
      */
     @BindingConversion
     @JvmStatic
-    fun convertBigDecimalToString(number: BigDecimal): String = number.toString()
+    fun convertBigDecimalToString(number: BigDecimal?): String? = number?.toString()
 
     /**
      * 乘以Int类型并转为String

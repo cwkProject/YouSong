@@ -1,5 +1,7 @@
 package com.yousong.yousong.model.server
 
+import com.yousong.yousong.value.ValueConst
+
 /**
  * 认证信息
  *
@@ -18,4 +20,10 @@ data class Auth(val userAuthId: Long,
                 val fullName: String,
                 val idCard: String,
                 val reviewState: Int,
-                val businessLicenceImgUrl: String?)
+                val businessLicenceImgUrl: String?) {
+
+    /**
+     * 当前认证信息是否有效
+     */
+    val valid get() = reviewState == ValueConst.REVIEW_PASS
+}

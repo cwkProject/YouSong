@@ -34,7 +34,7 @@ class AdsAnswerWork : BaseSimpleWorkModel<Any, AnswerResult>() {
 
         mData.result.apply {
             when {
-                isAnswer == ValueConst.SERVER_TRUE -> return context.getString(R.string.format_answer_success).format(myBudget / 1f)
+                isAnswer == ValueConst.SERVER_TRUE -> return context.getString(R.string.format_answer_success).format(myBudget / 100f)
                 canAnswer == ValueConst.SERVER_TRUE -> return context.getString(R.string.error_answer_again)
                 canAnswer != ValueConst.SERVER_TRUE -> return context.getString(R.string.error_answer)
             }

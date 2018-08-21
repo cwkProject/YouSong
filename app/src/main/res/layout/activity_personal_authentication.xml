@@ -6,9 +6,9 @@
 
         <variable
             name="data"
-            type="com.yousong.yousong.architecture.viewmodel.PersonalAuthViewModel" />
+            type="com.yousong.yousong.architecture.viewmodel.PersonalAuthViewModel"/>
 
-        <import type="com.yousong.yousong.value.ValueConst" />
+        <import type="com.yousong.yousong.value.ValueConst"/>
 
     </data>
 
@@ -17,29 +17,59 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <include layout="@layout/toolbar" />
+        <include layout="@layout/toolbar"/>
 
-        <include
-            layout="@layout/layout_auth_verify"
-            app:data="@{data}"
-            app:target="@{``}" />
-
-        <include
-            layout="@layout/layout_mobile_verify"
-            app:data="@{data}" />
-
-        <android.support.v7.widget.AppCompatButton
+        <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/activity_horizontal_margin"
-            android:layout_marginStart="@dimen/activity_horizontal_margin"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:enabled="@{data.submittable}"
-            android:onClick="@{data::onSubmit}"
-            android:text="@string/name_submit_review"
-            android:textColor="@android:color/white"
-            app:backgroundTint="@color/primary_button_selector"
-            app:goneUnless="@{data.state != ValueConst.REVIEW_PASS}" />
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingEnd="@dimen/activity_horizontal_margin"
+                android:paddingStart="@dimen/activity_horizontal_margin">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:text="@string/hint_personal_authentication_reward"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/red_300"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/layout_default_spacing"
+                    android:text="@string/hint_system_is_reviewing"
+                    app:goneUnless="@{data.state == ValueConst.REVIEW_UNDER_REVIEW}"/>
+
+                <include
+                    layout="@layout/layout_auth_verify"
+                    app:data="@{data}"
+                    app:target="@{``}"/>
+
+                <include
+                    layout="@layout/layout_mobile_verify"
+                    app:data="@{data}"/>
+
+                <android.support.v7.widget.AppCompatButton
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/layout_default_spacing"
+                    android:enabled="@{data.submittable}"
+                    android:onClick="@{data::onSubmit}"
+                    android:text="@string/name_submit_review"
+                    android:textColor="@android:color/white"
+                    app:backgroundTint="@color/primary_button_selector"
+                    app:goneUnless="@{data.state != ValueConst.REVIEW_PASS}"/>
+
+            </LinearLayout>
+
+        </android.support.v4.widget.NestedScrollView>
 
     </LinearLayout>
 

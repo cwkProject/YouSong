@@ -63,8 +63,8 @@ class PersonalAuthViewModel : AuthViewModel() {
             realName = it.fullName
             idCard = it.idCard
             state = it.reviewState
-            editable = it.reviewState != ValueConst.REVIEW_PASS
-            visibility = it.reviewState != ValueConst.REVIEW_PASS
+            editable = !it.valid
+            visibility = !it.valid
         }
     }
 

@@ -21,7 +21,7 @@ object UserAssets : BaseObservable() {
      */
     @Bindable
     var balance = BigDecimal("0.00")
-        set(value) {
+        private set(value) {
             field = value
             notifyPropertyChanged(BR.balance)
         }
