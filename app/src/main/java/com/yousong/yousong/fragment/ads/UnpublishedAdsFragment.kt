@@ -31,14 +31,13 @@ class UnpublishedAdsFragment : BaseAdsListFragment() {
     }
 
     override fun onInitData(savedInstanceState: Bundle?) {
-        adsViewModel.unpublishedAds
-                .observe(this, Observer {
-                    it?.let {
-                        adapter.clear()
-                        adapter += it
-                    }
-                    stopRefresh()
-                })
+        adsViewModel.unpublishedAds.observe(this, Observer {
+            it?.let {
+                adapter.clear()
+                adapter += it
+            }
+            stopRefresh()
+        })
 
         adsViewModel.submitResult.observe(this, Observer { it?.show(activity!!) })
     }

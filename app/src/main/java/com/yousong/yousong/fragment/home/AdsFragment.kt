@@ -33,10 +33,7 @@ class AdsFragment : BaseAdsListFragment() {
     }
 
     override fun onInitData(savedInstanceState: Bundle?) {
-        adsViewModel.adsListData
-                .observe(this, Observer {
-                    onAdsRefresh(it)
-                })
+        adsViewModel.adsListData.observe(this, Observer { onAdsRefresh(it) })
     }
 
     /**

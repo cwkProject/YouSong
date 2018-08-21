@@ -26,14 +26,13 @@ class PublishedAdsFragment : BaseAdsListFragment() {
     }
 
     override fun onInitData(savedInstanceState: Bundle?) {
-        adsViewModel.publishedAds
-                .observe(this, Observer {
-                    it?.let {
-                        adapter.adsList.clear()
-                        adapter.adsList += it
-                    }
-                    stopRefresh()
-                })
+        adsViewModel.publishedAds.observe(this, Observer {
+            it?.let {
+                adapter.adsList.clear()
+                adapter.adsList += it
+            }
+            stopRefresh()
+        })
     }
 
     override fun onInitListAction() {
