@@ -6,15 +6,15 @@
 
         <variable
             name="userViewModel"
-            type="com.yousong.yousong.architecture.viewmodel.UserViewModel"/>
+            type="com.yousong.yousong.architecture.viewmodel.UserViewModel" />
 
-        <import type="com.yousong.yousong.global.LoginStatus"/>
+        <import type="com.yousong.yousong.global.LoginStatus" />
 
-        <import type="com.yousong.yousong.global.UserAssets"/>
+        <import type="com.yousong.yousong.global.UserAssets" />
 
-        <import type="com.yousong.yousong.global.AppConfig"/>
+        <import type="com.yousong.yousong.global.AppConfig" />
 
-        <import type="java.lang.String"/>
+        <import type="java.lang.String" />
 
     </data>
 
@@ -27,7 +27,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <LinearLayout
+            <RelativeLayout
                 android:id="@+id/user_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -35,21 +35,46 @@
                 android:orientation="vertical">
 
                 <ImageView
+                    android:id="@+id/avatar"
                     android:layout_width="72dp"
                     android:layout_height="72dp"
-                    android:layout_gravity="center_horizontal"
+                    android:layout_centerHorizontal="true"
                     android:layout_marginTop="@dimen/layout_toolbar_top_margin"
-                    app:avatar="@{AppConfig.INSTANCE.avatar}"/>
+                    app:avatar="@{AppConfig.INSTANCE.avatar}" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
+                    android:layout_below="@+id/avatar"
+                    android:layout_centerHorizontal="true"
                     android:layout_marginBottom="@dimen/activity_vertical_margin"
                     android:layout_marginTop="@dimen/layout_default_spacing"
                     android:text="@{AppConfig.INSTANCE.nickname}"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
-            </LinearLayout>
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+                <ImageView
+                    android:id="@+id/real_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/avatar"
+                    android:layout_marginStart="@dimen/layout_default_spacing"
+                    android:layout_toEndOf="@+id/avatar"
+                    android:padding="4dp"
+                    android:tint="@{LoginStatus.INSTANCE.personalAuth.reviewState ==  @color/blue_500}"
+                    app:invisibleUnless="@{LoginStatus.INSTANCE.personalAuth}"
+                    app:srcCompat="@drawable/ic_real_name_black_24dp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/real_name"
+                    app:invisibleUnless="@{LoginStatus.INSTANCE.companyAuth}"
+                    android:layout_marginStart="@dimen/layout_default_spacing"
+                    android:layout_marginTop="@dimen/layout_default_spacing"
+                    android:layout_toEndOf="@+id/avatar"
+                    android:padding="4dp"
+                    app:srcCompat="@drawable/ic_company_black_24dp" />
+            </RelativeLayout>
 
             <TableLayout
                 android:layout_width="match_parent"
@@ -64,16 +89,16 @@
                         android:layout_marginBottom="@dimen/layout_default_spacing"
                         android:layout_marginEnd="@dimen/activity_horizontal_margin"
                         android:layout_marginTop="@dimen/layout_default_spacing"
-                        app:srcCompat="@drawable/ic_currency_cny_black_36dp"/>
+                        app:srcCompat="@drawable/ic_currency_cny_black_36dp" />
 
                     <TextView
                         style="@style/MeTextStyle"
-                        android:text="@string/label_income"/>
+                        android:text="@string/label_income" />
 
                     <TextView
                         android:layout_marginStart="@dimen/layout_default_spacing"
                         android:text="@{userViewModel.totalIncome.toPlainString() +` `+ @string/name_yuan}"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
                 </TableRow>
 
@@ -83,7 +108,7 @@
                         android:layout_height="1dp"
                         android:layout_column="1"
                         android:layout_span="2"
-                        android:background="@color/grey_100"/>
+                        android:background="@color/grey_100" />
                 </TableRow>
 
                 <TableRow style="@style/MeRowStyle">
@@ -92,16 +117,16 @@
                         android:layout_marginBottom="@dimen/layout_default_spacing"
                         android:layout_marginEnd="@dimen/activity_horizontal_margin"
                         android:layout_marginTop="@dimen/layout_default_spacing"
-                        app:srcCompat="@drawable/ic_currency_cny_black_36dp"/>
+                        app:srcCompat="@drawable/ic_currency_cny_black_36dp" />
 
                     <TextView
                         style="@style/MeTextStyle"
-                        android:text="@string/label_over"/>
+                        android:text="@string/label_over" />
 
                     <TextView
                         android:layout_marginStart="@dimen/layout_default_spacing"
                         android:text="@{UserAssets.INSTANCE.balance.toPlainString() +` `+ @string/name_yuan}"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
                 </TableRow>
 
                 <TableRow>
@@ -110,7 +135,7 @@
                         android:layout_height="1dp"
                         android:layout_column="1"
                         android:layout_span="2"
-                        android:background="@color/grey_100"/>
+                        android:background="@color/grey_100" />
                 </TableRow>
 
                 <TableRow
@@ -121,13 +146,13 @@
                         android:layout_marginBottom="@dimen/layout_default_spacing"
                         android:layout_marginEnd="@dimen/activity_horizontal_margin"
                         android:layout_marginTop="@dimen/layout_default_spacing"
-                        app:srcCompat="@drawable/ic_currency_cny_black_36dp"/>
+                        app:srcCompat="@drawable/ic_currency_cny_black_36dp" />
 
                     <TextView
                         style="@style/MeTextStyle"
                         android:layout_span="2"
                         android:drawableEnd="@drawable/ic_chevron_right_grey_400_24dp"
-                        android:text="@string/name_withdraw"/>
+                        android:text="@string/name_withdraw" />
 
                 </TableRow>
 
@@ -137,7 +162,7 @@
                         android:layout_height="1dp"
                         android:layout_column="1"
                         android:layout_span="2"
-                        android:background="@color/grey_100"/>
+                        android:background="@color/grey_100" />
                 </TableRow>
 
                 <TableRow
@@ -148,13 +173,13 @@
                         android:layout_marginBottom="@dimen/layout_default_spacing"
                         android:layout_marginEnd="@dimen/activity_horizontal_margin"
                         android:layout_marginTop="@dimen/layout_default_spacing"
-                        app:srcCompat="@drawable/ic_currency_cny_black_36dp"/>
+                        app:srcCompat="@drawable/ic_currency_cny_black_36dp" />
 
                     <TextView
                         style="@style/MeTextStyle"
                         android:layout_span="2"
                         android:drawableEnd="@drawable/ic_chevron_right_grey_400_24dp"
-                        android:text="@string/name_publish_ads"/>
+                        android:text="@string/name_publish_ads" />
                 </TableRow>
 
                 <TableRow>
@@ -163,7 +188,7 @@
                         android:layout_height="1dp"
                         android:layout_column="1"
                         android:layout_span="2"
-                        android:background="@color/grey_100"/>
+                        android:background="@color/grey_100" />
                 </TableRow>
 
                 <TableRow
@@ -174,13 +199,13 @@
                         android:layout_marginBottom="@dimen/layout_default_spacing"
                         android:layout_marginEnd="@dimen/activity_horizontal_margin"
                         android:layout_marginTop="@dimen/layout_default_spacing"
-                        app:srcCompat="@drawable/ic_currency_cny_black_36dp"/>
+                        app:srcCompat="@drawable/ic_currency_cny_black_36dp" />
 
                     <TextView
                         style="@style/MeTextStyle"
                         android:layout_span="2"
                         android:drawableEnd="@drawable/ic_chevron_right_grey_400_24dp"
-                        android:text="@string/name_authenticate"/>
+                        android:text="@string/name_authenticate" />
                 </TableRow>
 
                 <TableRow>
@@ -189,7 +214,7 @@
                         android:layout_height="1dp"
                         android:layout_column="1"
                         android:layout_span="2"
-                        android:background="@color/grey_100"/>
+                        android:background="@color/grey_100" />
                 </TableRow>
 
                 <TableRow style="@style/MeRowStyle">
@@ -198,13 +223,13 @@
                         android:layout_marginBottom="@dimen/layout_default_spacing"
                         android:layout_marginEnd="@dimen/activity_horizontal_margin"
                         android:layout_marginTop="@dimen/layout_default_spacing"
-                        app:srcCompat="@drawable/ic_currency_cny_black_36dp"/>
+                        app:srcCompat="@drawable/ic_currency_cny_black_36dp" />
 
                     <TextView
                         style="@style/MeTextStyle"
                         android:layout_span="2"
                         android:drawableEnd="@drawable/ic_chevron_right_grey_400_24dp"
-                        android:text="@string/name_help"/>
+                        android:text="@string/name_help" />
                 </TableRow>
             </TableLayout>
 
