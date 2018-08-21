@@ -17,6 +17,11 @@
     <string name="name_answered">已回答</string>
     <string name="name_over">已结束</string>
 
+    <string name="name_unsubmitted">未提交</string>
+    <string name="name_under_review">审核中</string>
+    <string name="name_not_pass">未通过</string>
+    <string name="name_pass">已通过</string>
+
     <string name="name_send_verification_code">发送验证码</string>
 
     <string name="name_copy_of_business_license">营业执照副本</string>

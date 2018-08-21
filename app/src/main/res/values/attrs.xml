@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="review_states">
+        <item>@string/name_unsubmitted</item>
+        <item>@string/name_under_review</item>
+        <item>@string/name_not_pass</item>
+        <item>@string/name_pass</item>
+    </string-array>
+
+    <integer-array name="review_states_color">
+        <item>@color/blue_500</item>
+        <item>@color/orange_500</item>
+        <item>@color/red_500</item>
+        <item>@color/green_500</item>
+    </integer-array>
+
+</resources>

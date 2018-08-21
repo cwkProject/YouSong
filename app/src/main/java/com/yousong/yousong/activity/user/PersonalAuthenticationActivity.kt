@@ -7,7 +7,6 @@ import com.yousong.yousong.R
 import com.yousong.yousong.activity.common.BaseActivity
 import com.yousong.yousong.architecture.viewmodel.PersonalAuthViewModel
 import com.yousong.yousong.databinding.ActivityPersonalAuthenticationBinding
-import com.yousong.yousong.function.SubmitResultUtil
 import org.cwk.android.library.util.ToolbarInitialize.initToolbar
 
 /**
@@ -40,10 +39,6 @@ class PersonalAuthenticationActivity : BaseActivity() {
 
         binding.data = viewModel
 
-        viewModel.submitResult.observe(this, Observer {
-            if (it != null) {
-                SubmitResultUtil.show(this, it)
-            }
-        })
+        viewModel.submitResult.observe(this, Observer { it?.show(this) })
     }
 }

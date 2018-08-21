@@ -15,7 +15,6 @@ import com.yousong.yousong.R
 import com.yousong.yousong.activity.common.BaseActivity
 import com.yousong.yousong.architecture.viewmodel.CreateAdsViewModel
 import com.yousong.yousong.databinding.ActivityCreateAdsBinding
-import com.yousong.yousong.function.SubmitResultUtil
 import com.yousong.yousong.operator.OnCreateAdsOperator
 import com.yousong.yousong.util.CheckAndroidMPermission
 import com.yousong.yousong.util.FileUtil
@@ -66,11 +65,7 @@ class CreateAdsActivity : BaseActivity(), OnCreateAdsOperator {
         binding.viewModel = viewModel
         binding.holder = this
 
-        viewModel.submitResult.observe(this, Observer {
-            if (it != null) {
-                SubmitResultUtil.show(this, it)
-            }
-        })
+        viewModel.submitResult.observe(this, Observer { it?.show(this) })
     }
 
     override fun onCoverClick(view: View) {

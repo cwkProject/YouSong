@@ -26,7 +26,6 @@ class AdsCreateWork : BaseSimpleWorkModel<AdsDetail, String>() {
     @Post
     override fun onTaskUri() = ValueUrl.URL_ADS_CREATE
 
-    override fun onRequestSuccessMessage(handleResult: JSONObject): String {
-        return Global.getApplication().getString(R.string.success_create_ads)
-    }
+    override fun onRequestSuccessMessage(handleResult: JSONObject): String =
+            Global.getApplication().getString(R.string.success_create_ads)
 }

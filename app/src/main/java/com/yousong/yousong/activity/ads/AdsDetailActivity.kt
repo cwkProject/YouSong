@@ -7,7 +7,6 @@ import com.yousong.yousong.R
 import com.yousong.yousong.activity.common.BaseActivity
 import com.yousong.yousong.architecture.viewmodel.AdsDetailViewModel
 import com.yousong.yousong.databinding.ActivityAdsDetailBinding
-import com.yousong.yousong.function.SubmitResultUtil
 import com.yousong.yousong.value.ValueTag
 import org.cwk.android.library.util.ToolbarInitialize.initToolbar
 
@@ -48,9 +47,7 @@ class AdsDetailActivity : BaseActivity() {
         })
 
         viewModel.submitResult.observe(this, Observer {
-            if (it != null) {
-                SubmitResultUtil.show(this, it)
-            }
+            it?.show(this)
         })
     }
 

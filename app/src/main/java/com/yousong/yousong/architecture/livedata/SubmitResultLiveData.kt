@@ -1,6 +1,11 @@
 package com.yousong.yousong.architecture.livedata
 
+import android.app.Activity
 import android.arch.lifecycle.MutableLiveData
+import org.jetbrains.anko.alert
+import org.jetbrains.anko.longToast
+import org.jetbrains.anko.okButton
+import org.jetbrains.anko.toast
 
 /**
  * 网络服务提交结果生命周期数据
@@ -59,5 +64,33 @@ data class SubmitResult(val result: Boolean, val message: String? = null, val le
          * 用弹窗显示，包含确定按钮，确认或取消后关闭界面
          */
         const val LEVEL_ALERT_FINISH = 5
+    }
+
+    /**
+     * 显示结果消息，显示不成功时可能需要UI控制器进一步处理显示
+     *
+     * @param activity UI界面
+     *
+     * @return 显示结果，true表示成功显示，false表示未能显示，可能情况有message为空，level为[SubmitResult.LEVEL_UNKNOWN]，[SubmitResult.LEVEL_IGNORE]
+     */
+    fun show(activity: Activity): Boolean {
+        if (message == null || message.isBlank() || level <= 0) {
+            return false
+        }
+
+        when (level) {
+            SubmitResult.LEVEL_TOAST -> activity.toast(message)
+            SubmitResult.LEVEL_LONG_TOAST -> activity.longToast(message)
+            SubmitResult.LEVEL_ALERT -> activity.alert(message).show()
+            SubmitResult.LEVEL_ALERT_WITH_OK -> activity.alert(message) {
+                okButton {}
+            }.show()
+            SubmitResult.LEVEL_ALERT_FINISH -> activity.alert(message) {
+                okButton { activity.finish() }
+                onCancelled { activity.finish() }
+            }.show()
+            else -> return false
+        }
+        return true
     }
 }

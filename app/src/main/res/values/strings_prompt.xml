@@ -24,4 +24,6 @@
 
     <string name="prompt_apply_location_permission">为了获得更精准的广告信息，请您授予定位权限且开启位置功能</string>
 
+    <string name="prompt_confirm_publish">确认发布此广告？</string>
+
 </resources>
