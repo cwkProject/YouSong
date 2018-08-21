@@ -156,13 +156,13 @@ class DirectionalTypeAdapter : TypeAdapter<Directional>() {
             name("maxAge").value(value.maxAge)
             name("latitude").value(value.latitude)
             name("longitude").value(value.longitude)
-            name("cityIds")
+            name("cityCodes")
             beginArray()
             value.addresses.forEach {
                 value(it.addressCode)
             }
             endArray()
-            name("range").value(value.range)
+            name("range").value(value.range?.times(1000))
             endObject()
         }
     }
@@ -178,11 +178,11 @@ class DirectionalTypeAdapter : TypeAdapter<Directional>() {
                     "maxAge" -> directional.maxAge = nextInt()
                     "latitude" -> directional.latitude = nextDouble()
                     "longitude" -> directional.longitude = nextDouble()
-                    "range" -> directional.range = nextInt()
-                    "cityIds" -> {
+                    "range" -> directional.range = nextInt() / 1000
+                    "cityCodes" -> {
                         beginArray()
                         while (hasNext()) {
-                            directional.addresses.add(Address(nextInt()))
+                            directional.addresses.add(Address(nextString()))
                         }
                         endArray()
                     }

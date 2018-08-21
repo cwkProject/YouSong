@@ -24,6 +24,7 @@ import org.jetbrains.anko.toast
 import java.io.File
 import java.math.BigDecimal
 import kotlin.concurrent.thread
+import kotlin.math.abs
 
 /**
  * 发布广告数据模型
@@ -126,6 +127,7 @@ class CreateAdsViewModel : ObservableViewModel() {
     private fun checkAds(context: Context): Boolean {
         var resId: Int? = null
 
+        // 广告内容校验
         adsDetail.ads.apply {
             resId = when {
                 name.isBlank() -> R.string.hint_name_not_null
@@ -135,12 +137,37 @@ class CreateAdsViewModel : ObservableViewModel() {
             }
         }
 
+        // 问题选项校验
         if (resId == null) {
             adsDetail.question.apply {
                 resId = when {
                     content.isBlank() -> R.string.hint_question_not_null
                     option.any { it.content.isBlank() } -> R.string.hint_option_not_null
                     else -> null
+                }
+            }
+        }
+
+        // 定向数据校验
+        if (!adsDetail.ads.type) {
+            when (adsDetail.directional.locationType) {
+                ValueConst.LOCATION_TYPE_LOCAL_REGION -> {
+                    adsDetail.directional.apply {
+                        resId = when {
+                            abs(latitude) < 10E-6 && abs(longitude) < 10E-6 -> R.string.hint_local_range_not_location
+                            range?.takeIf { it > 0 } == null -> R.string.hint_local_range_not_null
+                            else -> null
+                        }
+                    }
+                }
+                ValueConst.LOCATION_TYPE_TARGET_CITY -> {
+                    adsDetail.directional.apply {
+                        resId = when {
+                            addresses.isEmpty() -> R.string.hint_target_city_not_null
+                            addresses.any { it.addressCode == null } -> R.string.hint_target_city_has_empty
+                            else -> null
+                        }
+                    }
                 }
             }
         }

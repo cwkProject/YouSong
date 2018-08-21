@@ -4,6 +4,7 @@ import android.databinding.BaseObservable
 import android.databinding.Bindable
 import android.databinding.ObservableArrayList
 import com.yousong.yousong.BR
+import com.yousong.yousong.value.ValueConst
 
 /**
  * 定向信息
@@ -80,7 +81,7 @@ class Directional : BaseObservable() {
      * 目标地区筛选类型
      */
     @Bindable
-    var locationType = 0
+    var locationType = ValueConst.LOCATION_TYPE_NOT_LIMITED
         set(value) {
             field = value
             notifyPropertyChanged(BR.locationType)

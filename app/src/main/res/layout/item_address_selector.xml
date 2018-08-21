@@ -6,11 +6,11 @@
 
         <variable
             name="data"
-            type="com.yousong.yousong.model.local.Address"/>
+            type="com.yousong.yousong.model.local.Address" />
 
         <variable
             name="holder"
-            type="com.yousong.yousong.operator.OnDirectionalOperator"/>
+            type="com.yousong.yousong.operator.OnDirectionalOperator" />
 
     </data>
 
@@ -24,7 +24,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/label_target_city"/>
+            android:text="@string/label_target_city" />
 
         <TextView
             android:layout_width="0dp"
@@ -37,16 +37,16 @@
             android:gravity="center_vertical"
             android:onClick="@{() -> holder.onSelectAddressClick(data)}"
             android:text="@{data.address ?? @string/hint_select_target_city}"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/activity_horizontal_margin"
+            android:layout_marginStart="@dimen/layout_default_spacing"
             android:background="?selectableItemBackgroundBorderless"
             android:onClick="@{() -> holder.onRemoveAddressClick(data)}"
             android:padding="4dp"
-            app:srcCompat="@drawable/ic_remove_red_a400_24dp"/>
+            app:srcCompat="@drawable/ic_remove_red_a400_24dp" />
 
     </LinearLayout>
 

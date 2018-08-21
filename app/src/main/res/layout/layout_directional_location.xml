@@ -6,11 +6,15 @@
 
         <variable
             name="viewModel"
-            type="com.yousong.yousong.architecture.viewmodel.DirectionalViewModel"/>
+            type="com.yousong.yousong.architecture.viewmodel.DirectionalViewModel" />
 
         <variable
             name="holder"
-            type="com.yousong.yousong.operator.OnDirectionalOperator"/>
+            type="com.yousong.yousong.operator.OnDirectionalOperator" />
+
+        <import type="com.yousong.yousong.architecture.databinding.BindingTypeConverts" />
+
+        <import type="com.yousong.yousong.value.ValueConst" />
 
     </data>
 
@@ -24,7 +28,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/name_target_region"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
         <RadioGroup
             android:layout_width="match_parent"
@@ -37,24 +41,24 @@
                 android:id="@+id/not_limited"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:checked="@{viewModel.directional.locationType == 0}"
-                android:text="@string/name_not_limited"/>
+                android:checked="@{viewModel.directional.locationType == ValueConst.LOCATION_TYPE_NOT_LIMITED}"
+                android:text="@string/name_not_limited" />
 
             <android.support.v7.widget.AppCompatRadioButton
                 android:id="@+id/local_perimeter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/activity_horizontal_margin"
-                android:checked="@{viewModel.directional.locationType == 1}"
-                android:text="@string/name_local_perimeter"/>
+                android:checked="@{viewModel.directional.locationType == ValueConst.LOCATION_TYPE_LOCAL_REGION}"
+                android:text="@string/name_local_perimeter" />
 
             <android.support.v7.widget.AppCompatRadioButton
                 android:id="@+id/designated_city"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/activity_horizontal_margin"
-                android:checked="@{viewModel.directional.locationType == 2}"
-                android:text="@string/name_designated_city"/>
+                android:checked="@{viewModel.directional.locationType == ValueConst.LOCATION_TYPE_TARGET_CITY}"
+                android:text="@string/name_designated_city" />
 
         </RadioGroup>
 
@@ -78,7 +82,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/label_current_location"/>
+                        android:text="@string/label_current_location" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -90,7 +94,7 @@
                         android:onClick="@{holder::onRelocationClick}"
                         android:text="@{viewModel.currentLocation ?? @string/failed_location}"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                        android:textColor="?android:textColorPrimary"/>
+                        android:textColor="?android:textColorPrimary" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -101,7 +105,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/name_nearby"/>
+                        android:text="@string/name_nearby" />
 
                     <EditText
                         android:layout_width="wrap_content"
@@ -112,12 +116,12 @@
                         android:gravity="center"
                         android:inputType="number"
                         android:maxLength="3"
-                        android:text="@{viewModel.directional.range.toString()}"/>
+                        android:text="@={BindingTypeConverts.intToString(viewModel.directional.range)}" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/name_kilometer"/>
+                        android:text="@string/name_kilometer" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -132,7 +136,7 @@
                     android:id="@+id/address_recyclerView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:layoutManager="android.support.v7.widget.LinearLayoutManager"/>
+                    app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -144,14 +148,14 @@
                     android:gravity="center_vertical"
                     android:onClick="@{holder::onAddAddressClick}"
                     android:text="@string/name_add_target_city"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
             </LinearLayout>
         </FrameLayout>
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" />
 
 
     </LinearLayout>

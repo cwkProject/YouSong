@@ -13,13 +13,13 @@ import com.yousong.yousong.BR
  *
  * @param addressCode 行政区码
  */
-class Address(addressCode: Int? = null) : BaseObservable() {
+class Address(addressCode: String? = null) : BaseObservable() {
 
     /**
      * 行政区码
      */
     @Bindable
-    var addressCode: Int? = addressCode
+    var addressCode: String? = addressCode
         set(value) {
             field = value
             notifyPropertyChanged(BR.addressCode)
@@ -34,4 +34,19 @@ class Address(addressCode: Int? = null) : BaseObservable() {
             field = value
             notifyPropertyChanged(BR.address)
         }
+
+    /**
+     * 省
+     */
+    var province: String? = null
+
+    /**
+     * 市
+     */
+    var city: String? = null
+
+    /**
+     * 区
+     */
+    var district: String? = null
 }

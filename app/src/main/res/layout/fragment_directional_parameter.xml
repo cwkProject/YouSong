@@ -36,7 +36,7 @@
             app:viewModel="@{viewModel}"/>
 
         <include
-            layout="@layout/layout_directional_region"
+            layout="@layout/layout_directional_location"
             app:holder="@{holder}"
             app:viewModel="@{viewModel}"/>
 

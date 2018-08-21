@@ -90,17 +90,17 @@ public interface ValueConst {
     int PUBLISH_CANCEL = 4;
 
     /**
-     * 回答正确
+     * 定向位置类型，不限
      */
-    int ANSWER_CORRECT = 1;
+    int LOCATION_TYPE_NOT_LIMITED = 0;
 
     /**
-     * 回答错误，可重试
+     * 定向位置类型，本地周边
      */
-    int ANSWER_RETRY = 2;
+    int LOCATION_TYPE_LOCAL_REGION = 1;
 
     /**
-     * 回答错误
+     * 定向位置类型，目标城市
      */
-    int ANSWER_WRONG = 3;
+    int LOCATION_TYPE_TARGET_CITY = 2;
 }

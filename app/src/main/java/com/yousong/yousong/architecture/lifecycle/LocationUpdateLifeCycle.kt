@@ -51,11 +51,9 @@ class LocationUpdateLifeCycle(activity: AppCompatActivity) : LifecycleObserver {
         override fun onReceiveLocation(location: BDLocation) {
             Log.v(TAG, "onReceiveLocation adCode:${location.adCode}, describe:${location.locationDescribe} ,address:${location.addrStr} ")
 
-            UserUploadLocationWork().beginExecute(location.adCode, location.latitude.toString(), location.longitude.toString())
-        }
-
-        override fun onLocDiagnosticMessage(p0: Int, p1: Int, p2: String?) {
-            Log.v(TAG, "onLocDiagnosticMessage locType:$p0 , message:$p2")
+            if (location.adCode != null) {
+                UserUploadLocationWork().beginExecute(location.adCode, location.latitude.toString(), location.longitude.toString())
+            }
         }
     }
 }

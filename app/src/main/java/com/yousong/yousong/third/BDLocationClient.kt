@@ -5,6 +5,7 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.pm.PackageManager
 import android.support.v4.app.Fragment
+import android.util.Log
 import com.baidu.location.BDAbstractLocationListener
 import com.baidu.location.BDLocation
 import com.baidu.location.LocationClient
@@ -21,6 +22,8 @@ import org.cwk.android.library.global.Global
  * @since 1.0 2018/8/17
  **/
 object BDLocationClient {
+
+    private const val TAG = "BDLocationClient"
 
     /**
      * 权限请求码
@@ -45,6 +48,10 @@ object BDLocationClient {
             override fun onReceiveLocation(p0: BDLocation?) {
                 // 目前仅单次定位
                 locationClient.stop()
+            }
+
+            override fun onLocDiagnosticMessage(p0: Int, p1: Int, p2: String?) {
+                Log.v(TAG, "onLocDiagnosticMessage locType:$p0 , message:$p2")
             }
         })
     }

@@ -6,9 +6,12 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.CompoundButton
 import android.widget.RadioGroup
+import com.baidu.location.BDAbstractLocationListener
+import com.baidu.location.BDLocation
 import com.yousong.yousong.BR
 import com.yousong.yousong.R
 import com.yousong.yousong.model.local.Directional
+import com.yousong.yousong.third.BDLocationClient
 
 /**
  * 定向数据模型
@@ -73,6 +76,23 @@ class DirectionalViewModel : ObservableViewModel() {
             field = value
             notifyPropertyChanged(BR.currentLocation)
         }
+
+    /**
+     * 定位监听器
+     */
+    private val locationListener = object : BDAbstractLocationListener() {
+        override fun onReceiveLocation(location: BDLocation) {
+            if (location.locationDescribe != null) {
+                currentLocation = location.locationDescribe
+                directional?.latitude = location.latitude
+                directional?.longitude = location.longitude
+            }
+        }
+    }
+
+    init {
+        BDLocationClient.registerLocationListener(locationListener)
+    }
 
     /**
      * 年龄不限选择状态变更
@@ -142,5 +162,9 @@ class DirectionalViewModel : ObservableViewModel() {
             R.id.designated_city -> 2
             else -> 0
         }
+    }
+
+    override fun onCleared() {
+        BDLocationClient.unregisterLocationListener(locationListener)
     }
 }
