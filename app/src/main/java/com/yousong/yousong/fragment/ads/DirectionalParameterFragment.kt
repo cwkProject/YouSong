@@ -91,7 +91,6 @@ class DirectionalParameterFragment : BaseFragment(), OnDirectionalOperator {
         adapter.bind(adsDetailViewModel.adsDetail.directional.addresses)
 
         address_recyclerView.apply {
-            layoutManager.isAutoMeasureEnabled = true
             isNestedScrollingEnabled = false
             itemAnimator = DefaultItemAnimator()
             adapter = this@DirectionalParameterFragment.adapter
