@@ -5,6 +5,7 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.os.Bundle
 import com.yousong.yousong.R
+import com.yousong.yousong.activity.user.LoginActivity
 import com.yousong.yousong.common.plusAssign
 import com.yousong.yousong.global.AppConfig
 import com.yousong.yousong.global.LoginStatus
@@ -46,8 +47,8 @@ class SplashActivity : BaseActivity() {
         if (LoginStatus.login) {
             startActivity<MainActivity>()
         } else {
-           // startActivity<LoginActivity>()
-            startActivity<MainActivity>()
+            startActivity<LoginActivity>()
+           // startActivity<MainActivity>()
         }
 
         finish()
