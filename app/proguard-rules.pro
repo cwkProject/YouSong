@@ -48,9 +48,7 @@
 }
 
 # 地区3级联动选择器
--keep class com.lljjcoder.style.**{
-    *;
-}
+-keep class com.lljjcoder.**{*;}
 
 -dontwarn demo.**
 -keep class demo.**{*;}
