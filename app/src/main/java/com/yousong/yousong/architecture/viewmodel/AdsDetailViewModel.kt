@@ -39,6 +39,11 @@ class AdsDetailViewModel : ViewModel(), OnAdsDetailOperator {
      * @param id 广告id
      */
     fun loadAds(id: String) {
+        if (adsDetail.value != null && adsDetail.value?.ads?.id == id) {
+            // 过滤重复请求
+            return
+        }
+
         AdsGetDetailWork().start(id) {
             if (it.isSuccess) {
                 adsDetail.value = it.result?.apply {
