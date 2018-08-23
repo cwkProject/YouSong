@@ -103,6 +103,7 @@ class DirectionalParameterFragment : BaseFragment(), OnDirectionalOperator {
     private fun initCityPicker() {
         cityPicker.init(context)
         cityPickerConfigBuilder
+                .setShowGAT(true)
                 .provinceCyclic(false)
                 .cityCyclic(false)
                 .districtCyclic(false)
