@@ -58,6 +58,16 @@ class DirectionalViewModel : ObservableViewModel() {
         }
 
     /**
+     * 当前最小年龄选中序号
+     */
+    @Bindable
+    var minSelection: Int = -1
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.minSelection)
+        }
+
+    /**
      * 当前最大年龄选中序号
      */
     @Bindable

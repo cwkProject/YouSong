@@ -62,6 +62,10 @@
                     android:afterTextChanged="@{viewModel::onMoneyChanged}"
                     android:drawableStart="@drawable/ic_currency_cny_black_36dp"
                     android:hint="@string/hint_withdraw_amount"
+                    android:imeOptions="actionDone"
+                    android:inputType="numberDecimal"
+                    android:maxLength="9"
+                    android:maxLines="1"
                     android:text="@{viewModel.withdrawalAmount}" />
 
             </android.support.design.widget.TextInputLayout>

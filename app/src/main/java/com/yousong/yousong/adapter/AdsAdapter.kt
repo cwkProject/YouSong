@@ -16,7 +16,6 @@ import com.yousong.yousong.third.GlideApp
 import org.cwk.android.library.architecture.recycler.MultipleRecyclerViewAdapter
 import org.cwk.android.library.architecture.recycler.RecyclerViewHolderManager
 
-
 /**
  * 广告列表适配器
  *
@@ -114,6 +113,11 @@ class BannerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     }
 
     init {
+        // 21:9的轮播图
+        val itemHeight = itemView.context.resources.displayMetrics.widthPixels * 9 / 21
+
+        itemView.layoutParams.height = itemHeight
+
         banner.setAdapter { _, imageView, model, _ ->
             GlideApp.with(imageView.context)
                     .load(model.asOther<BannerAdsItem>()?.imgUrl)

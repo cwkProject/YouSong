@@ -5,7 +5,7 @@
 
         <variable
             name="viewModel"
-            type="com.yousong.yousong.architecture.viewmodel.DirectionalViewModel"/>
+            type="com.yousong.yousong.architecture.viewmodel.DirectionalViewModel" />
 
     </data>
 
@@ -18,7 +18,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/name_target_user"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -31,7 +31,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/name_sex"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
             <RadioGroup
                 android:layout_width="match_parent"
@@ -45,7 +45,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/layout_default_spacing"
                     android:checked="@{viewModel.directional.sex == 3}"
-                    android:text="@string/name_not_limited"/>
+                    android:text="@string/name_not_limited" />
 
                 <android.support.v7.widget.AppCompatRadioButton
                     android:id="@+id/male"
@@ -53,7 +53,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/activity_horizontal_margin"
                     android:checked="@{viewModel.directional.sex == 1}"
-                    android:text="@string/name_male"/>
+                    android:text="@string/name_male" />
 
                 <android.support.v7.widget.AppCompatRadioButton
                     android:id="@+id/female"
@@ -61,7 +61,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/activity_horizontal_margin"
                     android:checked="@{viewModel.directional.sex == 2}"
-                    android:text="@string/name_female"/>
+                    android:text="@string/name_female" />
 
             </RadioGroup>
 
@@ -78,7 +78,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/name_age"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
             <android.support.v7.widget.AppCompatCheckBox
                 android:layout_width="wrap_content"
@@ -86,7 +86,7 @@
                 android:layout_marginStart="@dimen/layout_default_spacing"
                 android:checked="@={!viewModel.limitedAges}"
                 android:onCheckedChanged="@{viewModel::onAgeNotLimitedChecked}"
-                android:text="@string/name_not_limited"/>
+                android:text="@string/name_not_limited" />
 
             <Spinner
                 android:layout_width="wrap_content"
@@ -94,14 +94,15 @@
                 android:layout_marginStart="@dimen/activity_horizontal_margin"
                 android:enabled="@{viewModel.limitedAges}"
                 android:entries="@{viewModel.minAges}"
-                android:onItemSelected="@{viewModel::onMinAgeItemSelected}"/>
+                android:onItemSelected="@{viewModel::onMinAgeItemSelected}"
+                android:selection="@={viewModel.minSelection}" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/layout_default_spacing"
                 android:layout_marginStart="@dimen/layout_default_spacing"
-                android:text="@string/name_to"/>
+                android:text="@string/name_to" />
 
             <Spinner
                 android:layout_width="wrap_content"
@@ -109,14 +110,14 @@
                 android:enabled="@{viewModel.limitedAges}"
                 android:entries="@{viewModel.maxAges}"
                 android:onItemSelected="@{viewModel::onMaxAgeItemSelected}"
-                android:selection="@={viewModel.maxSelection}"/>
+                android:selection="@={viewModel.maxSelection}" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/layout_default_spacing"
                 android:text="@string/name_year_old"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
         </LinearLayout>
 
