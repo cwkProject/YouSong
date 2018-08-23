@@ -156,4 +156,9 @@ public interface ValueUrl {
      * 获取首页轮播图
      */
     String URL_ADS_GET_BANNER = URL_BASE_ADS + "getCarouselList";
+
+    /**
+     * 定向数据筛选用户
+     */
+    String URL_ADS_FILTER_USER = URL_BASE_ADS + "screenUserCount";
 }
