@@ -22,7 +22,7 @@ class UserInfo : BaseObservable() {
      * 余额
      */
     @Bindable
-    var balance = BigDecimal("0.00")
+    var balance = BigDecimal("0")
         private set(value) {
             field = value
             notifyPropertyChanged(BR.balance)
@@ -89,7 +89,7 @@ class UserInfo : BaseObservable() {
      * 重置数据
      */
     fun reset() {
-        balance = BigDecimal("0.00")
+        balance = BigDecimal("0")
         personalAuth = null
         companyAuth = null
         authOk = false

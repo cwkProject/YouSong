@@ -101,7 +101,7 @@ class Ads(var id: String = "") : BaseObservable() {
      * 总金额，单位元
      */
     @Bindable
-    var totalAmount = BigDecimal("0.00")
+    var totalAmount = BigDecimal("0")
         set(value) {
             field = value
             notifyPropertyChanged(BR.totalAmount)
@@ -111,7 +111,7 @@ class Ads(var id: String = "") : BaseObservable() {
      * 余额，单位元
      */
     @Bindable
-    var balance = BigDecimal("0.00")
+    var balance = BigDecimal("0")
         set(value) {
             field = value
             notifyPropertyChanged(BR.balance)
