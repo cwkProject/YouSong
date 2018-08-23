@@ -14,7 +14,7 @@ import org.json.JSONObject
  */
 class UserUploadLocationWork : BaseSimpleWorkModel<String, Unit>() {
     override fun onFillParams(dataMap: MutableMap<String, String?>, vararg params: String?) {
-        dataMap["city"] = params[0]
+        dataMap["cityCode"] = params[0]
         dataMap["latitude"] = params[1]
         dataMap["longitude"] = params[2]
     }

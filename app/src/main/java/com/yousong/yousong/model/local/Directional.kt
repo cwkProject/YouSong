@@ -16,10 +16,10 @@ import com.yousong.yousong.value.ValueConst
 class Directional : BaseObservable() {
 
     /**
-     * 性别，1男，2女，3不限
+     * 性别，1男，2女，0不限
      */
     @Bindable
-    var sex = 3
+    var sex = 0
         set(value) {
             field = value
             notifyPropertyChanged(BR.sex)

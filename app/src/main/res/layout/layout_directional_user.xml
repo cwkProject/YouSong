@@ -44,7 +44,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/layout_default_spacing"
-                    android:checked="@{viewModel.directional.sex == 3}"
+                    android:checked="@{viewModel.directional.sex == 0}"
                     android:text="@string/name_not_limited" />
 
                 <android.support.v7.widget.AppCompatRadioButton

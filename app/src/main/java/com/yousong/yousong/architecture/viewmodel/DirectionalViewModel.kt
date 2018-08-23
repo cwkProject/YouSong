@@ -155,10 +155,10 @@ class DirectionalViewModel : ObservableViewModel() {
     fun onSexCheckedChanged(group: RadioGroup, checkedId: Int) {
         Log.v("Directional", "onSexCheckedChanged:$checkedId")
         directional?.sex = when (checkedId) {
-            R.id.not_limited -> 3
+            R.id.not_limited -> 0
             R.id.male -> 1
             R.id.female -> 2
-            else -> 3
+            else -> 0
         }
     }
 
