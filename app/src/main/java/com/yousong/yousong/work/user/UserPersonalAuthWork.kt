@@ -32,6 +32,6 @@ class UserPersonalAuthWork : BaseSimpleWorkModel<String, Unit>() {
             Global.getApplication().getString(R.string.success_submit)
 
     override fun onSuccess() {
-        LoginStatus.loadUserData()
+        LoginStatus.userInfo.loadUserData()
     }
 }

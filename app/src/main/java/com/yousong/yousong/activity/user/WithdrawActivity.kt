@@ -6,6 +6,7 @@ import com.yousong.yousong.R
 import com.yousong.yousong.activity.common.BaseActivity
 import com.yousong.yousong.architecture.viewmodel.WithdrawViewModel
 import com.yousong.yousong.databinding.ActivityWithdrawBinding
+import com.yousong.yousong.global.LoginStatus
 import org.cwk.android.library.util.ToolbarInitialize.initToolbar
 
 /**
@@ -21,6 +22,9 @@ class WithdrawActivity : BaseActivity() {
 
     override fun onInitView(savedInstanceState: Bundle?) {
         initToolbar(this, R.string.name_withdraw)
-        ActivityWithdrawBinding.bind(rootView).viewModel = ViewModelProviders.of(this).get(WithdrawViewModel::class.java)
+        ActivityWithdrawBinding.bind(rootView).apply {
+            viewModel = ViewModelProviders.of(this@WithdrawActivity).get(WithdrawViewModel::class.java)
+            userInfo = LoginStatus.userInfo
+        }
     }
 }

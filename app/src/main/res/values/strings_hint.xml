@@ -11,6 +11,10 @@
     <string name="hint_mobile">手机号</string>
     <string name="hint_verify_code">验证码</string>
 
+    <string name="hint_click_upload_business_license">点击上传营业执照副本</string>
+    <string name="hint_click_upload_cover">点击上传广告封面</string>
+    <string name="hint_click_upload_content">点击上传广告正文</string>
+
     <string name="hint_ads_name">广告名称</string>
 
     <string name="hint_question">设置提问内容，限制120字</string>

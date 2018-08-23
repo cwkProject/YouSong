@@ -6,9 +6,11 @@
 
         <variable
             name="viewModel"
-            type="com.yousong.yousong.architecture.viewmodel.WithdrawViewModel"/>
+            type="com.yousong.yousong.architecture.viewmodel.WithdrawViewModel" />
 
-        <import type="com.yousong.yousong.global.UserAssets"/>
+        <variable
+            name="userInfo"
+            type="com.yousong.yousong.global.UserInfo" />
 
     </data>
 
@@ -17,7 +19,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <include layout="@layout/toolbar"/>
+        <include layout="@layout/toolbar" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -31,14 +33,14 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/label_cash_withdrawal_balance"/>
+                android:text="@string/label_cash_withdrawal_balance" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/activity_horizontal_margin"
-                android:text="@{UserAssets.INSTANCE.balance.toPlainString() + @string/name_yuan}"
-                android:textColor="@color/orange_500"/>
+                android:text="@{userInfo.balance.toPlainString() + @string/name_yuan}"
+                android:textColor="@color/orange_500" />
 
         </LinearLayout>
 
@@ -60,7 +62,7 @@
                     android:afterTextChanged="@{viewModel::onMoneyChanged}"
                     android:drawableStart="@drawable/ic_currency_cny_black_36dp"
                     android:hint="@string/hint_withdraw_amount"
-                    android:text="@{viewModel.withdrawalAmount}"/>
+                    android:text="@{viewModel.withdrawalAmount}" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -69,7 +71,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:text="@string/name_yuan"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
         </LinearLayout>
 
@@ -83,7 +85,7 @@
             android:onClick="@{viewModel::onSubmit}"
             android:text="@string/name_withdraw"
             android:textColor="@android:color/white"
-            app:backgroundTint="@color/primary_button_selector"/>
+            app:backgroundTint="@color/primary_button_selector" />
 
     </LinearLayout>
 

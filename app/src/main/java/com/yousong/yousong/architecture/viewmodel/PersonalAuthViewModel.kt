@@ -37,10 +37,10 @@ class PersonalAuthViewModel : AuthViewModel() {
         }
 
     init {
-        if (LoginStatus.authOk) {
+        if (LoginStatus.userInfo.authOk) {
             onInitAuth()
         } else {
-            LoginStatus.loadUserData {
+            LoginStatus.userInfo.loadUserData {
                 onInitAuth()
             }
         }
@@ -59,7 +59,7 @@ class PersonalAuthViewModel : AuthViewModel() {
      * 初始化认证信息
      */
     private fun onInitAuth() {
-        LoginStatus.personalAuth?.let {
+        LoginStatus.userInfo.personalAuth?.let {
             realName = it.fullName
             idCard = it.idCard
             state = it.reviewState

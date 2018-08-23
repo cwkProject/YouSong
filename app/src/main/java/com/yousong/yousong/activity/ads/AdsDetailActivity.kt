@@ -37,18 +37,11 @@ class AdsDetailActivity : BaseActivity() {
 
     override fun onInitView(savedInstanceState: Bundle?) {
         initToolbar(this, R.string.empty)
+        binding.viewModel = viewModel
+        binding.setLifecycleOwner(this)
 
-        viewModel.adsDetail.observe(this, Observer {
-            if (it != null) {
-                title = it.ads.name
-                binding.data = it
-                binding.holder = viewModel
-            }
-        })
-
-        viewModel.submitResult.observe(this, Observer {
-            it?.show(this)
-        })
+        viewModel.adsDetail.observe(this, Observer { title = it?.ads?.name })
+        viewModel.submitResult.observe(this, Observer { it?.show(this) })
     }
 
     override fun onInitData(savedInstanceState: Bundle?) {

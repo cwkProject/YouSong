@@ -64,10 +64,10 @@ class CompanyAuthViewModel : AuthViewModel() {
         }
 
     init {
-        if (LoginStatus.authOk) {
+        if (LoginStatus.userInfo.authOk) {
             onInitAuth()
         } else {
-            LoginStatus.loadUserData {
+            LoginStatus.userInfo.loadUserData {
                 onInitAuth()
             }
         }
@@ -86,7 +86,7 @@ class CompanyAuthViewModel : AuthViewModel() {
      * 初始化认证信息
      */
     private fun onInitAuth() {
-        LoginStatus.companyAuth?.let {
+        LoginStatus.userInfo.companyAuth?.let {
             realName = it.fullName
             idCard = it.idCard
             businessLicenceImgUrl = it.businessLicenceImgUrl

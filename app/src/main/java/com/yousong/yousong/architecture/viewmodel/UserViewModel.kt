@@ -2,7 +2,7 @@ package com.yousong.yousong.architecture.viewmodel
 
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
-import com.yousong.yousong.global.UserAssets
+import com.yousong.yousong.global.LoginStatus
 import com.yousong.yousong.work.common.start
 import com.yousong.yousong.work.user.UserGetTotalIncomeWork
 import com.yousong.yousong.work.user.UserRefereeCountWork
@@ -28,10 +28,11 @@ class UserViewModel : ViewModel() {
     val inviteCount = MutableLiveData<Int>()
 
     init {
-        totalIncome.value = BigDecimal("0.00")
+        totalIncome.value = BigDecimal("0")
         inviteCount.value = 0
         refreshTotalIncome()
         refreshInviteCount()
+        LoginStatus.userInfo.loadUserData()
     }
 
     /**
@@ -45,7 +46,7 @@ class UserViewModel : ViewModel() {
         }
 
         // 同步请求余额刷新
-        UserAssets.refreshBalance()
+        LoginStatus.userInfo.refreshBalance()
     }
 
     /**

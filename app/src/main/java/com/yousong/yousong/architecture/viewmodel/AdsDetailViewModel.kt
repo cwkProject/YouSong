@@ -7,7 +7,6 @@ import com.yousong.yousong.R
 import com.yousong.yousong.architecture.livedata.SubmitResult
 import com.yousong.yousong.architecture.livedata.SubmitResultLiveData
 import com.yousong.yousong.model.local.AdsDetail
-import com.yousong.yousong.operator.OnAdsDetailOperator
 import com.yousong.yousong.value.ValueConst
 import com.yousong.yousong.work.ads.AdsAnswerWork
 import com.yousong.yousong.work.ads.AdsGetDetailWork
@@ -21,7 +20,7 @@ import org.jetbrains.anko.indeterminateProgressDialog
  * @version 1.0 2018/8/12
  * @since 1.0
  */
-class AdsDetailViewModel : ViewModel(), OnAdsDetailOperator {
+class AdsDetailViewModel : ViewModel() {
 
     /**
      * 提交结果
@@ -57,7 +56,10 @@ class AdsDetailViewModel : ViewModel(), OnAdsDetailOperator {
         }
     }
 
-    override fun onSubmit(view: View) {
+    /**
+     * 提交答案
+     */
+    fun onSubmit(view: View) {
         adsDetail.value?.let { detail ->
             detail.question.option.find { it.answer }?.let {
 
@@ -81,13 +83,22 @@ class AdsDetailViewModel : ViewModel(), OnAdsDetailOperator {
         }
     }
 
-    override fun onWechat(view: View) {
+    /**
+     * 分享到微信
+     */
+    fun onWechat(view: View) {
     }
 
-    override fun onMoments(view: View) {
+    /**
+     * 分享到朋友圈
+     */
+    fun onMoments(view: View) {
     }
 
-    override fun onCopy(view: View) {
+    /**
+     * 复制链接
+     */
+    fun onCopy(view: View) {
 
     }
 }

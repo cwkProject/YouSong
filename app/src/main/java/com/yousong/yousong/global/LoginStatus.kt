@@ -1,12 +1,5 @@
 package com.yousong.yousong.global
 
-import android.databinding.BaseObservable
-import android.databinding.Bindable
-import com.yousong.yousong.BR
-import com.yousong.yousong.model.server.Auth
-import com.yousong.yousong.work.common.start
-import com.yousong.yousong.work.user.UserGetAuthDetailWork
-
 /**
  * 登录状态数据类
  *
@@ -14,7 +7,7 @@ import com.yousong.yousong.work.user.UserGetAuthDetailWork
  * @version 1.0 2017/2/15
  * @since 1.0
  */
-object LoginStatus : BaseObservable() {
+object LoginStatus {
 
     /**
      * 标记是否已登录
@@ -22,44 +15,9 @@ object LoginStatus : BaseObservable() {
     var login = false
 
     /**
-     * 个人认证信息
+     * 用户信息
      */
-    @Bindable
-    var personalAuth: Auth? = null
-        set(value) {
-            field = value
-            notifyPropertyChanged(BR.personalAuth)
-        }
-
-    /**
-     * 企业认证信息
-     */
-    @Bindable
-    var companyAuth: Auth? = null
-        set(value) {
-            field = value
-            notifyPropertyChanged(BR.companyAuth)
-        }
-
-    /**
-     * 是否成功加载了认证信息
-     */
-    var authOk = false
-
-    /**
-     * 登录成功后加载用户数据，重复调用会刷新用户数据
-     *
-     * @param call 加载完成后回调
-     */
-    fun loadUserData(call: (() -> Unit)? = null) {
-        if (login) {
-            UserGetAuthDetailWork().start {
-                call?.invoke()
-            }
-        } else {
-            call?.invoke()
-        }
-    }
+    val userInfo = UserInfo()
 
     /**
      * 重置数据
@@ -67,9 +25,7 @@ object LoginStatus : BaseObservable() {
     fun reset() {
         // 初始化用户参数
         login = false
-        personalAuth = null
-        companyAuth = null
 
-        UserAssets.reset()
+        userInfo.reset()
     }
 }

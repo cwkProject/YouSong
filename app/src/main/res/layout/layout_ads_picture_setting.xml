@@ -40,7 +40,7 @@
                 android:alpha="0.4"
                 android:background="@color/grey_400"
                 android:gravity="center"
-                android:text="@string/prompt_click_upload_cover"
+                android:text="@string/hint_click_upload_cover"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                 android:textColor="@android:color/black"
                 app:uploadProgressText="@{viewModel.coverProgress}"/>
@@ -67,7 +67,7 @@
                 android:alpha="0.4"
                 android:background="@color/grey_400"
                 android:gravity="center"
-                android:text="@string/prompt_click_upload_content"
+                android:text="@string/hint_click_upload_content"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                 android:textColor="@android:color/black"
                 app:uploadProgressText="@{viewModel.posterProgress}"/>

@@ -31,27 +31,29 @@ class MeFragment : BaseFragment(), OnMeFunctionOperator {
         FragmentMeBinding.bind(rootView).apply {
             userViewModel = ViewModelProviders.of(activity!!).get(UserViewModel::class.java)
             holder = this@MeFragment
+            userInfo = LoginStatus.userInfo
+            setLifecycleOwner(this@MeFragment)
         }
     }
 
     override fun onWithdrawClick(view: View) {
         when {
-            LoginStatus.personalAuth?.valid == true -> startActivity<WithdrawActivity>()
-            LoginStatus.authOk -> startActivity<PersonalAuthenticationActivity>()
-            !LoginStatus.authOk -> {
+            LoginStatus.userInfo.personalAuth?.valid == true -> startActivity<WithdrawActivity>()
+            LoginStatus.userInfo.authOk -> startActivity<PersonalAuthenticationActivity>()
+            !LoginStatus.userInfo.authOk -> {
                 toast(R.string.prompt_poor_network_reload_user_data)
-                LoginStatus.loadUserData()
+                LoginStatus.userInfo.loadUserData()
             }
         }
     }
 
     override fun onPublishAdClick(view: View) {
         when {
-            LoginStatus.companyAuth?.valid == true -> startActivity<MyAdsActivity>()
-            LoginStatus.authOk -> startActivity<CompanyCertificationActivity>()
-            !LoginStatus.authOk -> {
+            LoginStatus.userInfo.companyAuth?.valid == true -> startActivity<MyAdsActivity>()
+            LoginStatus.userInfo.authOk -> startActivity<CompanyCertificationActivity>()
+            !LoginStatus.userInfo.authOk -> {
                 toast(R.string.prompt_poor_network_reload_user_data)
-                LoginStatus.loadUserData()
+                LoginStatus.userInfo.loadUserData()
             }
         }
     }

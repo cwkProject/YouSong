@@ -170,9 +170,7 @@ class MyApplication : Application() {
     private fun onAutoLogin() {
         if (AppConfig.token != null) {
             UserCreateTokenWork().start {
-                LoginStatus.loadUserData {
-                    onFinish()
-                }
+                onFinish()
             }
         } else {
             onFinish()

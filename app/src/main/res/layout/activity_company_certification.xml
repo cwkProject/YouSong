@@ -6,13 +6,13 @@
 
         <variable
             name="data"
-            type="com.yousong.yousong.architecture.viewmodel.CompanyAuthViewModel"/>
+            type="com.yousong.yousong.architecture.viewmodel.CompanyAuthViewModel" />
 
         <variable
             name="holder"
-            type="com.yousong.yousong.operator.OnCompanyCertificationOperator"/>
+            type="com.yousong.yousong.operator.OnCompanyCertificationOperator" />
 
-        <import type="com.yousong.yousong.value.ValueConst"/>
+        <import type="com.yousong.yousong.value.ValueConst" />
 
     </data>
 
@@ -21,7 +21,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <include layout="@layout/toolbar"/>
+        <include layout="@layout/toolbar" />
 
         <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
@@ -41,7 +41,7 @@
                     android:layout_marginTop="@dimen/activity_vertical_margin"
                     android:text="@{@stringArray/company_review_hint[data.state]}"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:textColor="@color/red_300"/>
+                    android:textColor="@color/red_300" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -49,16 +49,16 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="@dimen/layout_default_spacing"
                     android:text="@string/hint_system_is_reviewing"
-                    app:goneUnless="@{data.state == ValueConst.REVIEW_UNDER_REVIEW}"/>
+                    app:goneUnless="@{data.state == ValueConst.REVIEW_UNDER_REVIEW}" />
 
                 <include
                     layout="@layout/layout_auth_verify"
                     app:data="@{data}"
-                    app:target="@{@string/name_corporation}"/>
+                    app:target="@{@string/name_corporation}" />
 
                 <include
                     layout="@layout/layout_mobile_verify"
-                    app:data="@{data}"/>
+                    app:data="@{data}" />
 
                 <FrameLayout
                     android:layout_width="match_parent"
@@ -72,7 +72,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         app:imageFile="@{data.businessLicencePath}"
-                        app:imageUrl="@{data.businessLicenceImgUrl}"/>
+                        app:imageUrl="@{data.businessLicenceImgUrl}" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -80,10 +80,10 @@
                         android:alpha="0.4"
                         android:background="@color/grey_400"
                         android:gravity="center"
-                        android:text="@string/prompt_click_upload_business_license"
+                        android:text="@{data.state != ValueConst.REVIEW_PASS ? @string/hint_click_upload_business_license : @string/name_copy_of_business_license}"
                         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                         android:textColor="@android:color/black"
-                        app:uploadProgressText="@{data.businessLicenceProgress}"/>
+                        app:uploadProgressText="@{data.businessLicenceProgress}" />
                 </FrameLayout>
 
                 <android.support.v7.widget.AppCompatButton
@@ -95,7 +95,7 @@
                     android:text="@string/name_submit_review"
                     android:textColor="@android:color/white"
                     app:backgroundTint="@color/primary_button_selector"
-                    app:goneUnless="@{data.state != ValueConst.REVIEW_PASS}"/>
+                    app:goneUnless="@{data.state != ValueConst.REVIEW_PASS}" />
 
             </LinearLayout>
 

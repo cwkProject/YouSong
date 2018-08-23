@@ -4,7 +4,7 @@ import android.databinding.Bindable
 import android.text.Editable
 import android.view.View
 import com.yousong.yousong.BR
-import com.yousong.yousong.global.UserAssets
+import com.yousong.yousong.global.LoginStatus
 import org.jetbrains.anko.toast
 import java.math.BigDecimal
 
@@ -38,8 +38,8 @@ class WithdrawViewModel : ObservableViewModel() {
         }
 
     init {
-        // 每到体现页面刷新一次余额
-        UserAssets.refreshBalance()
+        // 每到提现页面刷新一次余额
+        LoginStatus.userInfo.refreshBalance()
     }
 
     /**
@@ -77,7 +77,7 @@ class WithdrawViewModel : ObservableViewModel() {
      */
     private fun checkAmount() {
         withdrawalAmount?.let {
-            canWithdrawal = it > BigDecimal.ZERO && it <= UserAssets.balance
+            canWithdrawal = it > BigDecimal.ZERO && it <= LoginStatus.userInfo.balance
 
             return
         }

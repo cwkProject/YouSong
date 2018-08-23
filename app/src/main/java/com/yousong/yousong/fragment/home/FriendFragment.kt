@@ -36,7 +36,8 @@ class FriendFragment : BaseFragment() {
 
     override fun onInitView(savedInstanceState: Bundle?) {
         initAction()
-        binding.data = userViewModel
+        binding.viewModel = userViewModel
+        binding.setLifecycleOwner(this)
     }
 
     /**
