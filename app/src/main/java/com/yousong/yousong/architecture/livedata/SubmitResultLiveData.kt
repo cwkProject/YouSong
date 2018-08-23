@@ -14,7 +14,14 @@ import org.jetbrains.anko.toast
  * @version 1.0 2018/8/13
  * @since 1.0 2018/8/13
  **/
-class SubmitResultLiveData : MutableLiveData<SubmitResult>()
+class SubmitResultLiveData : MutableLiveData<SubmitResult>() {
+    override fun setValue(value: SubmitResult?) {
+        super.setValue(value)
+        if (value != null) {
+            setValue(null)
+        }
+    }
+}
 
 /**
  * 网络服务提交结果数据类

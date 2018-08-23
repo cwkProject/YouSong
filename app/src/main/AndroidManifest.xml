@@ -2,13 +2,13 @@
 <manifest package="com.yousong.yousong"
           xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <!-- 这个权限用于进行网络定位-->
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <!-- 这个权限用于访问GPS定位-->
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <!-- 这个权限用于获取wifi的获取权限，wifi信息会用来进行网络定位-->
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
 
     <application
         android:name=".global.MyApplication"
@@ -31,21 +31,21 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/provider_paths"/>
+                android:resource="@xml/provider_paths" />
         </provider>
 
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"
-            android:process=":remote"/>
+            android:process=":remote" />
 
         <activity
             android:name=".activity.common.SplashActivity"
             android:theme="@style/AppTheme.SplashTheme">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
@@ -53,20 +53,26 @@
             android:name=".activity.common.MainActivity"
             android:launchMode="singleTask">
         </activity>
-        <activity android:name=".activity.ads.AdsDetailActivity"/>
-        <activity android:name=".activity.ads.ShareFriendActivity"/>
+        <activity android:name=".activity.ads.AdsDetailActivity" />
+        <activity android:name=".activity.ads.ShareFriendActivity" />
         <activity
             android:name=".activity.user.WithdrawActivity"
-            android:windowSoftInputMode="stateAlwaysVisible"/>
-        <activity android:name=".activity.ads.MyAdsActivity"/>
-        <activity android:name=".activity.user.PersonalAuthenticationActivity"/>
-        <activity android:name=".activity.ads.CreateAdsActivity"/>
-        <activity android:name=".activity.user.RechargeActivity"/>
+            android:windowSoftInputMode="stateAlwaysVisible" />
+        <activity android:name=".activity.ads.MyAdsActivity" />
+        <activity
+            android:name=".activity.user.PersonalAuthenticationActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".activity.ads.CreateAdsActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity android:name=".activity.user.RechargeActivity" />
         <activity
             android:name=".wxapi.WXEntryActivity"
-            android:exported="true"/>
-        <activity android:name=".activity.user.LoginActivity"/>
-        <activity android:name=".activity.user.CompanyCertificationActivity" />
+            android:exported="true" />
+        <activity android:name=".activity.user.LoginActivity" />
+        <activity
+            android:name=".activity.user.CompanyCertificationActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
     </application>
 
 </manifest>
