@@ -1,6 +1,7 @@
 package com.yousong.yousong.architecture.viewmodel
 
 import android.databinding.Bindable
+import android.databinding.Observable
 import android.util.Log
 import android.view.View
 import android.widget.AdapterView
@@ -12,6 +13,8 @@ import com.yousong.yousong.BR
 import com.yousong.yousong.R
 import com.yousong.yousong.model.local.Directional
 import com.yousong.yousong.third.BDLocationClient
+import io.reactivex.BackpressureStrategy
+import io.reactivex.subjects.PublishSubject
 
 /**
  * 定向数据模型
@@ -176,5 +179,13 @@ class DirectionalViewModel : ObservableViewModel() {
 
     override fun onCleared() {
         BDLocationClient.unregisterLocationListener(locationListener)
+    }
+
+    private inner class DirectionalChangedCallback:Observable.OnPropertyChangedCallback(){
+
+        private val publish=PublishSubject.create<Int>().toFlowable(BackpressureStrategy.MISSING)
+
+        override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
+        }
     }
 }
