@@ -48,7 +48,7 @@ class SplashActivity : BaseActivity() {
             startActivity<MainActivity>()
         } else {
             startActivity<LoginActivity>()
-           // startActivity<MainActivity>()
+            // startActivity<MainActivity>()
         }
 
         finish()

@@ -2,6 +2,8 @@ package com.yousong.yousong.architecture.viewmodel
 
 import android.databinding.Bindable
 import android.databinding.Observable
+import android.databinding.ObservableArrayList
+import android.databinding.ObservableList
 import android.util.Log
 import android.view.View
 import android.widget.AdapterView
@@ -11,10 +13,16 @@ import com.baidu.location.BDAbstractLocationListener
 import com.baidu.location.BDLocation
 import com.yousong.yousong.BR
 import com.yousong.yousong.R
+import com.yousong.yousong.model.local.Address
 import com.yousong.yousong.model.local.Directional
 import com.yousong.yousong.third.BDLocationClient
-import io.reactivex.BackpressureStrategy
+import com.yousong.yousong.value.ValueConst
+import com.yousong.yousong.work.ads.AdsFilterUserWork
+import com.yousong.yousong.work.common.syncStart
+import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.PublishSubject
+import java.util.concurrent.TimeUnit
+import kotlin.math.abs
 
 /**
  * 定向数据模型
@@ -29,6 +37,12 @@ class DirectionalViewModel : ObservableViewModel() {
      * 定向数据引用，由UI控制器传入
      */
     var directional: Directional? = null
+        set(value) {
+            if (field != value) {
+                field = value
+                onAddPropertyCallback()
+            }
+        }
 
     /**
      * 是否限制年龄
@@ -89,6 +103,21 @@ class DirectionalViewModel : ObservableViewModel() {
             field = value
             notifyPropertyChanged(BR.currentLocation)
         }
+
+    /**
+     * 当前筛选目标人数
+     */
+    @Bindable
+    var currentTargetCount = 0
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.currentTargetCount)
+        }
+
+    /**
+     * 定向条件改变监听器
+     */
+    private val directionalChangedCallback = DirectionalChangedCallback()
 
     /**
      * 定位监听器
@@ -156,7 +185,6 @@ class DirectionalViewModel : ObservableViewModel() {
      * 性别选中事件
      */
     fun onSexCheckedChanged(group: RadioGroup, checkedId: Int) {
-        Log.v("Directional", "onSexCheckedChanged:$checkedId")
         directional?.sex = when (checkedId) {
             R.id.not_limited -> 0
             R.id.male -> 1
@@ -177,15 +205,104 @@ class DirectionalViewModel : ObservableViewModel() {
         }
     }
 
-    override fun onCleared() {
-        BDLocationClient.unregisterLocationListener(locationListener)
+    /**
+     * 添加定向数据变更监听器
+     */
+    private fun onAddPropertyCallback() {
+        directional?.addOnPropertyChangedCallback(directionalChangedCallback)
+        directional?.addresses?.addOnListChangedCallback(object : ObservableList.OnListChangedCallback<ObservableArrayList<Address>>() {
+            override fun onChanged(sender: ObservableArrayList<Address>?) {
+            }
+
+            override fun onItemRangeRemoved(sender: ObservableArrayList<Address>?, positionStart: Int, itemCount: Int) {
+            }
+
+            override fun onItemRangeMoved(sender: ObservableArrayList<Address>?, fromPosition: Int, toPosition: Int, itemCount: Int) {
+            }
+
+            override fun onItemRangeInserted(sender: ObservableArrayList<Address>, positionStart: Int, itemCount: Int) {
+                for (i in positionStart until positionStart + itemCount) {
+                    sender[i].addOnPropertyChangedCallback(directionalChangedCallback)
+                }
+            }
+
+            override fun onItemRangeChanged(sender: ObservableArrayList<Address>?, positionStart: Int, itemCount: Int) {
+            }
+        })
     }
 
-    private inner class DirectionalChangedCallback:Observable.OnPropertyChangedCallback(){
-
-        private val publish=PublishSubject.create<Int>().toFlowable(BackpressureStrategy.MISSING)
-
-        override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
+    /**
+     * 检测定向数据合法性
+     *
+     * @return true表示条件合法
+     */
+    private fun onCheckDirectional(): Boolean {
+        when (directional?.locationType) {
+            ValueConst.LOCATION_TYPE_LOCAL_REGION -> {
+                directional?.apply {
+                    return when {
+                        abs(latitude) < 10E-6 && abs(longitude) < 10E-6 -> false
+                        range?.takeIf { it > 0 } == null -> false
+                        else -> true
+                    }
+                }
+            }
+            ValueConst.LOCATION_TYPE_TARGET_CITY -> {
+                directional?.apply {
+                    return when {
+                        addresses.isEmpty() -> false
+                        addresses.any { it.addressCode == null } -> false
+                        else -> true
+                    }
+                }
+            }
         }
+
+        return true
+    }
+
+    override fun onCleared() {
+        BDLocationClient.unregisterLocationListener(locationListener)
+        directionalChangedCallback.stop()
+    }
+
+    /**
+     * 定向条件改变监听器
+     */
+    private inner class DirectionalChangedCallback : Observable.OnPropertyChangedCallback() {
+
+        /**
+         * 数据发射器
+         */
+        private val publish = PublishSubject.create<Int>()
+
+        /**
+         * 筛选任务
+         */
+        private val work = AdsFilterUserWork()
+
+        init {
+            // 200毫秒的限流器
+            publish.debounce(200L, TimeUnit.MILLISECONDS)
+                    .filter { onCheckDirectional() }
+                    .doOnNext { work.cancel() }
+                    .observeOn(Schedulers.newThread())
+                    .subscribe {
+                        work.syncStart(directional) {
+                            if (it.isSuccess) {
+                                currentTargetCount = it.result
+                            }
+                        }
+                    }
+        }
+
+        override fun onPropertyChanged(sender: Observable, propertyId: Int) {
+            publish.onNext(0)
+        }
+
+        /**
+         * 停止
+         */
+        fun stop() = publish.onComplete()
     }
 }
