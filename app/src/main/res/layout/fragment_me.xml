@@ -6,7 +6,7 @@
 
         <variable
             name="userViewModel"
-            type="com.yousong.yousong.architecture.viewmodel.UserViewModel" />
+            type="com.yousong.yousong.architecture.viewmodel.user.UserViewModel" />
 
         <variable
             name="holder"

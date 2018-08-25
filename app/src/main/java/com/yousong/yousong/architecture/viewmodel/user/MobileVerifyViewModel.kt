@@ -1,4 +1,4 @@
-package com.yousong.yousong.architecture.viewmodel
+package com.yousong.yousong.architecture.viewmodel.user
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
@@ -9,6 +9,7 @@ import android.view.animation.LinearInterpolator
 import com.yousong.yousong.BR
 import com.yousong.yousong.architecture.livedata.SubmitResult
 import com.yousong.yousong.architecture.livedata.SubmitResultLiveData
+import com.yousong.yousong.architecture.viewmodel.common.ObservableViewModel
 import com.yousong.yousong.work.common.start
 import com.yousong.yousong.work.user.UserSendMobileVerifyCodeWork
 

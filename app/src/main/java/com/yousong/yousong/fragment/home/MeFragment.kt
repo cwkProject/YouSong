@@ -8,7 +8,7 @@ import com.yousong.yousong.activity.ads.MyAdsActivity
 import com.yousong.yousong.activity.user.CompanyCertificationActivity
 import com.yousong.yousong.activity.user.PersonalAuthenticationActivity
 import com.yousong.yousong.activity.user.WithdrawActivity
-import com.yousong.yousong.architecture.viewmodel.UserViewModel
+import com.yousong.yousong.architecture.viewmodel.user.UserViewModel
 import com.yousong.yousong.databinding.FragmentMeBinding
 import com.yousong.yousong.fragment.common.BaseFragment
 import com.yousong.yousong.global.LoginStatus

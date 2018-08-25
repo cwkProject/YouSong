@@ -5,7 +5,7 @@ import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import com.yousong.yousong.R
 import com.yousong.yousong.activity.common.BaseActivity
-import com.yousong.yousong.architecture.viewmodel.PersonalAuthViewModel
+import com.yousong.yousong.architecture.viewmodel.user.PersonalAuthViewModel
 import com.yousong.yousong.databinding.ActivityPersonalAuthenticationBinding
 import org.cwk.android.library.util.ToolbarInitialize.initToolbar
 

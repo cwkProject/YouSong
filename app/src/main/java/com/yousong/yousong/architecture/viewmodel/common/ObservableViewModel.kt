@@ -1,4 +1,4 @@
-package com.yousong.yousong.architecture.viewmodel
+package com.yousong.yousong.architecture.viewmodel.common
 
 import android.arch.lifecycle.ViewModel
 import android.databinding.Bindable

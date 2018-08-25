@@ -5,7 +5,7 @@
 
         <variable
             name="viewModel"
-            type="com.yousong.yousong.architecture.viewmodel.UserViewModel"/>
+            type="com.yousong.yousong.architecture.viewmodel.user.UserViewModel"/>
 
     </data>
 

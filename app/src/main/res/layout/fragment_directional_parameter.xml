@@ -10,7 +10,7 @@
 
         <variable
             name="viewModel"
-            type="com.yousong.yousong.architecture.viewmodel.DirectionalViewModel"/>
+            type="com.yousong.yousong.architecture.viewmodel.ads.DirectionalViewModel"/>
 
         <variable
             name="holder"

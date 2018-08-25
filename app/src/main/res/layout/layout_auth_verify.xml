@@ -5,7 +5,7 @@
 
         <variable
             name="data"
-            type="com.yousong.yousong.architecture.viewmodel.AuthViewModel"/>
+            type="com.yousong.yousong.architecture.viewmodel.user.AuthViewModel"/>
 
         <variable
             name="target"

@@ -1,4 +1,4 @@
-package com.yousong.yousong.architecture.viewmodel
+package com.yousong.yousong.architecture.viewmodel.user
 
 import android.databinding.Bindable
 import android.databinding.Observable
@@ -8,25 +8,18 @@ import com.yousong.yousong.R
 import com.yousong.yousong.architecture.livedata.SubmitResult
 import com.yousong.yousong.global.LoginStatus
 import com.yousong.yousong.value.ValueConst
-import com.yousong.yousong.work.common.FileUploadWork
 import com.yousong.yousong.work.common.start
-import com.yousong.yousong.work.user.UserCompanyAuthWork
+import com.yousong.yousong.work.user.UserPersonalAuthWork
 import org.jetbrains.anko.indeterminateProgressDialog
-import java.io.File
 
 /**
- * 企业认证数据模型
+ * 个人认证数据模型
  *
  * @author 超悟空
  * @version 1.0 2018/8/12
  * @since 1.0
  */
-class CompanyAuthViewModel : AuthViewModel() {
-
-    /**
-     * 营业执照副本地址
-     */
-    var businessLicenceImgUrl: String? = null
+class PersonalAuthViewModel : AuthViewModel() {
 
     /**
      * 认证状态
@@ -41,26 +34,6 @@ class CompanyAuthViewModel : AuthViewModel() {
         set(value) {
             field = value
             notifyPropertyChanged(BR.submittable)
-        }
-
-    /**
-     * 营业执照副本本地路径
-     */
-    @Bindable
-    var businessLicencePath: String? = null
-        set(value) {
-            field = value
-            notifyPropertyChanged(BR.businessLicencePath)
-        }
-
-    /**
-     * 营业执照副本上传进度
-     */
-    @Bindable
-    var businessLicenceProgress = ValueConst.PROGRESS_IDLE
-        set(value) {
-            field = value
-            notifyPropertyChanged(BR.businessLicenceProgress)
         }
 
     init {
@@ -86,10 +59,9 @@ class CompanyAuthViewModel : AuthViewModel() {
      * 初始化认证信息
      */
     private fun onInitAuth() {
-        LoginStatus.userInfo.companyAuth?.let {
+        LoginStatus.userInfo.personalAuth?.let {
             realName = it.fullName
             idCard = it.idCard
-            businessLicenceImgUrl = it.businessLicenceImgUrl
             state = it.reviewState
             editable = !it.valid
             visibility = !it.valid
@@ -105,7 +77,6 @@ class CompanyAuthViewModel : AuthViewModel() {
             idCard.length < 18 -> false
             mobile.length < 11 -> false
             verifyCode.length < 6 -> false
-            businessLicenceImgUrl.isNullOrBlank() -> false
             else -> true
         }
     }
@@ -118,30 +89,10 @@ class CompanyAuthViewModel : AuthViewModel() {
             setCancelable(false)
         }
 
-        UserCompanyAuthWork().start(realName, idCard, mobile, verifyCode, businessLicenceImgUrl) {
+        UserPersonalAuthWork().start(realName, idCard, mobile, verifyCode) {
             dialog.cancel()
             submitResult.value = SubmitResult(it.isSuccess, it.message, if (it.isSuccess)
                 SubmitResult.LEVEL_ALERT_FINISH else SubmitResult.LEVEL_LONG_TOAST)
         }
-    }
-
-    /**
-     * 营业执照副本选择完成
-     *
-     * @param path 图片路径
-     */
-    fun businessLicenceSelected(path: String) {
-        businessLicencePath = path
-
-        FileUploadWork()
-                .setOnNetworkProgressListener { current, total, _ -> businessLicenceProgress = (current / total * 100).toInt() }
-                .start(File(path)) {
-                    if (it.isSuccess) {
-                        businessLicenceImgUrl = it.result
-                        businessLicenceProgress = ValueConst.PROGRESS_SUCCESS
-                    } else {
-                        businessLicenceProgress = ValueConst.PROGRESS_FAILED
-                    }
-                }
     }
 }

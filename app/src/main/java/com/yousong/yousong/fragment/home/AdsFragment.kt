@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import com.yousong.yousong.activity.ads.AdsDetailActivity
 import com.yousong.yousong.adapter.AdsAdapter
-import com.yousong.yousong.architecture.viewmodel.AdsViewModel
+import com.yousong.yousong.architecture.viewmodel.ads.AdsViewModel
 import com.yousong.yousong.common.plusAssign
 import com.yousong.yousong.fragment.ads.BaseAdsListFragment
 import com.yousong.yousong.model.local.Ads

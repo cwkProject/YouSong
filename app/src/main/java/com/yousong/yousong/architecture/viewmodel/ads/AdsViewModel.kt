@@ -1,4 +1,4 @@
-package com.yousong.yousong.architecture.viewmodel
+package com.yousong.yousong.architecture.viewmodel.ads
 
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel

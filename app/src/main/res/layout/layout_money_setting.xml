@@ -10,7 +10,7 @@
 
         <variable
             name="viewModel"
-            type="com.yousong.yousong.architecture.viewmodel.CreateAdsViewModel"/>
+            type="com.yousong.yousong.architecture.viewmodel.ads.CreateAdsViewModel"/>
 
         <import type="com.yousong.yousong.architecture.databinding.BindingTypeConverts"/>
 

@@ -1,9 +1,10 @@
-package com.yousong.yousong.architecture.viewmodel
+package com.yousong.yousong.architecture.viewmodel.user
 
 import android.databinding.Bindable
 import android.text.Editable
 import android.view.View
 import com.yousong.yousong.BR
+import com.yousong.yousong.architecture.viewmodel.common.ObservableViewModel
 import com.yousong.yousong.global.LoginStatus
 import org.jetbrains.anko.toast
 import java.math.BigDecimal

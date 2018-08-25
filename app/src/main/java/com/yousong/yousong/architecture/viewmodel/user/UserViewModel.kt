@@ -1,4 +1,4 @@
-package com.yousong.yousong.architecture.viewmodel
+package com.yousong.yousong.architecture.viewmodel.user
 
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel

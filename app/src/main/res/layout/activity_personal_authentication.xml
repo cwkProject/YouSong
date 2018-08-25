@@ -6,7 +6,7 @@
 
         <variable
             name="data"
-            type="com.yousong.yousong.architecture.viewmodel.PersonalAuthViewModel"/>
+            type="com.yousong.yousong.architecture.viewmodel.user.PersonalAuthViewModel"/>
 
         <import type="com.yousong.yousong.value.ValueConst"/>
 

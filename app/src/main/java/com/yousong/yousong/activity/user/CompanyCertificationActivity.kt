@@ -11,7 +11,7 @@ import android.provider.MediaStore
 import android.view.View
 import com.yousong.yousong.R
 import com.yousong.yousong.activity.common.BaseActivity
-import com.yousong.yousong.architecture.viewmodel.CompanyAuthViewModel
+import com.yousong.yousong.architecture.viewmodel.user.CompanyAuthViewModel
 import com.yousong.yousong.databinding.ActivityCompanyCertificationBinding
 import com.yousong.yousong.operator.OnCompanyCertificationOperator
 import com.yousong.yousong.util.CheckAndroidMPermission

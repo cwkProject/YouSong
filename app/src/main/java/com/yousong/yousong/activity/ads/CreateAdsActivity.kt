@@ -13,7 +13,7 @@ import android.provider.MediaStore
 import android.view.View
 import com.yousong.yousong.R
 import com.yousong.yousong.activity.common.BaseActivity
-import com.yousong.yousong.architecture.viewmodel.CreateAdsViewModel
+import com.yousong.yousong.architecture.viewmodel.ads.CreateAdsViewModel
 import com.yousong.yousong.databinding.ActivityCreateAdsBinding
 import com.yousong.yousong.operator.OnCreateAdsOperator
 import com.yousong.yousong.util.CheckAndroidMPermission

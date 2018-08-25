@@ -6,7 +6,7 @@
 
         <variable
             name="data"
-            type="com.yousong.yousong.architecture.viewmodel.CompanyAuthViewModel" />
+            type="com.yousong.yousong.architecture.viewmodel.user.CompanyAuthViewModel" />
 
         <variable
             name="holder"

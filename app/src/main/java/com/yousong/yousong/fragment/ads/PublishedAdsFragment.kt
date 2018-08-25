@@ -4,7 +4,7 @@ import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import com.yousong.yousong.adapter.AdsAdapter
-import com.yousong.yousong.architecture.viewmodel.MyAdsViewModel
+import com.yousong.yousong.architecture.viewmodel.ads.MyAdsViewModel
 import com.yousong.yousong.common.plusAssign
 
 /**

@@ -4,7 +4,7 @@ import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import com.yousong.yousong.R
 import com.yousong.yousong.activity.ads.ShareFriendActivity
-import com.yousong.yousong.architecture.viewmodel.UserViewModel
+import com.yousong.yousong.architecture.viewmodel.user.UserViewModel
 import com.yousong.yousong.databinding.FragmentFriendBinding
 import com.yousong.yousong.fragment.common.BaseFragment
 import org.jetbrains.anko.support.v4.startActivity

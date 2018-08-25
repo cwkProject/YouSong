@@ -12,8 +12,8 @@ import com.lljjcoder.citywheel.CityConfig
 import com.lljjcoder.style.citypickerview.CityPickerView
 import com.yousong.yousong.R
 import com.yousong.yousong.adapter.AddressAdapter
-import com.yousong.yousong.architecture.viewmodel.CreateAdsViewModel
-import com.yousong.yousong.architecture.viewmodel.DirectionalViewModel
+import com.yousong.yousong.architecture.viewmodel.ads.CreateAdsViewModel
+import com.yousong.yousong.architecture.viewmodel.ads.DirectionalViewModel
 import com.yousong.yousong.common.removeAll
 import com.yousong.yousong.databinding.FragmentDirectionalParameterBinding
 import com.yousong.yousong.fragment.common.BaseFragment

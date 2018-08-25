@@ -4,7 +4,7 @@ import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import com.yousong.yousong.R
 import com.yousong.yousong.activity.common.BaseActivity
-import com.yousong.yousong.architecture.viewmodel.WithdrawViewModel
+import com.yousong.yousong.architecture.viewmodel.user.WithdrawViewModel
 import com.yousong.yousong.databinding.ActivityWithdrawBinding
 import com.yousong.yousong.global.LoginStatus
 import org.cwk.android.library.util.ToolbarInitialize.initToolbar

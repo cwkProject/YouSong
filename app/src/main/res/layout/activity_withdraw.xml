@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="com.yousong.yousong.architecture.viewmodel.WithdrawViewModel" />
+            type="com.yousong.yousong.architecture.viewmodel.user.WithdrawViewModel" />
 
         <variable
             name="userInfo"

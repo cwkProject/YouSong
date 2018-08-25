@@ -1,4 +1,4 @@
-package com.yousong.yousong.architecture.viewmodel
+package com.yousong.yousong.architecture.viewmodel.user
 
 import android.databinding.Bindable
 import android.text.Editable

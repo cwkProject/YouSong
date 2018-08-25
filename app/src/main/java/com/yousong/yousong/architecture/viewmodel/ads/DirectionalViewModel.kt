@@ -1,10 +1,9 @@
-package com.yousong.yousong.architecture.viewmodel
+package com.yousong.yousong.architecture.viewmodel.ads
 
 import android.databinding.Bindable
 import android.databinding.Observable
 import android.databinding.ObservableArrayList
 import android.databinding.ObservableList
-import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.CompoundButton
@@ -13,6 +12,7 @@ import com.baidu.location.BDAbstractLocationListener
 import com.baidu.location.BDLocation
 import com.yousong.yousong.BR
 import com.yousong.yousong.R
+import com.yousong.yousong.architecture.viewmodel.common.ObservableViewModel
 import com.yousong.yousong.model.local.Address
 import com.yousong.yousong.model.local.Directional
 import com.yousong.yousong.third.BDLocationClient

@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="com.yousong.yousong.architecture.viewmodel.CreateAdsViewModel"/>
+            type="com.yousong.yousong.architecture.viewmodel.ads.CreateAdsViewModel"/>
 
         <variable
             name="holder"

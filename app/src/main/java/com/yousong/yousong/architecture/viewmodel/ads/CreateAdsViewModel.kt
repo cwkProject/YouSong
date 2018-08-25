@@ -1,4 +1,4 @@
-package com.yousong.yousong.architecture.viewmodel
+package com.yousong.yousong.architecture.viewmodel.ads
 
 import android.content.Context
 import android.databinding.Bindable
@@ -10,6 +10,7 @@ import com.yousong.yousong.BR
 import com.yousong.yousong.R
 import com.yousong.yousong.architecture.livedata.SubmitResult
 import com.yousong.yousong.architecture.livedata.SubmitResultLiveData
+import com.yousong.yousong.architecture.viewmodel.common.ObservableViewModel
 import com.yousong.yousong.model.local.AdsDetail
 import com.yousong.yousong.model.local.Option
 import com.yousong.yousong.third.GlideApp
