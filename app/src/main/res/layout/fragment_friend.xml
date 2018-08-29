@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
         <variable
             name="viewModel"
-            type="com.yousong.yousong.architecture.viewmodel.user.UserViewModel"/>
+            type="com.yousong.yousong.architecture.viewmodel.user.UserViewModel" />
 
     </data>
 
@@ -37,7 +38,8 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
-                    android:layout_weight="1"/>
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/ic_zongshu_white_96dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -45,7 +47,7 @@
                     android:layout_marginTop="@dimen/layout_default_spacing"
                     android:text="@{@string/format_friend_count(viewModel.inviteCount)}"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                    android:textColor="@android:color/white"/>
+                    android:textColor="@android:color/white" />
 
             </LinearLayout>
         </FrameLayout>
@@ -71,7 +73,8 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
-                    android:layout_weight="1"/>
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/ic_shouyi_white_96dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -79,7 +82,7 @@
                     android:layout_marginTop="@dimen/layout_default_spacing"
                     android:text="@{@string/format_total_incoming(viewModel.totalIncome.toPlainString())}"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                    android:textColor="@android:color/white"/>
+                    android:textColor="@android:color/white" />
 
             </LinearLayout>
 
@@ -106,7 +109,8 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
-                    android:layout_weight="1"/>
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/ic_fenxianghaoyou_white_96dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -114,7 +118,7 @@
                     android:layout_marginTop="@dimen/layout_default_spacing"
                     android:text="@string/name_share_friend"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                    android:textColor="@android:color/white"/>
+                    android:textColor="@android:color/white" />
 
             </LinearLayout>
 
