@@ -39,7 +39,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/ic_zongshu_white_96dp" />
+                    app:srcCompat="@drawable/ic_person_group_white_96dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -74,7 +74,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/ic_shouyi_white_96dp" />
+                    app:srcCompat="@drawable/ic_pig_white_96dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -110,7 +110,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/ic_fenxianghaoyou_white_96dp" />
+                    app:srcCompat="@drawable/ic_flower_white_96dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
