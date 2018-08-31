@@ -107,6 +107,7 @@ class DirectionalParameterFragment : BaseFragment(), OnDirectionalOperator {
                 .provinceCyclic(false)
                 .cityCyclic(false)
                 .districtCyclic(false)
+                .setCityWheelType(CityConfig.WheelType.PRO_CITY)
     }
 
     override fun onRelocationClick(view: View) {
@@ -130,9 +131,8 @@ class DirectionalParameterFragment : BaseFragment(), OnDirectionalOperator {
             override fun onSelected(province: ProvinceBean?, city: CityBean?, district: DistrictBean?) {
                 address.province = province?.name
                 address.city = city?.name
-                address.district = district?.name
-                address.address = province?.name + city?.name + district?.name
-                address.addressCode = district?.id ?: city?.id ?: province?.id
+                address.address = province?.name + city?.name
+                address.addressCode = city?.id ?: province?.id
             }
         })
 
