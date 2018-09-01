@@ -124,7 +124,7 @@
                     android:layout_marginStart="@dimen/activity_horizontal_margin"
                     android:enabled="@{viewModel.adsDetail.question.canAnswer}"
                     android:onClick="@{viewModel::onSubmit}"
-                    android:text="@{viewModel.adsDetail.question.canAnswer ? @string/name_submit : viewModel.adsDetail.question.answered ? @string/name_answered : @string/name_over}"
+                    android:text="@{viewModel.adsDetail.question.canAnswer ? @string/label_submit : viewModel.adsDetail.question.answered ? @string/name_answered : @string/name_over}"
                     android:textColor="@android:color/white"
                     app:backgroundTint="@color/primary_button_selector" />
 

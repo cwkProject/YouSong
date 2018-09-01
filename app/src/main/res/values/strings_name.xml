@@ -2,14 +2,16 @@
 <!-- 名词 -->
 <resources>
 
-    <string name="name_submit">提交</string>
     <string name="name_recommend_friend">推荐好友</string>
     <string name="name_send_moments">发送朋友圈</string>
     <string name="name_copy_url">复制链接</string>
-    <string name="name_withdraw">提现</string>
+
+    <string name="name_total_income">累计收益</string>
+    <string name="name_my_balance">我的余额</string>
+    <string name="name_want_to_withdraw">我要提现</string>
     <string name="name_publish_ads">发布广告</string>
     <string name="name_authenticate">认证</string>
-    <string name="name_help">帮助</string>
+    <string name="name_customer_service">我的客服</string>
     <string name="name_wechat_login">微信登陆</string>
     <string name="name_share_friend">分享好友</string>
 
@@ -73,5 +75,7 @@
     <string name="name_add_target_city">添加目标城市</string>
 
     <string name="name_corporation">法人</string>
+
+    <string name="name_go_to_authentication">去认证</string>
 
 </resources>

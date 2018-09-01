@@ -19,7 +19,12 @@ interface OnMeFunctionOperator {
     /**
      * 发布广告按钮点击事件
      */
-    fun onPublishAdClick(view: View)
+    fun onPublishAdsClick(view: View)
+
+    /**
+     * 我的广告按钮点击事件
+     */
+    fun onMyAdsClick(view: View)
 
     /**
      * 实名按钮点击事件

@@ -91,14 +91,19 @@
                         android:layout_marginBottom="@dimen/layout_default_spacing"
                         android:layout_marginEnd="@dimen/activity_horizontal_margin"
                         android:layout_marginTop="@dimen/layout_default_spacing"
+                        android:tint="@color/orange_600"
                         app:srcCompat="@drawable/ic_pig_black_36dp"/>
 
                     <TextView
                         style="@style/MeTextStyle"
-                        android:text="@string/label_income"/>
+                        android:text="@string/name_total_income"/>
 
                     <TextView
-                        android:layout_marginStart="@dimen/layout_default_spacing"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        android:paddingEnd="@dimen/activity_horizontal_margin"
+                        android:paddingStart="@dimen/activity_horizontal_margin"
                         android:text="@{userViewModel.totalIncome.toPlainString() + ` ` + @string/name_yuan}"
                         android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
 
@@ -119,14 +124,19 @@
                         android:layout_marginBottom="@dimen/layout_default_spacing"
                         android:layout_marginEnd="@dimen/activity_horizontal_margin"
                         android:layout_marginTop="@dimen/layout_default_spacing"
+                        android:tint="@color/brown_500"
                         app:srcCompat="@drawable/ic_wallet_black_36dp"/>
 
                     <TextView
                         style="@style/MeTextStyle"
-                        android:text="@string/label_over"/>
+                        android:text="@string/name_my_balance"/>
 
                     <TextView
-                        android:layout_marginStart="@dimen/layout_default_spacing"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        android:paddingEnd="@dimen/activity_horizontal_margin"
+                        android:paddingStart="@dimen/activity_horizontal_margin"
                         android:text="@{userInfo.balance.toPlainString() +` `+ @string/name_yuan}"
                         android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
                 </TableRow>
@@ -148,13 +158,14 @@
                         android:layout_marginBottom="@dimen/layout_default_spacing"
                         android:layout_marginEnd="@dimen/activity_horizontal_margin"
                         android:layout_marginTop="@dimen/layout_default_spacing"
+                        android:tint="@color/orange_600"
                         app:srcCompat="@drawable/ic__currency_usd_circle_cblack_36dp"/>
 
                     <TextView
                         style="@style/MeTextStyle"
                         android:layout_span="2"
                         android:drawableEnd="@drawable/ic_chevron_right_grey_400_24dp"
-                        android:text="@string/name_withdraw"/>
+                        android:text="@string/name_want_to_withdraw"/>
 
                 </TableRow>
 
@@ -169,12 +180,13 @@
 
                 <TableRow
                     style="@style/MeRowStyle"
-                    android:onClick="@{holder::onPublishAdClick}">
+                    android:onClick="@{holder::onPublishAdsClick}">
 
                     <ImageView
                         android:layout_marginBottom="@dimen/layout_default_spacing"
                         android:layout_marginEnd="@dimen/activity_horizontal_margin"
                         android:layout_marginTop="@dimen/layout_default_spacing"
+                        android:tint="@color/red_500"
                         app:srcCompat="@drawable/ic_phone_call_black_36dp"/>
 
                     <TextView
@@ -193,19 +205,47 @@
                         android:background="@color/grey_100"/>
                 </TableRow>
 
+                <TableRow
+                    style="@style/MeRowStyle"
+                    android:onClick="@{holder::onMyAdsClick}">
+
+                    <ImageView
+                        android:layout_marginBottom="@dimen/layout_default_spacing"
+                        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                        android:layout_marginTop="@dimen/layout_default_spacing"
+                        android:tint="@color/green_500"
+                        app:srcCompat="@drawable/ic_phone_call_black_36dp"/>
+
+                    <TextView
+                        style="@style/MeTextStyle"
+                        android:layout_span="2"
+                        android:drawableEnd="@drawable/ic_chevron_right_grey_400_24dp"
+                        android:text="@string/title_my_ads"/>
+                </TableRow>
+
+                <TableRow>
+
+                    <View
+                        android:layout_height="1dp"
+                        android:layout_column="1"
+                        android:layout_span="2"
+                        android:background="@color/grey_100"/>
+                </TableRow>
+
                 <TableRow style="@style/MeRowStyle">
 
                     <ImageView
                         android:layout_marginBottom="@dimen/layout_default_spacing"
                         android:layout_marginEnd="@dimen/activity_horizontal_margin"
                         android:layout_marginTop="@dimen/layout_default_spacing"
+                        android:tint="@color/grey_700"
                         app:srcCompat="@drawable/ic_hlep_circle_black_36dp"/>
 
                     <TextView
                         style="@style/MeTextStyle"
                         android:layout_span="2"
                         android:drawableEnd="@drawable/ic_chevron_right_grey_400_24dp"
-                        android:text="@string/name_help"/>
+                        android:text="@string/name_customer_service"/>
                 </TableRow>
             </TableLayout>
 

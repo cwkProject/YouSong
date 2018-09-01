@@ -1,13 +1,15 @@
 package com.yousong.yousong.activity.ads
 
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
 import com.yousong.yousong.R
 import com.yousong.yousong.activity.common.BaseActivity
+import com.yousong.yousong.activity.user.CompanyCertificationActivity
 import com.yousong.yousong.adapter.MyAdsViewPagerAdapter
+import com.yousong.yousong.global.LoginStatus
 import kotlinx.android.synthetic.main.activity_my_ads.*
 import org.cwk.android.library.util.ToolbarInitialize.initToolbar
+import org.jetbrains.anko.design.longSnackbar
+import org.jetbrains.anko.design.snackbar
 import org.jetbrains.anko.startActivity
 
 /**
@@ -24,6 +26,7 @@ class MyAdsActivity : BaseActivity() {
     override fun onInitView(savedInstanceState: Bundle?) {
         initToolbar(this, R.string.title_my_ads)
         initNavigation()
+        initFab()
     }
 
     /**
@@ -35,17 +38,21 @@ class MyAdsActivity : BaseActivity() {
         tabLayout.setupWithViewPager(viewPager)
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_my_ads, menu)
-        return super.onCreateOptionsMenu(menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-
-        when (item.itemId) {
-            R.id.menu_my_ads_publish -> startActivity<CreateAdsActivity>()
+    /**
+     * 初始化悬浮按钮
+     */
+    private fun initFab() {
+        fab.setOnClickListener {
+            when {
+                LoginStatus.userInfo.companyAuth?.valid == true -> startActivity<CreateAdsActivity>()
+                LoginStatus.userInfo.authOk -> longSnackbar(it, R.string.hint_company_authentication_reward, R.string.name_go_to_authentication) {
+                    startActivity<CompanyCertificationActivity>()
+                }
+                !LoginStatus.userInfo.authOk -> {
+                    snackbar(it, R.string.prompt_poor_network_reload_user_data)
+                    LoginStatus.userInfo.loadUserData()
+                }
+            }
         }
-
-        return super.onOptionsItemSelected(item)
     }
 }

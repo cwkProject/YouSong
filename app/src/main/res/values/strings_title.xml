@@ -18,5 +18,6 @@
     <string name="title_personal_authentication">实名认证</string>
     <string name="title_company_certification">企业认证</string>
     <string name="title_publish_ads">发布广告</string>
+    <string name="title_withdraw">提现</string>
 
 </resources>

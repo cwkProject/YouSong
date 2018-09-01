@@ -4,6 +4,7 @@ import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.view.View
 import com.yousong.yousong.R
+import com.yousong.yousong.activity.ads.CreateAdsActivity
 import com.yousong.yousong.activity.ads.MyAdsActivity
 import com.yousong.yousong.activity.user.CompanyCertificationActivity
 import com.yousong.yousong.activity.user.PersonalAuthenticationActivity
@@ -47,15 +48,19 @@ class MeFragment : BaseFragment(), OnMeFunctionOperator {
         }
     }
 
-    override fun onPublishAdClick(view: View) {
+    override fun onPublishAdsClick(view: View) {
         when {
-            LoginStatus.userInfo.companyAuth?.valid == true -> startActivity<MyAdsActivity>()
+            LoginStatus.userInfo.companyAuth?.valid == true -> startActivity<CreateAdsActivity>()
             LoginStatus.userInfo.authOk -> startActivity<CompanyCertificationActivity>()
             !LoginStatus.userInfo.authOk -> {
                 toast(R.string.prompt_poor_network_reload_user_data)
                 LoginStatus.userInfo.loadUserData()
             }
         }
+    }
+
+    override fun onMyAdsClick(view: View) {
+        startActivity<MyAdsActivity>()
     }
 
     override fun onRealNameClick(view: View) {

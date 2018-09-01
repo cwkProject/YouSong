@@ -6,7 +6,7 @@
 
         <variable
             name="data"
-            type="com.yousong.yousong.model.local.Ads" />
+            type="com.yousong.yousong.model.local.Ads"/>
 
     </data>
 
@@ -30,14 +30,14 @@
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
                 android:scaleType="fitXY"
-                app:cover="@{data.cover}" />
+                app:cover="@{data.cover}"/>
 
             <ProgressBar
                 style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:max="@{data.totalAmount}"
-                android:progress="@{data.totalAmount.subtract(data.balance)}" />
+                android:progress="@{data.totalAmount.subtract(data.balance)}"/>
 
             <FrameLayout
                 android:layout_width="match_parent"
@@ -48,14 +48,14 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="start"
                     android:text="@{@string/label_total_amount + data.totalAmount + ` `+ @string/name_yuan}"
-                    android:textSize="@dimen/text_size_small" />
+                    android:textSize="@dimen/text_size_small"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
-                    android:text="@{@string/label_over + data.balance + ` `+ @string/name_yuan}"
-                    android:textSize="@dimen/text_size_small" />
+                    android:text="@{@string/label_balance + data.balance + ` `+ @string/name_yuan}"
+                    android:textSize="@dimen/text_size_small"/>
 
             </FrameLayout>
 

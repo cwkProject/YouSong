@@ -19,7 +19,11 @@
     <color name="green_a400">#00E676</color>
 
     <color name="orange_500">#FF9800</color>
+    <color name="orange_600">#FB8C00</color>
     <color name="deep_orange_500">#FF5722</color>
+
+    <color name="brown_400">#8D6E63</color>
+    <color name="brown_500">#795548</color>
 
     <color name="amber_600">#FFB300</color>
 
@@ -27,6 +31,9 @@
     <color name="grey_100">#F5F5F5</color>
     <color name="grey_300">#E0E0E0</color>
     <color name="grey_400">#BDBDBD</color>
+    <color name="grey_700">#616161</color>
+
+    <color name="blue_grey_800">#37474F</color>
 
     <color name="wechat_green">#1BC410</color>
 </resources>

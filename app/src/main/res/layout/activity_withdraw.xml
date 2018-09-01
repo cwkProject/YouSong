@@ -6,11 +6,11 @@
 
         <variable
             name="viewModel"
-            type="com.yousong.yousong.architecture.viewmodel.user.WithdrawViewModel" />
+            type="com.yousong.yousong.architecture.viewmodel.user.WithdrawViewModel"/>
 
         <variable
             name="userInfo"
-            type="com.yousong.yousong.global.UserInfo" />
+            type="com.yousong.yousong.global.UserInfo"/>
 
     </data>
 
@@ -19,7 +19,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <include layout="@layout/toolbar" />
+        <include layout="@layout/toolbar"/>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -33,14 +33,14 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/label_cash_withdrawal_balance" />
+                android:text="@string/label_cash_withdrawal_balance"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/activity_horizontal_margin"
                 android:text="@{userInfo.balance.toPlainString() + @string/name_yuan}"
-                android:textColor="@color/orange_500" />
+                android:textColor="@color/orange_500"/>
 
         </LinearLayout>
 
@@ -66,7 +66,7 @@
                     android:inputType="numberDecimal"
                     android:maxLength="9"
                     android:maxLines="1"
-                    android:text="@{viewModel.withdrawalAmount}" />
+                    android:text="@{viewModel.withdrawalAmount}"/>
 
             </android.support.design.widget.TextInputLayout>
 
@@ -75,7 +75,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:text="@string/name_yuan"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
 
         </LinearLayout>
 
@@ -87,9 +87,9 @@
             android:layout_marginTop="@dimen/activity_vertical_margin"
             android:enabled="@{viewModel.canWithdrawal}"
             android:onClick="@{viewModel::onSubmit}"
-            android:text="@string/name_withdraw"
+            android:text="@string/label_withdraw"
             android:textColor="@android:color/white"
-            app:backgroundTint="@color/primary_button_selector" />
+            app:backgroundTint="@color/primary_button_selector"/>
 
     </LinearLayout>
 

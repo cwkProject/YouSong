@@ -21,7 +21,7 @@ class WithdrawActivity : BaseActivity() {
     override val rootViewId = R.layout.activity_withdraw
 
     override fun onInitView(savedInstanceState: Bundle?) {
-        initToolbar(this, R.string.name_withdraw)
+        initToolbar(this, R.string.title_withdraw)
         ActivityWithdrawBinding.bind(rootView).apply {
             viewModel = ViewModelProviders.of(this@WithdrawActivity).get(WithdrawViewModel::class.java)
             userInfo = LoginStatus.userInfo
