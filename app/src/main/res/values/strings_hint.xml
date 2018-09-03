@@ -50,4 +50,7 @@
     如您确实需要修改提审信息请修改后执行提交。
     </string>
 
+    <string name="hint_share_friend_count">您分享的好友总数</string>
+    <string name="hint_share_total_incoming">您分享的收益总额</string>
+
 </resources>

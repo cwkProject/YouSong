@@ -3,7 +3,6 @@ package com.yousong.yousong.fragment.home
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.util.Log
 import com.yousong.yousong.activity.ads.AdsDetailActivity
 import com.yousong.yousong.adapter.AdsAdapter
 import com.yousong.yousong.architecture.viewmodel.ads.AdsViewModel
@@ -43,21 +42,13 @@ class AdsFragment : BaseAdsListFragment() {
      */
     private fun onAdsRefresh(adsList: Pair<BannerAds?, List<Ads>?>?) {
         adsList?.let {
-            adapter.beginTransaction()
             adapter.adsList.clear()
-            adapter.topList.clear()
-            adapter.topList += it.first
             adapter.adsList += it.second
-            adapter.commit()
         }
         stopRefresh()
     }
 
     override fun onInitListAction() {
-        adapter.bannerClickListener = { ads, position ->
-            Log.v(TAG, "position:$position")
-        }
-
         adapter.adsList.setOnItemClickListener { _, dataSource, _ ->
             startActivity<AdsDetailActivity>(ValueTag.TAG_ADS_ID to dataSource.id)
         }
@@ -68,15 +59,5 @@ class AdsFragment : BaseAdsListFragment() {
      */
     override fun loadAds() {
         adsViewModel.loadAds()
-    }
-
-    override fun onResume() {
-        super.onResume()
-        adapter.playState = true
-    }
-
-    override fun onPause() {
-        super.onPause()
-        adapter.playState = false
     }
 }
