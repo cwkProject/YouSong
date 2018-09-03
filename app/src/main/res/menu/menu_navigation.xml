@@ -3,17 +3,17 @@
 
     <item
         android:id="@+id/navigation_ads"
-        android:icon="@drawable/ic__currency_usd_circle_cblack_36dp"
+        android:icon="@drawable/ic_cny_circle_black_36dp"
         android:title="@string/title_ads"/>
 
     <item
         android:id="@+id/navigation_friend"
-        android:icon="@drawable/ic_heart_circle_black_36dp"
+        android:icon="@drawable/ic_add_circle_full_black_36dp"
         android:title="@string/title_friend"/>
 
     <item
         android:id="@+id/navigation_me"
-        android:icon="@drawable/ic_smile_black_36dp"
+        android:icon="@drawable/ic_smile_full_black_36dp"
         android:title="@string/title_me"/>
 
 </menu>

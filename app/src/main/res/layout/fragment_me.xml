@@ -91,7 +91,7 @@
                         android:layout_marginBottom="@dimen/layout_default_spacing"
                         android:layout_marginEnd="@dimen/activity_horizontal_margin"
                         android:layout_marginTop="@dimen/layout_default_spacing"
-                        android:tint="@color/orange_600"
+                        android:tint="@color/color_app_orange"
                         app:srcCompat="@drawable/ic_pig_black_36dp"/>
 
                     <TextView
@@ -124,7 +124,7 @@
                         android:layout_marginBottom="@dimen/layout_default_spacing"
                         android:layout_marginEnd="@dimen/activity_horizontal_margin"
                         android:layout_marginTop="@dimen/layout_default_spacing"
-                        android:tint="@color/brown_500"
+                        android:tint="@color/color_app_brown"
                         app:srcCompat="@drawable/ic_wallet_black_36dp"/>
 
                     <TextView
@@ -159,7 +159,7 @@
                         android:layout_marginEnd="@dimen/activity_horizontal_margin"
                         android:layout_marginTop="@dimen/layout_default_spacing"
                         android:tint="@color/orange_600"
-                        app:srcCompat="@drawable/ic__currency_usd_circle_cblack_36dp"/>
+                        app:srcCompat="@drawable/ic_cny_circle_black_36dp"/>
 
                     <TextView
                         style="@style/MeTextStyle"
@@ -186,8 +186,7 @@
                         android:layout_marginBottom="@dimen/layout_default_spacing"
                         android:layout_marginEnd="@dimen/activity_horizontal_margin"
                         android:layout_marginTop="@dimen/layout_default_spacing"
-                        android:tint="@color/red_500"
-                        app:srcCompat="@drawable/ic_phone_call_black_36dp"/>
+                        app:srcCompat="@drawable/ic_phone_call_36dp"/>
 
                     <TextView
                         style="@style/MeTextStyle"
@@ -213,8 +212,7 @@
                         android:layout_marginBottom="@dimen/layout_default_spacing"
                         android:layout_marginEnd="@dimen/activity_horizontal_margin"
                         android:layout_marginTop="@dimen/layout_default_spacing"
-                        android:tint="@color/green_500"
-                        app:srcCompat="@drawable/ic_phone_call_black_36dp"/>
+                        app:srcCompat="@drawable/ic_phone_cny_36dp"/>
 
                     <TextView
                         style="@style/MeTextStyle"
@@ -238,8 +236,7 @@
                         android:layout_marginBottom="@dimen/layout_default_spacing"
                         android:layout_marginEnd="@dimen/activity_horizontal_margin"
                         android:layout_marginTop="@dimen/layout_default_spacing"
-                        android:tint="@color/grey_700"
-                        app:srcCompat="@drawable/ic_hlep_circle_black_36dp"/>
+                        app:srcCompat="@drawable/ic_old_phone_36dp"/>
 
                     <TextView
                         style="@style/MeTextStyle"

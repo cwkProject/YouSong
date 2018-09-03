@@ -36,4 +36,9 @@
     <color name="blue_grey_800">#37474F</color>
 
     <color name="wechat_green">#1BC410</color>
+    <color name="color_app_orange">#E88E31</color>
+    <color name="color_app_brown">#9F6D3C</color>
+
+    <color name="color_share_app">#4D4845</color>
+
 </resources>
