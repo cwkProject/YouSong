@@ -55,8 +55,9 @@ class FriendFragment : BaseFragment() {
     override fun onInitData(savedInstanceState: Bundle?) {
         binding.setLifecycleOwner(this)
         binding.viewModel = userViewModel
-        adsViewModel.adsListData.observe(this, Observer {
-            it?.first?.let {
+
+        adsViewModel.bannerAdsData.observe(this, Observer {
+            if (it != null) {
                 binding.bannerGuideLayout.setAutoPlayAble(it.items.size > 1)
                 binding.bannerGuideLayout.setData(it.items, null)
             }

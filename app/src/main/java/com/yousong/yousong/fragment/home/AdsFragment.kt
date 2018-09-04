@@ -9,7 +9,6 @@ import com.yousong.yousong.architecture.viewmodel.ads.AdsViewModel
 import com.yousong.yousong.common.plusAssign
 import com.yousong.yousong.fragment.ads.BaseAdsListFragment
 import com.yousong.yousong.model.local.Ads
-import com.yousong.yousong.model.server.BannerAds
 import com.yousong.yousong.value.ValueTag
 import org.jetbrains.anko.support.v4.startActivity
 
@@ -40,10 +39,12 @@ class AdsFragment : BaseAdsListFragment() {
      *
      * @param adsList 广告数据集合
      */
-    private fun onAdsRefresh(adsList: Pair<BannerAds?, List<Ads>?>?) {
+    private fun onAdsRefresh(adsList: List<Ads>?) {
         adsList?.let {
+            adapter.beginTransaction()
             adapter.adsList.clear()
-            adapter.adsList += it.second
+            adapter.adsList += it
+            adapter.commit()
         }
         stopRefresh()
     }

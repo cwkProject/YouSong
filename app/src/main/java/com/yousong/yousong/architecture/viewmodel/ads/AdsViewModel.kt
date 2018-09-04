@@ -6,8 +6,7 @@ import com.yousong.yousong.model.local.Ads
 import com.yousong.yousong.model.server.BannerAds
 import com.yousong.yousong.work.ads.AdsGetBannerWork
 import com.yousong.yousong.work.ads.AdsPullListWork
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.rxkotlin.Observables
+import com.yousong.yousong.work.common.start
 
 /**
  * 主界面广告数据模型
@@ -21,32 +20,37 @@ class AdsViewModel : ViewModel() {
     /**
      * 首页广告列表
      */
-    val adsListData = MutableLiveData<Pair<BannerAds?, List<Ads>?>>()
+    val adsListData = MutableLiveData<List<Ads>>()
+
+    /**
+     * 轮播图
+     */
+    val bannerAdsData = MutableLiveData<BannerAds>()
 
     init {
         loadAds()
+        loadBanner()
     }
 
     /**
      * 加载广告
      */
     fun loadAds() {
-        Observables.zip(AdsGetBannerWork().observable(), AdsPullListWork().observable())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe { (banner, ads) ->
-                    val bannerData = if (banner.isSuccess) {
-                        banner.result
-                    } else {
-                        adsListData.value?.first
-                    }
+        AdsPullListWork().start {
+            if (it.isSuccess) {
+                adsListData.value = it.result
+            }
+        }
+    }
 
-                    val adsData = if (ads.isSuccess) {
-                        ads.result
-                    } else {
-                        adsListData.value?.second
-                    }
-
-                    adsListData.value = Pair(bannerData, adsData)
-                }
+    /**
+     * 加载轮播图
+     */
+    private fun loadBanner() {
+        AdsGetBannerWork().start(retry = 3) {
+            if (it.isSuccess) {
+                bannerAdsData.value = it.result
+            }
+        }
     }
 }
