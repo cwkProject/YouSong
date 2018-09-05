@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="com.yousong.yousong.architecture.viewmodel.ads.AdsDetailViewModel"/>
+            type="com.yousong.yousong.architecture.viewmodel.ads.AdsDetailViewModel" />
 
     </data>
 
@@ -15,7 +15,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <include layout="@layout/toolbar"/>
+        <include layout="@layout/toolbar" />
 
         <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
@@ -35,7 +35,7 @@
                     android:layout_height="wrap_content"
                     android:adjustViewBounds="true"
                     android:scaleType="fitXY"
-                    app:poster="@{viewModel.adsDetail.ads.poster}"/>
+                    app:poster="@{viewModel.adsDetail.ads.poster}" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -49,21 +49,21 @@
                         android:layout_height="2dp"
                         android:layout_weight="1"
                         android:background="@drawable/dotted_line"
-                        android:layerType="software"/>
+                        android:layerType="software" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/layout_default_spacing"
                         android:layout_marginStart="@dimen/layout_default_spacing"
-                        android:text="@string/name_answer_make_money"/>
+                        android:text="@string/name_answer_make_money" />
 
                     <View
                         android:layout_width="0dp"
                         android:layout_height="2dp"
                         android:layout_weight="1"
                         android:background="@drawable/dotted_line"
-                        android:layerType="software"/>
+                        android:layerType="software" />
 
                 </LinearLayout>
 
@@ -72,7 +72,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/activity_vertical_margin"
                     android:text="@{viewModel.adsDetail.question.content}"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
                 <RadioGroup
                     android:layout_width="match_parent"
@@ -85,7 +85,7 @@
                         android:layout_height="wrap_content"
                         android:checked="@={viewModel.adsDetail.question.option[0].answer}"
                         android:enabled="@{viewModel.adsDetail.question.canAnswer}"
-                        android:text="@{viewModel.adsDetail.question.option[0].content}"/>
+                        android:text="@{viewModel.adsDetail.question.option[0].content}" />
 
                     <android.support.v7.widget.AppCompatRadioButton
                         android:id="@+id/b_option"
@@ -93,7 +93,7 @@
                         android:layout_height="wrap_content"
                         android:checked="@={viewModel.adsDetail.question.option[1].answer}"
                         android:enabled="@{viewModel.adsDetail.question.canAnswer}"
-                        android:text="@{viewModel.adsDetail.question.option[1].content}"/>
+                        android:text="@{viewModel.adsDetail.question.option[1].content}" />
 
                     <android.support.v7.widget.AppCompatRadioButton
                         android:id="@+id/c_option"
@@ -102,7 +102,7 @@
                         android:checked="@={viewModel.adsDetail.question.option[2].answer}"
                         android:enabled="@{viewModel.adsDetail.question.canAnswer}"
                         android:text="@{viewModel.adsDetail.question.option[2].content}"
-                        app:goneUnless="@{viewModel.adsDetail.question.option.size() > 2}"/>
+                        app:goneUnless="@{viewModel.adsDetail.question.option.size() > 2}" />
 
                     <android.support.v7.widget.AppCompatRadioButton
                         android:id="@+id/d_option"
@@ -111,7 +111,7 @@
                         android:checked="@={viewModel.adsDetail.question.option[3].answer}"
                         android:enabled="@{viewModel.adsDetail.question.canAnswer}"
                         android:text="@{viewModel.adsDetail.question.option[3].content}"
-                        app:goneUnless="@{viewModel.adsDetail.question.option.size() > 3}"/>
+                        app:goneUnless="@{viewModel.adsDetail.question.option.size() > 3}" />
 
                 </RadioGroup>
 
@@ -122,7 +122,7 @@
                     android:onClick="@{viewModel::onSubmit}"
                     android:text="@{viewModel.adsDetail.question.canAnswer ? @string/label_submit : viewModel.adsDetail.question.answered ? @string/name_answered : @string/name_over}"
                     android:textColor="@android:color/white"
-                    app:backgroundTint="@color/primary_button_selector"/>
+                    app:backgroundTint="@color/primary_button_selector" />
 
                 <android.support.v7.widget.GridLayout
                     android:layout_width="match_parent"
@@ -142,13 +142,14 @@
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            app:srcCompat="@drawable/ic_wechat_36dp"/>
+                            android:tint="@color/grey_600"
+                            app:srcCompat="@drawable/ic_wechat_black_36dp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/layout_default_spacing"
-                            android:text="@string/name_recommend_friend"/>
+                            android:text="@string/name_recommend_friend" />
 
                     </LinearLayout>
 
@@ -162,13 +163,14 @@
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            app:srcCompat="@drawable/ic_moments_36dp"/>
+                            android:tint="@color/grey_600"
+                            app:srcCompat="@drawable/ic_moments_black_36dp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/layout_default_spacing"
-                            android:text="@string/name_send_moments"/>
+                            android:text="@string/name_send_moments" />
 
                     </LinearLayout>
 
@@ -182,13 +184,14 @@
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            app:srcCompat="@drawable/ic_copy_link_36dp"/>
+                            android:tint="@color/grey_600"
+                            app:srcCompat="@drawable/ic_copy_link_black_36dp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/layout_default_spacing"
-                            android:text="@string/name_copy_url"/>
+                            android:text="@string/name_copy_url" />
 
                     </LinearLayout>
 

@@ -92,7 +92,7 @@
                         android:layout_marginEnd="@dimen/activity_horizontal_margin"
                         android:layout_marginTop="@dimen/layout_default_spacing"
                         android:tint="@color/color_app_orange"
-                        app:srcCompat="@drawable/ic_pig_black_36dp"/>
+                        app:srcCompat="@drawable/ic_pig_black_24dp"/>
 
                     <TextView
                         style="@style/MeTextStyle"
@@ -125,7 +125,7 @@
                         android:layout_marginEnd="@dimen/activity_horizontal_margin"
                         android:layout_marginTop="@dimen/layout_default_spacing"
                         android:tint="@color/color_app_brown"
-                        app:srcCompat="@drawable/ic_wallet_black_36dp"/>
+                        app:srcCompat="@drawable/ic_wallet_black_24dp"/>
 
                     <TextView
                         style="@style/MeTextStyle"
@@ -159,7 +159,7 @@
                         android:layout_marginEnd="@dimen/activity_horizontal_margin"
                         android:layout_marginTop="@dimen/layout_default_spacing"
                         android:tint="@color/orange_600"
-                        app:srcCompat="@drawable/ic_cny_circle_black_36dp"/>
+                        app:srcCompat="@drawable/ic_cny_circle_black_24dp"/>
 
                     <TextView
                         style="@style/MeTextStyle"
@@ -186,7 +186,7 @@
                         android:layout_marginBottom="@dimen/layout_default_spacing"
                         android:layout_marginEnd="@dimen/activity_horizontal_margin"
                         android:layout_marginTop="@dimen/layout_default_spacing"
-                        app:srcCompat="@drawable/ic_phone_call_36dp"/>
+                        app:srcCompat="@drawable/ic_phone_call_24dp"/>
 
                     <TextView
                         style="@style/MeTextStyle"
@@ -212,7 +212,7 @@
                         android:layout_marginBottom="@dimen/layout_default_spacing"
                         android:layout_marginEnd="@dimen/activity_horizontal_margin"
                         android:layout_marginTop="@dimen/layout_default_spacing"
-                        app:srcCompat="@drawable/ic_phone_cny_36dp"/>
+                        app:srcCompat="@drawable/ic_phone_cny_24dp"/>
 
                     <TextView
                         style="@style/MeTextStyle"
@@ -236,7 +236,7 @@
                         android:layout_marginBottom="@dimen/layout_default_spacing"
                         android:layout_marginEnd="@dimen/activity_horizontal_margin"
                         android:layout_marginTop="@dimen/layout_default_spacing"
-                        app:srcCompat="@drawable/ic_old_phone_36dp"/>
+                        app:srcCompat="@drawable/ic_old_phone_24dp"/>
 
                     <TextView
                         style="@style/MeTextStyle"
