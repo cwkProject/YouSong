@@ -3,7 +3,7 @@
 <resources>
 
     <string name="name_recommend_friend">推荐好友</string>
-    <string name="name_send_moments">发送朋友圈</string>
+    <string name="name_send_moments">分享朋友圈</string>
     <string name="name_copy_url">复制链接</string>
 
     <string name="name_total_income">累计收益</string>
