@@ -17,10 +17,10 @@ public interface ValueKey {
     /**
      * 微信appId
      */
-    String WX_APP_ID = "wx3ada4bdaeac96326";
+    String WX_APP_ID = "wxe76bf5efb9fc85ca";
 
     /**
      * 微信应用密钥
      */
-    String WX_APP_SECRET = "b22b317115ef8ca976c6e94196a9a429";
+    String WX_APP_SECRET = "6bba0797b2fa346c0a184e92f2d0789c";
 }
