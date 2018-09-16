@@ -83,10 +83,18 @@ class WXPayEntryActivity : BaseActivity(), IWXAPIEventHandler {
                 setLifecycleOwner(this@WXPayEntryActivity, false)
 
                 liveData.observe(this@WXPayEntryActivity, Observer {
-                    if (it != null && it.isSuccess && it.result == 1) {
-                        pollTimer?.cancel()
-                        sendBroadcast(Intent(ValueAction.ACTION_PAY_SUCCESS))
-                        finish()
+                    if (it != null && it.isSuccess) {
+                        when (it.result) {
+                            1 -> {
+                                stopTimer()
+                                sendBroadcast(Intent(ValueAction.ACTION_PAY_SUCCESS))
+                                finish()
+                            }
+                            2 -> {
+                                stopTimer()
+                                binding.failed = true
+                            }
+                        }
                     }
                 })
 
@@ -97,7 +105,7 @@ class WXPayEntryActivity : BaseActivity(), IWXAPIEventHandler {
                 binding.remainingTime--
 
                 if (binding.remainingTime <= 0) {
-                    pollTimer?.cancel()
+                    stopTimer()
                     binding.failed = true
                 } else if (binding.remainingTime % timeoutScale == 0) {
                     work.beginExecute(prepayId)
@@ -108,8 +116,16 @@ class WXPayEntryActivity : BaseActivity(), IWXAPIEventHandler {
         }
     }
 
-    override fun onDestroy() {
+    /**
+     * 停止计时
+     */
+    private fun stopTimer() {
         pollTimer?.cancel()
+        pollTimer = null
+    }
+
+    override fun onDestroy() {
+        stopTimer()
         super.onDestroy()
     }
 }
