@@ -10,15 +10,18 @@ import com.tencent.mm.opensdk.modelmsg.SendAuth
 import com.tencent.mm.opensdk.modelmsg.SendMessageToWX
 import com.tencent.mm.opensdk.modelmsg.WXMediaMessage
 import com.tencent.mm.opensdk.modelmsg.WXWebpageObject
+import com.tencent.mm.opensdk.modelpay.PayReq
 import com.tencent.mm.opensdk.openapi.WXAPIFactory
 import com.yousong.yousong.R
 import com.yousong.yousong.global.AppConfig
+import com.yousong.yousong.model.server.WxPay
 import com.yousong.yousong.value.ValueKey
 import org.cwk.android.library.global.Global
 import org.jetbrains.anko.design.snackbar
 import org.jetbrains.anko.toast
 import java.io.ByteArrayOutputStream
 import java.util.*
+
 
 /**
  * 发送微信消息
@@ -32,7 +35,7 @@ object WechatFunction {
     /**
      * 微信接口
      */
-    private val api = WXAPIFactory.createWXAPI(Global.getApplication(), ValueKey.WX_APP_ID, true)
+    private val api = WXAPIFactory.createWXAPI(Global.getApplication(), ValueKey.WX_APP_ID)
 
     /**
      * logo
@@ -48,8 +51,26 @@ object WechatFunction {
     /**
      * 注册到微信
      */
-    fun register(){
+    fun register() {
         api.registerApp(ValueKey.WX_APP_ID)
+    }
+
+    /**
+     * 发起付款
+     *
+     * @param wxPay 付款信息
+     */
+    fun pay(wxPay: WxPay) {
+        val request = PayReq()
+        request.appId = wxPay.appId
+        request.partnerId = wxPay.partnerId
+        request.prepayId = wxPay.prepayId
+        request.packageValue = wxPay.packageValue
+        request.nonceStr = wxPay.nonceStr
+        request.timeStamp = wxPay.timeStamp
+        request.sign = wxPay.paySign
+        request.signType = wxPay.signType
+        api.sendReq(request)
     }
 
     /**

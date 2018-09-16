@@ -21,7 +21,7 @@ public interface ValueUrl {
      */
     String URL_WX_USER_INFO = "https://api.weixin.qq.com/sns/userinfo";
 
-    // 以下为应用接口地址======================================================
+    // 以下为应用接口基地址======================================================
 
     /**
      * 根地址
@@ -42,6 +42,11 @@ public interface ValueUrl {
      * 广告路由
      */
     String URL_BASE_ADS = URL_BASE + "ads/";
+
+    /**
+     * 微信路由
+     */
+    String URL_BASE_WECHAT = URL_BASE + "wechat/";
 
     // 一些为用户相关接口地址======================================================
 
@@ -107,6 +112,8 @@ public interface ValueUrl {
      */
     String URL_FILE_UPLOAD = URL_BASE_FILE + "upload";
 
+    // 以下为广告相关接口======================================================
+
     /**
      * 创建广告提交审核
      */
@@ -161,4 +168,16 @@ public interface ValueUrl {
      * 定向数据筛选用户
      */
     String URL_ADS_FILTER_USER = URL_BASE_ADS + "screenUserCount";
+
+    // 以下为微信相关接口======================================================
+
+    /**
+     * 获取微信支付结果
+     */
+    String URL_WECHAT_GET_PAY_RESULT = URL_BASE_WECHAT + "getPayResult";
+
+    /**
+     * 微信提现
+     */
+    String URL_WECHAT_WITHDRAW = URL_BASE_WECHAT + "transfers";
 }

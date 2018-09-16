@@ -12,7 +12,9 @@ package com.yousong.yousong.model.server
  * @property packageValue 交易类型
  * @property prepayId 预支付交易会话标识
  * @property partnerId 商户号
- * @property sign 签名
+ * @property timeStamp 订单时间戳
+ * @property paySign 签名
+ * @property signType 签名方式
  */
 data class WxPay(
         val appId: String,
@@ -20,4 +22,6 @@ data class WxPay(
         val packageValue: String,
         val prepayId: String,
         val partnerId: String,
-        val sign: String)
+        val timeStamp: String,
+        val paySign: String,
+        val signType: String)

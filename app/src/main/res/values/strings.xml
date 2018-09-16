@@ -2,7 +2,7 @@
     <string name="app_name">友颂</string>
     <string name="app_name_en">YOUSONG</string>
 
-    <string name="empty" />
+    <string name="empty"/>
 
     <string name="suffix_resend_verification_code">秒后重发</string>
 

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="failed"
+            type="boolean"/>
+
+        <variable
+            name="remainingTime"
+            type="int"/>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <include layout="@layout/toolbar"/>
+
+        <com.yousong.yousong.view.ArcProgress
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            app:arc_bottom_text="@string/name_timeout"
+            app:arc_bottom_text_size="@dimen/text_size_large"
+            app:arc_finished_color="@color/blue_800"
+            app:arc_max="@integer/pay_timeout"
+            app:arc_stroke_width="8dp"
+            app:arc_suffix_text="@string/name_second"
+            app:arc_text_color="?android:textColorPrimary"
+            app:arc_unfinished_color="@color/light_blue_300"
+            app:goneUnless="@{!failed}"
+            app:progress="@{remainingTime}"
+            app:progressScale="@{@integer/pay_timeout_unit}"/>
+
+        <ImageView
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:scaleType="centerInside"
+            android:tint="@color/red_500"
+            app:goneUnless="@{failed}"
+            app:srcCompat="@drawable/ic_close_circle_outline_black_100dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:text="@{failed ? @string/failed_pay : @string/name_wait_pay_result}"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"/>
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/back_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:text="@string/name_back_last_page"
+            android:textColor="@android:color/white"
+            app:backgroundTint="@color/primary_button_selector"
+            app:goneUnless="@{failed}"/>
+
+    </LinearLayout>
+</layout>

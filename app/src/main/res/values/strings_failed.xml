@@ -14,4 +14,6 @@
 
     <string name="failed_location">定位失败，点击重试</string>
 
+    <string name="failed_pay">支付失败</string>
+
 </resources>

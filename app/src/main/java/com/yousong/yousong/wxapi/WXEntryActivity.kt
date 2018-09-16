@@ -2,12 +2,10 @@ package com.yousong.yousong.wxapi
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import com.tencent.mm.opensdk.constants.ConstantsAPI
 import com.tencent.mm.opensdk.modelbase.BaseReq
 import com.tencent.mm.opensdk.modelbase.BaseResp
 import com.tencent.mm.opensdk.modelmsg.SendAuth
-import com.tencent.mm.opensdk.openapi.IWXAPI
 import com.tencent.mm.opensdk.openapi.IWXAPIEventHandler
 import com.tencent.mm.opensdk.openapi.WXAPIFactory
 import com.yousong.yousong.R
@@ -35,27 +33,14 @@ import org.cwk.android.library.util.ToolbarInitialize.initToolbar
  */
 class WXEntryActivity : BaseActivity(), IWXAPIEventHandler {
 
-    /**
-     * 微信接口
-     */
-    private val api: IWXAPI by lazy {
-        WXAPIFactory.createWXAPI(this, ValueKey.WX_APP_ID, false)
-    }
-
     override val rootViewId = R.layout.activity_wx_entry
 
     override fun onInitView(savedInstanceState: Bundle?) {
         initToolbar(this, R.string.app_name, true, false)
 
-        try {
-            if (!api.handleIntent(intent, this)) {
-                finish()
-            }
-        } catch (e: Exception) {
-            Log.e(TAG, "onInitView handleIntent error", e)
+        if (!WXAPIFactory.createWXAPI(this, ValueKey.WX_APP_ID).handleIntent(intent, this)) {
             finish()
         }
-
     }
 
     /**

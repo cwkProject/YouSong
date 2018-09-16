@@ -163,6 +163,7 @@ class DirectionalTypeAdapter : TypeAdapter<Directional>() {
             }
             endArray()
             name("range").value(value.range?.times(1000))
+            name("locationChoose").value(value.locationType)
             endObject()
         }
     }
@@ -186,6 +187,7 @@ class DirectionalTypeAdapter : TypeAdapter<Directional>() {
                         }
                         endArray()
                     }
+                    "locationChoose" -> directional.locationType = nextInt()
                     else -> skipValue()
                 }
             }
