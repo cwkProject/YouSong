@@ -3,8 +3,11 @@ package com.yousong.yousong.model.local
 import android.databinding.BaseObservable
 import android.databinding.Bindable
 import android.databinding.ObservableArrayList
+import android.os.Parcel
+import android.os.Parcelable
 import com.yousong.yousong.BR
 import com.yousong.yousong.value.ValueConst
+import java.util.*
 
 /**
  * 定向信息
@@ -13,7 +16,7 @@ import com.yousong.yousong.value.ValueConst
  * @version 1.0 2018/7/29
  * @since 1.0
  */
-class Directional : BaseObservable() {
+class Directional() : BaseObservable(), Parcelable {
 
     /**
      * 性别，1男，2女，0不限
@@ -101,4 +104,44 @@ class Directional : BaseObservable() {
      * 地址集合
      */
     val addresses = ObservableArrayList<Address>()
+
+    private constructor(parcel: Parcel) : this() {
+        sex = parcel.readInt()
+        minAge = parcel.readValue(Int::class.java.classLoader) as? Int
+        maxAge = parcel.readValue(Int::class.java.classLoader) as? Int
+        latitude = parcel.readDouble()
+        longitude = parcel.readDouble()
+        locationType = parcel.readInt()
+        range = parcel.readValue(Int::class.java.classLoader) as? Int
+        val address = ArrayList<Address>()
+        parcel.readList(address, Address::class.java.classLoader)
+        addresses.addAll(address)
+    }
+
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeInt(sex)
+        parcel.writeValue(minAge)
+        parcel.writeValue(maxAge)
+        parcel.writeDouble(latitude)
+        parcel.writeDouble(longitude)
+        parcel.writeInt(locationType)
+        parcel.writeValue(range)
+        parcel.writeList(addresses)
+    }
+
+    override fun describeContents(): Int {
+        return 0
+    }
+
+    companion object CREATOR : Parcelable.Creator<Directional> {
+        override fun createFromParcel(parcel: Parcel): Directional {
+            return Directional(parcel)
+        }
+
+        override fun newArray(size: Int): Array<Directional?> {
+            return arrayOfNulls(size)
+        }
+    }
+
+
 }

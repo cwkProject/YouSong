@@ -4,9 +4,14 @@ import android.databinding.Bindable
 import android.text.Editable
 import android.view.View
 import com.yousong.yousong.BR
+import com.yousong.yousong.R
+import com.yousong.yousong.architecture.livedata.SubmitResult
+import com.yousong.yousong.architecture.livedata.SubmitResultLiveData
 import com.yousong.yousong.architecture.viewmodel.common.ObservableViewModel
 import com.yousong.yousong.global.LoginStatus
-import org.jetbrains.anko.toast
+import com.yousong.yousong.work.common.start
+import com.yousong.yousong.work.third.WxWithdrawWork
+import org.jetbrains.anko.indeterminateProgressDialog
 import java.math.BigDecimal
 
 /**
@@ -17,6 +22,11 @@ import java.math.BigDecimal
  * @since 1.0
  */
 class WithdrawViewModel : ObservableViewModel() {
+
+    /**
+     * 提现结果
+     */
+    val submitResult = SubmitResultLiveData()
 
     /**
      * 待提现金额
@@ -68,8 +78,17 @@ class WithdrawViewModel : ObservableViewModel() {
         checkAmount()
 
         if (canWithdrawal) {
+
+            val dialog = view.context.indeterminateProgressDialog(R.string.prompt_submitting) {
+                setCancelable(false)
+            }
+
             // 提现
-            view.context.toast("可以执行提现")
+            WxWithdrawWork().start(withdrawalAmount) {
+                dialog.cancel()
+                submitResult.value = SubmitResult(it.isSuccess, it.message, if (it.isSuccess)
+                    SubmitResult.LEVEL_ALERT_FINISH else SubmitResult.LEVEL_ALERT_WITH_OK)
+            }
         }
     }
 

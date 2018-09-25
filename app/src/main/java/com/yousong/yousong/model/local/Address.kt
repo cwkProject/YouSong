@@ -2,6 +2,8 @@ package com.yousong.yousong.model.local
 
 import android.databinding.BaseObservable
 import android.databinding.Bindable
+import android.os.Parcel
+import android.os.Parcelable
 import com.yousong.yousong.BR
 
 /**
@@ -13,7 +15,7 @@ import com.yousong.yousong.BR
  *
  * @param addressCode 行政区码
  */
-class Address(addressCode: String? = null) : BaseObservable() {
+class Address(addressCode: String? = null) : BaseObservable(), Parcelable {
 
     /**
      * 行政区码
@@ -49,4 +51,33 @@ class Address(addressCode: String? = null) : BaseObservable() {
      * 区
      */
     var district: String? = null
+
+    private constructor(parcel: Parcel) : this(parcel.readString()) {
+        address = parcel.readString()
+        province = parcel.readString()
+        city = parcel.readString()
+        district = parcel.readString()
+    }
+
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeString(addressCode)
+        parcel.writeString(address)
+        parcel.writeString(province)
+        parcel.writeString(city)
+        parcel.writeString(district)
+    }
+
+    override fun describeContents(): Int {
+        return 0
+    }
+
+    companion object CREATOR : Parcelable.Creator<Address> {
+        override fun createFromParcel(parcel: Parcel): Address {
+            return Address(parcel)
+        }
+
+        override fun newArray(size: Int): Array<Address?> {
+            return arrayOfNulls(size)
+        }
+    }
 }

@@ -58,7 +58,7 @@ class Question() : BaseObservable(), Parcelable {
         }
 
     private constructor(parcel: Parcel) : this() {
-        content = parcel.readString()
+        content = parcel.readString()!!
         retries = parcel.readInt()
         val options = ArrayList<Option>()
         parcel.readList(options, Option::class.java.classLoader)

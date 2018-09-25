@@ -120,6 +120,11 @@ public interface ValueUrl {
     String URL_ADS_CREATE = URL_BASE_ADS + "create";
 
     /**
+     * 重新提交广告审核
+     */
+    String URL_ADS_REVIEW = URL_BASE_ADS + "reRequestReview";
+
+    /**
      * 获取广告详情
      */
     String URL_ADS_GET_ADS_DETAIL = URL_BASE_ADS + "getAdsDetail";

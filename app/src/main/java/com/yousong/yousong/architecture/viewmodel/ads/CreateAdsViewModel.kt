@@ -17,6 +17,8 @@ import com.yousong.yousong.third.GlideApp
 import com.yousong.yousong.util.FileUtil
 import com.yousong.yousong.value.ValueConst
 import com.yousong.yousong.work.ads.AdsCreateWork
+import com.yousong.yousong.work.ads.AdsReviewWork
+import com.yousong.yousong.work.common.BaseSimpleWorkModel
 import com.yousong.yousong.work.common.FileUploadWork
 import com.yousong.yousong.work.common.start
 import org.cwk.android.library.global.Global
@@ -111,8 +113,14 @@ class CreateAdsViewModel : ObservableViewModel() {
             setCancelable(false)
         }
 
-        AdsCreateWork().start(adsDetail) {
+        val work: BaseSimpleWorkModel<AdsDetail, Unit> = if (adsDetail.ads.reviewState == ValueConst.REVIEW_REFUSE) AdsReviewWork() else AdsCreateWork()
+
+        work.start(adsDetail) {
             dialog.cancel()
+            if (it.isSuccess) {
+                adsDetail.ads.reviewState = ValueConst.REVIEW_UNDER_REVIEW
+            }
+
             submitResult.value = SubmitResult(it.isSuccess, it.message, if (it.isSuccess)
                 SubmitResult.LEVEL_ALERT_FINISH else SubmitResult.LEVEL_LONG_TOAST)
         }

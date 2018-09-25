@@ -54,7 +54,7 @@ class Option(order: Int = 0) : BaseObservable(), Parcelable {
 
     private constructor(parcel: Parcel) : this(parcel.readInt()) {
         id = parcel.readLong()
-        content = parcel.readString()
+        content = parcel.readString()!!
         answer = parcel.readByte() != 0.toByte()
     }
 

@@ -17,7 +17,7 @@ import java.math.BigDecimal
  *
  * @property id 广告id
  */
-class Ads(var id: String = "") : BaseObservable() ,Parcelable{
+class Ads(var id: String = "") : BaseObservable(), Parcelable {
 
     /**
      * 广告名称
@@ -133,7 +133,7 @@ class Ads(var id: String = "") : BaseObservable() ,Parcelable{
      * 广告审核状态
      */
     @Bindable
-    var reviewState = ValueConst.REVIEW_UNDER_REVIEW
+    var reviewState = ValueConst.REVIEW_UNSUBMITTED
         set(value) {
             field = value
             notifyPropertyChanged(BR.reviewState)
@@ -154,12 +154,38 @@ class Ads(var id: String = "") : BaseObservable() ,Parcelable{
      */
     var responseExplain: String? = null
 
-    constructor(parcel: Parcel) : this(parcel.readString()) {
+    private constructor(parcel: Parcel) : this(parcel.readString()!!) {
+        name = parcel.readString()!!
+        cover = parcel.readString()!!
+        poster = parcel.readString()!!
+        type = parcel.readByte() != 0.toByte()
+        targetCount = parcel.readInt()
+        userUnitPrice = parcel.readSerializable() as BigDecimal
+        needInvoice = parcel.readByte() != 0.toByte()
+        city = parcel.readString()
+        totalAmount = parcel.readSerializable() as BigDecimal
+        balance = parcel.readSerializable() as BigDecimal
+        publishState = parcel.readInt()
+        reviewState = parcel.readInt()
+        payState = parcel.readInt()
         responseExplain = parcel.readString()
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(id)
+        parcel.writeString(name)
+        parcel.writeString(cover)
+        parcel.writeString(poster)
+        parcel.writeByte(if (type) 1 else 0)
+        parcel.writeInt(targetCount)
+        parcel.writeSerializable(userUnitPrice)
+        parcel.writeByte(if (needInvoice) 1 else 0)
+        parcel.writeString(city)
+        parcel.writeSerializable(totalAmount)
+        parcel.writeSerializable(balance)
+        parcel.writeInt(publishState)
+        parcel.writeInt(reviewState)
+        parcel.writeInt(payState)
         parcel.writeString(responseExplain)
     }
 

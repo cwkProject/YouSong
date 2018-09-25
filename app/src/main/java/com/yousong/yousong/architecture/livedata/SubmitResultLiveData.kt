@@ -77,10 +77,11 @@ data class SubmitResult(val result: Boolean, val message: String? = null, val le
      * 显示结果消息，显示不成功时可能需要UI控制器进一步处理显示
      *
      * @param activity UI界面
+     * @param level 消息显示级别，默认跟随本对象级别
      *
      * @return 显示结果，true表示成功显示，false表示未能显示，可能情况有message为空，level为[SubmitResult.LEVEL_UNKNOWN]，[SubmitResult.LEVEL_IGNORE]
      */
-    fun show(activity: Activity): Boolean {
+    fun show(activity: Activity, level: Int = this.level): Boolean {
         if (message == null || message.isBlank() || level <= 0) {
             return false
         }

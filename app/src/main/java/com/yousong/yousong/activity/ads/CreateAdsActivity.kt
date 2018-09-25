@@ -19,6 +19,7 @@ import com.yousong.yousong.operator.OnCreateAdsOperator
 import com.yousong.yousong.util.CheckAndroidMPermission
 import com.yousong.yousong.util.FileUtil
 import com.yousong.yousong.value.ValueConst
+import com.yousong.yousong.value.ValueTag
 import org.cwk.android.library.util.ToolbarInitialize.initToolbar
 import java.io.File
 
@@ -53,7 +54,11 @@ class CreateAdsActivity : BaseActivity(), OnCreateAdsOperator {
      * 数据模型
      */
     private val viewModel by lazy {
-        ViewModelProviders.of(this).get(CreateAdsViewModel::class.java)
+        ViewModelProviders.of(this).get(CreateAdsViewModel::class.java).apply {
+            if (intent.hasExtra(ValueTag.TAG_ADS_DETAIL)) {
+                adsDetail = intent.getParcelableExtra(ValueTag.TAG_ADS_DETAIL)
+            }
+        }
     }
 
     override val rootViewId = R.layout.activity_create_ads
@@ -64,8 +69,15 @@ class CreateAdsActivity : BaseActivity(), OnCreateAdsOperator {
         binding.data = viewModel.adsDetail
         binding.viewModel = viewModel
         binding.holder = this
+    }
 
-        viewModel.submitResult.observe(this, Observer { it?.show(this) })
+    override fun onInitData(savedInstanceState: Bundle?) {
+        viewModel.submitResult.observe(this, Observer {
+            if (it?.result == true && intent.hasExtra(ValueTag.TAG_ADS_DETAIL)) {
+                setResult(RESULT_OK, Intent().putExtra(ValueTag.TAG_ADS_DETAIL, viewModel.adsDetail))
+            }
+            it?.show(this)
+        })
     }
 
     override fun onCoverClick(view: View) {

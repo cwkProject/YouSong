@@ -10,13 +10,13 @@ import org.cwk.android.library.global.Global
 import org.json.JSONObject
 
 /**
- * 创建广告提交审核
+ * 重新提交广告审核
  *
  * @author 超悟空
- * @version 1.0 2018/8/8
+ * @version 1.0 2018/9/25
  * @since 1.0
  */
-class AdsCreateWork : BaseSimpleWorkModel<AdsDetail, Unit>() {
+class AdsReviewWork : BaseSimpleWorkModel<AdsDetail, Unit>() {
     override fun onFillParams(dataMap: MutableMap<String, String?>, vararg params: AdsDetail?) {
         dataMap["adsDetail"] = params[0].toJson()
     }
@@ -24,8 +24,8 @@ class AdsCreateWork : BaseSimpleWorkModel<AdsDetail, Unit>() {
     override fun onSuccessExtract(jsonResult: JSONObject) = Unit
 
     @Post
-    override fun onTaskUri() = ValueUrl.URL_ADS_CREATE
+    override fun onTaskUri() = ValueUrl.URL_ADS_REVIEW
 
     override fun onRequestSuccessMessage(handleResult: JSONObject): String =
-            Global.getApplication().getString(R.string.success_create_ads)
+            Global.getApplication().getString(R.string.success_review_ads)
 }

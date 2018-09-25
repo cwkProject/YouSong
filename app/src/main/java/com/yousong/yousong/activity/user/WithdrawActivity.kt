@@ -1,5 +1,6 @@
 package com.yousong.yousong.activity.user
 
+import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import com.yousong.yousong.R
@@ -18,13 +19,22 @@ import org.cwk.android.library.util.ToolbarInitialize.initToolbar
  */
 class WithdrawActivity : BaseActivity() {
 
+    /**
+     * 数据模型
+     */
+    private val viewModel by lazy {
+        ViewModelProviders.of(this).get(WithdrawViewModel::class.java)
+    }
+
     override val rootViewId = R.layout.activity_withdraw
 
     override fun onInitView(savedInstanceState: Bundle?) {
         initToolbar(this, R.string.title_withdraw)
         ActivityWithdrawBinding.bind(rootView).apply {
-            viewModel = ViewModelProviders.of(this@WithdrawActivity).get(WithdrawViewModel::class.java)
+            viewModel = this@WithdrawActivity.viewModel
             userInfo = LoginStatus.userInfo
         }
+
+        viewModel.submitResult.observe(this, Observer { it?.show(this) })
     }
 }
