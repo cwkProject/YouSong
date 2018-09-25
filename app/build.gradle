@@ -81,7 +81,7 @@ dependencies {
     implementation 'io.reactivex.rxjava2:rxkotlin:2.3.0'
     implementation 'cn.bingoogolapple:bga-banner:2.2.4'
     implementation 'com.google.code.gson:gson:2.8.5'
-    implementation 'liji.library.dev:citypickerview:3.1.8'
+    implementation 'liji.library.dev:citypickerview:3.1.13'
     implementation 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'
     implementation 'com.github.lzyzsd:circleprogress:1.2.1'
 }
