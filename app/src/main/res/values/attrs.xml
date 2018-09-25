@@ -9,7 +9,7 @@
     </string-array>
 
     <integer-array name="review_states_color">
-        <item>@color/blue_500</item>
+        <item>@android:color/black</item>
         <item>@color/orange_500</item>
         <item>@color/red_500</item>
         <item>@color/green_500</item>

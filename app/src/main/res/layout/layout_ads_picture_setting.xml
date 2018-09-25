@@ -32,7 +32,8 @@
                 android:adjustViewBounds="true"
                 android:minHeight="@dimen/ads_cover_height"
                 android:scaleType="fitXY"
-                app:imageFile="@{viewModel.coverPath}"/>
+                app:imageFile="@{viewModel.coverPath}"
+                app:imageUrl="@{viewModel.adsDetail.ads.cover}"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -59,7 +60,8 @@
                 android:adjustViewBounds="true"
                 android:minHeight="@dimen/ads_cover_height"
                 android:scaleType="fitXY"
-                app:imageFile="@{viewModel.posterPath}"/>
+                app:imageFile="@{viewModel.posterPath}"
+                app:imageUrl="@{viewModel.adsDetail.ads.poster}"/>
 
             <TextView
                 android:layout_width="match_parent"

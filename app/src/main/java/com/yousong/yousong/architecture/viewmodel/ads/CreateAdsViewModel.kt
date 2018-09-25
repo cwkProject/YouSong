@@ -49,7 +49,7 @@ class CreateAdsViewModel : ObservableViewModel() {
     /**
      * 广告详情
      */
-    val adsDetail = AdsDetail().apply {
+    var adsDetail = AdsDetail().apply {
         question.option.add(Option(1).apply { answer = true })
         question.option.add(Option(2))
     }

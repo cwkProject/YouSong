@@ -3,7 +3,10 @@ package com.yousong.yousong.model.local
 import android.databinding.BaseObservable
 import android.databinding.Bindable
 import android.databinding.ObservableArrayList
+import android.os.Parcel
+import android.os.Parcelable
 import com.yousong.yousong.BR
+import java.util.*
 
 /**
  * 问题
@@ -12,7 +15,7 @@ import com.yousong.yousong.BR
  * @version 1.0 2018/7/24
  * @since 1.0
  */
-class Question : BaseObservable() {
+class Question() : BaseObservable(), Parcelable {
 
     /**
      * 问题内容
@@ -53,4 +56,36 @@ class Question : BaseObservable() {
             field = value
             notifyPropertyChanged(BR.answered)
         }
+
+    private constructor(parcel: Parcel) : this() {
+        content = parcel.readString()
+        retries = parcel.readInt()
+        val options = ArrayList<Option>()
+        parcel.readList(options, Option::class.java.classLoader)
+        option.addAll(options)
+        canAnswer = parcel.readByte() != 0.toByte()
+        answered = parcel.readByte() != 0.toByte()
+    }
+
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeString(content)
+        parcel.writeInt(retries)
+        parcel.writeList(option)
+        parcel.writeByte(if (canAnswer) 1 else 0)
+        parcel.writeByte(if (answered) 1 else 0)
+    }
+
+    override fun describeContents(): Int {
+        return 0
+    }
+
+    companion object CREATOR : Parcelable.Creator<Question> {
+        override fun createFromParcel(parcel: Parcel): Question {
+            return Question(parcel)
+        }
+
+        override fun newArray(size: Int): Array<Question?> {
+            return arrayOfNulls(size)
+        }
+    }
 }

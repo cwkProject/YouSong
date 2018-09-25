@@ -2,6 +2,8 @@ package com.yousong.yousong.model.local
 
 import android.databinding.BaseObservable
 import android.databinding.Bindable
+import android.os.Parcel
+import android.os.Parcelable
 import com.yousong.yousong.BR
 import com.yousong.yousong.value.ValueConst
 import java.math.BigDecimal
@@ -15,7 +17,7 @@ import java.math.BigDecimal
  *
  * @property id 广告id
  */
-class Ads(var id: String = "") : BaseObservable() {
+class Ads(var id: String = "") : BaseObservable() ,Parcelable{
 
     /**
      * 广告名称
@@ -136,4 +138,42 @@ class Ads(var id: String = "") : BaseObservable() {
             field = value
             notifyPropertyChanged(BR.reviewState)
         }
+
+    /**
+     * 支付状态
+     */
+    @Bindable
+    var payState = ValueConst.PAY_UNPAID
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.payState)
+        }
+
+    /**
+     * 审核失败原因
+     */
+    var responseExplain: String? = null
+
+    constructor(parcel: Parcel) : this(parcel.readString()) {
+        responseExplain = parcel.readString()
+    }
+
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeString(id)
+        parcel.writeString(responseExplain)
+    }
+
+    override fun describeContents(): Int {
+        return 0
+    }
+
+    companion object CREATOR : Parcelable.Creator<Ads> {
+        override fun createFromParcel(parcel: Parcel): Ads {
+            return Ads(parcel)
+        }
+
+        override fun newArray(size: Int): Array<Ads?> {
+            return arrayOfNulls(size)
+        }
+    }
 }

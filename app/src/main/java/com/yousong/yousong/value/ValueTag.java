@@ -18,4 +18,9 @@ public interface ValueTag {
      * 广告id
      */
     String TAG_ADS_ID = "tag_ads_id";
+
+    /**
+     * 广告详情
+     */
+    String TAG_ADS_DETAIL = "tag_ads_detail";
 }

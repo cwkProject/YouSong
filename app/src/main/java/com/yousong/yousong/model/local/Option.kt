@@ -2,6 +2,8 @@ package com.yousong.yousong.model.local
 
 import android.databinding.BaseObservable
 import android.databinding.Bindable
+import android.os.Parcel
+import android.os.Parcelable
 import com.yousong.yousong.BR
 
 /**
@@ -13,7 +15,7 @@ import com.yousong.yousong.BR
  *
  * @param order 选项序号
  */
-class Option(order: Int = 0) : BaseObservable() {
+class Option(order: Int = 0) : BaseObservable(), Parcelable {
 
     /**
      * 选项id
@@ -49,4 +51,31 @@ class Option(order: Int = 0) : BaseObservable() {
             field = value
             notifyPropertyChanged(BR.answer)
         }
+
+    private constructor(parcel: Parcel) : this(parcel.readInt()) {
+        id = parcel.readLong()
+        content = parcel.readString()
+        answer = parcel.readByte() != 0.toByte()
+    }
+
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeInt(order)
+        parcel.writeLong(id)
+        parcel.writeString(content)
+        parcel.writeByte(if (answer) 1 else 0)
+    }
+
+    override fun describeContents(): Int {
+        return 0
+    }
+
+    companion object CREATOR : Parcelable.Creator<Option> {
+        override fun createFromParcel(parcel: Parcel): Option {
+            return Option(parcel)
+        }
+
+        override fun newArray(size: Int): Array<Option?> {
+            return arrayOfNulls(size)
+        }
+    }
 }

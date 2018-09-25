@@ -24,6 +24,8 @@
     <string name="name_not_pass">未通过</string>
     <string name="name_pass">已通过</string>
 
+    <string name="name_paid">已付款</string>
+
     <string name="name_send_verification_code">发送验证码</string>
 
     <string name="name_copy_of_business_license">营业执照副本</string>
@@ -78,7 +80,7 @@
     <string name="name_corporation">法人</string>
 
     <string name="name_go_to_authentication">去认证</string>
-    
+
     <string name="name_wait_pay_result">等待支付结果</string>
 
     <string name="name_timeout">超时时间</string>

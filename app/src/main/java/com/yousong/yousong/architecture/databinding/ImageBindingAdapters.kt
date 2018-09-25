@@ -95,7 +95,7 @@ object ImageBindingAdapters {
     fun loadImageFromFileOrUrl(view: ImageView, path: String?, url: String?) {
         if (path != null) {
             GlideApp.with(view).load(File(path)).into(view)
-        } else if (url != null) {
+        } else if (!url.isNullOrBlank()) {
             GlideApp.with(view).load(url).into(view)
         }
     }

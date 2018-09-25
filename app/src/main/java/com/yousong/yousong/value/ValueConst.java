@@ -90,6 +90,26 @@ public interface ValueConst {
     int PUBLISH_CANCEL = 4;
 
     /**
+     * 未支付
+     */
+    int PAY_UNPAID = 0;
+
+    /**
+     * 已支付
+     */
+    int PAY_PAID = 1;
+
+    /**
+     * 支付失败
+     */
+    int PAY_FAILED = 2;
+
+    /**
+     * 支付未完成
+     */
+    int PAY_WAIT = 3;
+
+    /**
      * 定向位置类型，不限
      */
     int LOCATION_TYPE_NOT_LIMITED = 0;

@@ -102,7 +102,7 @@ class AdsTypeAdapter : TypeAdapter<Ads>() {
             name("userCount").value(value.targetCount)
             name("perYellowBoyUser").value(value.userUnitPrice * BigDecimal(100))
             name("needInvoice").value(if (value.needInvoice) ValueConst.SERVER_TRUE else ValueConst.SERVER_FALSE)
-            //            name("adsId").value(value.id)
+            name("adsId").value(value.id)
             //            name("totalAsset").value(value.totalAmount * BigDecimal(100))
             //            name("balance").value(value.balance * BigDecimal(100))
             //            name("city").value(value.city)
@@ -130,6 +130,8 @@ class AdsTypeAdapter : TypeAdapter<Ads>() {
                     "city" -> ads.city = nextString()
                     "publishState" -> ads.publishState = nextInt()
                     "reviewState" -> ads.reviewState = nextInt()
+                    "payState" -> ads.payState = nextInt()
+                    "responseExplain" -> ads.responseExplain = nextString()
                     else -> skipValue()
                 }
             }
