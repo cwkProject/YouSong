@@ -19,4 +19,6 @@
 
     <string name="label_withdraw">提\t\t现</string>
     <string name="label_submit">提\t\t交</string>
+    <string name="label_change">修\t\t改</string>
+
 </resources>

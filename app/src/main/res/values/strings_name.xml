@@ -19,6 +19,9 @@
     <string name="name_answered">已回答</string>
     <string name="name_over">已结束</string>
 
+    <string name="name_question">问题</string>
+    <string name="name_answer">答案</string>
+
     <string name="name_unsubmitted">未提交</string>
     <string name="name_under_review">审核中</string>
     <string name="name_not_pass">未通过</string>
@@ -36,12 +39,16 @@
     <string name="name_promotion_publish">推广型发布</string>
     <string name="name_directional_publish">定向型发布</string>
 
+    <string name="name_directional_detail">定向信息</string>
+
     <string name="name_target_user">目标人群</string>
     <string name="name_filter_result">筛选结果</string>
     <string name="name_not_limited">不限</string>
     <string name="name_sex">性别</string>
     <string name="name_male">男</string>
+    <string name="name_male_sex">男性</string>
     <string name="name_female">女</string>
+    <string name="name_female_sex">女性</string>
     <string name="name_age">年龄</string>
     <string name="name_to">至</string>
     <string name="name_year_old">岁</string>
@@ -56,7 +63,8 @@
     <string name="name_person">人</string>
     <string name="name_kilometer">公里</string>
     <string name="name_second">秒</string>
-
+    <string name="name_each_person">每人</string>
+    
     <string name="name_user_unit_price">每用户所得额</string>
     <string name="name_user_count">目标用户人数</string>
     <string name="name_total_amount">总金额</string>

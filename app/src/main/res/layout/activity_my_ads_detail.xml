@@ -6,7 +6,13 @@
 
         <variable
             name="viewModel"
-            type="com.yousong.yousong.architecture.viewmodel.ads.AdsDetailViewModel"/>
+            type="com.yousong.yousong.architecture.viewmodel.ads.MyAdsDetailViewModel"/>
+
+        <variable
+            name="data"
+            type="com.yousong.yousong.model.local.AdsDetail"/>
+
+        <import type="com.yousong.yousong.value.ValueConst"/>
 
     </data>
 
@@ -30,99 +36,216 @@
                 android:paddingStart="@dimen/activity_horizontal_margin"
                 android:paddingTop="@dimen/activity_vertical_margin">
 
-                <ImageView
-                    android:layout_width="match_parent"
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:adjustViewBounds="true"
-                    android:scaleType="fitXY"
-                    app:poster="@{viewModel.adsDetail.ads.poster}"/>
+                    android:text="@{data.ads.name}"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Title"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/activity_vertical_margin"
-                    android:gravity="center_vertical"
                     android:orientation="horizontal">
-
-                    <View
-                        android:layout_width="0dp"
-                        android:layout_height="2dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/dotted_line"
-                        android:layerType="software"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/layout_default_spacing"
-                        android:layout_marginStart="@dimen/layout_default_spacing"
-                        android:text="@string/name_answer_make_money"/>
+                        android:layout_marginStart="@dimen/activity_horizontal_margin"
+                        android:text="@{data.ads.payState == ValueConst.PAY_PAID ? @string/name_paid : @stringArray/review_states[data.ads.reviewState]}"
+                        android:textColor="@{data.ads.payState == ValueConst.PAY_PAID ? @color/blue_500 : @intArray/review_states_color[data.ads.reviewState]}"/>
 
-                    <View
-                        android:layout_width="0dp"
-                        android:layout_height="2dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/dotted_line"
-                        android:layerType="software"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/activity_horizontal_margin"
+                        android:text="@{@string/label_total_amount + ` ` + data.ads.totalAmount + ` `+ @string/name_yuan}"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
 
                 </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:text="@{data.ads.responseExplain}"
+                    android:textColor="@color/red_500"
+                    app:goneUnless="@{data.ads.reviewState == ValueConst.REVIEW_REFUSE}"/>
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitXY"
+                    app:poster="@{data.ads.cover}"/>
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitXY"
+                    app:poster="@{data.ads.poster}"/>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/activity_vertical_margin"
-                    android:text="@{viewModel.adsDetail.question.content}"
+                    android:text="@string/name_question"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/layout_default_spacing"
+                    android:text="@{data.question.content}"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
 
-                <RadioGroup
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/activity_vertical_margin">
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:text="@string/name_answer"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
 
-                    <android.support.v7.widget.AppCompatRadioButton
-                        android:id="@+id/a_option"
+                <android.support.v7.widget.AppCompatRadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/layout_default_spacing"
+                    android:checked="@={data.question.option[0].answer}"
+                    android:enabled="false"
+                    android:text="@{data.question.option[0].content}"/>
+
+                <android.support.v7.widget.AppCompatRadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="@={data.question.option[1].answer}"
+                    android:enabled="false"
+                    android:text="@{data.question.option[1].content}"/>
+
+                <android.support.v7.widget.AppCompatRadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="@={data.question.option[2].answer}"
+                    android:enabled="false"
+                    android:text="@{data.question.option[2].content}"
+                    app:goneUnless="@{data.question.option.size() > 2}"/>
+
+                <android.support.v7.widget.AppCompatRadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="@={data.question.option[3].answer}"
+                    android:enabled="false"
+                    android:text="@{data.question.option[3].content}"
+                    app:goneUnless="@{data.question.option.size() > 3}"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:text="@string/name_directional_detail"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/layout_default_spacing"
+                    android:orientation="horizontal"
+                    app:goneUnless="@{!data.ads.type}">
+
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:checked="@={viewModel.adsDetail.question.option[0].answer}"
-                        android:enabled="@{viewModel.adsDetail.question.canAnswer}"
-                        android:text="@{viewModel.adsDetail.question.option[0].content}"/>
+                        android:text="@{data.directional.sex == 1 ? @string/name_male_sex : @string/name_female_sex}"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        app:goneUnless="@{data.directional.sex != 0}"/>
 
-                    <android.support.v7.widget.AppCompatRadioButton
-                        android:id="@+id/b_option"
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:checked="@={viewModel.adsDetail.question.option[1].answer}"
-                        android:enabled="@{viewModel.adsDetail.question.canAnswer}"
-                        android:text="@{viewModel.adsDetail.question.option[1].content}"/>
+                        android:layout_marginStart="@dimen/activity_horizontal_margin"
+                        android:text="@{data.directional.minAge??`0` + ` ` + @string/name_to + ` ` + data.directional.minAge??`99`}"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        app:goneUnless="@{data.directional.minAge != null || data.directional.maxAge != null}"/>
 
-                    <android.support.v7.widget.AppCompatRadioButton
-                        android:id="@+id/c_option"
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/layout_default_spacing"
+                    android:orientation="vertical"
+                    app:goneUnless="@{!data.ads.type}">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        app:goneUnless="@{data.directional.locationType == ValueConst.LOCATION_TYPE_LOCAL_REGION}">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawablePadding="@dimen/layout_default_spacing"
+                            android:drawableStart="@drawable/ic_pin_drop_red_500_24dp"
+                            android:gravity="center_vertical"
+                            android:text="@{viewModel.location}"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/layout_default_spacing"
+                            android:text="@{@string/name_nearby + data.directional.range / 1000 + @string/name_kilometer}"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+
+                    </LinearLayout>
+
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:checked="@={viewModel.adsDetail.question.option[2].answer}"
-                        android:enabled="@{viewModel.adsDetail.question.canAnswer}"
-                        android:text="@{viewModel.adsDetail.question.option[2].content}"
-                        app:goneUnless="@{viewModel.adsDetail.question.option.size() > 2}"/>
+                        android:text="@{viewModel.address}"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        app:goneUnless="@{data.directional.locationType == ValueConst.LOCATION_TYPE_TARGET_CITY}"/>
 
-                    <android.support.v7.widget.AppCompatRadioButton
-                        android:id="@+id/d_option"
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:checked="@={viewModel.adsDetail.question.option[3].answer}"
-                        android:enabled="@{viewModel.adsDetail.question.canAnswer}"
-                        android:text="@{viewModel.adsDetail.question.option[3].content}"
-                        app:goneUnless="@{viewModel.adsDetail.question.option.size() > 3}"/>
+                        android:text="@{@string/name_user_count + ` ` + data.ads.targetCount + @string/name_person}"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
 
-                </RadioGroup>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/activity_horizontal_margin"
+                        android:text="@{@string/name_each_person + ` ` + data.ads.userUnitPrice + @string/name_yuan}"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{data.ads.needInvoice ? @string/name_need_invoice : @string/name_not_need_invoice}"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+
+                </LinearLayout>
 
                 <android.support.v7.widget.AppCompatButton
+                    android:id="@+id/submit_button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:enabled="@{viewModel.adsDetail.question.canAnswer}"
-                    android:onClick="@{viewModel::onSubmit}"
-                    android:text="@{viewModel.adsDetail.question.canAnswer ? @string/label_submit : viewModel.adsDetail.question.answered ? @string/name_answered : @string/name_over}"
+                    android:text="@{data.ads.reviewState == ValueConst.REVIEW_PASS ? @string/name_publish_ads : @string/label_change}"
                     android:textColor="@android:color/white"
-                    app:backgroundTint="@color/primary_button_selector"/>
+                    app:backgroundTint="@color/primary_button_selector"
+                    app:goneUnless="@{data.ads.reviewState &gt; ValueConst.REVIEW_UNDER_REVIEW}"/>
 
             </LinearLayout>
 

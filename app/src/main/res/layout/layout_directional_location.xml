@@ -71,7 +71,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/layout_default_spacing"
                 android:orientation="vertical"
-                app:goneUnless="@{viewModel.directional.locationType == 1}">
+                app:goneUnless="@{viewModel.directional.locationType == ValueConst.LOCATION_TYPE_LOCAL_REGION}">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -130,7 +130,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:goneUnless="@{viewModel.directional.locationType == 2}">
+                app:goneUnless="@{viewModel.directional.locationType == ValueConst.LOCATION_TYPE_TARGET_CITY}">
 
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/address_recyclerView"
