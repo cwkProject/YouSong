@@ -76,6 +76,8 @@
         <activity
             android:name=".wxapi.WXPayEntryActivity"
             android:exported="true"/>
+        <activity android:name=".activity.ads.MyAdsDetailActivity" />
+        <activity android:name=".activity.ads.AdsPayActivity" />
     </application>
 
 </manifest>

@@ -29,6 +29,9 @@
 
     <string name="name_paid">已付款</string>
 
+    <string name="name_publish">发布</string>
+    <string name="name_modify">修改</string>
+
     <string name="name_send_verification_code">发送验证码</string>
 
     <string name="name_copy_of_business_license">营业执照副本</string>
@@ -64,7 +67,7 @@
     <string name="name_kilometer">公里</string>
     <string name="name_second">秒</string>
     <string name="name_each_person">每人</string>
-    
+
     <string name="name_user_unit_price">每用户所得额</string>
     <string name="name_user_count">目标用户人数</string>
     <string name="name_total_amount">总金额</string>

@@ -6,13 +6,9 @@
 
         <variable
             name="viewModel"
-            type="com.yousong.yousong.architecture.viewmodel.ads.MyAdsDetailViewModel"/>
+            type="com.yousong.yousong.architecture.viewmodel.ads.MyAdsDetailViewModel" />
 
-        <variable
-            name="data"
-            type="com.yousong.yousong.model.local.AdsDetail"/>
-
-        <import type="com.yousong.yousong.value.ValueConst"/>
+        <import type="com.yousong.yousong.value.ValueConst" />
 
     </data>
 
@@ -21,7 +17,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <include layout="@layout/toolbar"/>
+        <include layout="@layout/toolbar" />
 
         <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
@@ -36,31 +32,57 @@
                 android:paddingStart="@dimen/activity_horizontal_margin"
                 android:paddingTop="@dimen/activity_vertical_margin">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@{data.ads.name}"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Title"/>
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/activity_vertical_margin"
                     android:orientation="horizontal">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/activity_horizontal_margin"
-                        android:text="@{data.ads.payState == ValueConst.PAY_PAID ? @string/name_paid : @stringArray/review_states[data.ads.reviewState]}"
-                        android:textColor="@{data.ads.payState == ValueConst.PAY_PAID ? @color/blue_500 : @intArray/review_states_color[data.ads.reviewState]}"/>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
 
-                    <TextView
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@{viewModel.adsDetail.ads.name}"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom"
+                            android:layout_marginTop="@dimen/activity_vertical_margin"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                                android:text="@{viewModel.adsDetail.ads.payState == ValueConst.PAY_PAID ? @string/name_paid : @stringArray/review_states[viewModel.adsDetail.ads.reviewState]}"
+                                android:textColor="@{viewModel.adsDetail.ads.payState == ValueConst.PAY_PAID ? @color/blue_500 : @intArray/review_states_color[viewModel.adsDetail.ads.reviewState]}" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                                android:text="@{@string/label_total_amount + ` ` + viewModel.adsDetail.ads.totalAmount + ` `+ @string/name_yuan}"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <android.support.v7.widget.AppCompatButton
+                        android:id="@+id/submit_button"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
                         android:layout_marginStart="@dimen/activity_horizontal_margin"
-                        android:text="@{@string/label_total_amount + ` ` + data.ads.totalAmount + ` `+ @string/name_yuan}"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+                        android:text="@{viewModel.adsDetail.ads.reviewState == ValueConst.REVIEW_PASS ? @string/name_publish : @string/name_modify}"
+                        android:textColor="@android:color/white"
+                        app:backgroundTint="@color/primary_button_selector"
+                        app:goneUnless="@{viewModel.adsDetail.ads.reviewState &gt; ValueConst.REVIEW_UNDER_REVIEW &amp;&amp; viewModel.adsDetail.ads.payState == ValueConst.PAY_UNPAID}" />
 
                 </LinearLayout>
 
@@ -68,106 +90,90 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/activity_vertical_margin"
-                    android:text="@{data.ads.responseExplain}"
+                    android:text="@{viewModel.adsDetail.ads.responseExplain}"
                     android:textColor="@color/red_500"
-                    app:goneUnless="@{data.ads.reviewState == ValueConst.REVIEW_REFUSE}"/>
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/activity_vertical_margin"
-                    android:adjustViewBounds="true"
-                    android:scaleType="fitXY"
-                    app:poster="@{data.ads.cover}"/>
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/activity_vertical_margin"
-                    android:adjustViewBounds="true"
-                    android:scaleType="fitXY"
-                    app:poster="@{data.ads.poster}"/>
+                    app:goneUnless="@{viewModel.adsDetail.ads.reviewState == ValueConst.REVIEW_REFUSE}" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/activity_vertical_margin"
                     android:text="@string/name_question"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/layout_default_spacing"
-                    android:text="@{data.question.content}"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+                    android:text="@{viewModel.adsDetail.question.content}"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/activity_vertical_margin"
                     android:text="@string/name_answer"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
                 <android.support.v7.widget.AppCompatRadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/layout_default_spacing"
-                    android:checked="@={data.question.option[0].answer}"
+                    android:checked="@={viewModel.adsDetail.question.option[0].answer}"
                     android:enabled="false"
-                    android:text="@{data.question.option[0].content}"/>
+                    android:text="@{viewModel.adsDetail.question.option[0].content}" />
 
                 <android.support.v7.widget.AppCompatRadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:checked="@={data.question.option[1].answer}"
+                    android:checked="@={viewModel.adsDetail.question.option[1].answer}"
                     android:enabled="false"
-                    android:text="@{data.question.option[1].content}"/>
+                    android:text="@{viewModel.adsDetail.question.option[1].content}" />
 
                 <android.support.v7.widget.AppCompatRadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:checked="@={data.question.option[2].answer}"
+                    android:checked="@={viewModel.adsDetail.question.option[2].answer}"
                     android:enabled="false"
-                    android:text="@{data.question.option[2].content}"
-                    app:goneUnless="@{data.question.option.size() > 2}"/>
+                    android:text="@{viewModel.adsDetail.question.option[2].content}"
+                    app:goneUnless="@{viewModel.adsDetail.question.option.size() > 2}" />
 
                 <android.support.v7.widget.AppCompatRadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:checked="@={data.question.option[3].answer}"
+                    android:checked="@={viewModel.adsDetail.question.option[3].answer}"
                     android:enabled="false"
-                    android:text="@{data.question.option[3].content}"
-                    app:goneUnless="@{data.question.option.size() > 3}"/>
+                    android:text="@{viewModel.adsDetail.question.option[3].content}"
+                    app:goneUnless="@{viewModel.adsDetail.question.option.size() > 3}" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/activity_vertical_margin"
                     android:text="@string/name_directional_detail"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/layout_default_spacing"
                     android:orientation="horizontal"
-                    app:goneUnless="@{!data.ads.type}">
+                    app:goneUnless="@{!viewModel.adsDetail.ads.type}">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@{data.directional.sex == 1 ? @string/name_male_sex : @string/name_female_sex}"
+                        android:text="@{viewModel.adsDetail.directional.sex == 1 ? @string/name_male_sex : @string/name_female_sex}"
                         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                        app:goneUnless="@{data.directional.sex != 0}"/>
+                        app:goneUnless="@{viewModel.adsDetail.directional.sex != 0}" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/activity_horizontal_margin"
-                        android:text="@{data.directional.minAge??`0` + ` ` + @string/name_to + ` ` + data.directional.minAge??`99`}"
+                        android:text="@{viewModel.adsDetail.directional.minAge??`0` + ` ` + @string/name_to + ` ` + viewModel.adsDetail.directional.minAge??`99`}"
                         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                        app:goneUnless="@{data.directional.minAge != null || data.directional.maxAge != null}"/>
+                        app:goneUnless="@{viewModel.adsDetail.directional.minAge != null || viewModel.adsDetail.directional.maxAge != null}" />
 
                 </LinearLayout>
 
@@ -176,14 +182,14 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/layout_default_spacing"
                     android:orientation="vertical"
-                    app:goneUnless="@{!data.ads.type}">
+                    app:goneUnless="@{!viewModel.adsDetail.ads.type}">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"
                         android:orientation="horizontal"
-                        app:goneUnless="@{data.directional.locationType == ValueConst.LOCATION_TYPE_LOCAL_REGION}">
+                        app:goneUnless="@{viewModel.adsDetail.directional.locationType == ValueConst.LOCATION_TYPE_LOCAL_REGION}">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -192,14 +198,14 @@
                             android:drawableStart="@drawable/ic_pin_drop_red_500_24dp"
                             android:gravity="center_vertical"
                             android:text="@{viewModel.location}"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+                            android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/layout_default_spacing"
-                            android:text="@{@string/name_nearby + data.directional.range / 1000 + @string/name_kilometer}"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+                            android:text="@{@string/name_nearby + viewModel.adsDetail.directional.range / 1000 + @string/name_kilometer}"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
                     </LinearLayout>
 
@@ -208,7 +214,7 @@
                         android:layout_height="wrap_content"
                         android:text="@{viewModel.address}"
                         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                        app:goneUnless="@{data.directional.locationType == ValueConst.LOCATION_TYPE_TARGET_CITY}"/>
+                        app:goneUnless="@{viewModel.adsDetail.directional.locationType == ValueConst.LOCATION_TYPE_TARGET_CITY}" />
 
                 </LinearLayout>
 
@@ -220,32 +226,39 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@{@string/name_user_count + ` ` + data.ads.targetCount + @string/name_person}"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+                        android:text="@{@string/name_user_count + ` ` + viewModel.adsDetail.ads.targetCount + @string/name_person}"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/activity_horizontal_margin"
-                        android:text="@{@string/name_each_person + ` ` + data.ads.userUnitPrice + @string/name_yuan}"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+                        android:text="@{@string/name_each_person + ` ` + viewModel.adsDetail.ads.userUnitPrice + @string/name_yuan}"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@{data.ads.needInvoice ? @string/name_need_invoice : @string/name_not_need_invoice}"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+                        android:text="@{viewModel.adsDetail.ads.needInvoice ? @string/name_need_invoice : @string/name_not_need_invoice}"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
                 </LinearLayout>
 
-                <android.support.v7.widget.AppCompatButton
-                    android:id="@+id/submit_button"
+                <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@{data.ads.reviewState == ValueConst.REVIEW_PASS ? @string/name_publish_ads : @string/label_change}"
-                    android:textColor="@android:color/white"
-                    app:backgroundTint="@color/primary_button_selector"
-                    app:goneUnless="@{data.ads.reviewState &gt; ValueConst.REVIEW_UNDER_REVIEW}"/>
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitXY"
+                    app:poster="@{viewModel.adsDetail.ads.cover}" />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitXY"
+                    app:poster="@{viewModel.adsDetail.ads.poster}" />
 
             </LinearLayout>
 
