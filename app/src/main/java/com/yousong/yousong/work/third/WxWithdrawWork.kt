@@ -16,7 +16,7 @@ import java.math.BigDecimal
 class WxWithdrawWork : BaseSimpleWorkModel<BigDecimal, Unit>() {
 
     override fun onFillParams(dataMap: MutableMap<String, String?>, vararg params: BigDecimal?) {
-        dataMap["amount"] = params[0]?.multiply(BigDecimal(100))?.toPlainString()
+        dataMap["amount"] = params[0]?.multiply(BigDecimal(100))?.stripTrailingZeros()?.toPlainString()
     }
 
     override fun onSuccessExtract(jsonResult: JSONObject) = Unit
