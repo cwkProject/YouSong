@@ -27,7 +27,7 @@ class SplashActivity : BaseActivity() {
 
     override fun onInitView(savedInstanceState: Bundle?) {
         // 注册广播接收者
-        LoadingReceiver().register(this, lifecycle)
+        Receiver().register(this, lifecycle)
     }
 
     override fun onInitData(savedInstanceState: Bundle?) {
@@ -57,12 +57,8 @@ class SplashActivity : BaseActivity() {
     /**
      * 数据加载结果的广播接收者，
      * 用于提前结束启动页
-     *
-     * @author 超悟空
-     * @version 1.0 2017/2/21
-     * @since 1.0
      */
-    private inner class LoadingReceiver : LifecycleBroadcastReceiver() {
+    private inner class Receiver : LifecycleBroadcastReceiver() {
 
         /**
          * 动作队列信号量，

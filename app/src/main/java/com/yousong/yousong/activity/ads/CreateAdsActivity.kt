@@ -74,7 +74,7 @@ class CreateAdsActivity : BaseActivity(), OnCreateAdsOperator {
     override fun onInitData(savedInstanceState: Bundle?) {
         viewModel.submitResult.observe(this, Observer {
             if (it?.result == true && intent.hasExtra(ValueTag.TAG_ADS_DETAIL)) {
-                setResult(RESULT_OK, Intent().putExtra(ValueTag.TAG_ADS_DETAIL, viewModel.adsDetail))
+                setResult(RESULT_OK)
             }
             it?.show(this)
         })

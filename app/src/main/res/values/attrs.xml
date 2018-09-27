@@ -15,6 +15,22 @@
         <item>@color/green_500</item>
     </integer-array>
 
+    <string-array name="publish_states">
+        <item> </item>
+        <item>@string/name_unpublish</item>
+        <item>@string/name_published</item>
+        <item>@string/name_over</item>
+        <item>@string/name_cancel</item>
+    </string-array>
+
+    <integer-array name="publish_states_color">
+        <item>@android:color/black</item>
+        <item>@android:color/black</item>
+        <item>@color/blue_500</item>
+        <item>@android:color/black</item>
+        <item>@android:color/black</item>
+    </integer-array>
+
     <string-array name="company_review_hint">
         <item>@string/hint_company_authentication_reward</item>
         <item>@string/hint_company_authentication_reward</item>

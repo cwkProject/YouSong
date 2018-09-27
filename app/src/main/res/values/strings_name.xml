@@ -29,6 +29,14 @@
 
     <string name="name_paid">已付款</string>
 
+    <string name="name_unpublish">未发布</string>
+    <string name="name_published">已发布</string>
+    <string name="name_cancel">已取消</string>
+
+    <string name="name_wechat_pay">微信支付</string>
+
+    <string name="name_pay_now">立即支付</string>
+
     <string name="name_publish">发布</string>
     <string name="name_modify">修改</string>
 
@@ -93,6 +101,9 @@
     <string name="name_go_to_authentication">去认证</string>
 
     <string name="name_wait_pay_result">等待支付结果</string>
+    
+    <string name="name_publish_now">立即发布</string>
+    <string name="name_publish_delay">稍后发布</string>
 
     <string name="name_timeout">超时时间</string>
 

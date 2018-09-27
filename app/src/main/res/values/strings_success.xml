@@ -10,4 +10,6 @@
     <string name="success_verify_code_send">验证码已发送</string>
 
     <string name="success_publish">发布成功</string>
+
+    <string name="success_pay">支付成功</string>
 </resources>

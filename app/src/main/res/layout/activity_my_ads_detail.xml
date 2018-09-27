@@ -59,9 +59,16 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginStart="@dimen/activity_horizontal_margin"
                                 android:text="@{viewModel.adsDetail.ads.payState == ValueConst.PAY_PAID ? @string/name_paid : @stringArray/review_states[viewModel.adsDetail.ads.reviewState]}"
-                                android:textColor="@{viewModel.adsDetail.ads.payState == ValueConst.PAY_PAID ? @color/blue_500 : @intArray/review_states_color[viewModel.adsDetail.ads.reviewState]}" />
+                                android:textColor="@{viewModel.adsDetail.ads.payState == ValueConst.PAY_PAID ? @color/blue_500 : @intArray/review_states_color[viewModel.adsDetail.ads.reviewState]}"
+                                app:goneUnless="@{viewModel.adsDetail.ads.publishState == ValueConst.PUBLISH_UNPUBLISH}" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@{@stringArray/publish_states[viewModel.adsDetail.ads.publishState]}"
+                                android:textColor="@{@intArray/publish_states_color[viewModel.adsDetail.ads.publishState]}"
+                                app:goneUnless="@{viewModel.adsDetail.ads.publishState != ValueConst.PUBLISH_UNPUBLISH}" />
 
                             <TextView
                                 android:layout_width="wrap_content"

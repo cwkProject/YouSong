@@ -53,4 +53,6 @@
     <string name="hint_share_friend_count">您分享的好友总数</string>
     <string name="hint_share_total_incoming">您分享的收益总额</string>
 
+    <string name="hint_select_pay_channel">选则支付方式</string>
+
 </resources>

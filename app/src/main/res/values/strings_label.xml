@@ -17,6 +17,9 @@
 
     <string name="label_cash_withdrawal_balance">可提现金额:</string>
 
+    <string name="label_order_detail">订单详情:</string>
+    <string name="label_order_amount">订单金额:</string>
+
     <string name="label_withdraw">提\t\t现</string>
     <string name="label_submit">提\t\t交</string>
 

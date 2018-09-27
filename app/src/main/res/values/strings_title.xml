@@ -20,5 +20,8 @@
     <string name="title_publish_ads">发布广告</string>
     <string name="title_withdraw">提现</string>
     <string name="title_ads_detail">广告详情</string>
+    <string name="title_pay_order">支付订单</string>
+
+    <string name="title_pay_finish">支付完成</string>
 
 </resources>

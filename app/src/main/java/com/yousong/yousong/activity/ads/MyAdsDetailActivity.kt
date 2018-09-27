@@ -8,7 +8,6 @@ import com.yousong.yousong.R
 import com.yousong.yousong.activity.common.BaseActivity
 import com.yousong.yousong.architecture.viewmodel.ads.MyAdsDetailViewModel
 import com.yousong.yousong.databinding.ActivityMyAdsDetailBinding
-import com.yousong.yousong.model.local.AdsDetail
 import com.yousong.yousong.value.ValueConst
 import com.yousong.yousong.value.ValueTag
 import org.cwk.android.library.util.ToolbarInitialize.initToolbar
@@ -35,6 +34,11 @@ class MyAdsDetailActivity : BaseActivity() {
      * 支付广告
      */
     private val REQUEST_PAY_ADS = 102
+
+    /**
+     * 支付成功
+     */
+    private val REQUEST_PAY_SUCCESS = 103
 
     /**
      * 数据模型
@@ -84,7 +88,7 @@ class MyAdsDetailActivity : BaseActivity() {
                     startActivityForResult<CreateAdsActivity>(REQUEST_MODIFY_ADS, ValueTag.TAG_ADS_DETAIL to viewModel.adsDetail.value)
                 viewModel.adsDetail.value?.ads?.reviewState == ValueConst.REVIEW_PASS &&
                         viewModel.adsDetail.value?.ads?.payState == ValueConst.PAY_UNPAID ->
-                    startActivityForResult<AdsPayActivity>(REQUEST_PAY_ADS, ValueTag.TAG_ADS_DETAIL to viewModel.adsDetail.value)
+                    startActivityForResult<AdsPayActivity>(REQUEST_PAY_ADS, ValueTag.TAG_ADS to viewModel.adsDetail.value?.ads)
                 viewModel.adsDetail.value?.ads?.reviewState == ValueConst.REVIEW_PASS &&
                         viewModel.adsDetail.value?.ads?.payState == ValueConst.PAY_PAID ->
                     alert(R.string.prompt_confirm_publish) {
@@ -102,11 +106,9 @@ class MyAdsDetailActivity : BaseActivity() {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (resultCode == RESULT_OK) {
+            viewModel.loadAds(intent.getStringExtra(ValueTag.TAG_ADS_ID))
             when (requestCode) {
-                REQUEST_PAY_ADS -> viewModel.loadAds(intent.getStringExtra(ValueTag.TAG_ADS_ID))
-                REQUEST_MODIFY_ADS -> data?.getParcelableExtra<AdsDetail>(ValueTag.TAG_ADS_DETAIL)?.let {
-                    viewModel.adsDetail.value = it
-                }
+                REQUEST_PAY_ADS -> startActivityForResult<AdsPaySuccessActivity>(REQUEST_PAY_SUCCESS, ValueTag.TAG_ADS_ID to viewModel.adsDetail.value?.ads?.id)
             }
         }
     }
