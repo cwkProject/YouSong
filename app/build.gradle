@@ -13,8 +13,8 @@ android {
         applicationId "com.yousong.yousong"
         minSdkVersion 19
         targetSdkVersion 28
-        versionCode 14
-        versionName "0.1.4"
+        versionCode 15
+        versionName "0.1.5"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         vectorDrawables.useSupportLibrary = true
@@ -75,7 +75,7 @@ dependencies {
     implementation 'com.android.support:gridlayout-v7:28.0.0'
     implementation 'com.android.support:support-vector-drawable:28.0.0'
     implementation 'com.android.support:support-media-compat:28.0.0'
-    implementation 'org.cwk.android.library:android-basic-library:0.9.15'
+    implementation 'org.cwk.android.library:android-basic-library:0.9.16'
     implementation 'com.github.bumptech.glide:okhttp3-integration:4.8.0'
     implementation 'io.reactivex.rxjava2:rxkotlin:2.3.0'
     implementation 'cn.bingoogolapple:bga-banner:2.2.4'

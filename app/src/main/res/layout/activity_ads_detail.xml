@@ -124,80 +124,84 @@
                     android:textColor="@android:color/white"
                     app:backgroundTint="@color/primary_button_selector"/>
 
-                <android.support.v7.widget.GridLayout
-                    android:layout_width="match_parent"
+                <LinearLayout
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
                     android:layout_marginTop="@dimen/layout_default_spacing"
-                    app:columnCount="3"
-                    app:goneUnless="@{viewModel.adsDetail.ads.type}"
-                    app:useDefaultMargins="true">
+                    android:background="?selectableItemBackgroundBorderless"
+                    android:gravity="center_horizontal"
+                    android:onClick="@{viewModel::onWechat}"
+                    android:orientation="vertical"
+                    app:goneUnless="@{viewModel.adsDetail.ads.type}">
 
-                    <LinearLayout
-                        android:background="?selectableItemBackgroundBorderless"
-                        android:gravity="center_horizontal"
-                        android:onClick="@{viewModel::onWechat}"
-                        android:orientation="vertical"
-                        app:layout_columnWeight="1">
+                    <ImageView
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:tint="@color/grey_600"
+                        app:srcCompat="@drawable/ic_wechat_black_96dp"/>
 
-                        <ImageView
-                            android:layout_width="36dp"
-                            android:layout_height="36dp"
-                            android:tint="@color/grey_600"
-                            app:srcCompat="@drawable/ic_wechat_black_96dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/layout_default_spacing"
+                        android:text="@string/name_recommend_friend"/>
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/layout_default_spacing"
-                            android:text="@string/name_recommend_friend"/>
+                </LinearLayout>
 
-                    </LinearLayout>
+                <!--<android.support.v7.widget.GridLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginTop="@dimen/layout_default_spacing"-->
+                <!--app:columnCount="3"-->
+                <!--app:goneUnless="@{viewModel.adsDetail.ads.type}"-->
+                <!--app:useDefaultMargins="true">-->
 
-                    <LinearLayout
-                        android:background="?selectableItemBackgroundBorderless"
-                        android:gravity="center_horizontal"
-                        android:onClick="@{viewModel::onMoments}"
-                        android:orientation="vertical"
-                        android:visibility="gone"
-                        app:layout_columnWeight="1">
+                <!--<LinearLayout-->
+                <!--android:background="?selectableItemBackgroundBorderless"-->
+                <!--android:gravity="center_horizontal"-->
+                <!--android:onClick="@{viewModel::onMoments}"-->
+                <!--android:orientation="vertical"-->
+                <!--android:visibility="gone"-->
+                <!--app:layout_columnWeight="1">-->
 
-                        <ImageView
-                            android:layout_width="36dp"
-                            android:layout_height="36dp"
-                            android:tint="@color/grey_600"
-                            app:srcCompat="@drawable/ic_moments_black_96dp"/>
+                <!--<ImageView-->
+                <!--android:layout_width="36dp"-->
+                <!--android:layout_height="36dp"-->
+                <!--android:tint="@color/grey_600"-->
+                <!--app:srcCompat="@drawable/ic_moments_black_96dp"/>-->
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/layout_default_spacing"
-                            android:text="@string/name_send_moments"/>
+                <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginTop="@dimen/layout_default_spacing"-->
+                <!--android:text="@string/name_send_moments"/>-->
 
-                    </LinearLayout>
+                <!--</LinearLayout>-->
 
-                    <LinearLayout
-                        android:background="?selectableItemBackgroundBorderless"
-                        android:gravity="center_horizontal"
-                        android:onClick="@{viewModel::onCopy}"
-                        android:orientation="vertical"
-                        android:visibility="gone"
-                        app:layout_columnWeight="1">
+                <!--<LinearLayout-->
+                <!--android:background="?selectableItemBackgroundBorderless"-->
+                <!--android:gravity="center_horizontal"-->
+                <!--android:onClick="@{viewModel::onCopy}"-->
+                <!--android:orientation="vertical"-->
+                <!--android:visibility="gone"-->
+                <!--app:layout_columnWeight="1">-->
 
-                        <ImageView
-                            android:layout_width="36dp"
-                            android:layout_height="36dp"
-                            android:tint="@color/grey_600"
-                            app:srcCompat="@drawable/ic_copy_link_black_96dp"/>
+                <!--<ImageView-->
+                <!--android:layout_width="36dp"-->
+                <!--android:layout_height="36dp"-->
+                <!--android:tint="@color/grey_600"-->
+                <!--app:srcCompat="@drawable/ic_copy_link_black_96dp"/>-->
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/layout_default_spacing"
-                            android:text="@string/name_copy_url"/>
+                <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginTop="@dimen/layout_default_spacing"-->
+                <!--android:text="@string/name_copy_url"/>-->
 
-                    </LinearLayout>
+                <!--</LinearLayout>-->
 
-                </android.support.v7.widget.GridLayout>
+                <!--</android.support.v7.widget.GridLayout>-->
 
             </LinearLayout>
 

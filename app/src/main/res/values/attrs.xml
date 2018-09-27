@@ -39,8 +39,8 @@
     </string-array>
 
     <string-array name="personal_review_hint">
-        <item>@string/hint_personal_authentication_pass</item>
-        <item>@string/hint_personal_authentication_pass</item>
+        <item>@string/hint_personal_authentication_reward</item>
+        <item>@string/hint_personal_authentication_reward</item>
         <item>@string/hint_personal_authentication_failed</item>
         <item>@string/hint_personal_authentication_pass</item>
     </string-array>

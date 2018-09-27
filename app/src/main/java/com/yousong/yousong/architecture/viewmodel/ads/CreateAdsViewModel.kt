@@ -55,6 +55,17 @@ class CreateAdsViewModel : ObservableViewModel() {
         question.option.add(Option(1).apply { answer = true })
         question.option.add(Option(2))
     }
+        set(value) {
+            field = value
+
+            if (value.ads.cover != null) {
+                coverProgress = ValueConst.PROGRESS_SUCCESS
+            }
+
+            if (value.ads.poster != null) {
+                posterProgress = ValueConst.PROGRESS_SUCCESS
+            }
+        }
 
     /**
      * 海报的图片路径
@@ -117,9 +128,6 @@ class CreateAdsViewModel : ObservableViewModel() {
 
         work.start(adsDetail) {
             dialog.cancel()
-            if (it.isSuccess) {
-                adsDetail.ads.reviewState = ValueConst.REVIEW_UNDER_REVIEW
-            }
 
             submitResult.value = SubmitResult(it.isSuccess, it.message, if (it.isSuccess)
                 SubmitResult.LEVEL_ALERT_FINISH else SubmitResult.LEVEL_LONG_TOAST)
@@ -140,8 +148,8 @@ class CreateAdsViewModel : ObservableViewModel() {
         adsDetail.ads.apply {
             resId = when {
                 name.isBlank() -> R.string.hint_name_not_null
-                cover.isBlank() -> R.string.hint_cover_not_null
-                poster.isBlank() -> R.string.hint_poster_not_null
+                cover.isNullOrBlank() -> R.string.hint_cover_not_null
+                poster.isNullOrBlank() -> R.string.hint_poster_not_null
                 else -> null
             }
         }

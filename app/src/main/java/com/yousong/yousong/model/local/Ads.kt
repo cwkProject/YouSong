@@ -33,7 +33,7 @@ class Ads(var id: String = "") : BaseObservable(), Parcelable {
      * 封面
      */
     @Bindable
-    var cover = ""
+    var cover: String? = null
         set(value) {
             field = value
             notifyPropertyChanged(BR.cover)
@@ -43,7 +43,7 @@ class Ads(var id: String = "") : BaseObservable(), Parcelable {
      * 大图海报
      */
     @Bindable
-    var poster = ""
+    var poster: String? = null
         set(value) {
             field = value
             notifyPropertyChanged(BR.poster)

@@ -6,7 +6,7 @@
     <string name="format_friend_count">分享好友 [ %1$d ] 人</string>
     <string name="format_total_incoming">累计收益 [ %1$s ] 元</string>
 
-    <string name="format_answer_success">回答正确，恭喜您获得 %1$2f 元收益</string>
+    <string name="format_answer_success">回答正确，恭喜您获得 %1$s 元收益</string>
 
     <string name="format_filter_target_user_count">当前符合条件的用户有 %1$d 人</string>
 </resources>

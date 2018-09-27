@@ -2,6 +2,7 @@ package com.yousong.yousong.architecture.viewmodel.user
 
 import android.databinding.Bindable
 import android.text.Editable
+import android.util.Log
 import android.view.View
 import com.yousong.yousong.BR
 import com.yousong.yousong.R
@@ -66,6 +67,7 @@ class WithdrawViewModel : ObservableViewModel() {
                 edt.delete(posDot + 3, edt.length)
                 withdrawalAmount = BigDecimal(edt.toString())
             }
+            posDot < edt.length - 1 -> withdrawalAmount = BigDecimal(edt.toString())
         }
 
         checkAmount()
@@ -96,6 +98,7 @@ class WithdrawViewModel : ObservableViewModel() {
      * 检查金额是否可以提现
      */
     private fun checkAmount() {
+        Log.v("WithdrawViewModel", "amount:$withdrawalAmount")
         withdrawalAmount?.let {
             canWithdrawal = it > BigDecimal.ZERO && it <= LoginStatus.userInfo.balance
 

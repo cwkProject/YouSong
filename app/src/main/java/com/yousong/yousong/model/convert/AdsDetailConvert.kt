@@ -2,6 +2,7 @@ package com.yousong.yousong.model.convert
 
 import com.google.gson.TypeAdapter
 import com.google.gson.stream.JsonReader
+import com.google.gson.stream.JsonToken
 import com.google.gson.stream.JsonWriter
 import com.yousong.yousong.common.GsonUtil
 import com.yousong.yousong.model.local.*
@@ -62,7 +63,12 @@ class AdsDetailTypeAdapter : TypeAdapter<AdsDetail>() {
         `in`.apply {
             beginObject()
             while (hasNext()) {
-                when (nextName()) {
+                val name = nextName()
+                if (peek() == JsonToken.NULL) {
+                    skipValue()
+                    continue
+                }
+                when (name) {
                     "ads" -> ads = adsTypeAdapter.read(this)
                     "questionAnswer" -> question = questionTypeAdapter.read(this)
                     "adsDirectional" -> directional = directionalTypeAdapter.read(this)
@@ -116,7 +122,12 @@ class AdsTypeAdapter : TypeAdapter<Ads>() {
             beginObject()
 
             while (hasNext()) {
-                when (nextName()) {
+                val name = nextName()
+                if (peek() == JsonToken.NULL) {
+                    skipValue()
+                    continue
+                }
+                when (name) {
                     "name" -> ads.name = nextString()
                     "cover" -> ads.cover = nextString()
                     "img" -> ads.poster = nextString()
@@ -175,7 +186,12 @@ class DirectionalTypeAdapter : TypeAdapter<Directional>() {
         `in`.apply {
             beginObject()
             while (hasNext()) {
-                when (nextName()) {
+                val name = nextName()
+                if (peek() == JsonToken.NULL) {
+                    skipValue()
+                    continue
+                }
+                when (name) {
                     "sex" -> directional.sex = nextInt()
                     "minAge" -> directional.minAge = nextInt()
                     "maxAge" -> directional.maxAge = nextInt()
@@ -237,7 +253,12 @@ class QuestionTypeAdapter : TypeAdapter<Question>() {
         `in`.apply {
             beginObject()
             while (hasNext()) {
-                when (nextName()) {
+                val name = nextName()
+                if (peek() == JsonToken.NULL) {
+                    skipValue()
+                    continue
+                }
+                when (name) {
                     "content" -> question.content = nextString()
                     "reAnswerCount" -> question.retries = nextInt()
                     "answers" -> {
@@ -280,7 +301,12 @@ class OptionTypeAdapter : TypeAdapter<Option>() {
         `in`.apply {
             beginObject()
             while (hasNext()) {
-                when (nextName()) {
+                val name = nextName()
+                if (peek() == JsonToken.NULL) {
+                    skipValue()
+                    continue
+                }
+                when (name) {
                     "ordinal" -> answer.order = nextInt()
                     "content" -> answer.content = nextString()
                     "isAnswer" -> answer.answer = nextInt() == ValueConst.SERVER_TRUE

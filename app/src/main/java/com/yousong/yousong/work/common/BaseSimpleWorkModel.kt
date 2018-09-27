@@ -22,7 +22,7 @@ abstract class BaseSimpleWorkModel<Parameters, Result> : SimpleWorkModel<Paramet
     /**
      * 填充服务请求所需的参数
      *
-     * @param dataMap    将要填充的参数数据集<参数名></参数名>,参数值>
+     * @param dataMap    将要填充的参数数据集<参数名,参数值>
      * @param params 任务传入的参数
      */
     protected abstract fun onFillParams(dataMap: MutableMap<String, String?>, vararg params: Parameters?)
@@ -32,6 +32,11 @@ abstract class BaseSimpleWorkModel<Parameters, Result> : SimpleWorkModel<Paramet
         AppConfig.token?.let {
             builder.addHeader("Authorization", "bearer $it")
         }
+
+//        if (AppConfig.token == null) {
+//            val token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoxLCJzZXNzaW9uIjoiYTU4ZGQ5YTM3Zjk4NGI5ODk3NWI1ZGJhMjRmM2YyZjUiLCJleHAiOjE1MzgyMjQxOTh9.zyHtOVmE5eY0jNOPnsujILc5-MmCjgp3sSe_mIO4Wuc"
+//            builder.addHeader("Authorization", "bearer $token")
+//        }
     }
 
     override fun onParseFailed(): String? = ERROR_NETWORK_REQUEST

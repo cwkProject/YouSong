@@ -45,7 +45,7 @@ class AdsPayActivity : BaseActivity() {
         initToolbar(this, R.string.title_pay_order)
         Receiver().register(this, lifecycle, true)
 
-        binding.data = viewModel
+        binding.viewModel = viewModel
         binding.setLifecycleOwner(this)
     }
 

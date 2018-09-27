@@ -51,6 +51,7 @@
     <string name="name_directional_publish">定向型发布</string>
 
     <string name="name_directional_detail">定向信息</string>
+    <string name="name_ads_resource">广告资源</string>
 
     <string name="name_target_user">目标人群</string>
     <string name="name_filter_result">筛选结果</string>

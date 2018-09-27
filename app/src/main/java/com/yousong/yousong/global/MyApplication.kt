@@ -175,6 +175,10 @@ class MyApplication : Application() {
         } else {
             onFinish()
         }
+
+//        UserCreateTokenWork().start {
+//            onFinish()
+//        }
     }
 
     /**

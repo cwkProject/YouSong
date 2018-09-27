@@ -9,6 +9,7 @@ import com.yousong.yousong.work.common.BaseSimpleWorkModel
 import org.cwk.android.library.annotation.Post
 import org.cwk.android.library.global.Global
 import org.json.JSONObject
+import java.math.BigDecimal
 
 /**
  * 答题
@@ -34,7 +35,8 @@ class AdsAnswerWork : BaseSimpleWorkModel<Any, AnswerResult>() {
 
         mData.result.apply {
             when {
-                isAnswer == ValueConst.SERVER_TRUE -> return context.getString(R.string.format_answer_success).format(myBudget / 100f)
+                isAnswer == ValueConst.SERVER_TRUE -> return context.getString(R.string
+                        .format_answer_success).format(BigDecimal(myBudget / 100.0).stripTrailingZeros())
                 canAnswer == ValueConst.SERVER_TRUE -> return context.getString(R.string.error_answer_again)
                 canAnswer != ValueConst.SERVER_TRUE -> return context.getString(R.string.error_answer)
             }

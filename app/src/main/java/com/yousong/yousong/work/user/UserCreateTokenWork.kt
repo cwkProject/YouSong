@@ -20,6 +20,8 @@ class UserCreateTokenWork : BaseSimpleWorkModel<String, Unit>() {
         AppConfig.token = jsonResult.getString(RESULT)
         AppConfig.save()
         LoginStatus.login = true
+
+       // File(Global.getApplication().externalCacheDir, "token.txt").writeText(AppConfig.token!!)
     }
 
     override fun onTaskUri() = ValueUrl.URL_USER_CREATE_TOKEN
