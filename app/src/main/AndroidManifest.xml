@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:tools="http://schemas.android.com/tools"
-          package="com.yousong.yousong"
-          xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest package="com.yousong.yousong"
+          xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
     <!-- 这个权限用于进行网络定位-->
@@ -78,9 +78,9 @@
         <activity
             android:name=".wxapi.WXPayEntryActivity"
             android:exported="true"/>
-        <activity android:name=".activity.ads.MyAdsDetailActivity" />
-        <activity android:name=".activity.ads.AdsPayActivity" />
-        <activity android:name=".activity.ads.AdsPaySuccessActivity" />
+        <activity android:name=".activity.ads.MyAdsDetailActivity"/>
+        <activity android:name=".activity.ads.AdsPayActivity"/>
+        <activity android:name=".activity.ads.AdsPaySuccessActivity"/>
     </application>
 
 </manifest>

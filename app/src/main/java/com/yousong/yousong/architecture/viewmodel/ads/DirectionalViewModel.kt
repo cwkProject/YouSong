@@ -41,6 +41,7 @@ class DirectionalViewModel : ObservableViewModel() {
             if (field != value) {
                 field = value
                 onAddPropertyCallback()
+                onInitAge()
             }
         }
 
@@ -202,6 +203,22 @@ class DirectionalViewModel : ObservableViewModel() {
             R.id.local_perimeter -> 1
             R.id.designated_city -> 2
             else -> 0
+        }
+    }
+
+    /**
+     * 初始化定向年龄数据
+     */
+    private fun onInitAge() {
+        directional?.let {
+            val minAge = it.minAge
+            val maxAge = it.maxAge
+            if (minAge != null && maxAge != null && (minAge > 0 || maxAge > 0)) {
+                // 已存在年龄数据
+                limitedAges = true
+                maxSelection = if (maxAge == 0) 99 else maxAge
+                minSelection = minAge
+            }
         }
     }
 

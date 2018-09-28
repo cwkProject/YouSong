@@ -21,9 +21,8 @@ class BDGetDescriptionWork : StandardWorkModel<Double, JsonDataModel<Double, Str
                 override fun onRequestResult(handleResult: JSONObject): Boolean =
                         handleResult.getInt("status") == 0
 
-                override fun onRequestSuccess(handleResult: JSONObject): String {
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-                }
+                override fun onRequestSuccess(handleResult: JSONObject): String =
+                        handleResult.getJSONObject("result").getString("sematic_description")
 
                 override fun onFillRequestParameters(dataMap: MutableMap<String, String>, vararg parameters: Double?) {
                     dataMap["location"] = "${parameters[0]},${parameters[1]}"

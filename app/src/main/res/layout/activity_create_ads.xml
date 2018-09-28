@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools">
+        xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -16,6 +15,8 @@
         <variable
             name="holder"
             type="com.yousong.yousong.operator.OnCreateAdsOperator"/>
+
+        <import type="android.view.View"/>
 
     </data>
 
@@ -83,12 +84,19 @@
                     android:checked="@={!data.ads.type}"
                     android:text="@string/name_directional_publish"/>
 
-                <fragment
-                    android:id="@+id/directional_parameter_fragment"
-                    android:name="com.yousong.yousong.fragment.ads.DirectionalParameterFragment"
+                <!--<fragment-->
+                <!--android:id="@+id/directional_parameter_fragment"-->
+                <!--android:name="com.yousong.yousong.fragment.ads.DirectionalParameterFragment"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--tools:layout="@layout/fragment_directional_parameter"/>-->
+
+                <ViewStub
+                    android:id="@+id/directional_view"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    tools:layout="@layout/fragment_directional_parameter"/>
+                    android:layout="@layout/layout_directional_fragment"
+                    android:visibility="@{data.ads.type ? View.GONE : View.VISIBLE}"/>
 
                 <View style="@style/DivideStyle"/>
 

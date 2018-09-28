@@ -20,7 +20,6 @@ import com.yousong.yousong.fragment.common.BaseFragment
 import com.yousong.yousong.model.local.Address
 import com.yousong.yousong.operator.OnDirectionalOperator
 import com.yousong.yousong.third.BDLocationClient
-import com.yousong.yousong.value.ValueTag
 import kotlinx.android.synthetic.main.layout_directional_location.*
 
 
@@ -44,12 +43,7 @@ class DirectionalParameterFragment : BaseFragment(), OnDirectionalOperator {
      * 数据模型
      */
     private val adsDetailViewModel by lazy {
-        ViewModelProviders.of(activity!!).get(CreateAdsViewModel::class.java).apply {
-            if (activity!!.intent.hasExtra(ValueTag.TAG_ADS_DETAIL)) {
-                adsDetail = activity!!.intent.getParcelableExtra(ValueTag.TAG_ADS_DETAIL)
-                activity!!.intent.removeExtra(ValueTag.TAG_ADS_DETAIL)
-            }
-        }
+        ViewModelProviders.of(activity!!).get(CreateAdsViewModel::class.java)
     }
 
     /**

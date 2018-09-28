@@ -54,7 +54,12 @@ class CreateAdsActivity : BaseActivity(), OnCreateAdsOperator {
      * 数据模型
      */
     private val viewModel by lazy {
-        ViewModelProviders.of(this).get(CreateAdsViewModel::class.java)
+        ViewModelProviders.of(this).get(CreateAdsViewModel::class.java).apply {
+            if (intent.hasExtra(ValueTag.TAG_ADS_DETAIL)) {
+                adsDetail = intent.getParcelableExtra(ValueTag.TAG_ADS_DETAIL)
+                intent.removeExtra(ValueTag.TAG_ADS_DETAIL)
+            }
+        }
     }
 
     override val rootViewId = R.layout.activity_create_ads
@@ -69,7 +74,7 @@ class CreateAdsActivity : BaseActivity(), OnCreateAdsOperator {
 
     override fun onInitData(savedInstanceState: Bundle?) {
         viewModel.submitResult.observe(this, Observer {
-            if (it?.result == true && intent.hasExtra(ValueTag.TAG_ADS_DETAIL)) {
+            if (it?.result == true && viewModel.adsDetail.ads.id.isNotEmpty()) {
                 setResult(RESULT_OK)
             }
             it?.show(this)

@@ -24,7 +24,7 @@ public interface ValueUrl {
     /**
      * 百度地图逆地理编码
      */
-    String URL_BD_GEOCODER = "http://api.map.baidu.com/geocoder/v2";
+    String URL_BD_GEOCODER = "https://api.map.baidu.com/geocoder/v2/";
 
     // 以下为应用接口基地址======================================================
 
