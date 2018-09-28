@@ -45,11 +45,11 @@ class MyAdsActivity : BaseActivity() {
         fab.setOnClickListener {
             when {
                 LoginStatus.userInfo.companyAuth?.valid == true -> startActivity<CreateAdsActivity>()
-                LoginStatus.userInfo.authOk -> longSnackbar(it, R.string.hint_company_authentication_reward, R.string.name_go_to_authentication) {
+                LoginStatus.userInfo.authOk -> it.longSnackbar(R.string.hint_company_authentication_reward, R.string.name_go_to_authentication) {
                     startActivity<CompanyCertificationActivity>()
                 }
                 !LoginStatus.userInfo.authOk -> {
-                    snackbar(it, R.string.prompt_poor_network_reload_user_data)
+                    it.snackbar(R.string.prompt_poor_network_reload_user_data)
                     LoginStatus.userInfo.loadUserData()
                 }
             }
