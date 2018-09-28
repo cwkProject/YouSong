@@ -133,11 +133,11 @@ class AdsTypeAdapter : TypeAdapter<Ads>() {
                     "img" -> ads.poster = nextString()
                     "adsType" -> ads.type = nextInt() == 1
                     "userCount" -> ads.targetCount = nextInt()
-                    "perYellowBoyUser" -> ads.userUnitPrice = BigDecimal(nextInt()) / BigDecimal(100)
+                    "perYellowBoyUser" -> ads.userUnitPrice = BigDecimal(nextInt()).divide(BigDecimal(100))
                     "needInvoice" -> ads.needInvoice = nextInt() == ValueConst.SERVER_TRUE
                     "adsId" -> ads.id = nextString()
-                    "totalAsset" -> ads.totalAmount = BigDecimal(nextInt()) / BigDecimal(100)
-                    "balance" -> ads.balance = BigDecimal(nextInt()) / BigDecimal(100)
+                    "totalAsset" -> ads.totalAmount = BigDecimal(nextInt()).divide(BigDecimal(100))
+                    "balance" -> ads.balance = BigDecimal(nextInt()).divide(BigDecimal(100))
                     "city" -> ads.city = nextString()
                     "publishState" -> ads.publishState = nextInt()
                     "reviewState" -> ads.reviewState = nextInt()

@@ -33,10 +33,10 @@ abstract class BaseSimpleWorkModel<Parameters, Result> : SimpleWorkModel<Paramet
             builder.addHeader("Authorization", "bearer $it")
         }
 
-//        if (AppConfig.token == null) {
-//            val token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoxLCJzZXNzaW9uIjoiYTU4ZGQ5YTM3Zjk4NGI5ODk3NWI1ZGJhMjRmM2YyZjUiLCJleHAiOjE1MzgyMjQxOTh9.zyHtOVmE5eY0jNOPnsujILc5-MmCjgp3sSe_mIO4Wuc"
-//            builder.addHeader("Authorization", "bearer $token")
-//        }
+        if (AppConfig.token == null) {
+            val token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoxLCJzZXNzaW9uIjoiYTU4ZGQ5YTM3Zjk4NGI5ODk3NWI1ZGJhMjRmM2YyZjUiLCJleHAiOjE1MzgyMjQxOTh9.zyHtOVmE5eY0jNOPnsujILc5-MmCjgp3sSe_mIO4Wuc"
+            builder.addHeader("Authorization", "bearer $token")
+        }
     }
 
     override fun onParseFailed(): String? = ERROR_NETWORK_REQUEST

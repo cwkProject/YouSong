@@ -15,8 +15,8 @@ import java.math.BigDecimal
 class UserGetTotalIncomeWork : BaseSimpleWorkModel<Unit, BigDecimal>() {
     override fun onFillParams(dataMap: MutableMap<String, String?>, vararg params: Unit?) = Unit
 
-    override fun onSuccessExtract(jsonResult: JSONObject) =
-            jsonResult.getLong(RESULT).toBigDecimal().div(BigDecimal(100))
+    override fun onSuccessExtract(jsonResult: JSONObject): BigDecimal =
+            jsonResult.getLong(RESULT).toBigDecimal().divide(BigDecimal(100))
 
     override fun onTaskUri() = ValueUrl.URL_USER_GET_TOTAL_INCOME
 }

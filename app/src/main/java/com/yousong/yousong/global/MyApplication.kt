@@ -168,17 +168,17 @@ class MyApplication : Application() {
      * 自动登陆
      */
     private fun onAutoLogin() {
-        if (AppConfig.token != null) {
-            UserCreateTokenWork().start {
-                onFinish()
-            }
-        } else {
-            onFinish()
-        }
-
-//        UserCreateTokenWork().start {
+//        if (AppConfig.token != null) {
+//            UserCreateTokenWork().start {
+//                onFinish()
+//            }
+//        } else {
 //            onFinish()
 //        }
+
+        UserCreateTokenWork().start {
+            onFinish()
+        }
     }
 
     /**
