@@ -21,6 +21,11 @@ public interface ValueUrl {
      */
     String URL_WX_USER_INFO = "https://api.weixin.qq.com/sns/userinfo";
 
+    /**
+     * 百度地图逆地理编码
+     */
+    String URL_BD_GEOCODER = "http://api.map.baidu.com/geocoder/v2";
+
     // 以下为应用接口基地址======================================================
 
     /**

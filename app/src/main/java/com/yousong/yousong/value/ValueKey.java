@@ -23,4 +23,9 @@ public interface ValueKey {
      * 微信应用密钥
      */
     String WX_APP_SECRET = "6bba0797b2fa346c0a184e92f2d0789c";
+
+    /**
+     * 百度地图web服务key
+     */
+    String BD_WEB_AK = "wlLUDh9ys1NzbH2TN2z19ZvWG2fIYwg2";
 }

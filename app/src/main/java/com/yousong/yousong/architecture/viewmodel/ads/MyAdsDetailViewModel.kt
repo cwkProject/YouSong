@@ -11,6 +11,7 @@ import com.yousong.yousong.model.local.AdsDetail
 import com.yousong.yousong.work.ads.AdsGetDetailWork
 import com.yousong.yousong.work.ads.AdsPublishWork
 import com.yousong.yousong.work.common.start
+import com.yousong.yousong.work.third.BDGetDescriptionWork
 import org.cwk.android.library.global.Global
 
 /**
@@ -93,13 +94,39 @@ class MyAdsDetailViewModel : ObservableViewModel() {
      * 获取位置数据
      */
     fun getLocation() {
-
+        location = null
+        adsDetail.value?.directional?.let {
+            BDGetDescriptionWork().start(it.latitude, it.longitude, isUiThread = false) {
+                if (it.isSuccess) {
+                    location = it.result
+                }
+            }
+        }
     }
 
     /**
      * 匹配城市数据
      */
     fun matchCity() {
+        var newAddress = ""
+        adsDetail.value?.directional?.addresses?.forEach { address ->
+            if (newAddress.isNotEmpty()) {
+                newAddress += "\n"
+            }
 
+            address.addressCode?.takeIf { it.length == 6 }?.let {
+                val provincePreCode = it.take(2)
+
+                cityParseHelper.provinceBeenArray.find { it.id.startsWith(provincePreCode) }?.let {
+                    address.province = it.name
+                    address.city = it.cityList.find { it.id == address.addressCode }?.name
+                    address.address = address.province + (address.city ?: "")
+                }
+            }
+
+            newAddress += address.address ?: ""
+        }
+
+        address = newAddress
     }
 }

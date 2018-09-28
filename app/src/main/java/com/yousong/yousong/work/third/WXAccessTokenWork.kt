@@ -20,25 +20,24 @@ import org.json.JSONObject
  */
 class WXAccessTokenWork : StandardWorkModel<String, JsonDataModel<String, WxResponse>>() {
 
-    override fun onCreateDataModel(): JsonDataModel<String, WxResponse> {
-        return object : JsonDataModel<String, WxResponse>(TAG) {
-            override fun onFillRequestParameters(dataMap: MutableMap<String, String>, vararg parameters: String) {
-                dataMap["appid"] = ValueKey.WX_APP_ID
-                dataMap["secret"] = ValueKey.WX_APP_SECRET
-                dataMap["grant_type"] = "authorization_code"
-                dataMap["code"] = parameters[0]
+    override fun onCreateDataModel(): JsonDataModel<String, WxResponse> =
+            object : JsonDataModel<String, WxResponse>(TAG) {
+                override fun onFillRequestParameters(dataMap: MutableMap<String, String>, vararg parameters: String) {
+                    dataMap["appid"] = ValueKey.WX_APP_ID
+                    dataMap["secret"] = ValueKey.WX_APP_SECRET
+                    dataMap["grant_type"] = "authorization_code"
+                    dataMap["code"] = parameters[0]
+                }
+
+                override fun onRequestSuccess(handleResult: JSONObject): WxResponse? =
+                        handleResult.toString().jsonToObject()
+
+                override fun onRequestResult(handleResult: JSONObject): Boolean =
+                        !handleResult.has("errcode")
+
+                override fun onRequestFailedMessage(handleResult: JSONObject): String? =
+                        handleResult.optString("errmsg")
             }
-
-            override fun onRequestSuccess(handleResult: JSONObject): WxResponse? =
-                    handleResult.toString().jsonToObject()
-
-            override fun onRequestResult(handleResult: JSONObject): Boolean =
-                    !handleResult.has("errcode")
-
-            override fun onRequestFailedMessage(handleResult: JSONObject): String? =
-                    handleResult.optString("errmsg")
-        }
-    }
 
     override fun onSuccess() {
         val wxResponse = mData.result
