@@ -34,8 +34,6 @@
 
     <string name="hint_select_answer">请选择答案</string>
 
-    <string name="hint_in_the_end">到底了</string>
-
     <string name="hint_select_target_city">点击选取目标城市</string>
 
     <string name="hint_personal_authentication_reward">通过实名认证后才可以进行提现操作</string>
@@ -53,6 +51,6 @@
     <string name="hint_share_friend_count">您分享的好友总数</string>
     <string name="hint_share_total_incoming">您分享的收益总额</string>
 
-    <string name="hint_select_pay_channel">选则支付方式</string>
+    <string name="hint_select_pay_channel">选择支付方式</string>
 
 </resources>

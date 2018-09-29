@@ -13,8 +13,8 @@ android {
         applicationId "com.yousong.yousong"
         minSdkVersion 19
         targetSdkVersion 28
-        versionCode 16
-        versionName "0.1.6"
+        versionCode 17
+        versionName "0.1.7"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         vectorDrawables.useSupportLibrary = true
