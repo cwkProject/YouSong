@@ -64,7 +64,7 @@
             <ImageView
                 android:layout_width="48dp"
                 android:layout_height="48dp"
-                android:src="@drawable/ic_wechat_oval" />
+                app:srcCompat="@drawable/ic_wepay_logo_48dp" />
 
             <TextView
                 android:layout_marginStart="@dimen/activity_horizontal_margin"

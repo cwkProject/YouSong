@@ -33,8 +33,9 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="ic_check_circle_black_24dp" />
-                            <entry key="sourceFile" value="E:\好友.svg" />
+                            <entry key="assetSourceType" value="FILE" />
+                            <entry key="outputName" value="ic_wepaylogo" />
+                            <entry key="sourceFile" value="E:\WePayLogo.svg" />
                           </map>
                         </option>
                       </PersistentState>
