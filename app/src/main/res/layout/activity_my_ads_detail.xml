@@ -241,7 +241,7 @@
                     android:paddingEnd="@dimen/activity_horizontal_margin"
                     android:paddingStart="@dimen/activity_horizontal_margin"
                     android:paddingTop="@dimen/layout_default_spacing"
-                    android:text="@string/name_question_and_answer"
+                    android:text="@string/name_question_and_answer_content"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
 
                 <TextView

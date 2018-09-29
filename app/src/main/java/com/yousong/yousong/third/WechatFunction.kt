@@ -6,10 +6,7 @@ import android.graphics.BitmapFactory
 import android.support.design.widget.Snackbar
 import android.view.View
 import android.widget.Toast
-import com.tencent.mm.opensdk.modelmsg.SendAuth
-import com.tencent.mm.opensdk.modelmsg.SendMessageToWX
-import com.tencent.mm.opensdk.modelmsg.WXMediaMessage
-import com.tencent.mm.opensdk.modelmsg.WXWebpageObject
+import com.tencent.mm.opensdk.modelmsg.*
 import com.tencent.mm.opensdk.modelpay.PayReq
 import com.tencent.mm.opensdk.openapi.WXAPIFactory
 import com.yousong.yousong.R
@@ -40,7 +37,7 @@ object WechatFunction {
     /**
      * logo
      */
-    private val thumbData by lazy {
+    private val logoData by lazy {
         val logo = BitmapFactory.decodeResource(Global.getApplication().resources, R.mipmap.ic_launcher)
         ByteArrayOutputStream().use {
             logo.compress(Bitmap.CompressFormat.PNG, 100, it)
@@ -91,15 +88,52 @@ object WechatFunction {
      */
     class SendBuilder {
 
-        /**
-         * 发送到微信好友
-         */
-        val SEND_TO_FRIENDS = 0
+        companion object {
+            /**
+             * 发送到微信好友
+             */
+            const val SEND_TO_FRIENDS = 0
+
+            /**
+             * 发送到朋友圈
+             */
+            const val SEND_TO_MOMENTS = 1
+
+            /**
+             * 小程序正式版本
+             */
+            const val MINI_TYPE_RELEASE = 0
+
+            /**
+             * 小程序测试版本
+             */
+            const val MINI_TYPE_DEBUG = 1
+
+            /**
+             * 小程序体验版本
+             */
+            const val MINI_TYPE_EXPERIENCE = 2
+
+            /**
+             * 分享连接
+             */
+            const val SHARE_TYPE_URL = 0
+
+            /**
+             * 分享图片
+             */
+            const val SHARE_TYPE_IMAGE = 1
+
+            /**
+             * 分享小程序
+             */
+            const val SHARE_TYPE_MINI = 2
+        }
 
         /**
-         * 发送到朋友圈
+         * 分享内容类型
          */
-        val SEND_TO_MOMENTS = 1
+        var shareType = SHARE_TYPE_URL
 
         /**
          * 分享的连接地址
@@ -122,9 +156,29 @@ object WechatFunction {
         var description: String? = null
 
         /**
+         * 发送缩略图数据
+         */
+        var thumbData = logoData
+
+        /**
          * 发送目标
          */
-        var target: Int = SEND_TO_FRIENDS
+        var target = SEND_TO_FRIENDS
+
+        /**
+         * 发送小程序类型type
+         */
+        var miniType = MINI_TYPE_EXPERIENCE
+
+        /**
+         * 分享路径（小程序地址路径或分享图片路劲）
+         */
+        var path: String? = null
+
+        /**
+         * 小程序id
+         */
+        var miniId: String? = null
 
         /**
          * 发送分享
@@ -132,6 +186,7 @@ object WechatFunction {
         internal fun send() {
             sendView?.isClickable = false
             onSend()
+            sendView?.isClickable = true
         }
 
         /**
@@ -139,14 +194,13 @@ object WechatFunction {
          **/
         private fun onSend() {
             if (api.isWXAppInstalled) {
-                val wxWebpageObject = WXWebpageObject()
 
-                wxWebpageObject.webpageUrl = url
-                val wxMediaMessage = WXMediaMessage(wxWebpageObject)
+                val mediaObject = onMediaObject() ?: return
+
+                val wxMediaMessage = WXMediaMessage(mediaObject)
 
                 wxMediaMessage.title = title
                 wxMediaMessage.description = description
-
                 wxMediaMessage.thumbData = thumbData
 
                 val req = SendMessageToWX.Req()
@@ -161,11 +215,31 @@ object WechatFunction {
 
                 api.sendReq(req)
             } else {
-                sendView?.let { snackbar(it, R.string.prompt_install_wechat) }
+                sendView?.snackbar(R.string.prompt_install_wechat)
             }
-
-            sendView?.isClickable = true
         }
+
+        /**
+         * 创建微信分享对象
+         */
+        private fun onMediaObject(): WXMediaMessage.IMediaObject? =
+                when (shareType) {
+                    SHARE_TYPE_URL -> WXWebpageObject().apply {
+                        webpageUrl = url
+                    }
+                    SHARE_TYPE_MINI -> WXMiniProgramObject().apply {
+                        webpageUrl = url
+                        userName = miniId
+                        path = this@SendBuilder.path
+
+                        when (miniType) {
+                            MINI_TYPE_EXPERIENCE -> miniprogramType = WXMiniProgramObject.MINIPROGRAM_TYPE_PREVIEW
+                            MINI_TYPE_DEBUG -> miniprogramType = WXMiniProgramObject.MINIPROGRAM_TYPE_TEST
+                            MINI_TYPE_RELEASE -> miniprogramType = WXMiniProgramObject.MINIPTOGRAM_TYPE_RELEASE
+                        }
+                    }
+                    else -> null
+                }
     }
 
     /**
@@ -194,7 +268,7 @@ object WechatFunction {
                     if (snackbarView == null) {
                         context?.toast(R.string.failed_open_wx)
                     } else {
-                        snackbar(snackbarView!!, R.string.failed_open_wx)
+                        snackbarView?.snackbar(R.string.failed_open_wx)
                     }
                 }
             } else {
@@ -203,7 +277,7 @@ object WechatFunction {
                 if (snackbarView == null) {
                     context?.toast(R.string.prompt_install_wechat)
                 } else {
-                    snackbar(snackbarView!!, R.string.prompt_install_wechat)
+                    snackbarView?.snackbar(R.string.prompt_install_wechat)
                 }
             }
         }
