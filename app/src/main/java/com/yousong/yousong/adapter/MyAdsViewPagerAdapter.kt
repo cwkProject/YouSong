@@ -1,8 +1,5 @@
 package com.yousong.yousong.adapter
 
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
-import android.support.v4.app.FragmentPagerAdapter
 import com.yousong.yousong.R
 import com.yousong.yousong.fragment.ads.PublishedAdsFragment
 import com.yousong.yousong.fragment.ads.UnpublishedAdsFragment
@@ -15,12 +12,12 @@ import org.cwk.android.library.global.Global
  * @version 1.0 2018/7/1
  * @since 1.0
  */
-class MyAdsViewPagerAdapter(fm: FragmentManager?) : FragmentPagerAdapter(fm) {
-    override fun getItem(position: Int): Fragment? =
+class MyAdsViewPagerAdapter(fm: androidx.fragment.app.FragmentManager) : androidx.fragment.app.FragmentPagerAdapter(fm) {
+    override fun getItem(position: Int): androidx.fragment.app.Fragment =
             when (position) {
                 0 -> PublishedAdsFragment()
                 1 -> UnpublishedAdsFragment()
-                else -> null
+                else -> PublishedAdsFragment()
             }
 
     override fun getCount(): Int = 2

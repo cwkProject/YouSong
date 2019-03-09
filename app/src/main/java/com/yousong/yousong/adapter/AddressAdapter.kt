@@ -1,6 +1,5 @@
 package com.yousong.yousong.adapter
 
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -39,7 +38,7 @@ class AddressAdapter(private val operator: OnDirectionalOperator) : SimpleRecycl
  * @version 1.0 2018/8/20
  * @since 1.0
  */
-class AddressViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+class AddressViewHolder(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
 
     /**
      * 绑定器

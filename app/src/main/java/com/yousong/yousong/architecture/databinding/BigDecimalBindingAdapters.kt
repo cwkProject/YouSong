@@ -1,6 +1,6 @@
 package com.yousong.yousong.architecture.databinding
 
-import android.databinding.BindingConversion
+import androidx.databinding.BindingConversion
 import java.math.BigDecimal
 
 /**

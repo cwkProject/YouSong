@@ -1,11 +1,12 @@
 package com.yousong.yousong.activity.common
 
 import android.os.Bundle
-import android.support.annotation.LayoutRes
-import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewTreeObserver
+import androidx.annotation.LayoutRes
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.doOnLayout
 
 /**
  * Activity基类
@@ -43,12 +44,9 @@ abstract class BaseActivity : AppCompatActivity() {
      * 页面初始化加载监听器
      */
     private fun onInitLoadListener() {
-        rootView.viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
-            override fun onGlobalLayout() {
-                rootView.viewTreeObserver.removeOnGlobalLayoutListener(this)
-                onInitLoadEnd()
-            }
-        })
+        rootView.doOnLayout {
+            onInitLoadEnd()
+        }
     }
 
     /**

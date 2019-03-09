@@ -1,7 +1,7 @@
 package com.yousong.yousong.architecture.databinding
 
-import android.databinding.BindingConversion
-import android.databinding.InverseMethod
+import androidx.databinding.BindingConversion
+import androidx.databinding.InverseMethod
 
 /**
  * 双向数据绑定类型转换器

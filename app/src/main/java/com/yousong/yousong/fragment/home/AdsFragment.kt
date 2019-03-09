@@ -1,8 +1,9 @@
 package com.yousong.yousong.fragment.home
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
+import androidx.fragment.app.activityViewModels
 import com.yousong.yousong.activity.ads.AdsDetailActivity
 import com.yousong.yousong.adapter.AdsAdapter
 import com.yousong.yousong.architecture.viewmodel.ads.AdsViewModel
@@ -26,9 +27,7 @@ class AdsFragment : BaseAdsListFragment() {
     /**
      * 广告数据模型
      */
-    private val adsViewModel by lazy {
-        ViewModelProviders.of(activity!!).get(AdsViewModel::class.java)
-    }
+    private val adsViewModel by activityViewModels<AdsViewModel>()
 
     override fun onInitData(savedInstanceState: Bundle?) {
         adsViewModel.adsListData.observe(this, Observer { onAdsRefresh(it) })

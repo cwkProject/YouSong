@@ -1,7 +1,7 @@
 package com.yousong.yousong.architecture.viewmodel.ads
 
 import android.content.Context
-import android.databinding.Bindable
+import androidx.databinding.Bindable
 import android.graphics.Bitmap
 import android.text.Editable
 import android.view.View

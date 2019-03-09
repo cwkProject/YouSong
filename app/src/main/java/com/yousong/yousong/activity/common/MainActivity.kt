@@ -1,7 +1,6 @@
 package com.yousong.yousong.activity.common
 
 import android.os.Bundle
-import android.support.v4.view.ViewPager
 import android.widget.TextView
 import com.yousong.yousong.R
 import com.yousong.yousong.adapter.MainViewPagerAdapter
@@ -34,7 +33,7 @@ class MainActivity : BaseActivity() {
         viewPager.apply {
             offscreenPageLimit = 3
             adapter = MainViewPagerAdapter(supportFragmentManager)
-            addOnPageChangeListener(object : ViewPager.SimpleOnPageChangeListener() {
+            addOnPageChangeListener(object : androidx.viewpager.widget.ViewPager.SimpleOnPageChangeListener() {
                 override fun onPageSelected(position: Int) {
                     navigation.selectedItemId = when (position) {
                         0 -> R.id.navigation_ads

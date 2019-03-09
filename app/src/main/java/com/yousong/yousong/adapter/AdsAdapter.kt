@@ -1,6 +1,5 @@
 package com.yousong.yousong.adapter
 
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -76,12 +75,12 @@ class AdsAdapter : MultipleRecyclerViewAdapter() {
         }
     }
 
-    override fun onBindManagers(managerList: MutableList<RecyclerViewHolderManager<*, out RecyclerView.ViewHolder>>) {
+    override fun onBindManagers(managerList: MutableList<RecyclerViewHolderManager<*, out androidx.recyclerview.widget.RecyclerView.ViewHolder>>) {
         managerList += topList
         managerList += adsList
     }
 
-    override fun onViewRecycled(holder: RecyclerView.ViewHolder) {
+    override fun onViewRecycled(holder: androidx.recyclerview.widget.RecyclerView.ViewHolder) {
         if (holder is BannerViewHolder && playControl == holder.playControl) {
             playControl = {}
         }
@@ -95,7 +94,7 @@ class AdsAdapter : MultipleRecyclerViewAdapter() {
  * @version 1.0 2018/6/28
  * @since 1.0
  */
-class BannerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+class BannerViewHolder(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
     /**
      * 轮播控件
      */
@@ -135,7 +134,7 @@ class BannerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
  * @version 1.0 2018/6/28
  * @since 1.0
  */
-class AdViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+class AdViewHolder(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
 
     /**
      * 绑定器

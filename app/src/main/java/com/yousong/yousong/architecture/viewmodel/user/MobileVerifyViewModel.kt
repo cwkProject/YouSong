@@ -3,7 +3,7 @@ package com.yousong.yousong.architecture.viewmodel.user
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.ValueAnimator
-import android.databinding.Bindable
+import androidx.databinding.Bindable
 import android.view.View
 import android.view.animation.LinearInterpolator
 import com.yousong.yousong.BR

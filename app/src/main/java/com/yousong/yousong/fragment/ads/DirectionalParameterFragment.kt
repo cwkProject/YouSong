@@ -1,9 +1,11 @@
 package com.yousong.yousong.fragment.ads
 
-import android.arch.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.support.v7.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.DefaultItemAnimator
 import android.view.View
+import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.createViewModelLazy
 import com.lljjcoder.Interface.OnCityItemClickListener
 import com.lljjcoder.bean.CityBean
 import com.lljjcoder.bean.DistrictBean
@@ -42,16 +44,12 @@ class DirectionalParameterFragment : BaseFragment(), OnDirectionalOperator {
     /**
      * 数据模型
      */
-    private val adsDetailViewModel by lazy {
-        ViewModelProviders.of(activity!!).get(CreateAdsViewModel::class.java)
-    }
+    private val adsDetailViewModel by activityViewModels<CreateAdsViewModel>()
 
     /**
      * 定向数据模型
      */
-    private val directionalViewModel by lazy {
-        ViewModelProviders.of(activity!!).get(DirectionalViewModel::class.java)
-    }
+    private val directionalViewModel by activityViewModels<DirectionalViewModel>()
 
     /**
      * 地址列表适配器
@@ -92,7 +90,7 @@ class DirectionalParameterFragment : BaseFragment(), OnDirectionalOperator {
 
         address_recyclerView.apply {
             isNestedScrollingEnabled = false
-            itemAnimator = DefaultItemAnimator()
+            itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
             adapter = this@DirectionalParameterFragment.adapter
         }
     }

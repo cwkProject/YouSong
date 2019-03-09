@@ -2,13 +2,14 @@ package com.yousong.yousong.activity.user
 
 import android.Manifest
 import android.app.Activity
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.View
+import androidx.activity.viewModels
 import com.yousong.yousong.R
 import com.yousong.yousong.activity.common.BaseActivity
 import com.yousong.yousong.architecture.viewmodel.user.CompanyAuthViewModel
@@ -42,9 +43,7 @@ class CompanyCertificationActivity : BaseActivity(), OnCompanyCertificationOpera
     /**
      * 数据模型
      */
-    private val viewModel by lazy {
-        ViewModelProviders.of(this).get(CompanyAuthViewModel::class.java)
-    }
+    private val viewModel by viewModels<CompanyAuthViewModel>()
 
     override val rootViewId = R.layout.activity_company_certification
 

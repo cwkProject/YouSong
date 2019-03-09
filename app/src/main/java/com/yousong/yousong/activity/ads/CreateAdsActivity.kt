@@ -2,8 +2,8 @@ package com.yousong.yousong.activity.ads
 
 import android.Manifest
 import android.app.Activity
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
@@ -11,6 +11,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.View
+import androidx.activity.viewModels
 import com.yousong.yousong.R
 import com.yousong.yousong.activity.common.BaseActivity
 import com.yousong.yousong.architecture.viewmodel.ads.CreateAdsViewModel
@@ -53,19 +54,19 @@ class CreateAdsActivity : BaseActivity(), OnCreateAdsOperator {
     /**
      * 数据模型
      */
-    private val viewModel by lazy {
-        ViewModelProviders.of(this).get(CreateAdsViewModel::class.java).apply {
-            if (intent.hasExtra(ValueTag.TAG_ADS_DETAIL)) {
-                adsDetail = intent.getParcelableExtra(ValueTag.TAG_ADS_DETAIL)
-                intent.removeExtra(ValueTag.TAG_ADS_DETAIL)
-            }
-        }
-    }
+    private val viewModel by viewModels<CreateAdsViewModel>()
 
     override val rootViewId = R.layout.activity_create_ads
 
     override fun onInitView(savedInstanceState: Bundle?) {
         initToolbar(this, R.string.title_publish_ads)
+
+        viewModel.apply {
+            if (intent.hasExtra(ValueTag.TAG_ADS_DETAIL)) {
+                adsDetail = intent.getParcelableExtra(ValueTag.TAG_ADS_DETAIL)
+                intent.removeExtra(ValueTag.TAG_ADS_DETAIL)
+            }
+        }
 
         binding.data = viewModel.adsDetail
         binding.viewModel = viewModel

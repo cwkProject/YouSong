@@ -1,7 +1,7 @@
 package com.yousong.yousong.global
 
-import android.databinding.BaseObservable
-import android.databinding.Bindable
+import androidx.databinding.BaseObservable
+import androidx.databinding.Bindable
 import com.yousong.yousong.BR
 import com.yousong.yousong.model.server.Auth
 import com.yousong.yousong.work.common.start

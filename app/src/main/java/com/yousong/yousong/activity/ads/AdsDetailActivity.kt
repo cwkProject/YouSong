@@ -1,8 +1,11 @@
 package com.yousong.yousong.activity.ads
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
+import androidx.activity.viewModels
+import androidx.lifecycle.ViewModelLazy
+import androidx.lifecycle.ViewModelProvider
 import com.yousong.yousong.R
 import com.yousong.yousong.activity.common.BaseActivity
 import com.yousong.yousong.architecture.viewmodel.ads.AdsDetailViewModel
@@ -22,9 +25,7 @@ class AdsDetailActivity : BaseActivity() {
     /**
      * 数据模型
      */
-    private val viewModel by lazy {
-        ViewModelProviders.of(this).get(AdsDetailViewModel::class.java)
-    }
+    private val viewModel by viewModels<AdsDetailViewModel>()
 
     /**
      * 绑定器
@@ -38,7 +39,7 @@ class AdsDetailActivity : BaseActivity() {
     override fun onInitView(savedInstanceState: Bundle?) {
         initToolbar(this, R.string.empty)
         binding.viewModel = viewModel
-        binding.setLifecycleOwner(this)
+        binding.lifecycleOwner = this
 
         viewModel.adsDetail.observe(this, Observer { title = it?.ads?.name })
         viewModel.submitResult.observe(this, Observer { it?.show(this) })

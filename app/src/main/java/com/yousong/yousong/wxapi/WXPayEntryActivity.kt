@@ -1,6 +1,6 @@
 package com.yousong.yousong.wxapi
 
-import android.arch.lifecycle.Observer
+import androidx.lifecycle.Observer
 import android.content.Intent
 import android.os.Bundle
 import com.tencent.mm.opensdk.constants.ConstantsAPI

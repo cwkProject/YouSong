@@ -1,8 +1,9 @@
 package com.yousong.yousong.activity.user
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
+import androidx.activity.viewModels
 import com.yousong.yousong.R
 import com.yousong.yousong.activity.common.BaseActivity
 import com.yousong.yousong.architecture.viewmodel.user.WithdrawViewModel
@@ -22,9 +23,7 @@ class WithdrawActivity : BaseActivity() {
     /**
      * 数据模型
      */
-    private val viewModel by lazy {
-        ViewModelProviders.of(this).get(WithdrawViewModel::class.java)
-    }
+    private val viewModel by viewModels<WithdrawViewModel>()
 
     override val rootViewId = R.layout.activity_withdraw
 

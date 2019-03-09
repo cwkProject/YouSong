@@ -1,9 +1,10 @@
 package com.yousong.yousong.fragment.home
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.widget.ImageView
+import androidx.fragment.app.activityViewModels
 import com.yousong.yousong.R
 import com.yousong.yousong.activity.ads.ShareFriendActivity
 import com.yousong.yousong.architecture.viewmodel.ads.AdsViewModel
@@ -27,16 +28,12 @@ class FriendFragment : BaseFragment() {
     /**
      * 用户数据
      */
-    private val userViewModel by lazy {
-        ViewModelProviders.of(activity!!).get(UserViewModel::class.java)
-    }
+    private val userViewModel by activityViewModels<UserViewModel>()
 
     /**
      * 广告数据模型
      */
-    private val adsViewModel by lazy {
-        ViewModelProviders.of(activity!!).get(AdsViewModel::class.java)
-    }
+    private val adsViewModel by activityViewModels<AdsViewModel>()
 
     /**
      * 绑定器
@@ -53,7 +50,7 @@ class FriendFragment : BaseFragment() {
     }
 
     override fun onInitData(savedInstanceState: Bundle?) {
-        binding.setLifecycleOwner(this)
+        binding.lifecycleOwner = this
         binding.viewModel = userViewModel
 
         adsViewModel.bannerAdsData.observe(this, Observer {

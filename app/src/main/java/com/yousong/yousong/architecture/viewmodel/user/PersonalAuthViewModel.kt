@@ -1,7 +1,7 @@
 package com.yousong.yousong.architecture.viewmodel.user
 
-import android.databinding.Bindable
-import android.databinding.Observable
+import androidx.databinding.Bindable
+import androidx.databinding.Observable
 import android.view.View
 import com.yousong.yousong.BR
 import com.yousong.yousong.R

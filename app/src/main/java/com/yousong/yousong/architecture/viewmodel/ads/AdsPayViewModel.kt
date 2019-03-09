@@ -1,6 +1,6 @@
 package com.yousong.yousong.architecture.viewmodel.ads
 
-import android.databinding.Bindable
+import androidx.databinding.Bindable
 import android.view.View
 import com.yousong.yousong.BR
 import com.yousong.yousong.architecture.livedata.SubmitResult

@@ -1,6 +1,5 @@
 package com.yousong.yousong.adapter
 
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -27,7 +26,7 @@ class MyAdsAdapter : SimpleRecyclerViewAdapter<Ads, MyAdsViewHolder>() {
     }
 }
 
-class MyAdsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+class MyAdsViewHolder(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
 
     /**
      * 绑定器

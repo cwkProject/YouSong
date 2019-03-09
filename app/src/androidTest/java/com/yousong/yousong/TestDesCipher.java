@@ -1,6 +1,6 @@
 package com.yousong.yousong;
 
-import android.support.test.runner.AndroidJUnit4;
+import androidx.test.runner.AndroidJUnit4;
 import android.util.Base64;
 import android.util.Log;
 

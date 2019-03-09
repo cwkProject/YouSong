@@ -19,7 +19,7 @@
 
         <include layout="@layout/toolbar"/>
 
-        <android.support.v4.widget.NestedScrollView
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -81,7 +81,7 @@
                         android:text="@{@string/label_total_amount + ` ` + viewModel.adsDetail.ads.totalAmount + ` `+ @string/name_yuan}"
                         android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
 
-                    <android.support.v7.widget.AppCompatButton
+                    <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/submit_button"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -262,21 +262,21 @@
                     android:paddingEnd="@dimen/activity_horizontal_margin"
                     android:paddingStart="@dimen/activity_horizontal_margin">
 
-                    <android.support.v7.widget.AppCompatRadioButton
+                    <androidx.appcompat.widget.AppCompatRadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:checked="@={viewModel.adsDetail.question.option[0].answer}"
                         android:enabled="false"
                         android:text="@{viewModel.adsDetail.question.option[0].content}"/>
 
-                    <android.support.v7.widget.AppCompatRadioButton
+                    <androidx.appcompat.widget.AppCompatRadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:checked="@={viewModel.adsDetail.question.option[1].answer}"
                         android:enabled="false"
                         android:text="@{viewModel.adsDetail.question.option[1].content}"/>
 
-                    <android.support.v7.widget.AppCompatRadioButton
+                    <androidx.appcompat.widget.AppCompatRadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:checked="@={viewModel.adsDetail.question.option[2].answer}"
@@ -284,7 +284,7 @@
                         android:text="@{viewModel.adsDetail.question.option[2].content}"
                         app:goneUnless="@{viewModel.adsDetail.question.option.size() > 2}"/>
 
-                    <android.support.v7.widget.AppCompatRadioButton
+                    <androidx.appcompat.widget.AppCompatRadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:checked="@={viewModel.adsDetail.question.option[3].answer}"
@@ -317,7 +317,7 @@
 
             </LinearLayout>
 
-        </android.support.v4.widget.NestedScrollView>
+        </androidx.core.widget.NestedScrollView>
     </LinearLayout>
 
 </layout>

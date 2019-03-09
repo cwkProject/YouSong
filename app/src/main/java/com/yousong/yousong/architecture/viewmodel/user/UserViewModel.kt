@@ -1,7 +1,7 @@
 package com.yousong.yousong.architecture.viewmodel.user
 
-import android.arch.lifecycle.MutableLiveData
-import android.arch.lifecycle.ViewModel
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.yousong.yousong.global.LoginStatus
 import com.yousong.yousong.work.common.start
 import com.yousong.yousong.work.user.UserGetTotalIncomeWork

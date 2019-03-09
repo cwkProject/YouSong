@@ -1,7 +1,7 @@
 package com.yousong.yousong.architecture.livedata
 
 import android.app.Activity
-import android.arch.lifecycle.MutableLiveData
+import androidx.lifecycle.MutableLiveData
 import org.jetbrains.anko.alert
 import org.jetbrains.anko.longToast
 import org.jetbrains.anko.okButton

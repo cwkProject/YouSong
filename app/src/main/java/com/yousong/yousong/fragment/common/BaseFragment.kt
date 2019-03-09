@@ -1,12 +1,13 @@
 package com.yousong.yousong.fragment.common
 
 import android.os.Bundle
-import android.support.annotation.LayoutRes
-import android.support.v4.app.Fragment
+import androidx.annotation.LayoutRes
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewTreeObserver
+import androidx.core.view.doOnLayout
 
 /**
  * Fragment基类
@@ -15,7 +16,7 @@ import android.view.ViewTreeObserver
  * @version 1.0 2017/2/22
  * @since 1.0 2017/2/22
  */
-abstract class BaseFragment : Fragment() {
+abstract class BaseFragment : androidx.fragment.app.Fragment() {
 
     /**
      * 日志或其他工具使用的标签
@@ -44,12 +45,9 @@ abstract class BaseFragment : Fragment() {
      * 页面初始化加载监听器
      */
     private fun onInitLoadListener() {
-        rootView.viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
-            override fun onGlobalLayout() {
-                rootView.viewTreeObserver.removeOnGlobalLayoutListener(this)
-                onActivityLoadEnd()
-            }
-        })
+        rootView.doOnLayout {
+            onActivityLoadEnd()
+        }
     }
 
     /**

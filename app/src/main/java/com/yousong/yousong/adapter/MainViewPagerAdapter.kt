@@ -1,8 +1,5 @@
 package com.yousong.yousong.adapter
 
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
-import android.support.v4.app.FragmentPagerAdapter
 import com.yousong.yousong.fragment.home.AdsFragment
 import com.yousong.yousong.fragment.home.FriendFragment
 import com.yousong.yousong.fragment.home.MeFragment
@@ -14,14 +11,14 @@ import com.yousong.yousong.fragment.home.MeFragment
  * @version 1.0 2018/6/27
  * @since 1.0
  */
-class MainViewPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
+class MainViewPagerAdapter(fm: androidx.fragment.app.FragmentManager) : androidx.fragment.app.FragmentPagerAdapter(fm) {
 
-    override fun getItem(position: Int): Fragment? =
+    override fun getItem(position: Int): androidx.fragment.app.Fragment =
             when (position) {
                 0 -> AdsFragment()
                 1 -> FriendFragment()
                 2 -> MeFragment()
-                else -> null
+                else -> AdsFragment()
             }
 
     override fun getCount(): Int = 3

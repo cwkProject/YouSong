@@ -1,9 +1,9 @@
 package com.yousong.yousong.architecture.viewmodel.common
 
-import android.arch.lifecycle.ViewModel
-import android.databinding.Bindable
-import android.databinding.Observable
-import android.databinding.PropertyChangeRegistry
+import androidx.lifecycle.ViewModel
+import androidx.databinding.Bindable
+import androidx.databinding.Observable
+import androidx.databinding.PropertyChangeRegistry
 
 /**
  * 可观察ViewModel

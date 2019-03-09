@@ -1,9 +1,9 @@
 package com.yousong.yousong.architecture.viewmodel.ads
 
-import android.databinding.Bindable
-import android.databinding.Observable
-import android.databinding.ObservableArrayList
-import android.databinding.ObservableList
+import androidx.databinding.Bindable
+import androidx.databinding.Observable
+import androidx.databinding.ObservableArrayList
+import androidx.databinding.ObservableList
 import android.view.View
 import android.widget.AdapterView
 import android.widget.CompoundButton

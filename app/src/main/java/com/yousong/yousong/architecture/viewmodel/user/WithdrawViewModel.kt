@@ -1,6 +1,6 @@
 package com.yousong.yousong.architecture.viewmodel.user
 
-import android.databinding.Bindable
+import androidx.databinding.Bindable
 import android.text.Editable
 import android.util.Log
 import android.view.View

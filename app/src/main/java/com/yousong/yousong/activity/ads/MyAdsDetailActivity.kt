@@ -1,9 +1,10 @@
 package com.yousong.yousong.activity.ads
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.viewModels
 import com.yousong.yousong.R
 import com.yousong.yousong.activity.common.BaseActivity
 import com.yousong.yousong.architecture.viewmodel.ads.MyAdsDetailViewModel
@@ -43,9 +44,7 @@ class MyAdsDetailActivity : BaseActivity() {
     /**
      * 数据模型
      */
-    private val viewModel by lazy {
-        ViewModelProviders.of(this).get(MyAdsDetailViewModel::class.java)
-    }
+    private val viewModel by viewModels<MyAdsDetailViewModel>()
 
     /**
      * 绑定器
@@ -61,7 +60,7 @@ class MyAdsDetailActivity : BaseActivity() {
         initAction()
 
         binding.viewModel = viewModel
-        binding.setLifecycleOwner(this)
+        binding.lifecycleOwner = this
         viewModel.submitResult.observe(this, Observer { it?.show(this) })
     }
 

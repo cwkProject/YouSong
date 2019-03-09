@@ -5,9 +5,9 @@ import android.app.AlertDialog
 import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Build
-import android.support.v4.app.ActivityCompat
-import android.support.v4.app.Fragment
-import android.support.v4.content.ContextCompat
+import androidx.core.app.ActivityCompat
+import androidx.fragment.app.Fragment
+import androidx.core.content.ContextCompat
 import com.yousong.yousong.R
 import java.util.*
 
@@ -44,7 +44,7 @@ object CheckAndroidMPermission {
                         permission: String,
                         hint: String,
                         requestCode: Int,
-                        fragment: Fragment? = null,
+                        fragment: androidx.fragment.app.Fragment? = null,
                         canceledListener: () -> Unit = {}): Boolean =
             checkPermission(activity, arrayOf(permission), hint, requestCode, fragment, canceledListener)
 
@@ -73,7 +73,7 @@ object CheckAndroidMPermission {
                         permissions: Array<String>,
                         hint: String,
                         requestCode: Int,
-                        fragment: Fragment? = null,
+                        fragment: androidx.fragment.app.Fragment? = null,
                         canceledListener: () -> Unit = {}): Boolean {
 
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {

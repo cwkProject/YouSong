@@ -1,9 +1,9 @@
 package com.yousong.yousong.fragment.ads
 
 import android.os.Bundle
-import android.support.annotation.CallSuper
-import android.support.v7.widget.DividerItemDecoration
-import android.support.v7.widget.RecyclerView
+import androidx.annotation.CallSuper
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.RecyclerView
 import android.widget.LinearLayout
 import com.yousong.yousong.R
 import com.yousong.yousong.fragment.common.BaseFragment
@@ -21,7 +21,7 @@ abstract class BaseAdsListFragment : BaseFragment() {
     /**
      * 列表适配器
      */
-    abstract protected val adapter: RecyclerView.Adapter<*>
+    abstract protected val adapter: androidx.recyclerview.widget.RecyclerView.Adapter<*>
 
     override val rootViewId = R.layout.fragment_ads_list
 
@@ -53,7 +53,7 @@ abstract class BaseAdsListFragment : BaseFragment() {
     private fun initList() {
         recyclerView.adapter = adapter
 
-        recyclerView.addItemDecoration(DividerItemDecoration(context, LinearLayout.VERTICAL).apply {
+        recyclerView.addItemDecoration(androidx.recyclerview.widget.DividerItemDecoration(context, LinearLayout.VERTICAL).apply {
             setDrawable(context!!.resources.getDrawable(R.drawable.list_divider))
         })
 

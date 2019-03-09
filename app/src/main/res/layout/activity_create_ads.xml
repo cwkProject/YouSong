@@ -27,7 +27,7 @@
 
         <include layout="@layout/toolbar"/>
 
-        <android.support.v4.widget.NestedScrollView
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -38,7 +38,7 @@
                 android:paddingEnd="@dimen/activity_horizontal_margin"
                 android:paddingStart="@dimen/activity_horizontal_margin">
 
-                <android.support.design.widget.TextInputLayout
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/activity_vertical_margin">
@@ -49,7 +49,7 @@
                         android:hint="@string/hint_ads_name"
                         android:text="@={data.ads.name}"/>
 
-                </android.support.design.widget.TextInputLayout>
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <include
                     layout="@layout/layout_ads_picture_setting"
@@ -71,14 +71,14 @@
                     android:text="@string/name_publish_form"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
 
-                <android.support.v7.widget.AppCompatRadioButton
+                <androidx.appcompat.widget.AppCompatRadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/layout_default_spacing"
                     android:checked="@={data.ads.type}"
                     android:text="@string/name_promotion_publish"/>
 
-                <android.support.v7.widget.AppCompatRadioButton
+                <androidx.appcompat.widget.AppCompatRadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="@={!data.ads.type}"
@@ -107,20 +107,20 @@
 
                 <View style="@style/DivideStyle"/>
 
-                <android.support.v7.widget.AppCompatRadioButton
+                <androidx.appcompat.widget.AppCompatRadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="@={data.ads.needInvoice}"
                     android:text="@string/name_need_invoice"/>
 
-                <android.support.v7.widget.AppCompatRadioButton
+                <androidx.appcompat.widget.AppCompatRadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/layout_default_spacing"
                     android:checked="@={!data.ads.needInvoice}"
                     android:text="@string/name_not_need_invoice"/>
 
-                <android.support.v7.widget.AppCompatButton
+                <androidx.appcompat.widget.AppCompatButton
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:onClick="@{viewModel::onSubmit}"
@@ -130,7 +130,7 @@
 
             </LinearLayout>
 
-        </android.support.v4.widget.NestedScrollView>
+        </androidx.core.widget.NestedScrollView>
 
     </LinearLayout>
 

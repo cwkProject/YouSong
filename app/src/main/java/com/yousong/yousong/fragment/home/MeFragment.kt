@@ -1,6 +1,6 @@
 package com.yousong.yousong.fragment.home
 
-import android.arch.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.view.View
 import com.yousong.yousong.R
@@ -33,7 +33,7 @@ class MeFragment : BaseFragment(), OnMeFunctionOperator {
             userViewModel = ViewModelProviders.of(activity!!).get(UserViewModel::class.java)
             holder = this@MeFragment
             userInfo = LoginStatus.userInfo
-            setLifecycleOwner(this@MeFragment)
+            lifecycleOwner = this@MeFragment
         }
     }
 

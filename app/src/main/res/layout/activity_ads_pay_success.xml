@@ -32,7 +32,7 @@
         android:layout_marginTop="@dimen/activity_vertical_margin"
         android:orientation="horizontal">
 
-        <android.support.v7.widget.AppCompatButton
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button_cancel"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -40,7 +40,7 @@
             android:layout_weight="1"
             android:text="@string/name_publish_delay" />
 
-        <android.support.v7.widget.AppCompatButton
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button_ok"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

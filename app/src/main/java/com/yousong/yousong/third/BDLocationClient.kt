@@ -4,7 +4,7 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.pm.PackageManager
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 import android.util.Log
 import com.baidu.location.BDAbstractLocationListener
 import com.baidu.location.BDLocation
@@ -79,7 +79,7 @@ object BDLocationClient {
      * @param activity 启动定位的activity
      * @param fragment 启动定位的Fragment
      */
-    fun start(activity: Activity, fragment: Fragment? = null) {
+    fun start(activity: Activity, fragment: androidx.fragment.app.Fragment? = null) {
         if (CheckAndroidMPermission.checkPermission(activity,
                         arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION,
                                 Manifest.permission.WRITE_EXTERNAL_STORAGE,

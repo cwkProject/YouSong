@@ -1,7 +1,7 @@
 package com.yousong.yousong.architecture.viewmodel.ads
 
-import android.arch.lifecycle.MutableLiveData
-import android.databinding.Bindable
+import androidx.lifecycle.MutableLiveData
+import androidx.databinding.Bindable
 import com.lljjcoder.citywheel.CityParseHelper
 import com.yousong.yousong.BR
 import com.yousong.yousong.architecture.livedata.SubmitResult
